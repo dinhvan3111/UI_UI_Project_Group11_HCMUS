@@ -8,6 +8,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 console.log(__dirname)
 const app = express()
 app.use(morgan('dev'))
+app.use(express.static('public'))
 
 app.engine('hbs', engine({
         defaultLayout: 'main.hbs'
@@ -18,6 +19,11 @@ app.set('views', './views');
 
 app.get('/', (req, res) => {
     res.render('home');
+});
+
+// Product detail
+app.get('/detail', (req, res) => {
+    res.render('detail');
 });
 
 app.get('/bs4', function(req,res){
