@@ -1,3 +1,12 @@
+<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+    aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
+        <li class="breadcrumb-item"><a href="#">Bàn phím</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Akko 3084</li>
+    </ol>
+</nav>
 <div class="container">
     <div class="row d-flex justify-content-center">
         <div class="col-md-10">
@@ -6,39 +15,49 @@
                     <div class="col-md-6">
                         <div class="images p-3">
                             <div class="text-center p-4"> <img id="main-image" src="https://i.imgur.com/Dhebu4F.jpg"
-                                    width="250" /> </div>
-                            <div class="thumbnail text-center"> <img onclick="change_image(this)"
-                                    src="https://i.imgur.com/Rx7uKd0.jpg" width="70"> <img onclick="change_image(this)"
-                                    src="https://i.imgur.com/Dhebu4F.jpg" width="70"> </div>
+                                    width="300" /> </div>
+                            <div class="thumbnail text-center">
+                                <img class="hover-img" onclick="change_image(this)"
+                                    src="https://i.imgur.com/Rx7uKd0.jpg" width="100">
+                                <img class="hover-img" onclick="change_image(this)"
+                                    src="https://i.imgur.com/Dhebu4F.jpg" width="100">
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="product p-4">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex align-items-center"> <i class="fa fa-long-arrow-left"></i> <span
-                                        class="ml-1">Back</span> </div> <i class="fa fa-shopping-cart text-muted"></i>
-                            </div>
-                            <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand">Orianz</span>
-                                <h5 class="text-uppercase">Men's slim fit t-shirt</h5>
-                                <div class="price d-flex flex-row align-items-center"> <span
-                                        class="act-price">$20</span>
-                                    <div class="ml-2"> <small class="dis-price">$59</small> <span>40% OFF</span> </div>
+                        <div class="p-4">
+                            <div class="mt-4 mb-3">
+                                {{!-- Title --}}
+                                <h1 class="text-uppercase">Akko 3084</h1>
+                                {{!-- Description --}}
+                                <div class="about">
+                                    Shop from a wide range of t-shirt from orianz. Pefect for your everyday
+                                    use, you could pair it with a stylish pair of jeans or trousers complete the look.
                                 </div>
-                            </div>
-                            <p class="about">Shop from a wide range of t-shirt from orianz. Pefect for your everyday
-                                use, you could pair it with a stylish pair of jeans or trousers complete the look.</p>
-                            <div class="sizes mt-5">
-                                <h6 class="text-uppercase">Size</h6> <label class="radio"> <input type="radio"
-                                        name="size" value="S" checked> <span>S</span> </label> <label class="radio">
-                                    <input type="radio" name="size" value="M"> <span>M</span> </label> <label
-                                    class="radio"> <input type="radio" name="size" value="L"> <span>L</span> </label>
-                                <label class="radio"> <input type="radio" name="size" value="XL"> <span>XL</span>
-                                </label> <label class="radio"> <input type="radio" name="size" value="XXL">
-                                    <span>XXL</span> </label>
-                            </div>
-                            <div class="cart mt-4 align-items-center"> <button
-                                    class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button> <i
-                                    class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i>
+                                {{!-- Price info --}}
+                                <div class="price-container">
+                                    <span class="price-text">Trong kho:</span><span style="color: green;">100</span><br>
+                                    <span class="price-text">Quantity:</span>
+                                    <span>
+                                        <input type="number" name="quantity" value="1" class="qty">
+                                    </span><br>
+                                    <span class="price-text">Giá gốc:</span><span class="dis-price">
+                                        2,000,000 VNĐ
+                                    </span><br>
+                                    <span class="price-text">Trong kho: </span>
+                                    <span class="act-price">
+                                        1,500,000 VNĐ
+                                    </span><br>
+                                </div>
+                                {{!-- Button --}}
+                                <div class="cart mt-4 align-items-center">
+                                    <button class="btn btn-outline-danger mr-2 px-4 btn-lg">
+                                        <i class="fa-brands fa-gratipay"></i>Yêu thích
+                                    </button>
+                                    <button class="btn btn-outline-danger mr-2 px-4 btn-lg">
+                                        <i class="fa-solid fa-cart-plus"></i>Thêm vào giỏ hàng
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -46,4 +65,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

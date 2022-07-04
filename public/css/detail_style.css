@@ -1,17 +1,18 @@
+/* Reset HTML */
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.5rem;
+}
+
 .card {
     border: none;
 }
 
-.product {
-    background-color: #eee;
-}
-
-.brand {
-    font-size: 13px;
-}
-
 .act-price {
-    color: red;
+    color: #dc3545;
     font-weight: 700;
 }
 
@@ -20,38 +21,11 @@
 }
 
 .about {
-    font-size: 14px;
+    font-size: 1.6rem;
 }
 
 .color {
-    margin-bottom: 10px;
-}
-
-label.radio {
-    cursor: pointer;
-}
-
-label.radio input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-label.radio span {
-    padding: 2px 9px;
-    border: 2px solid #ff0000;
-    display: inline-block;
-    color: #ff0000;
-    border-radius: 3px;
-    text-transform: uppercase;
-}
-
-label.radio input:checked+span {
-    border-color: #ff0000;
-    background-color: #ff0000;
-    color: #fff;
+    margin-bottom: 1.6rem;
 }
 
 .btn-danger {
@@ -68,6 +42,41 @@ label.radio input:checked+span {
     box-shadow: none;
 }
 
+.btn-lg{
+    font-size: 2rem;
+}
+
 .cart i {
-    margin-right: 10px;
+    margin-right: 1rem;
+}
+
+/* Hover effect */
+.hover-img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.hover-img:hover {
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
+    cursor: pointer;
+}
+
+.price-container{
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    margin: 15px 0;
+}
+
+.price-text {
+    margin-top: 1rem;
+    width: 10rem;
+    display: inline-block;
+}
+
+/* Quantity */
+.qty {
+    width: 4rem;
 }
