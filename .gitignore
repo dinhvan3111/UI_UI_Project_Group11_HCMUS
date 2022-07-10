@@ -1,6 +1,7 @@
 .idea/
 cert/
 private.zip
+package-lock.json
 
 # Logs
 logs
