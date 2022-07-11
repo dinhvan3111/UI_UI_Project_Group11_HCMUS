@@ -42,6 +42,7 @@ import productModel from './models/product.model.js';
 // console.log(await productModel.search('this', 0));
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+console.log(__dirname);
 const app = express();
 
 // const category = new Category({
