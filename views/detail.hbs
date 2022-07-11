@@ -10,19 +10,54 @@
 <div class="container">
     <div class="row d-flex justify-content-center">
         <div class="card">
-            <div class="row">
+            <div class="row mb-5">
+                {{!-- Image --}}
                 <div class="col-md-6">
-                    <div class="images p-3">
-                        <div class="text-center p-4"> <img id="main-image" src="https://i.imgur.com/Dhebu4F.jpg"
-                                width="300" /> </div>
-                        <div class="thumbnail text-center">
-                            <img class="hover-img" onclick="change_image(this)" src="https://i.imgur.com/Rx7uKd0.jpg"
-                                width="100">
-                            <img class="hover-img" onclick="change_image(this)" src="https://i.imgur.com/Dhebu4F.jpg"
-                                width="100">
+                    <div id="sync1" class="owl-carousel owl-theme">
+                        <div class="item">
+                            <img class="main-img"
+                                src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg">
+                        </div>
+                        <div class="item">
+                            <img class="main-img" src="https://img-9gag-fun.9cache.com/photo/a3Q5VW5_460s.jpg">
+                        </div>
+                        <div class="item">
+                            <img class="main-img"
+                                src="https://lh3.googleusercontent.com/2hDpuTi-0AMKvoZJGd-yKWvK4tKdQr_kLIpB_qSeMau2TNGCNidAosMEvrEXFO9G6tmlFlPQplpwiqirgrIPWnCKMvElaYgI-HiVvXc=w600">
+                        </div>
+                        <div class="item">
+                            <img class="main-img"
+                                src="https://cdnb.artstation.com/p/assets/images/images/019/214/567/large/lala-drawings-juan.jpg?1562537132">
+                        </div>
+                        <div class="item">
+                            <img class="main-img"
+                                src="https://www.funcage.com/blog/wp-content/uploads/2013/11/Random-Photoshopped-Pictures-026.jpg">
+                        </div>
+                    </div>
+
+                    <div id="sync2" class="owl-carousel owl-theme">
+                        <div class="item">
+                            <img class="thumbnail"
+                                src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg">
+                        </div>
+                        <div class="item">
+                            <img class="thumbnail" src="https://img-9gag-fun.9cache.com/photo/a3Q5VW5_460s.jpg">
+                        </div>
+                        <div class="item">
+                            <img class="thumbnail"
+                                src="https://lh3.googleusercontent.com/2hDpuTi-0AMKvoZJGd-yKWvK4tKdQr_kLIpB_qSeMau2TNGCNidAosMEvrEXFO9G6tmlFlPQplpwiqirgrIPWnCKMvElaYgI-HiVvXc=w600">
+                        </div>
+                        <div class="item">
+                            <img class="thumbnail"
+                                src="https://cdnb.artstation.com/p/assets/images/images/019/214/567/large/lala-drawings-juan.jpg?1562537132">
+                        </div>
+                        <div class="item">
+                            <img class="thumbnail"
+                                src="https://www.funcage.com/blog/wp-content/uploads/2013/11/Random-Photoshopped-Pictures-026.jpg">
                         </div>
                     </div>
                 </div>
+                {{!-- Product info --}}
                 <div class="col-md-6">
                     <div class="p-4">
                         <div class="mt-4 mb-3">
@@ -88,22 +123,27 @@
                 <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="des-tab">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at rutrum lectus. Orci varius
                     natoque penatibus et
-                    magnis dis parturient montes, nascetur ridiculus mus. Suspendisse ac est sed eros porttitor iaculis.
+                    magnis dis parturient montes, nascetur ridiculus mus. Suspendisse ac est sed eros porttitor
+                    iaculis.
                     Vivamus sagittis
                     finibus nisl eu feugiat. Sed imperdiet, quam sed congue porttitor, elit ligula feugiat quam, nec
                     maximus sem mi id quam.
-                    In ac varius quam. In hac habitasse platea dictumst. Proin non augue quis nisi sollicitudin semper
+                    In ac varius quam. In hac habitasse platea dictumst. Proin non augue quis nisi sollicitudin
+                    semper
                     vel ac est.
 
                     Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam aliquet risus a leo cursus
                     lacinia. Quisque
-                    hendrerit pellentesque sem, in viverra tortor condimentum nec. Sed hendrerit risus vitae pharetra
+                    hendrerit pellentesque sem, in viverra tortor condimentum nec. Sed hendrerit risus vitae
+                    pharetra
                     fringilla. Morbi non
-                    eros id enim rhoncus volutpat et eu ipsum. Mauris eget convallis nibh. In dignissim elit eget libero
+                    eros id enim rhoncus volutpat et eu ipsum. Mauris eget convallis nibh. In dignissim elit eget
+                    libero
                     faucibus maximus.
                     Nulla facilisi. Etiam eu ullamcorper tellus. Cras mattis risus sit amet diam fermentum rhoncus.
                     Donec vitae viverra
-                    ipsum. Suspendisse imperdiet volutpat nibh, at mattis justo sagittis a. Donec mattis dui sed tortor
+                    ipsum. Suspendisse imperdiet volutpat nibh, at mattis justo sagittis a. Donec mattis dui sed
+                    tortor
                     posuere sagittis.
                     Duis nulla arcu, auctor mollis interdum vel, fermentum a augue.
 
@@ -113,9 +153,11 @@
                     rhoncus, porttitor
                     turpis quis, cursus ligula. Sed vulputate dui sit amet nunc lobortis, eu pharetra neque commodo.
                     Fusce tempor dolor sit
-                    amet imperdiet sagittis. Donec eget placerat odio. Donec aliquet in turpis a laoreet. Maecenas in
+                    amet imperdiet sagittis. Donec eget placerat odio. Donec aliquet in turpis a laoreet. Maecenas
+                    in
                     sapien non velit
-                    consequat luctus in a velit. Vestibulum pharetra tempor arcu vel facilisis. Donec efficitur tempus
+                    consequat luctus in a velit. Vestibulum pharetra tempor arcu vel facilisis. Donec efficitur
+                    tempus
                     semper. Aenean quis
                     neque sit amet mauris dictum egestas. Aenean egestas, mi non venenatis egestas, justo libero
                     venenatis ipsum, eget
@@ -125,11 +167,13 @@
                     amet nunc. Morbi
                     pretium a dui id pulvinar. Suspendisse potenti. Aenean dui nunc, tristique id tortor sit amet,
                     tristique iaculis sem.
-                    Curabitur porta porta leo id porttitor. In volutpat arcu sed pulvinar viverra. Pellentesque sagittis
+                    Curabitur porta porta leo id porttitor. In volutpat arcu sed pulvinar viverra. Pellentesque
+                    sagittis
                     porta augue ac
                     tincidunt. Proin in dictum lorem. Pellentesque ullamcorper egestas nulla.
 
-                    Quisque consectetur risus neque, quis molestie odio venenatis ac. Morbi id quam vitae lorem porta
+                    Quisque consectetur risus neque, quis molestie odio venenatis ac. Morbi id quam vitae lorem
+                    porta
                     vestibulum. Mauris id
                     pretium est. Etiam quis ipsum suscipit, vestibulum massa vel, venenatis sem. Suspendisse
                     ullamcorper, leo a egestas
@@ -137,7 +181,8 @@
                     volutpat. Vestibulum a
                     pharetra neque. Aliquam vulputate, nunc vel tincidunt maximus, nulla diam mollis eros, sit amet
                     congue velit magna
-                    commodo justo. Etiam elit quam, sagittis sed blandit in, sodales ac ex. Nunc tortor felis, dignissim
+                    commodo justo. Etiam elit quam, sagittis sed blandit in, sodales ac ex. Nunc tortor felis,
+                    dignissim
                     a faucibus
                     sagittis, ultrices eget nisl. Nulla id nisl faucibus, volutpat mi et, varius sapien.
 
@@ -147,11 +192,13 @@
                     Pellentesque vehicula
                     fermentum molestie. Donec lacus felis, pellentesque a magna a, convallis feugiat quam. Nullam et
                     mattis ipsum. Fusce
-                    quis malesuada dolor, ac blandit lacus. Proin mauris ipsum, pretium in lectus ac, luctus faucibus
+                    quis malesuada dolor, ac blandit lacus. Proin mauris ipsum, pretium in lectus ac, luctus
+                    faucibus
                     nisi. Etiam sed
                     vehicula mauris, id ornare nisi. Quisque placerat in velit molestie semper. Nulla convallis
                     ullamcorper ipsum non
-                    ultricies. Aliquam sollicitudin pretium magna quis condimentum. Duis aliquet vehicula tellus. Nunc
+                    ultricies. Aliquam sollicitudin pretium magna quis condimentum. Duis aliquet vehicula tellus.
+                    Nunc
                     et pharetra magna.
 
                     Etiam sed porta erat. Maecenas eget enim sit amet mauris rhoncus lacinia sed nec leo. Duis purus

@@ -7,6 +7,7 @@ body {
     font-size: 1.5rem;
 }
 
+/* Customize */
 .card {
     border: none;
 }
@@ -56,7 +57,7 @@ body {
     margin-right: 1rem;
 }
 
-/* Hover effect */
+/* Image slider */
 .hover-img {
 	-webkit-transform: scale(1);
 	transform: scale(1);
@@ -69,11 +70,17 @@ body {
     cursor: pointer;
 }
 
+.thumbnail{
+    width: 15rem;
+    height: 10rem;
+}
+
 .price-container{
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
     padding: 10px 0;
     margin: 15px 0;
+    font-size: 1.8rem;
 }
 
 .price-text {
@@ -84,5 +91,31 @@ body {
 
 /* Quantity */
 .qty {
-    width: 4rem;
+    width: 5rem;
+}
+
+/* Owl */
+.main-img {
+    height: 100%;
+}
+
+#sync1 .item {
+    color: #FFF;
+    text-align: center;
+    height: 45rem;
+}
+
+#sync2 .item {
+    color: #FFF;
+    text-align: center;
+    cursor: pointer;
+}
+
+#sync2 .current .item {
+    border: 0.2rem solid #DC3545;
+}
+
+.owl-theme .owl-nav [class*='owl-'] {
+    /*default owl-theme theme reset .disabled:hover links */
+    transition: all .3s ease;
 }
