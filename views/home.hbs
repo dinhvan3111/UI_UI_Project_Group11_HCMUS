@@ -1,28 +1,1000 @@
-<h1>Example App: Home</h1>
 
-<form action="/auth/google" method="post">
-    <button type="submit"><i class="icon-mail fa fa-google"></i>Dang nhap gg</button>
-</form>
-<form action="/auth/facebook" method="post">
-    <button type="submit"><i class="icon-fb fa fa-facebook"></i>Dang nhap Fb</button>
-</form>
+    <header class="header">
+        <div class="container">
+            <div class="header-main">
+                <a class="header-logo" href="">
+                    <img class="img-fluid" src="/assets{ asset('/imgs/logo_blue.png') }}">
+                </a>
+                <div class="header-search">
+                    <form action="">
+                        <div class="input-group">
+                            <button class="btn btn-outline-secondary" type="submit"><i
+                                    class="fas fa-search"></i></button>
+                            <input class="form-control" type="text" placeholder="Nhập từ khóa tìm kiếm" name="keyword">
+                        </div>
+                    </form>
+                </div>
+                <div class="header-control">
+                    <div class="announce">
+                        <a href="">
+                            <div class="icon">
+                                <i class="fa-solid fa-bell"></i>
+                            </div>
+                            <div class="text">
+                                Thông báo
+                            </div>
+                        </a>
+                    </div>
+                    <div class="cart">
+                        <a href="">
+                            <div class="icon">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span class="cart-number">0</span>
+                            </div>
+                            <div class="text">
+                                Giỏ hàng
+                            </div>
+                        </a>
+                    </div>
+                    <div class="login">
+                        <a href="#">
+                            <label for="nav-input" class="icon">
+                                <i class="fa-regular fa-circle-user"></i>
+                            </label>
+                            <div class="text">
+                                Đăng nhập
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <ul class="menu-main">
 
-<h1>Add new product</h1>
-<form action="/products" method="post" enctype="multipart/form-data">
-    <label class="form-label"><strong>title</strong></label>
-    <input type="text" name="title" id="title">
-    <label class="form-label"><strong>description</strong></label>
-    <input type="text" name="description" id="description">
-    <label class="form-label"><strong>price</strong></label>
-    <input type="number" name="price" id="price">
-    <label class="form-label"><strong>stock</strong></label>
-    <input type="number" name="stock" id="stock">
-    <input type="hidden" name="id_category" id="id_category" value="62c95462ba0e7352fab5497d">
-    <label class="form-label"><strong>sale price</strong></label>
-    <input type="number" name="sale_price" id="sale_price">
-    <label class="form-label"><strong>Thumbnail</strong></label>
-    <input type="file" name="thumb" id="thumb" accept="image/*">
-    <label class="form-label"><strong>Images</strong></label>
-    <input type="file" name="imgs" id="imgs" accept="image/*" multiple>
-    <button type="submit"><i class="icon-thumb fa fa-thumb"></i>Submit</button>
-</form>
+        <div class="container">
+            <label for="nav-input" class="menu-bar-tablet"><i class="fa-solid fa-bars"></i></label>
+            <li class="menu-main__item">Trang chủ</li>
+            <li class="menu-main__item">Sản phẩm</li>
+            <li class="menu-main__item">Khuyến mại</li>
+            <li class="menu-main__item">Liên hệ</li>
+        </div>
+    </ul>
+    <!-- for Mobile -->
+    <div>
+        <ul class="nav__mobile__bottom">
+            <label for="nav-input" class="item">
+                <i class="fa-solid fa-bars"></i>
+                <h4>Danh mục</h4>
+            </label>
+            <li class="item">
+                <i class="fa-solid fa-store"></i>
+                <h4>Sản phẩm</h4>
+            </li>
+            <li class="item active">
+                <i class="fa-solid fa-house .icon"></i>
+                <h4>Trang chủ</h4>
+            </li>
+            <li class="item">
+                <i class="fa-solid fa-sack-dollar"></i>
+                <h4>Khuyến mại</h4>
+            </li>
+            <li class="item">
+                <i class="fa-solid fa-address-book"></i>
+                <h4>Liên hệ</h4>
+            </li>
+        </ul>
+    </div>
+
+    <input type="checkbox" id="nav-input">
+    <label for="nav-input" class="overlay"></label>
+    <ul class="nav__mobile" title="close">
+        <label for="nav-input" class="close">
+            <i class="fa-solid fa-x"></i>
+        </label>
+        <div class="nav__content">
+            <div class="branch">BestGear</div>
+            <div class="user">
+                <!-- <div class="login">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <p>Đăng nhập</p>
+                </div>
+                <div class="register">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <p>Đăng ký</p>
+                </div> -->
+                <div class="logged">
+                    <img src="/assets/img/avatar.png" alt="">
+                    <p>Hi, <b>Nguyễn Trần Ngọc Tú</b></p>
+
+                </div>
+                <i title="Đăng xuất" class="fa-solid fa-arrow-right-from-bracket sign-out"></i>
+            </div>
+            <!-- <div class="nav_navbar">
+                <div class="nav_navbar__title">
+                    <b>Thông tin</b>
+                </div>
+                <ul>
+                    <li class="menu-main__item">Trang chủ</li>
+                    <li class="menu-main__item">Sản phẩm</li>
+                    <li class="menu-main__item">Khuyến mại</li>
+                    <li class="menu-main__item">Liên hệ</li>
+                </ul>
+            </div> -->
+            <div class="menu-category">
+                <div class="menu-category__title">
+                    <b>Danh mục sản phẩm</b>
+                </div>
+                <ul>
+
+                    <li>
+                        <a href="#" class="menu-category__item" style="border-bottom:none">
+                            <i class="fa-solid fa-laptop "></i>
+                            <p>Laptop Gaming</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-category__item">
+                            <i class="fa-solid fa-laptop "></i>
+                            <p>Laptop Gaming</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-category__item">
+                            <i class="fa-solid fa-laptop "></i>
+                            <p>Laptop Gaming</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-category__item">
+                            <i class="fa-solid fa-laptop "></i>
+                            <p>Laptop Gaming</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-category__item">
+                            <i class="fa-solid fa-laptop "></i>
+                            <p>Laptop Gaming</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-category__item">
+                            <i class="fa-solid fa-laptop "></i>
+                            <p>Laptop Gaming</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-category__item">
+                            <i class="fa-solid fa-laptop "></i>
+                            <p>Laptop Gaming</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-category__item">
+                            <i class="fa-solid fa-laptop "></i>
+                            <p>Laptop Gaming</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-category__item">
+                            <i class="fa-solid fa-laptop "></i>
+                            <p>Laptop Gaming</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-category__item" style="border-bottom:none">
+                            <i class="fa-solid fa-laptop "></i>
+                            <p>Laptop Gaming</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </ul>
+
+    <div class="main-content">
+        <div class="container">
+            <div class="menu-category">
+                <div class="menu-category__title">
+                    <b>Danh mục sản phẩm</b>
+                </div>
+                <ul>
+                    <li>
+                        <a href="#" class="menu-category__item">
+                            <i class="fa-solid fa-laptop "></i>
+                            <p>Laptop Gaming</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-category__item">
+                            <i class="fa-solid fa-laptop "></i>
+                            <p>Laptop Gaming</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-category__item">
+                            <i class="fa-solid fa-laptop "></i>
+                            <p>Laptop Gaming</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-category__item">
+                            <i class="fa-solid fa-laptop "></i>
+                            <p>Laptop Gaming</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-category__item">
+                            <i class="fa-solid fa-laptop "></i>
+                            <p>Laptop Gaming</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-category__item">
+                            <i class="fa-solid fa-laptop "></i>
+                            <p>Laptop Gaming</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-category__item">
+                            <i class="fa-solid fa-laptop "></i>
+                            <p>Laptop Gaming</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-category__item">
+                            <i class="fa-solid fa-laptop "></i>
+                            <p>Laptop Gaming</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-category__item" style="border-bottom:none">
+                            <i class="fa-solid fa-laptop "></i>
+                            <p>Laptop Gaming</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="banner-content">
+                <div class="slider-content owl-carousel owl-theme">
+                    <div class="item">
+                        <img class="img-fluid" src="/assets/img/slideshow_1.jpg" alt="">
+                    </div>
+                    <div class="item">
+                        <img class="img-fluid" src="/assets/img/slideshow_11.jpg" alt="">
+                    </div>
+                    <div class="item">
+                        <img class="img-fluid" src="/assets/img/slideshow_4.jpg" alt="">
+                    </div>
+                </div>
+                <div class="slogan">
+                    <div class="slogan-content__item">
+                        <div class="icon-item"><i class="fa-solid fa-gift"></i></div>
+                        <p class="slogan-desc">Hàng ngàn khuyến mại</p>
+                    </div>
+                    <div class="slogan-content__item">
+                        <div class="icon-item">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <p class="slogan-desc">Sản phẩm chất lượng</p>
+                    </div>
+                    <div class="slogan-content__item">
+                        <div class="icon-item">
+                            <i class="fa-solid fa-money-check-dollar"></i>
+                        </div>
+                        <p class="slogan-desc">Đổi trả sản phẩm lỗi</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="promotion-main">
+        <div class="container">
+            <!-- <div class="promotion-main__item">
+                <div class="icon-item"><i class="fa-solid fa-gift"></i></div>
+                <p class="slogan-desc">Hàng ngàn khuyến mại</p>
+            </div>
+            <div class="promotion-main__item">
+                <div class="icon-item"><i class="fa-solid fa-gift"></i></div>
+                <p class="slogan-desc">Hàng ngàn khuyến mại</p>
+            </div>
+            <div class="promotion-main__item">
+                <div class="icon-item"><i class="fa-solid fa-gift"></i></div>
+                <p class="slogan-desc">Hàng ngàn khuyến mại</p>
+            </div> -->
+            <div class="promotion-main__item">
+                <a href="#"><img src="/assets/img/disount_1.jpg" alt="photo"></a>
+            </div>
+            <div class="promotion-main__item">
+                <a href="#"><img src="/assets/img/disount_2.jpg" alt="photo"></a>
+            </div>
+            <div class="promotion-main__item">
+                <a href="#"><img src="/assets/img/disount_3.jpg" alt="photo"></a>
+            </div>
+        </div>
+    </div>
+    <div class="product-main">
+        <div class="container">
+            <div class="product-main-wrap">
+                <div class="best-selling">
+                    <h4 class="title">Bán chạy</h4>
+                    <div class="best-selling__content">
+                        <div class="product-item">
+                            <div class="thumbnail">
+                                <span class="discount">6%</span>
+                                <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg" alt="">
+                            </div>
+                            <div class="product-desc">
+                                <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây không chờ
+                                        bạn
+                                        nữa giờ tui ăn liền</b></h4>
+                                <div class="star-comment">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <div class="sold-number">Đã bán: <b>20</b></div>
+                                <div class="product-price"><b>100.000đ</b><span class="true-price">100.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <div class="thumbnail">
+                                <span class="discount">6%</span>
+                                <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg" alt="">
+                            </div>
+                            <div class="product-desc">
+                                <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây không chờ
+                                        bạn
+                                        nữa giờ tui ăn liền</b></h4>
+                                <div class="star-comment">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <div class="sold-number">Đã bán: <b>20</b></div>
+                                <div class="product-price"><b>100.000đ</b><span class="true-price">100.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <div class="thumbnail">
+                                <span class="discount">6%</span>
+                                <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg" alt="">
+                            </div>
+                            <div class="product-desc">
+                                <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây không chờ
+                                        bạn
+                                        nữa giờ tui ăn liền</b></h4>
+                                <div class="star-comment">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <div class="sold-number">Đã bán: <b>20</b></div>
+                                <div class="product-price"><b>100.000đ</b><span class="true-price">100.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <div class="thumbnail">
+                                <span class="discount">6%</span>
+                                <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg" alt="">
+                            </div>
+                            <div class="product-desc">
+                                <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây không chờ
+                                        bạn
+                                        nữa giờ tui ăn liền</b></h4>
+                                <div class="star-comment">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <div class="sold-number">Đã bán: <b>20</b></div>
+                                <div class="product-price"><b>100.000đ</b><span class="true-price">100.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="selling">
+                    <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active " style="border-radius: 2rem 0 0 0 !important; "
+                                id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button"
+                                role="tab" aria-controls="pills-home" aria-selected="true">Khuyến mại</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                                aria-selected="false">Mới</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
+                                aria-selected="false">Hot</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                            aria-labelledby="pills-home-tab">
+                            <div class="product-item product-item--col">
+                                <a href="#">
+                                    <div class="thumbnail">
+                                        <span class="discount">6%</span>
+                                        <div class="icon-action">
+                                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                            </div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                                        </div>
+                                        <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="product-desc">
+                                        <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây
+                                                không
+                                                chờ bạn nữa giờ tui ăn liền</b></h4>
+                                        <div class="star-comment">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <div class="sold-number">Đã bán: <b>20</b></div>
+                                        <div class="product-price"><b>100.000đ</b><span
+                                                class="true-price">100.000đ</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-item product-item--col">
+                                <a href="#">
+                                    <div class="thumbnail">
+                                        <span class="discount">6%</span>
+                                        <div class="icon-action">
+                                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                            </div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                                        </div>
+                                        <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="product-desc">
+                                        <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây
+                                                không
+                                                chờ bạn nữa giờ tui ăn liền</b></h4>
+                                        <div class="star-comment">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <div class="sold-number">Đã bán: <b>20</b></div>
+                                        <div class="product-price"><b>100.000đ</b><span
+                                                class="true-price">100.000đ</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-item product-item--col">
+                                <a href="#">
+                                    <div class="thumbnail">
+                                        <span class="discount">6%</span>
+                                        <div class="icon-action">
+                                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                            </div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                                        </div>
+                                        <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="product-desc">
+                                        <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây
+                                                không
+                                                chờ bạn nữa giờ tui ăn liền</b></h4>
+                                        <div class="star-comment">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <div class="sold-number">Đã bán: <b>20</b></div>
+                                        <div class="product-price"><b>100.000đ</b><span
+                                                class="true-price">100.000đ</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-item product-item--col">
+                                <a href="#">
+                                    <div class="thumbnail">
+                                        <span class="discount">6%</span>
+                                        <div class="icon-action">
+                                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                            </div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                                        </div>
+                                        <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="product-desc">
+                                        <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây
+                                                không
+                                                chờ bạn nữa giờ tui ăn liền</b></h4>
+                                        <div class="star-comment">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <div class="sold-number">Đã bán: <b>20</b></div>
+                                        <div class="product-price"><b>100.000đ</b><span
+                                                class="true-price">100.000đ</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-item product-item--col">
+                                <a href="#">
+                                    <div class="thumbnail">
+                                        <span class="discount">6%</span>
+                                        <div class="icon-action">
+                                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                            </div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                                        </div>
+                                        <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="product-desc">
+                                        <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây
+                                                không
+                                                chờ bạn nữa giờ tui ăn liền</b></h4>
+                                        <div class="star-comment">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <div class="sold-number">Đã bán: <b>20</b></div>
+                                        <div class="product-price"><b>100.000đ</b><span
+                                                class="true-price">100.000đ</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-item product-item--col">
+                                <a href="#">
+                                    <div class="thumbnail">
+                                        <span class="discount">6%</span>
+                                        <div class="icon-action">
+                                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                            </div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                                        </div>
+                                        <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="product-desc">
+                                        <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây
+                                                không
+                                                chờ bạn nữa giờ tui ăn liền</b></h4>
+                                        <div class="star-comment">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <div class="sold-number">Đã bán: <b>20</b></div>
+                                        <div class="product-price"><b>100.000đ</b><span
+                                                class="true-price">100.000đ</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                            aria-labelledby="pills-profile-tab">
+                            <div class="product-item product-item--col">
+                                <a href="#">
+                                    <div class="thumbnail">
+                                        <span class="discount">6%</span>
+                                        <div class="icon-action">
+                                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                            </div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                                        </div>
+                                        <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="product-desc">
+                                        <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây
+                                                không
+                                                chờ bạn nữa giờ tui ăn liền</b></h4>
+                                        <div class="star-comment">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <div class="sold-number">Đã bán: <b>20</b></div>
+                                        <div class="product-price"><b>100.000đ</b><span
+                                                class="true-price">100.000đ</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-item product-item--col">
+                                <a href="#">
+                                    <div class="thumbnail">
+                                        <span class="discount">6%</span>
+                                        <div class="icon-action">
+                                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                            </div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                                        </div>
+                                        <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="product-desc">
+                                        <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây
+                                                không
+                                                chờ bạn nữa giờ tui ăn liền</b></h4>
+                                        <div class="star-comment">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <div class="sold-number">Đã bán: <b>20</b></div>
+                                        <div class="product-price"><b>100.000đ</b><span
+                                                class="true-price">100.000đ</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-item product-item--col">
+                                <a href="#">
+                                    <div class="thumbnail">
+                                        <span class="discount">6%</span>
+                                        <div class="icon-action">
+                                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                            </div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                                        </div>
+                                        <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="product-desc">
+                                        <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây
+                                                không
+                                                chờ bạn nữa giờ tui ăn liền</b></h4>
+                                        <div class="star-comment">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <div class="sold-number">Đã bán: <b>20</b></div>
+                                        <div class="product-price"><b>100.000đ</b><span
+                                                class="true-price">100.000đ</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-item product-item--col">
+                                <a href="#">
+                                    <div class="thumbnail">
+                                        <span class="discount">6%</span>
+                                        <div class="icon-action">
+                                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                            </div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                                        </div>
+                                        <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="product-desc">
+                                        <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây
+                                                không
+                                                chờ bạn nữa giờ tui ăn liền</b></h4>
+                                        <div class="star-comment">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <div class="sold-number">Đã bán: <b>20</b></div>
+                                        <div class="product-price"><b>100.000đ</b><span
+                                                class="true-price">100.000đ</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-item product-item--col">
+                                <a href="#">
+                                    <div class="thumbnail">
+                                        <span class="discount">6%</span>
+                                        <div class="icon-action">
+                                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                            </div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                                        </div>
+                                        <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="product-desc">
+                                        <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây
+                                                không
+                                                chờ bạn nữa giờ tui ăn liền</b></h4>
+                                        <div class="star-comment">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <div class="sold-number">Đã bán: <b>20</b></div>
+                                        <div class="product-price"><b>100.000đ</b><span
+                                                class="true-price">100.000đ</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-item product-item--col">
+                                <a href="#">
+                                    <div class="thumbnail">
+                                        <span class="discount">6%</span>
+                                        <div class="icon-action">
+                                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                            </div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                                        </div>
+                                        <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="product-desc">
+                                        <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây
+                                                không
+                                                chờ bạn nữa giờ tui ăn liền</b></h4>
+                                        <div class="star-comment">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <div class="sold-number">Đã bán: <b>20</b></div>
+                                        <div class="product-price"><b>100.000đ</b><span
+                                                class="true-price">100.000đ</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-contact" role="tabpanel"
+                            aria-labelledby="pills-contact-tab">
+                            <div class="product-item product-item--col">
+                                <a href="#">
+                                    <div class="thumbnail">
+                                        <span class="discount">6%</span>
+                                        <div class="icon-action">
+                                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                            </div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                                        </div>
+                                        <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="product-desc">
+                                        <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây
+                                                không
+                                                chờ bạn nữa giờ tui ăn liền</b></h4>
+                                        <div class="star-comment">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <div class="sold-number">Đã bán: <b>20</b></div>
+                                        <div class="product-price"><b>100.000đ</b><span
+                                                class="true-price">100.000đ</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-item product-item--col">
+                                <a href="#">
+                                    <div class="thumbnail">
+                                        <span class="discount">6%</span>
+                                        <div class="icon-action">
+                                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                            </div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                                        </div>
+                                        <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="product-desc">
+                                        <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây
+                                                không
+                                                chờ bạn nữa giờ tui ăn liền</b></h4>
+                                        <div class="star-comment">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <div class="sold-number">Đã bán: <b>20</b></div>
+                                        <div class="product-price"><b>100.000đ</b><span
+                                                class="true-price">100.000đ</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-item product-item--col">
+                                <a href="#">
+                                    <div class="thumbnail">
+                                        <span class="discount">6%</span>
+                                        <div class="icon-action">
+                                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                            </div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                                        </div>
+                                        <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="product-desc">
+                                        <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây
+                                                không
+                                                chờ bạn nữa giờ tui ăn liền</b></h4>
+                                        <div class="star-comment">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <div class="sold-number">Đã bán: <b>20</b></div>
+                                        <div class="product-price"><b>100.000đ</b><span
+                                                class="true-price">100.000đ</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-item product-item--col">
+                                <a href="#">
+                                    <div class="thumbnail">
+                                        <span class="discount">6%</span>
+                                        <div class="icon-action">
+                                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                            </div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                                        </div>
+                                        <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="product-desc">
+                                        <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây
+                                                không
+                                                chờ bạn nữa giờ tui ăn liền</b></h4>
+                                        <div class="star-comment">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <div class="sold-number">Đã bán: <b>20</b></div>
+                                        <div class="product-price"><b>100.000đ</b><span
+                                                class="true-price">100.000đ</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-item product-item--col">
+                                <a href="#">
+                                    <div class="thumbnail">
+                                        <span class="discount">6%</span>
+                                        <div class="icon-action">
+                                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                            </div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                                        </div>
+                                        <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="product-desc">
+                                        <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây
+                                                không
+                                                chờ bạn nữa giờ tui ăn liền</b></h4>
+                                        <div class="star-comment">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <div class="sold-number">Đã bán: <b>20</b></div>
+                                        <div class="product-price"><b>100.000đ</b><span
+                                                class="true-price">100.000đ</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product-item product-item--col">
+                                <a href="#">
+                                    <div class="thumbnail">
+                                        <span class="discount">6%</span>
+                                        <div class="icon-action">
+                                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                            </div>
+                                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                                        </div>
+                                        <img class="img-fluid" src="/assets/img/\/gearvn-laptop-gaming-dell-g15-55.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="product-desc">
+                                        <h4 class="name-product"><b>Thiết bị Gaming thơm ngon mời bạn ăn nha tui đây
+                                                không
+                                                chờ bạn nữa giờ tui ăn liền</b></h4>
+                                        <div class="star-comment">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                        </div>
+                                        <div class="sold-number">Đã bán: <b>20</b></div>
+                                        <div class="product-price"><b>100.000đ</b><span
+                                                class="true-price">100.000đ</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
