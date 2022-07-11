@@ -35,20 +35,6 @@ body {
     margin-bottom: 1.6rem;
 }
 
-.btn-danger {
-    background-color: #ff0000 !important;
-    border-color: #ff0000 !important;
-}
-
-.btn-danger:hover {
-    background-color: #da0606 !important;
-    border-color: #da0606 !important;
-}
-
-.btn-danger:focus {
-    box-shadow: none;
-}
-
 .btn-lg{
     font-size: 2rem;
 }
