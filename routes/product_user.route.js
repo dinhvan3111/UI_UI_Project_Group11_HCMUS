@@ -4,10 +4,6 @@ import categoryModel from '../models/category.model.js';
 
 const router = express.Router();
 
-router.get('/cart', function(req,res){
-    res.render('vwCart/cart');
-});
-
 router.get('/:id', async function(req, res) {
     const product = await productModel.findById(req.params.id);
     if(product === null){

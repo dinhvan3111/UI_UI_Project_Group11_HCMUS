@@ -3,6 +3,11 @@ import express from 'express';
 
 const router = express.Router();
 
+
+router.get('/login', function(req, res) {
+    res.render('detail');
+});
+
 router.post('/auth/facebook', function(req, res, next) {
     req.session.loginInfo = {
         provider: 'Facebook'
@@ -10,10 +15,6 @@ router.post('/auth/facebook', function(req, res, next) {
     next();
     }, passport.authenticate('facebook', {scope: ['email']})
 );
-
-router.get('/login', function(req, res) {
-    res.render('detail');
-});
 
 router.get('/auth/facebook/callback',
     passport.authenticate('facebook', {failureRedirect: '/login'}),
