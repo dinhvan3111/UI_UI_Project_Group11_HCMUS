@@ -44,22 +44,24 @@ function handleBestSelling(width, products) {
 
         }
         else {
-            element.classList.remove('product-item--col');
-            const icon = thumbnail.querySelector('.icon-action');
-            icon.remove();
+            if(element.classList.contains('product-item--col') ){
+
+                element.classList.remove('product-item--col');
+                const icon = thumbnail.querySelector('.icon-action');
+                icon.remove();
+            }
         }
     });
 
 }
 
-//responsive
+//responsive best - selling
 let width = window.innerWidth;
 const products = document.querySelectorAll('.best-selling__content .product-item');
 handleBestSelling(width, products);
 window.addEventListener('resize', function (e) {
-    width = window.innerWidth
+    width = window.innerWidth;
     handleBestSelling(width, products);
-    //to do in the afternoon
 });
 
 
