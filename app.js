@@ -45,16 +45,16 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 console.log(__dirname);
 const app = express();
 
-// const category = new Category({
-//     _id: getNewObjectId(),
-//     name: 'Category Test',
-//     parentId: null
-// });
-// category.save(function (err, result) {
-//     if(!err){
-//         console.log(result);
-//     }
-// });
+const category = new Category({
+    _id: getNewObjectId(),
+    name: 'Phụ kiện',
+    parentId: null
+});
+category.save(function (err, result) {
+    if(!err){
+        console.log(result);
+    }
+});
 
 // const dbClient = new MongoClient(urlConnection);
 // const dbName = 'qlbh';

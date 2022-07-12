@@ -11,7 +11,11 @@ const Products = new Schema({
     id_category: ObjectId,
     sale_price: Number,
     thumb: String,
-    imgs: [String]
+    imgs: [String],
+    sold: Number,
+    waranty: String,
+    percentSale: Number
+    
 }, { versionKey: false });
 
 Products.plugin(paginate);
@@ -19,3 +23,4 @@ Products.plugin(paginate);
 const Product = db.model('products', Products);
 
 export default Product;
+
