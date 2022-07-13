@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 router.get('/login', function(req, res) {
-    res.render('detail');
+    res.render('vwAccount/login', {layout:false});
 });
 
 router.post('/auth/facebook', function(req, res, next) {

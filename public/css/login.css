@@ -1,0 +1,193 @@
+body {
+    font-family: arial;
+    height: 100vh;
+    display: flex;
+    background-image: url(/assets/img/background_login.png);
+    background-size: 100%;
+    background-position: center center;
+    
+}
+
+.login-form h1 {
+    font-size: 3.6rem;
+    text-align: center;
+    color: var(--back-color);
+    margin-bottom: 3rem;
+    font-weight: normal;
+}
+
+.login-form .social-icon {
+    width: 100%;
+    font-size: 2rem;
+    color: var(--back-color);
+    text-align: center;
+    float: left;
+}
+
+.login-form {
+    background: #fff;
+    width: 45rem;
+    border-radius: .6rem;
+    margin: auto auto;
+    display: table;
+    padding: 1.5rem 3rem 3rem;
+    box-sizing: border-box;
+}
+
+.form-group {
+    float: left;
+    width: 100%;
+    margin: 0 0 1.5rem;
+    position: relative;
+}
+
+.login-form input {
+    width: 100%;
+    font-size: 1.8rem;
+    border-radius: 7.4rem;
+    border: 0.1rem solid #ccc;
+    box-sizing: border-box;
+    font-size: 1.8rem;
+    padding-left: 7.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.login-form .form-group .input-icon {
+    font-size: 1.5rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    border-radius: 2.5rem;
+    bottom: 0;
+    height: 100%;
+    padding-left: 3.5rem;
+    color: #666;
+}
+
+.login-form .form-group .icon-hide-show{
+    position: absolute;
+    top: 35%;
+    right: 5%;
+    color: #666;
+}
+.login-form .form-group .icon-hide-show:hover{
+    cursor: pointer;
+}
+
+.form-group .icon-hide-show .icon-show{
+    display: none;
+}
+
+.login-form .login-btn {
+    background: var(--back-color);
+    padding: 1.1rem 5rem;
+    border-color: var(--back-color);
+    color: var(--main-color);
+    text-align: center;
+    margin: 0 auto;
+    font-size: 2rem;
+    border: .1rem solid var(--back-color);
+    border-radius: 4.4rem;
+    width: 100%;
+    height: 5.6rem;
+    cursor: pointer;
+}
+
+.login-form .reset-psw {
+    float: left;
+    width: 100%;
+    text-decoration: none;
+    color: var(--color-word);
+    font-size: 1.4rem;
+    text-align: center;
+    margin-top: 1.1rem;
+    font-style: italic;
+}
+
+.login-form .reset-psw:hover {
+    color: #666666;
+}
+
+.login-form .social-icon button {
+    font-size: 4rem;
+    cursor: pointer;
+    background: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.login-form .social-icon .bg-email {
+    color: #e86464;
+}
+
+
+.login-form .social-icon .bg-fb {
+    color: #5c5cce;
+}
+
+
+.login-form button:hover {
+    opacity: 0.6;
+}
+
+.login-form .seperator {
+    float: left;
+    width: 100%;
+    color: var(--back-color);
+    border-top: .1rem solid var(--back-color);
+    text-align: center;
+    margin: 4rem 0 0;
+}
+
+.login-form .seperator b {
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 4rem;
+    background: #fff;
+    display: inline-block;
+    border: .1rem solid var(--back-color);
+    border-radius: 50%;
+    position: relative;
+    top: -2.2rem;
+    z-index: 1;
+}
+
+.login-form p {
+    float: left;
+    width: 100%;
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 0 0 1rem;
+}
+
+.err_login p {
+    color: red;
+    font-style: italic;
+}
+.success_login p{
+    color: green;
+    font-style: italic;
+}
+.let_register {
+    color: #5454ef !important;
+}
+
+.let_register:hover {
+    color: #81b9e7 !important;
+}
+
+.err-message{
+    display: none;
+    margin-bottom: 2rem;
+    margin-left: 1rem;
+    color: #f14646;
+    font-style: italic;
+    
+}
