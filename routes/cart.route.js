@@ -9,19 +9,24 @@ router.get('/cart', async function(req,res){
     const cart = await cartModel.findById(req.session.passport.user._id);
     const products = [];
     let totalPrice = 0;
-    for (let i = 0; i < cart.products.length; i++) {
-        const product = await productModel.findById(cart.products[i]._id);
-        const productTemp = product.toObject();
-        productTemp.quantity = cart.products[i].quantity;
-        productTemp.buy_price = cart.products[i].price;
-        totalPrice += (productTemp.buy_price * productTemp.quantity);
-        products.push(productTemp);
+    let cartRet = {};
+    if(cart !== null){
+        for (let i = 0; i < cart.products.length; i++) {
+            const product = await productModel.findById(cart.products[i]._id);
+            const productTemp = product.toObject();
+            productTemp.quantity = cart.products[i].quantity;
+            productTemp.buy_price = cart.products[i].price;
+            totalPrice += (productTemp.buy_price * productTemp.quantity);
+            products.push(productTemp);
+        }
+        cartRet = cart.toObject();
+
     }
-    const cartRet = cart.toObject();
+    
     cartRet.products = products;
     cartRet.totalPrice = totalPrice;
     let shipPrice = 0;
-    if(cartRet.totalPrice < FREE_SHIP_AMMOUNT){
+    if(cartRet.totalPrice < FREE_SHIP_AMMOUNT && totalPrice > 0){
         shipPrice = 30000;
     }
     cartRet.finalPrice = cartRet.totalPrice + shipPrice;
