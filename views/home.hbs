@@ -1,4 +1,6 @@
-
+{{#section 'title'}}
+    <title>Trang chủ</title>
+{{/section}}
 
     <div class="main-content">
         <div class="container">
@@ -84,25 +86,30 @@
                     <h4 class="title">Bán chạy</h4>
                     <div class="best-selling__content">
                         {{#each topSell}}
-                            <div class="product-item">
-                                <div class="thumbnail">
-                                    <span class="discount">{{percentSale}}%</span>
-                                    <img class="img-fluid" src="{{getImgLink thumb}}" alt="">
-                                </div>
-                                <div class="product-desc">
-                                    <h4 class="name-product"><b>{{title}}</b></h4>
-                                    <div class="star-comment">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div>
-                                    <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div>
-                                    <div class="product-price"><b>{{format_number sale_price}} VNĐ</b><span class="true-price">{{format_number price}} VNĐ</span>
-                                    </div>
-                                </div>
-                            </div>
+                            {{!-- <a href="/products/{{_id}}"> --}}
+                                
+                                    <a href="/products/{{_id}}" class="product-item">
+                                        <div class="thumbnail">
+                                            <span class="discount">{{percentSale}}%</span>
+                                            <img class="img-fluid" src="{{getImgLink thumb}}" alt="">
+                                            {{!-- <img class="img-fluid" src="/assets/img/gearvn-laptop-gaming-dell-g15-55.jpg" alt=""> --}}
+                                        </div>
+                                        <div class="product-desc">
+                                            <h4 class="name-product"><b>{{title}}</b></h4>
+                                            <div class="star-comment">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                            <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div>
+                                            <div class="product-price"><b>{{format_number sale_price}} đ</b><span class="true-price">{{format_number price}} đ</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                
+                            {{!-- </a> --}}
                         {{/each}}
                     </div>
                 </div>
@@ -133,6 +140,7 @@
                                                 </div>
                                                 <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
                                             </div>
+                                            {{!-- <img class="img-fluid" src="/assets/img/gearvn-laptop-gaming-dell-g15-55.jpg" alt=""> --}}
                                             <img class="img-fluid" src="{{getImgLink thumb}}"
                                                 alt="">
                                         </div>
@@ -146,13 +154,14 @@
                                                 <i class="fa-solid fa-star"></i>
                                             </div>
                                             <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div>
-                                            <div class="product-price"><b>{{format_number sale_price}} VNĐ</b><span
-                                                    class="true-price">{{format_number price}}</span></b>
+                                            <div class="product-price"><b>{{format_number sale_price}} đ</b><span
+                                                    class="true-price">{{format_number price}} đ </span></b>
                                             </div>
                                         </div>
                                     </a>
                                 </div>
                             {{/each}}
+                            </div>
                             
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                             aria-labelledby="pills-profile-tab">
@@ -180,8 +189,8 @@
                                                 <i class="fa-solid fa-star"></i>
                                             </div>
                                             <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div>
-                                            <div class="product-price"><b>{{format_number sale_price}} VNĐ</b><span
-                                                    class="true-price">{{format_number price}}</span></b>
+                                            <div class="product-price"><b>{{format_number sale_price}} đ</b><span
+                                                    class="true-price">{{format_number price}} đ</span></b>
                                             </div>
                                         </div>
                                     </a>

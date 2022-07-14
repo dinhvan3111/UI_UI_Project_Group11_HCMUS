@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    {{{_sections.title}}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -72,14 +72,17 @@
                     </div>
                     <div class="login">
                         {{#if lcAuthUser}}
-                        <a href="/profile">
-                            <label for="nav-input" class="icon">
-                                <i class="fa-regular fa-circle-user"></i>
-                            </label>
-                            <div class="text">
-                                {{lcAuthUser.name}}
+                            <div class="dropdown-info">
+                                
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-information" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-regular fa-circle-user"></i>
+                                    Nguyễn Trần Ngọc Tú
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown-infor">
+                                    <li><a class="dropdown-item" href="/profile">Thông tin cá nhân</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+                                </ul>
                             </div>
-                        </a>
                         {{else}}
                         <a href="/login">
                             <label for="nav-input" class="icon">
@@ -89,6 +92,8 @@
                                 Đăng nhập
                             </div>
                         </a>
+                         
+                        
                         {{/if}}
 
                     </div>
@@ -148,6 +153,7 @@
                     <div class="login">
                         <i class="fa-solid fa-right-to-bracket"></i>
                         <p>{{lcAuthUser.name}}</p>
+                        
                     </div>
                 </a>
                 {{else}}
