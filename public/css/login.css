@@ -3,8 +3,9 @@ body {
     height: 100vh;
     display: flex;
     background-image: url(/assets/img/background_login.png);
-    background-size: 100%;
+    background-size: cover;
     background-position: center center;
+    background-repeat: no-repeat;
     
 }
 
@@ -48,9 +49,7 @@ body {
     border: 0.1rem solid #ccc;
     box-sizing: border-box;
     font-size: 1.8rem;
-    padding-left: 7.5rem;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    padding: 1.5rem 7.5rem;
 }
 
 .login-form .form-group .input-icon {

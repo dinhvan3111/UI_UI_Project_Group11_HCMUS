@@ -72,3 +72,11 @@ loginBtn.addEventListener('click', function(e) {
         e.preventDefault();
     };
 });
+
+// chặn nút space
+$(document).ready(function(){
+    $('input').keypress(function( e ) {
+        if(e.which === 32) 
+            return false;
+    });
+})

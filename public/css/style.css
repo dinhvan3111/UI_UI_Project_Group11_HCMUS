@@ -271,6 +271,7 @@ select {
     justify-content: space-between;
     margin-top: 1.5rem;
     flex: 1;
+    gap: 1rem;
 }
 
 .main-content .slogan-content__item .icon-item {
@@ -687,7 +688,7 @@ select {
 
 .nav__mobile label:hover {
     cursor: pointer;
-    color: var(--main-color);
+    color: var(--sub-color);
 }
 
 .nav__mobile .nav__content {
@@ -706,7 +707,9 @@ select {
     align-items: center;
 }
 
-.nav__mobile .user div:hover,
+.nav__mobile .user .login:hover,
+.nav__mobile .user .register:hover,
+.nav__mobile .user b:hover,
 .nav__mobile .user .sign-out:hover {
     color: var(--sub-color);
     cursor: pointer;
