@@ -49,6 +49,9 @@ export default {
         }
         uploadModel.uploadFile(req.files.thumb[0], imgsInfo.thumb);
 
+        const percentSale = Math.round(((req.body.price - req.body.sale_price) / 
+                                    req.body.price) * 100);
+
         // create new Product
         const product = new Product({
             _id: toObjectId(objIdStr),
@@ -59,10 +62,39 @@ export default {
             stock: req.body.stock,
             sale_price: req.body.sale_price,
             thumb: imgsInfo.thumb,
-            imgs: imgsInfo.imgs
+            imgs: imgsInfo.imgs,
+            sold: 0,
+            waranty: req.body.waranty || '',
+            percentSale: percentSale
         });
 
         return await this.save(product);
     },
     
+    async getTopSell(offset, numOfProduct){
+        const products = await Product.find({}).sort({
+            sold: -1,
+            percentSale: -1,
+            created: -1
+        })
+            .skip(offset)
+            .limit(numOfProduct);
+        return products;
+    },
+
+    async getTopDiscount(offset, numOfProduct){
+        const products = await Product.find({}).sort({percentSale: -1})
+            .skip(offset)
+            .limit(numOfProduct);
+        return products;
+    },
+
+    async getTopNew(offset, numOfProduct){
+        const products = await Product.find({}).sort({
+            created: -1
+        })
+            .skip(offset)
+            .limit(numOfProduct);
+        return products;
+    }
 }

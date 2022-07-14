@@ -8,6 +8,10 @@ export default function(app){
 	    extended: true,
 	    limit: '25mb'
 	}));
+	app.use(express.json({
+	  type: "*/*",
+	  limit: '25mb'
+	}));
 	app.engine('hbs', engine({
 	    defaultLayout: 'main.hbs',
 	    helpers: {

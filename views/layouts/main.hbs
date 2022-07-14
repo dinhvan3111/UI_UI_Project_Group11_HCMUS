@@ -34,8 +34,9 @@
     <header class="header">
         <div class="container">
             <div class="header-main">
-                <a class="header-logo" href="">
-                    <img class="img-fluid" src="/assets{ asset('/imgs/logo_blue.png') }}">
+                <a class="header-logo" href="/">
+                    <img class="img-fluid" src="/assets/img/logo_not_slogan.png">
+                    <img class="img-fluid" src="/assets/img/logo.png">
                 </a>
                 <div class="header-search">
                     <form action="">
@@ -58,10 +59,11 @@
                         </a>
                     </div>
                     <div class="cart">
-                        <a href="">
+                        <a href="/cart">
                             <div class="icon">
                                 <i class="fa-solid fa-cart-shopping"></i>
-                                <span class="cart-number">0</span>
+                                <span id="cartNumStr" class="cart-number">{{lcTotalInCart}}</span>
+                                <input type="hidden" id="cartNum" value="{{lcTotalInCart}}">
                             </div>
                             <div class="text">
                                 Giỏ hàng
@@ -69,7 +71,17 @@
                         </a>
                     </div>
                     <div class="login">
-                        <a href="#">
+                        {{#if lcAuthUser}}
+                        <a href="/profile">
+                            <label for="nav-input" class="icon">
+                                <i class="fa-regular fa-circle-user"></i>
+                            </label>
+                            <div class="text">
+                                {{lcAuthUser.name}}
+                            </div>
+                        </a>
+                        {{else}}
+                        <a href="/login">
                             <label for="nav-input" class="icon">
                                 <i class="fa-regular fa-circle-user"></i>
                             </label>
@@ -77,6 +89,8 @@
                                 Đăng nhập
                             </div>
                         </a>
+                        {{/if}}
+
                     </div>
                 </div>
             </div>
@@ -125,22 +139,35 @@
             <i class="fa-solid fa-x"></i>
         </label>
         <div class="nav__content">
-            <div class="branch">BestGear</div>
+            <div class="branch">
+                <img src="/assets/img/logo.png" alt="logo">
+            </div>
             <div class="user">
-                <!-- <div class="login">
-                    <i class="fa-solid fa-right-to-bracket"></i>
-                    <p>Đăng nhập</p>
-                </div>
+                {{#if lcAuthUser}}
+                <a href="/profile">
+                    <div class="login">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <p>{{lcAuthUser.name}}</p>
+                    </div>
+                </a>
+                {{else}}
+                <a href="/login">
+                    <div class="login">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <p>Đăng nhập</p>
+                    </div>
+                </a>
                 <div class="register">
                     <i class="fa-solid fa-user-plus"></i>
                     <p>Đăng ký</p>
-                </div> -->
-                <div class="logged">
+                </div>
+                {{/if}}
+                {{!-- <div class="logged">
                     <img src="/assets/img/avatar.png" alt="">
                     <p>Hi, <b>Nguyễn Trần Ngọc Tú</b></p>
 
                 </div>
-                <i title="Đăng xuất" class="fa-solid fa-arrow-right-from-bracket sign-out"></i>
+                <i title="Đăng xuất" class="fa-solid fa-arrow-right-from-bracket sign-out"></i> --}}
             </div>
             <!-- <div class="nav_navbar">
                 <div class="nav_navbar__title">
@@ -159,66 +186,15 @@
                 </div>
                 <ul>
 
+                    {{#each lcCategories}}
                     <li>
-                        <a href="#" class="menu-category__item" style="border-bottom:none">
+                        <a href="#" onclick="return false;" class="menu-category__item">
                             <i class="fa-solid fa-laptop "></i>
-                            <p>Laptop Gaming</p>
+                            <p>{{this}}</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="#" class="menu-category__item">
-                            <i class="fa-solid fa-laptop "></i>
-                            <p>Laptop Gaming</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-category__item">
-                            <i class="fa-solid fa-laptop "></i>
-                            <p>Laptop Gaming</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-category__item">
-                            <i class="fa-solid fa-laptop "></i>
-                            <p>Laptop Gaming</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-category__item">
-                            <i class="fa-solid fa-laptop "></i>
-                            <p>Laptop Gaming</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-category__item">
-                            <i class="fa-solid fa-laptop "></i>
-                            <p>Laptop Gaming</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-category__item">
-                            <i class="fa-solid fa-laptop "></i>
-                            <p>Laptop Gaming</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-category__item">
-                            <i class="fa-solid fa-laptop "></i>
-                            <p>Laptop Gaming</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-category__item">
-                            <i class="fa-solid fa-laptop "></i>
-                            <p>Laptop Gaming</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-category__item" style="border-bottom:none">
-                            <i class="fa-solid fa-laptop "></i>
-                            <p>Laptop Gaming</p>
-                        </a>
-                    </li>
+                    {{/each}}
+
 
                 </ul>
             </div>
@@ -226,6 +202,85 @@
     </ul>
 
     {{{body}}}
+
+    <!-- Footer -->
+    <footer>
+        <!-- Footer social media section -->
+        <section class="footer-social-media">
+            <!-- Left -->
+            <div>
+                <span>Get connected with us on social networks: </span>
+            </div>
+            <!-- Left end-->
+            <!-- Right -->
+            <div class="footer-icon-container">
+                <a href="" class="footer-social-media-icon">
+                    <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                </a>
+                <a href="" class="footer-social-media-icon">
+                    <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+                </a>
+                <a href="" class="footer-social-media-icon">
+                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                </a>
+                <a href="" class="footer-social-media-icon">
+                    <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+                </a>
+                <a href="" class="footer-social-media-icon">
+                    <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+                </a>
+            </div>
+            <!-- Right end-->
+
+        </section>
+        <!-- Footer social media section end here -->
+        <!-- Footer members information and links section -->
+
+        <section class="footer-info">
+            <!--Left-->
+            <div class="footer-info-company">
+                <h3>CÔNG TY CỔ PHẦN THƯƠNG MẠI - BESTGEAR</h3>
+                <p>2022-2023 Công ty cổ phần thương mại - dịch vụ BestGear</p>
+                <h4>Địa chỉ trụ sở chính:</h4>
+                <p> 227 Nguyễn Văn Cừ, phường 4, quận 5, Thành phố Hồ Chí Minh</p>
+            </div>
+            <!--Left end-->
+            <!--Right-->
+            <div class="footer-info-members">
+                <h4>Thành viên</h4>
+                <p>Nguyễn Trần Ngọc Tú - 19127610</p>
+                <p>Vũ Tuấn Hải - 19127387</p>
+                <p>Nguyễn Bảo Duy - 19127376</p>
+                <p>Đỗ Đình Văn - 19127624</p>
+                <p>Tăng Thanh Quang - 19127531</p>
+            </div>
+            <div class="footer-info-emails">
+                <h4>Email</h4>
+                <a href="#">19127610@student.hcmus.edu.vn</a>
+                <br>
+                <a href="#">19127387@student.hcmus.edu.vn</a>
+                <br>
+                <a href="#">19127376@student.hcmus.edu.vn</a>
+                <br>
+                <a href="#">19127624@student.hcmus.edu.vn</a>
+                <br>
+                <a href="#">19127531@student.hcmus.edu.vn</a>
+            </div>
+            <!--Right end-->
+
+        </section>
+        <!-- Footer members information and links section end here  -->
+        <!-- Footer copyright section -->
+        <section class="footer-copyright">
+            <div>
+                © 2022 19KTPM:
+                <a href="#">UIUX-19CLC</a>
+            </div>
+
+        </section>
+        <!-- Footer copyright section end here -->
+    </footer>
+    <!-- Footer end here-->
 
 </body>
 

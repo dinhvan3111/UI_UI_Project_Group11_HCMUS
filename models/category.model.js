@@ -17,4 +17,9 @@ export default {
         }
         return null;
     },
+
+    async getAll(){
+        return await Category.find({}).exec();
+
+    },
 }

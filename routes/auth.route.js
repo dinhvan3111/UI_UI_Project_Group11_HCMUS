@@ -3,6 +3,11 @@ import express from 'express';
 
 const router = express.Router();
 
+
+router.get('/login', function(req, res) {
+    res.render('vwAccount/login', {layout:false});
+});
+
 router.post('/auth/facebook', function(req, res, next) {
     req.session.loginInfo = {
         provider: 'Facebook'

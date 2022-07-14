@@ -1,7 +1,146 @@
-<h1>{{product.title}}</h1>
-<h1>{{product.description}}</h1>
-<h1>{{categoryOfProduct.name}}</h1>
-<img src="{{getImgLink product.thumb}}" alt="{{product.thumb}}" />
-{{#each product.imgs}}
-    <img src="{{getImgLink this}}" alt="{{this}}" />
-{{/each }}
+<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+    aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="/products">Sản phẩm</a></li>
+        <li class="breadcrumb-item"><a href="/categories/{{categoryOfProduct._id}}">{{categoryOfProduct.name}}</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><a href="/products/{{product._id}}">{{product.title}}</a></li>
+    </ol>
+</nav>
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="card">
+            <div class="row mb-5">
+                {{!-- Image --}}
+                <div class="col-md-6">
+                    <div id="sync1" class="owl-carousel owl-theme">
+                        <div class="item">
+                            <img class="main-img"
+                                src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg">
+                        </div>
+                        <div class="item">
+                            <img class="main-img" src="https://img-9gag-fun.9cache.com/photo/a3Q5VW5_460s.jpg">
+                        </div>
+                        <div class="item">
+                            <img class="main-img"
+                                src="https://lh3.googleusercontent.com/2hDpuTi-0AMKvoZJGd-yKWvK4tKdQr_kLIpB_qSeMau2TNGCNidAosMEvrEXFO9G6tmlFlPQplpwiqirgrIPWnCKMvElaYgI-HiVvXc=w600">
+                        </div>
+                        <div class="item">
+                            <img class="main-img"
+                                src="https://cdnb.artstation.com/p/assets/images/images/019/214/567/large/lala-drawings-juan.jpg?1562537132">
+                        </div>
+                        <div class="item">
+                            <img class="main-img"
+                                src="https://www.funcage.com/blog/wp-content/uploads/2013/11/Random-Photoshopped-Pictures-026.jpg">
+                        </div>
+                    </div>
+
+                    <div id="sync2" class="owl-carousel owl-theme">
+                        <div class="item">
+                            <img class="thumbnail"
+                                src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg">
+                        </div>
+                        <div class="item">
+                            <img class="thumbnail" src="https://img-9gag-fun.9cache.com/photo/a3Q5VW5_460s.jpg">
+                        </div>
+                        <div class="item">
+                            <img class="thumbnail"
+                                src="https://lh3.googleusercontent.com/2hDpuTi-0AMKvoZJGd-yKWvK4tKdQr_kLIpB_qSeMau2TNGCNidAosMEvrEXFO9G6tmlFlPQplpwiqirgrIPWnCKMvElaYgI-HiVvXc=w600">
+                        </div>
+                        <div class="item">
+                            <img class="thumbnail"
+                                src="https://cdnb.artstation.com/p/assets/images/images/019/214/567/large/lala-drawings-juan.jpg?1562537132">
+                        </div>
+                        <div class="item">
+                            <img class="thumbnail"
+                                src="https://www.funcage.com/blog/wp-content/uploads/2013/11/Random-Photoshopped-Pictures-026.jpg">
+                        </div>
+                    </div>
+                </div>
+                {{!-- Product info --}}
+                <div class="col-md-6">
+                    <div class="p-4">
+                        <div class="mt-4 mb-3">
+                            {{!-- Title --}}
+                            <div class="product-title">{{product.title}}</div>
+                            {{!-- Description --}}
+                            <div class="about">
+                                {{product.description}}
+                            </div>
+                            {{!-- Price info --}}
+                            <div class="price-container">
+                                <span class="price-text">Trong kho:</span><span style="color: green;">{{product.stock}}</span>
+                                <input type="hidden" id="stock" name="stock" value="{{product.stock}}"><br>
+                                <span class="price-text">Quantity:</span>
+                                <span>
+                                    <input type="number" id="quantity" name="quantity" value="1" class="qty" min="1">
+                                </span><br>
+                                <span class="price-text">Giá gốc:</span><span class="dis-price">
+                                    {{format_number product.price}} VNĐ
+                                </span><br>
+                                <span class="price-text">Chỉ còn: </span>
+                                <span class="act-price">
+                                    {{format_number product.sale_price}} VNĐ
+                                </span><br>
+                            </div>
+                            {{!-- Button --}}
+                            <div class="cart mt-4 align-items-center">
+                                {{#if lcAuthUser}}
+                                    <button class="btn btn-outline-danger mr-2 px-4 btn-lg">
+                                        <i class="fa-brands fa-gratipay"></i>Yêu thích
+                                    </button>
+                                    <button class="btn btn-outline-danger mr-2 px-4 btn-lg" onclick="addToCart('{{product._id}}')">
+                                        <i class="fa-solid fa-cart-plus"></i>Thêm vào giỏ hàng
+                                    </button>
+                                {{else}}
+                                    <button class="btn btn-outline-danger mr-2 px-4 btn-lg">
+                                        <i class="fa-brands fa-gratipay"></i>Đăng nhập để yêu thích
+                                    </button>
+                                    <button class="btn btn-outline-danger mr-2 px-4 btn-lg">
+                                        <i class="fa-solid fa-cart-plus"></i>Đăng nhập để mua hàng
+                                    </button>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {{!-- Tab navs --}}
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active link-dark" id="des-tab" data-bs-toggle="tab"
+                        data-bs-target="#description" type="button" role="tab" aria-controls="description"
+                        aria-selected="true">Mô tả chi tiết</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link link-dark" id="waranty-tab" data-bs-toggle="tab" data-bs-target="#waranty"
+                        type="button" role="tab" aria-controls="waranty" aria-selected="false">
+                        Thông tin bảo hành
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link link-dark" id="review-tab" data-bs-toggle="tab" data-bs-target="#review"
+                        type="button" role="tab" aria-controls="review" aria-selected="false">
+                        Đánh giá (10)
+                    </button>
+                </li>
+            </ul>
+            {{!-- Tab content --}}
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="des-tab">
+                    {{product.description}}
+                </div>
+                <div class="tab-pane fade" id="waranty" role="tabpanel" aria-labelledby="waranty-tab">
+                    {{product.waranty}}
+                </div>
+                <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                    Chưa có
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="/js/product_detail.js"></script>
