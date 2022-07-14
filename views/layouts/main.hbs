@@ -24,8 +24,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/responsive_home.css">
-    <link rel="stylesheet" href="/css/cart.css"
-    <link rel="stylesheet" href="/css//detail_style.css">
+    <link rel="stylesheet" href="/css/cart.css">
+    <link rel="stylesheet" href="/css/detail_style.css">
 
 </head>
 
@@ -72,25 +72,25 @@
                     </div>
                     <div class="login">
                         {{#if lcAuthUser}}
-                            <a href="/profile">
-                                <label for="nav-input" class="icon">
-                                    <i class="fa-regular fa-circle-user"></i>
-                                </label>
-                                <div class="text">
-                                    {{lcAuthUser.name}}
-                                </div>
-                            </a>
+                        <a href="/profile">
+                            <label for="nav-input" class="icon">
+                                <i class="fa-regular fa-circle-user"></i>
+                            </label>
+                            <div class="text">
+                                {{lcAuthUser.name}}
+                            </div>
+                        </a>
                         {{else}}
-                            <a href="/login">
-                                <label for="nav-input" class="icon">
-                                    <i class="fa-regular fa-circle-user"></i>
-                                </label>
-                                <div class="text">
-                                    Đăng nhập
-                                </div>
-                            </a>
+                        <a href="/login">
+                            <label for="nav-input" class="icon">
+                                <i class="fa-regular fa-circle-user"></i>
+                            </label>
+                            <div class="text">
+                                Đăng nhập
+                            </div>
+                        </a>
                         {{/if}}
-                        
+
                     </div>
                 </div>
             </div>
@@ -144,23 +144,23 @@
             </div>
             <div class="user">
                 {{#if lcAuthUser}}
-                    <a href="/profile">
-                        <div class="login">
-                            <i class="fa-solid fa-right-to-bracket"></i>
-                            <p>{{lcAuthUser.name}}</p>
-                        </div>
-                    </a>
-                {{else}}
-                    <a href="/login">
-                        <div class="login">
-                            <i class="fa-solid fa-right-to-bracket"></i>
-                            <p>Đăng nhập</p>
-                        </div>
-                    </a>
-                    <div class="register">
-                        <i class="fa-solid fa-user-plus"></i>
-                        <p>Đăng ký</p>
+                <a href="/profile">
+                    <div class="login">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <p>{{lcAuthUser.name}}</p>
                     </div>
+                </a>
+                {{else}}
+                <a href="/login">
+                    <div class="login">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <p>Đăng nhập</p>
+                    </div>
+                </a>
+                <div class="register">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <p>Đăng ký</p>
+                </div>
                 {{/if}}
                 {{!-- <div class="logged">
                     <img src="/assets/img/avatar.png" alt="">
@@ -187,14 +187,14 @@
                 <ul>
 
                     {{#each lcCategories}}
-                        <li>
-                            <a href="#" onclick="return false;" class="menu-category__item">
-                                <i class="fa-solid fa-laptop "></i>
-                                <p>{{this}}</p>
-                            </a>
-                        </li>
+                    <li>
+                        <a href="#" onclick="return false;" class="menu-category__item">
+                            <i class="fa-solid fa-laptop "></i>
+                            <p>{{this}}</p>
+                        </a>
+                    </li>
                     {{/each}}
-                    
+
 
                 </ul>
             </div>
@@ -272,7 +272,7 @@
         <!-- Footer members information and links section end here  -->
         <!-- Footer copyright section -->
         <section class="footer-copyright">
-            <div >
+            <div>
                 © 2022 19KTPM:
                 <a href="#">UIUX-19CLC</a>
             </div>
@@ -281,7 +281,7 @@
         <!-- Footer copyright section end here -->
     </footer>
     <!-- Footer end here-->
-    
+
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
@@ -296,7 +296,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
     integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="js/scripts.js"></script>
+<script src="/js/scripts.js"></script>
 
 <script src="/js/home.js"></script>
 

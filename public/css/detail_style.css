@@ -8,10 +8,6 @@ body {
 }
 
 /* Customize */
-.card {
-    border: none;
-}
-
 .product-title {
     font-size: 3rem;
     font-weight: bold;
@@ -28,35 +24,26 @@ body {
 }
 
 .about {
-    font-size: 1.6rem;
-}
-
-.color {
-    margin-bottom: 1.6rem;
-}
-
-.btn-lg{
     font-size: 2rem;
+    margin-top: 0.5rem;
 }
 
-.cart i {
+.cart .btn {
     margin-right: 1rem;
 }
 
-/* Image slider */
-.hover-img {
-	-webkit-transform: scale(1);
-	transform: scale(1);
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
-}
-.hover-img:hover {
-	-webkit-transform: scale(1.3);
-	transform: scale(1.3);
-    cursor: pointer;
+/* .price-container span {
+    margin-top: 1rem;
+    width: 10rem;
+    display: inline-block;
+} */
+
+.big-btn {
+    font-size: 2rem;
 }
 
-.thumbnail{
+/* Image slider */
+#sync2 .item .thumbnail{
     width: 15rem;
     height: 10rem;
 }
@@ -78,6 +65,7 @@ body {
 /* Quantity */
 .qty {
     width: 5rem;
+    opacity: 1;
 }
 
 /* Owl */
@@ -86,13 +74,11 @@ body {
 }
 
 #sync1 .item {
-    color: #FFF;
     text-align: center;
     height: 45rem;
 }
 
 #sync2 .item {
-    color: #FFF;
     text-align: center;
     cursor: pointer;
 }
@@ -104,4 +90,21 @@ body {
 .owl-theme .owl-nav [class*='owl-'] {
     /*default owl-theme theme reset .disabled:hover links */
     transition: all .3s ease;
+}
+
+/* Content */
+#desTab .nav-item .nav-link.active {
+    background-color: #DC3545;
+    color: #FFF;
+    height: 100%;
+    font-size: 2rem;
+    border-radius: 0.8rem 0.8rem 0 0;
+}
+
+#desTab .nav-item .nav-link {
+    font-size: 1.5rem;
+}
+
+#desTabConent {
+    border: 0.1rem solid #dee2e6;
 }
