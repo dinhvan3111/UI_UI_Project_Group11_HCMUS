@@ -1,0 +1,292 @@
+<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+    aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
+        <li class="breadcrumb-item"><a href="#">Bàn phím</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Akko 3084</li>
+    </ol>
+</nav>
+<div class="container">
+    <div class="row mb-5">
+        {{!-- Image --}}
+        <div class="col-md-6">
+            <div id="sync1" class="owl-carousel owl-theme">
+                <div class="item">
+                    <img class="main-img"
+                        src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg">
+                </div>
+                <div class="item">
+                    <img class="main-img" src="https://img-9gag-fun.9cache.com/photo/a3Q5VW5_460s.jpg">
+                </div>
+                <div class="item">
+                    <img class="main-img"
+                        src="https://lh3.googleusercontent.com/2hDpuTi-0AMKvoZJGd-yKWvK4tKdQr_kLIpB_qSeMau2TNGCNidAosMEvrEXFO9G6tmlFlPQplpwiqirgrIPWnCKMvElaYgI-HiVvXc=w600">
+                </div>
+                <div class="item">
+                    <img class="main-img"
+                        src="https://cdnb.artstation.com/p/assets/images/images/019/214/567/large/lala-drawings-juan.jpg?1562537132">
+                </div>
+                <div class="item">
+                    <img class="main-img"
+                        src="https://www.funcage.com/blog/wp-content/uploads/2013/11/Random-Photoshopped-Pictures-026.jpg">
+                </div>
+            </div>
+
+            <div id="sync2" class="owl-carousel owl-theme">
+                <div class="item">
+                    <img class="thumbnail"
+                        src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg">
+                </div>
+                <div class="item">
+                    <img class="thumbnail" src="https://img-9gag-fun.9cache.com/photo/a3Q5VW5_460s.jpg">
+                </div>
+                <div class="item">
+                    <img class="thumbnail"
+                        src="https://lh3.googleusercontent.com/2hDpuTi-0AMKvoZJGd-yKWvK4tKdQr_kLIpB_qSeMau2TNGCNidAosMEvrEXFO9G6tmlFlPQplpwiqirgrIPWnCKMvElaYgI-HiVvXc=w600">
+                </div>
+                <div class="item">
+                    <img class="thumbnail"
+                        src="https://cdnb.artstation.com/p/assets/images/images/019/214/567/large/lala-drawings-juan.jpg?1562537132">
+                </div>
+                <div class="item">
+                    <img class="thumbnail"
+                        src="https://www.funcage.com/blog/wp-content/uploads/2013/11/Random-Photoshopped-Pictures-026.jpg">
+                </div>
+            </div>
+        </div>
+        {{!-- Product info --}}
+        <div class="col-md-6">
+            <div class="p-4">
+                <div class="mt-4 mb-3">
+                    {{!-- Title --}}
+                    <div class="product-title">Akko 3084</div>
+                    {{!-- Description --}}
+                    <div class="about">
+                        Shop from a wide range of t-shirt from orianz. Pefect for your everyday
+                        use, you could pair it with a stylish pair of jeans or trousers complete the look.
+                    </div>
+                    {{!-- Price info --}}
+                    <div class="price-container">
+                        <span class="price-text">Trong kho:</span>
+                        <span>100</span><br>
+
+                        <span class="price-text">Số lượng:</span>
+                        <span>
+                            <input type="number" name="quantity" value="1" class="qty">
+                        </span><br>
+
+                        <span class="price-text">Giá gốc:</span>
+                        <span class="dis-price">2,000,000 VNĐ</span><br>
+
+                        <span class="price-text">Giá KM: </span>
+                        <span class="act-price">1,500,000 VNĐ</span><br>
+                    </div>
+                    {{!-- Button --}}
+                    <div class="cart mt-4 align-items-center">
+                        <button class="btn btn-outline-danger big-btn">
+                            <i class="fa-brands fa-gratipay"></i> Yêu thích
+                        </button>
+                        <button class="btn btn-outline-danger big-btn">
+                            <i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {{!-- Tab navs --}}
+        <ul class="nav nav-tabs" id="desTab" role="tablist">
+            <li class="nav-item align-self-center" role="presentation">
+                <button class="nav-link active link-dark" id="des-tab" data-bs-toggle="tab"
+                    data-bs-target="#description" type="button" role="tab" aria-controls="description"
+                    aria-selected="true">Mô tả chi tiết</button>
+            </li>
+            <li class="nav-item align-self-center" role="presentation">
+                <button class="nav-link link-dark" id="review-tab" data-bs-toggle="tab" data-bs-target="#review"
+                    type="button" role="tab" aria-controls="review" aria-selected="false">
+                    Đánh giá (10)
+                </button>
+            </li>
+        </ul>
+        {{!-- Tab content --}}
+        <div class="tab-content" id="desTabConent">
+            <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="des-tab">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at rutrum lectus. Orci varius
+                natoque penatibus et
+                magnis dis parturient montes, nascetur ridiculus mus. Suspendisse ac est sed eros porttitor
+                iaculis.
+                Vivamus sagittis
+                finibus nisl eu feugiat. Sed imperdiet, quam sed congue porttitor, elit ligula feugiat quam, nec
+                maximus sem mi id quam.
+                In ac varius quam. In hac habitasse platea dictumst. Proin non augue quis nisi sollicitudin
+                semper
+                vel ac est.
+
+                Interdum et malesuada fames ac ante ipsum primis in faucibus. Aliquam aliquet risus a leo cursus
+                lacinia. Quisque
+                hendrerit pellentesque sem, in viverra tortor condimentum nec. Sed hendrerit risus vitae
+                pharetra
+                fringilla. Morbi non
+                eros id enim rhoncus volutpat et eu ipsum. Mauris eget convallis nibh. In dignissim elit eget
+                libero
+                faucibus maximus.
+                Nulla facilisi. Etiam eu ullamcorper tellus. Cras mattis risus sit amet diam fermentum rhoncus.
+                Donec vitae viverra
+                ipsum. Suspendisse imperdiet volutpat nibh, at mattis justo sagittis a. Donec mattis dui sed
+                tortor
+                posuere sagittis.
+                Duis nulla arcu, auctor mollis interdum vel, fermentum a augue.
+
+                Nam quis nibh ac tellus ullamcorper sollicitudin. Ut sit amet lorem et ligula dictum suscipit.
+                Curabitur et felis sit
+                amet lorem hendrerit volutpat. Aenean varius erat in risus mattis accumsan. Nam efficitur ipsum
+                rhoncus, porttitor
+                turpis quis, cursus ligula. Sed vulputate dui sit amet nunc lobortis, eu pharetra neque commodo.
+                Fusce tempor dolor sit
+                amet imperdiet sagittis. Donec eget placerat odio. Donec aliquet in turpis a laoreet. Maecenas
+                in
+                sapien non velit
+                consequat luctus in a velit. Vestibulum pharetra tempor arcu vel facilisis. Donec efficitur
+                tempus
+                semper. Aenean quis
+                neque sit amet mauris dictum egestas. Aenean egestas, mi non venenatis egestas, justo libero
+                venenatis ipsum, eget
+                viverra odio nisi non ligula.
+
+                Vestibulum vel leo eu diam lobortis imperdiet. Morbi ut metus quis arcu aliquet tristique at sit
+                amet nunc. Morbi
+                pretium a dui id pulvinar. Suspendisse potenti. Aenean dui nunc, tristique id tortor sit amet,
+                tristique iaculis sem.
+                Curabitur porta porta leo id porttitor. In volutpat arcu sed pulvinar viverra. Pellentesque
+                sagittis
+                porta augue ac
+                tincidunt. Proin in dictum lorem. Pellentesque ullamcorper egestas nulla.
+
+                Quisque consectetur risus neque, quis molestie odio venenatis ac. Morbi id quam vitae lorem
+                porta
+                vestibulum. Mauris id
+                pretium est. Etiam quis ipsum suscipit, vestibulum massa vel, venenatis sem. Suspendisse
+                ullamcorper, leo a egestas
+                dignissim, sem leo lacinia nunc, id sollicitudin diam lorem ac neque. Sed aliquam id urna ac
+                volutpat. Vestibulum a
+                pharetra neque. Aliquam vulputate, nunc vel tincidunt maximus, nulla diam mollis eros, sit amet
+                congue velit magna
+                commodo justo. Etiam elit quam, sagittis sed blandit in, sodales ac ex. Nunc tortor felis,
+                dignissim
+                a faucibus
+                sagittis, ultrices eget nisl. Nulla id nisl faucibus, volutpat mi et, varius sapien.
+
+                Ut in dui non diam faucibus varius. Etiam consequat ex quis lorem accumsan, vitae porttitor ante
+                malesuada. Aliquam erat
+                volutpat. Maecenas non nisi purus. In blandit nibh tortor, id posuere leo consequat sit amet.
+                Pellentesque vehicula
+                fermentum molestie. Donec lacus felis, pellentesque a magna a, convallis feugiat quam. Nullam et
+                mattis ipsum. Fusce
+                quis malesuada dolor, ac blandit lacus. Proin mauris ipsum, pretium in lectus ac, luctus
+                faucibus
+                nisi. Etiam sed
+                vehicula mauris, id ornare nisi. Quisque placerat in velit molestie semper. Nulla convallis
+                ullamcorper ipsum non
+                ultricies. Aliquam sollicitudin pretium magna quis condimentum. Duis aliquet vehicula tellus.
+                Nunc
+                et pharetra magna.
+
+                Etiam sed porta erat. Maecenas eget enim sit amet mauris rhoncus lacinia sed nec leo. Duis purus
+                elit, mollis aliquet
+                interdum sit amet, dictum vel velit. Cras et blandit magna. Donec vestibulum metus vitae eros
+                efficitur consequat. Fusce
+                eu magna ut nisl porttitor rutrum. Curabitur tortor tortor, tristique non dapibus at, dictum id
+                nunc. Mauris diam velit,
+                interdum nec tempor a, blandit eget libero. Vestibulum vulputate, lectus eget ultricies lacinia,
+                felis erat congue
+                risus, commodo maximus dolor leo non lectus. Mauris ac dolor est. Sed ac feugiat nisi, rutrum
+                blandit metus.
+
+                Generated 7 paragraphs, 637 words, 4212 bytes of Lorem Ipsum
+            </div>
+            <div class="tab-pane fade" id="waranty" role="tabpanel" aria-labelledby="waranty-tab">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Quisque malesuada leo eu quam rhoncus dapibus.
+                Vivamus ac massa auctor, ullamcorper justo vitae, feugiat augue.
+                Morbi interdum magna placerat lorem congue viverra.
+                Vivamus et lectus tempus, dignissim nisl at, aliquet felis.
+                Proin porttitor nisl quis vestibulum sagittis.
+                Cras malesuada felis ut neque rutrum accumsan.
+                Suspendisse blandit nisi a ex egestas, non tempus enim dictum.
+                Donec euismod sem sed arcu tempor commodo.
+                In hendrerit ipsum eu ante accumsan, nec finibus leo cursus.
+                Nunc at enim quis tellus pellentesque cursus eu vitae felis.
+                Curabitur ac massa vel risus rhoncus sollicitudin quis eget massa.
+                In eget lacus eget sem ullamcorper pharetra.
+                Curabitur non mi tincidunt neque maximus imperdiet.
+                Proin et orci nec magna porta blandit.
+                Donec tempor felis a ligula convallis laoreet.
+                Morbi et urna at purus mattis hendrerit ac et metus.
+                Cras vestibulum lorem et tempor viverra.
+                Praesent fringilla augue ut augue vestibulum tincidunt.
+                Duis vel ipsum in massa lobortis porttitor luctus ut sem.
+                Nam porta est rutrum, eleifend ex mattis, maximus augue.
+                Morbi tempus libero at convallis egestas.
+                Ut at lectus vel arcu maximus accumsan quis et metus.
+                Curabitur imperdiet ante vulputate magna interdum rhoncus.
+                Generated 7 paragraphs, 176 words, 1273 bytes of Lorem Ipsum
+            </div>
+            <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Quisque malesuada leo eu quam rhoncus dapibus.
+                Vivamus ac massa auctor, ullamcorper justo vitae, feugiat augue.
+                Morbi interdum magna placerat lorem congue viverra.
+                Vivamus et lectus tempus, dignissim nisl at, aliquet felis.
+                Proin porttitor nisl quis vestibulum sagittis.
+                Cras malesuada felis ut neque rutrum accumsan.
+                Suspendisse blandit nisi a ex egestas, non tempus enim dictum.
+                Donec euismod sem sed arcu tempor commodo.
+                In hendrerit ipsum eu ante accumsan, nec finibus leo cursus.
+                Nunc at enim quis tellus pellentesque cursus eu vitae felis.
+                Curabitur ac massa vel risus rhoncus sollicitudin quis eget massa.
+                In eget lacus eget sem ullamcorper pharetra.
+                Curabitur non mi tincidunt neque maximus imperdiet.
+                Proin et orci nec magna porta blandit.
+                Donec tempor felis a ligula convallis laoreet.
+                Morbi et urna at purus mattis hendrerit ac et metus.
+                Cras vestibulum lorem et tempor viverra.
+                Praesent fringilla augue ut augue vestibulum tincidunt.
+                Duis vel ipsum in massa lobortis porttitor luctus ut sem.
+                Nam porta est rutrum, eleifend ex mattis, maximus augue.
+                Morbi tempus libero at convallis egestas.
+                Ut at lectus vel arcu maximus accumsan quis et metus.
+                Curabitur imperdiet ante vulputate magna interdum rhoncus.
+                Generated 7 paragraphs, 176 words, 1273 bytes of Lorem Ipsum
+            </div>
+        </div>
+
+        {{!-- <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+                    type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+                    type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
+                    type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+                tabindex="0">...
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
+                tabindex="0">...
+            </div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
+                tabindex="0">...
+            </div>
+        </div> --}}
+    </div>
+</div>
+</div>
