@@ -5,12 +5,12 @@ import { PERMISSION_ENUM } from '../utils/database.js';
 export default {
     async findById(id) {
         const userRet = await User.findById({_id: id}).exec();
-        console.log(userRet);
+        // console.log(userRet);
         return userRet;
     },
 
     async findOrCreateByThirdPartyAcc(idThirdPartyAcc, displayName, email, provider) {
-        const userInfo = await this.findById(idThirdPartyAcc + provider);
+        const userInfo = await this.findById(email);
         if(userInfo === null){
             const user = new User({
                 name: displayName,

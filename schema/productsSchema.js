@@ -14,7 +14,8 @@ const Products = new Schema({
     imgs: [String],
     sold: Number,
     waranty: String,
-    percentSale: Number
+    percentSale: Number,
+    created: Date
     
 }, { versionKey: false });
 

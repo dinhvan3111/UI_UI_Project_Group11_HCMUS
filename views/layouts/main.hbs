@@ -59,10 +59,11 @@
                         </a>
                     </div>
                     <div class="cart">
-                        <a href="">
+                        <a href="/cart">
                             <div class="icon">
                                 <i class="fa-solid fa-cart-shopping"></i>
-                                <span class="cart-number">0</span>
+                                <span id="cartNumStr" class="cart-number">{{lcTotalInCart}}</span>
+                                <input type="hidden" id="cartNum" value="{{lcTotalInCart}}">
                             </div>
                             <div class="text">
                                 Giỏ hàng
@@ -70,14 +71,26 @@
                         </a>
                     </div>
                     <div class="login">
-                        <a href="/login">
-                            <label for="nav-input" class="icon">
-                                <i class="fa-regular fa-circle-user"></i>
-                            </label>
-                            <div class="text">
-                                Đăng nhập
-                            </div>
-                        </a>
+                        {{#if lcAuthUser}}
+                            <a href="/profile">
+                                <label for="nav-input" class="icon">
+                                    <i class="fa-regular fa-circle-user"></i>
+                                </label>
+                                <div class="text">
+                                    {{lcAuthUser.name}}
+                                </div>
+                            </a>
+                        {{else}}
+                            <a href="/login">
+                                <label for="nav-input" class="icon">
+                                    <i class="fa-regular fa-circle-user"></i>
+                                </label>
+                                <div class="text">
+                                    Đăng nhập
+                                </div>
+                            </a>
+                        {{/if}}
+                        
                     </div>
                 </div>
             </div>
@@ -130,16 +143,25 @@
                 <img src="/assets/img/logo.png" alt="logo">
             </div>
             <div class="user">
-                <a href="/login">
-                    <div class="login">
-                        <i class="fa-solid fa-right-to-bracket"></i>
-                        <p>Đăng nhập</p>
+                {{#if lcAuthUser}}
+                    <a href="/profile">
+                        <div class="login">
+                            <i class="fa-solid fa-right-to-bracket"></i>
+                            <p>{{lcAuthUser.name}}</p>
+                        </div>
+                    </a>
+                {{else}}
+                    <a href="/login">
+                        <div class="login">
+                            <i class="fa-solid fa-right-to-bracket"></i>
+                            <p>Đăng nhập</p>
+                        </div>
+                    </a>
+                    <div class="register">
+                        <i class="fa-solid fa-user-plus"></i>
+                        <p>Đăng ký</p>
                     </div>
-                </a>
-                <div class="register">
-                    <i class="fa-solid fa-user-plus"></i>
-                    <p>Đăng ký</p>
-                </div> 
+                {{/if}}
                 {{!-- <div class="logged">
                     <img src="/assets/img/avatar.png" alt="">
                     <p>Hi, <b>Nguyễn Trần Ngọc Tú</b></p>
@@ -164,66 +186,15 @@
                 </div>
                 <ul>
 
-                    <li>
-                        <a href="#" class="menu-category__item" style="border-bottom:none">
-                            <i class="fa-solid fa-laptop "></i>
-                            <p>Laptop Gaming</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-category__item">
-                            <i class="fa-solid fa-laptop "></i>
-                            <p>Laptop Gaming</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-category__item">
-                            <i class="fa-solid fa-laptop "></i>
-                            <p>Laptop Gaming</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-category__item">
-                            <i class="fa-solid fa-laptop "></i>
-                            <p>Laptop Gaming</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-category__item">
-                            <i class="fa-solid fa-laptop "></i>
-                            <p>Laptop Gaming</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-category__item">
-                            <i class="fa-solid fa-laptop "></i>
-                            <p>Laptop Gaming</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-category__item">
-                            <i class="fa-solid fa-laptop "></i>
-                            <p>Laptop Gaming</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-category__item">
-                            <i class="fa-solid fa-laptop "></i>
-                            <p>Laptop Gaming</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-category__item">
-                            <i class="fa-solid fa-laptop "></i>
-                            <p>Laptop Gaming</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-category__item" style="border-bottom:none">
-                            <i class="fa-solid fa-laptop "></i>
-                            <p>Laptop Gaming</p>
-                        </a>
-                    </li>
+                    {{#each lcCategories}}
+                        <li>
+                            <a href="#" onclick="return false;" class="menu-category__item">
+                                <i class="fa-solid fa-laptop "></i>
+                                <p>{{this}}</p>
+                            </a>
+                        </li>
+                    {{/each}}
+                    
 
                 </ul>
             </div>

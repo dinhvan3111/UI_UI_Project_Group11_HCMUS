@@ -11,8 +11,11 @@ router.get('/:id', async function(req, res) {
     }
     else {
         const category = await categoryModel.findById(product.id_category.toString());
-        res.render('vwProduct/product_detail', {
-            product: product.toObject(),
+        const productRet = product.toObject();
+        productRet.id_category = productRet.id_category.toString();
+        productRet._id = productRet._id.toString();
+        res.render('vwProduct/product_detail', { 
+            product: productRet,
             categoryOfProduct: category.toObject(),
         });
     }

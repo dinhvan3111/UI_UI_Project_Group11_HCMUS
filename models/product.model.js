@@ -71,4 +71,30 @@ export default {
         return await this.save(product);
     },
     
+    async getTopSell(offset, numOfProduct){
+        const products = await Product.find({}).sort({
+            sold: -1,
+            percentSale: -1,
+            created: -1
+        })
+            .skip(offset)
+            .limit(numOfProduct);
+        return products;
+    },
+
+    async getTopDiscount(offset, numOfProduct){
+        const products = await Product.find({}).sort({percentSale: -1})
+            .skip(offset)
+            .limit(numOfProduct);
+        return products;
+    },
+
+    async getTopNew(offset, numOfProduct){
+        const products = await Product.find({}).sort({
+            created: -1
+        })
+            .skip(offset)
+            .limit(numOfProduct);
+        return products;
+    }
 }
