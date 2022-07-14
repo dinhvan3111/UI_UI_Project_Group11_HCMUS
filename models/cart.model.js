@@ -88,6 +88,9 @@ export default {
 
     async getTotalItems(userIdStr){
         const userCart = await this.findById(userIdStr);
+        if(userCart === null){
+            return 0;
+        }
         return userCart.products.length;
     }
 }
