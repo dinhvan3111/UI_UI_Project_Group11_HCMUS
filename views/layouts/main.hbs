@@ -76,11 +76,11 @@
                                 
                                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-information" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa-regular fa-circle-user"></i>
-                                    Nguyễn Trần Ngọc Tú
+                                    {{lcAuthUser.name}}
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown-infor">
                                     <li><a class="dropdown-item" href="/profile">Thông tin cá nhân</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="logout(); return false;"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
                                 </ul>
                             </div>
                         {{else}}

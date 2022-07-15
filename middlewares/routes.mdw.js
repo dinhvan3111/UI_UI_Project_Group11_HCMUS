@@ -6,13 +6,26 @@ import productModel from '../models/product.model.js';
 
 export default function(app){
 
-	app.post('/logout', function(req, res){
-		if(typeof(req.session.idAcc) !== 'undefined'){
-	      	delete req.session.idAcc;
+	app.post('/logout', async function(req, res){
+		if(typeof(req.session.passport) !== 'undefined'){
+	      	// delete req.session.idAcc;
+			await req.logout(function(err) {
+				if (err) { 
+					return res.json({
+						code: 400,
+						status: 'Bad Request',
+						message: 'Not login'
+					});
+				}
+				res.json({
+					code: 200,
+					status: 'OK',
+					message: 'Logged out'
+				});
+			});
+			// const url = req.headers.referer || '/';
 	    }
-	    req.logout();
-	    // const url = req.headers.referer || '/';
-		res.redirect('/login');
+	    
 	});
 
     app.use('/', authRoute);

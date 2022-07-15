@@ -90,3 +90,17 @@ $(document).ready(function() {
         sync1.data('owl.carousel').to(number, 300, true);
     });
 });
+
+
+function logout(){
+    console.log('hit');
+    $.ajax({
+        url: `/logout`,
+        method: "POST"
+    })
+    .done(function( jsonResp ) {
+        if(jsonResp.code === 200){
+            window.location.replace("/login");
+        }
+    });
+}
