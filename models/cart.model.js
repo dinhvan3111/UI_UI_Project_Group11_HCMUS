@@ -44,7 +44,7 @@ export default {
         let userCart = await this.findById(userId);
         if(userCart === null){
             // Create a doc for this user in cart schema
-            return await createNewCart(userId, product._id, product.sale_price, quantity);
+            return await this.createNewCart(userId, product._id, product.sale_price, quantity);
         }
 
         const res = await this.findByFilter({
@@ -92,5 +92,22 @@ export default {
             return 0;
         }
         return userCart.products.length;
+    },
+
+    async createNewCart(userId, productId, price, quantity){
+    const userCart = await this.save(new Cart({
+        _id: userId,
+        products: [
+            new CartInfo({
+                _id: productId,
+                price: price,
+                quantity: quantity
+            }),
+        ]
+    }));
+    if(userCart === null){
+        return false;
     }
+    return true;
+}
 }

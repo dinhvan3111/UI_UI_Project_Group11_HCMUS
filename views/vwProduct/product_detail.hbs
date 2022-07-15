@@ -16,47 +16,19 @@
                 {{!-- Image --}}
                 <div class="col-md-6">
                     <div id="sync1" class="owl-carousel owl-theme carousel-images">
+                        {{#each product.imgs}}
                         <div class="item">
-                            <img class="main-img"
-                                src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg">
+                            <img class="main-img" src="{{getImgLink this}}">
                         </div>
-                        <div class="item">
-                            <img class="main-img" src="https://img-9gag-fun.9cache.com/photo/a3Q5VW5_460s.jpg">
-                        </div>
-                        <div class="item">
-                            <img class="main-img"
-                                src="https://lh3.googleusercontent.com/2hDpuTi-0AMKvoZJGd-yKWvK4tKdQr_kLIpB_qSeMau2TNGCNidAosMEvrEXFO9G6tmlFlPQplpwiqirgrIPWnCKMvElaYgI-HiVvXc=w600">
-                        </div>
-                        <div class="item">
-                            <img class="main-img"
-                                src="https://cdnb.artstation.com/p/assets/images/images/019/214/567/large/lala-drawings-juan.jpg?1562537132">
-                        </div>
-                        <div class="item">
-                            <img class="main-img"
-                                src="https://www.funcage.com/blog/wp-content/uploads/2013/11/Random-Photoshopped-Pictures-026.jpg">
-                        </div>
+                        {{/each}}
                     </div>
 
-                    <div id="sync2" class="owl-carousel owl-theme">
-                        <div class="item">
-                            <img class="thumbnail"
-                                src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg">
+                    <div id="sync2" class="d-flex justify-content-center owl-carousel owl-theme">
+                        {{#each product.imgs}}
+                        <div class="thumbnail">
+                            <img class="main-img" src="{{getImgLink this}}">
                         </div>
-                        <div class="item">
-                            <img class="thumbnail" src="https://img-9gag-fun.9cache.com/photo/a3Q5VW5_460s.jpg">
-                        </div>
-                        <div class="item">
-                            <img class="thumbnail"
-                                src="https://lh3.googleusercontent.com/2hDpuTi-0AMKvoZJGd-yKWvK4tKdQr_kLIpB_qSeMau2TNGCNidAosMEvrEXFO9G6tmlFlPQplpwiqirgrIPWnCKMvElaYgI-HiVvXc=w600">
-                        </div>
-                        <div class="item">
-                            <img class="thumbnail"
-                                src="https://cdnb.artstation.com/p/assets/images/images/019/214/567/large/lala-drawings-juan.jpg?1562537132">
-                        </div>
-                        <div class="item">
-                            <img class="thumbnail"
-                                src="https://www.funcage.com/blog/wp-content/uploads/2013/11/Random-Photoshopped-Pictures-026.jpg">
-                        </div>
+                        {{/each}}
                     </div>
                 </div>
                 {{!-- Product info --}}
@@ -186,7 +158,7 @@
                 <li class="nav-item product-detail-nav-item" role="presentation">
                     <button class="nav-link link-dark" id="review-tab" data-bs-toggle="tab" data-bs-target="#review"
                         type="button" role="tab" aria-controls="review" aria-selected="false">
-                        Đánh giá (10)
+                        Đánh giá (0)
                     </button>
                 </li>
             </ul>

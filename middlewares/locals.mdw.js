@@ -8,7 +8,10 @@ export default function(app){
         const categories = await categoryModel.getAll();
         let categoriesRes = [];
         for (let i = 0; i < categories.length; i++) {
-            categoriesRes.push(categories[i].name);
+            categoriesRes.push({
+                name: categories[i].name,
+                ico: categories[i].ico
+            });
         }
         res.locals.maxLcCategories = categories.length;
         res.locals.lcCategories = categoriesRes;

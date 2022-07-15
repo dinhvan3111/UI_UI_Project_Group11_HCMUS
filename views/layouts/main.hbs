@@ -72,17 +72,19 @@
                     </div>
                     <div class="login">
                         {{#if lcAuthUser}}
-                            <div class="dropdown-info">
-                                
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-information" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-regular fa-circle-user"></i>
-                                    {{lcAuthUser.name}}
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown-infor">
-                                    <li><a class="dropdown-item" href="/profile">Thông tin cá nhân</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="logout(); return false;"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
-                                </ul>
-                            </div>
+                        <div class="dropdown-info">
+
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-information"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-regular fa-circle-user"></i>
+                                {{lcAuthUser.name}}
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown-infor">
+                                <li><a class="dropdown-item" href="/profile">Thông tin cá nhân</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="logout(); return false;"><i
+                                            class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+                            </ul>
+                        </div>
                         {{else}}
                         <a href="/login">
                             <label for="nav-input" class="icon">
@@ -92,8 +94,8 @@
                                 Đăng nhập
                             </div>
                         </a>
-                         
-                        
+
+
                         {{/if}}
 
                     </div>
@@ -153,7 +155,7 @@
                     <div class="login">
                         <i class="fa-solid fa-right-to-bracket"></i>
                         <p>{{lcAuthUser.name}}</p>
-                        
+
                     </div>
                 </a>
                 {{else}}
@@ -195,8 +197,8 @@
                     {{#each lcCategories}}
                     <li>
                         <a href="#" onclick="return false;" class="menu-category__item">
-                            <i class="fa-solid fa-laptop "></i>
-                            <p>{{this}}</p>
+                            <i class="{{ico}}"></i>
+                            <p>{{name}}</p>
                         </a>
                     </li>
                     {{/each}}
