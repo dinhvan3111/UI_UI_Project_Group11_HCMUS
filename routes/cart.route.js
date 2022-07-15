@@ -6,6 +6,9 @@ const FREE_SHIP_AMMOUNT = 500000;
 const router = express.Router();
 
 router.get('/cart', async function(req,res){
+    if(req.session.passport === undefined){
+        return res.redirect('/login');
+    }
     const cart = await cartModel.findById(req.session.passport.user._id);
     const products = [];
     let totalPrice = 0;
