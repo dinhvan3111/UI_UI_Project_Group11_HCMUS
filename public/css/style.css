@@ -222,11 +222,13 @@ select {
     width: 100%;
     display: flex;
     justify-content: center;
+    color: var(--main-color);
 }
 
 .menu-main .menu-main__item:hover {
     background-color: var(--hover-color);
     color: #fff;
+    cursor: pointer;
 }
 
 /* dropdown info */
@@ -450,7 +452,9 @@ select {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    position: relative;
 }
+
 
 .product-main .best-selling .title {
     text-align: center;
@@ -685,6 +689,45 @@ select {
     border-radius: 2rem;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    position: relative;
+}
+
+.product-main .more{
+    position: absolute;
+    top: 48%;
+    bottom: 50%;
+    font-size: 2rem;
+    font-weight: 600;
+    background-color: #f8f9fa;
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    transition: all .5s ease .2s;
+}
+
+.product-main .selling .more{
+    display: flex;
+}
+
+.product-main .best-selling .best-selling__content:hover 
+.more{
+    display: flex;
+}
+
+.product-main .more.more__right{
+    right: 2rem;
+}
+
+.product-main .more.more__left{
+    left: 2rem;
+}
+
+.product-main .more:hover{
+    cursor: pointer;
+    background-color: #e9ecef
 }
 
 .product-main .selling .tab-pane {
