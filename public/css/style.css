@@ -525,9 +525,16 @@ select {
 
 
 .product-item .product-desc .buy-now{
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     padding: 1rem;
     border-radius: 1rem;
+    background-color: var(--main-color);
+    color: var(--sub-color);
+    border: 0.1rem solid var(--sub-color);
+    width: 60%;
+}
+
+.product-item .product-desc .buy-now:hover{
     background-color: var(--back-color);
     color: var(--main-color);
 }
