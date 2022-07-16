@@ -82,7 +82,7 @@
                                 <button class="btn-favortie">
                                     <i class="fa-brands fa-gratipay"></i> Yêu thích
                                 </button>
-                                <button class="btn-add-to-cart" onclick="addToCart('{{product._id}}')">
+                                <button data-bs-toggle="modal" data-bs-target="#addToCartModal" class="btn-add-to-cart" onclick="addToCart('{{product._id}}')">
                                     <i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng
                                 </button>
                                 {{else}}
@@ -181,6 +181,23 @@
         </div>
     </div>
 </div>
-<div id="notification-area"></div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addToCartModal" tabindex="-1" aria-labelledby="addToCartModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        <img class="icon" src="" alt="">
+        <p>Sản phẩm đã được thêm vào giỏ hàng</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-bs-dismiss="modal" >Đóng</button>
+      </div>
+
+      
+    </div>
+  </div>
 </div>
 <script src="/js/product_detail.js"></script>

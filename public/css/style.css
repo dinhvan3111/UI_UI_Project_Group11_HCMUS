@@ -118,7 +118,7 @@ select {
     color: #ebebeb;
     padding: .375rem 3.5rem;
     border: 1px solid var(--back-color);
-    border-radius: 0 2.5rem 2.5rem 0;
+    border-radius: 0 1.5rem 1.5rem 0;
 }
 
 /* .header-search input:focus {
@@ -131,7 +131,7 @@ select {
     color: var(--main-color);
     padding: .9rem 3.5rem;
     border: 1px solid var(--back-color);
-    border-radius: 2.5rem 0 0 2.5rem;
+    border-radius: 1.5rem 0 0 1.5rem;
     background-color: var(--back-color)
 }
 
@@ -273,11 +273,11 @@ select {
 }
 
 .dropdown-info li:first-child{
-    border-radius: 2rem 2rem 0 0;
+    border-radius: 1rem 1rem 0 0;
 }
 
 .dropdown-info li:last-child{
-    border-radius: 0 0 2rem 2rem ;
+    border-radius: 0 0 1rem 1rem ;
 }
 
 /* Main content */
@@ -285,14 +285,14 @@ select {
 .main-content .container {
     display: flex;
     justify-content: space-between;
-    gap: 0 2rem;
+    gap: 0 1rem;
     margin-top: 1rem;
 }
 
 .main-content .menu-category {
     border: 0.1rem solid var(--sub-color);
 
-    border-radius: 2rem;
+    border-radius: 1rem;
     width: 25%;
 }
 
@@ -310,7 +310,7 @@ select {
 
 .main-content .banner-content img {
     width: 100%;
-    border-radius: 2rem;
+    border-radius: 1rem;
 }
 
 .main-content .banner-content .slogan,
@@ -338,7 +338,7 @@ select {
 .main-content .slogan .slogan-content__item {
     padding: 3rem 4.5rem;
     /* border: 0.1rem solid var(--sub-color); */
-    border-radius: 2rem;
+    border-radius: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -364,7 +364,7 @@ select {
 
 .main-content .menu-category .menu-category__title {
     background-color: var(--back-color);
-    border-radius: 2rem 2rem 0 0;
+    border-radius: 1rem 1rem 0 0;
     color: var(--main-color);
     text-align: center;
     border: 0.1rem solid var(--sub-color);
@@ -404,7 +404,7 @@ select {
 }
 
 .promotion-main {
-    margin: 3rem 2rem;
+    margin: 2rem;
 }
 
 .promotion-main .container {
@@ -414,7 +414,7 @@ select {
 }
 
 .promotion-main .promotion-main__item {
-    border-radius: 2rem;
+    border-radius: 1rem;
     align-items: center;
     border: 0.1rem solid var(--main-color);
     font-size: 2rem;
@@ -442,7 +442,7 @@ select {
 .product-main .best-selling {
     width: 30%;
     border: 0.1rem solid var(--sub-color);
-    border-radius: 2rem;
+    border-radius: 1rem;
     display: flex;
     flex-direction: column;
 }
@@ -464,7 +464,7 @@ select {
     margin-bottom: 0;
     background-color: var(--back-color);
     color: var(--main-color);
-    border-radius: 2rem 2rem 0 0;
+    border-radius: 1rem 1rem 0 0;
 }
 
 .product-main .product-item {
@@ -487,7 +487,7 @@ select {
 }
 
 .product-main .product-item:last-child {
-    border-radius: 0 0 2rem 2rem;
+    border-radius: 0 0 1rem 1rem;
 }
 
 .product-main .product-item:hover {
@@ -502,7 +502,7 @@ select {
 .product-main .product-item .thumbnail {
     width: 14rem;
     padding: 1rem;
-    border-radius: 2rem;
+    border-radius: 1rem;
     /* background-color: #ebebeb; */
     border: 1px solid #ebebeb;
     position: relative;
@@ -523,6 +523,15 @@ select {
     width: 100%;
 }
 
+
+.product-item .product-desc .buy-now{
+    font-size: 1.8rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: var(--back-color);
+    color: var(--main-color);
+}
+
 .product-item .product-desc .star-comment {
     color: #ff9801;
     font-size: 1.4rem;
@@ -531,6 +540,7 @@ select {
 .product-item .product-desc .product-price {
     color: #076db1;
 }
+
 
 .product-item .thumbnail .discount,
 .product-item .thumbnail .icon-action {
@@ -545,7 +555,7 @@ select {
     justify-content: center;
     position: absolute;
     left: 0;
-    top: 75%;
+    top: 70%;
     z-index: 2;
     transition: all .5s ease 0s;
 }
@@ -614,7 +624,7 @@ select {
     left: 0;
     bottom: 0;
     content: "";
-    border-radius: 0 0 2rem 2rem;
+    border-radius: 0 0 1rem 1rem;
     transition: all .5s ease 0s;
 }
 
@@ -643,13 +653,14 @@ select {
     flex-wrap: nowrap;
     align-items: center;
     /* border: 0.1rem solid var(--back-color); */
-    border-radius: 2rem !important;
+    border-radius: 1rem !important;
 }
 
 
 .product-main .product-item--col .thumbnail {
 
-    width: 100% !important;
+    width: 17.7rem !important;
+    margin: 0 auto;
 }
 
 .product-item--col .thumbnail img{
@@ -660,19 +671,22 @@ select {
 .product-main .product-item--col .product-desc {
     gap: 1rem 0;
     margin-top: 2rem;
+    width: 17.7rem;
 }
+
+
 
 .product-main .selling {
     width: 70%;
     width: 70%;
     border: 1px solid var(--sub-color);
-    border-radius: 2rem 2rem 0 0;
+    border-radius: 1rem;
 }
 
 .product-main .selling .nav-pills {
     width: initial;
     background-color: var(--back-color);
-    border-radius: 2rem 2rem 0 0;
+    border-radius: 1rem 1rem 0 0;
     border-bottom: 0.1rem solid var(--sub-color);
     line-height: 1.2;
 }
@@ -682,11 +696,12 @@ select {
     font-size: 1.8rem;
     color: var(--main-color);
     border-radius: 0;
+    width: 13.4rem;
 }
 
 .product-main .selling .tab-content {
     padding: 2rem;
-    border-radius: 2rem;
+    border-radius: 1rem;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     position: relative;
@@ -810,6 +825,12 @@ select {
     align-items: center;
 }
 
+.nav__mobile .user .user__logged{
+    width: 100%;
+}
+
+
+
 .nav__mobile .user .login:hover,
 .nav__mobile .user .register:hover,
 .nav__mobile .user b:hover,
@@ -828,10 +849,18 @@ select {
 .nav__mobile .nav__content .logged {
     display: flex;
     gap: 0rem 1rem;
+    justify-content: space-between;
+    margin-right: 2rem;
 }
 
 .nav__mobile .nav__content .logged {
     align-items: center;
+}
+
+.nav__mobile .logged .logged__info{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .nav__mobile .logged img {
@@ -881,7 +910,7 @@ select {
     left: 0;
     /* height: 5rem; */
     padding: 1rem 0;
-    border-radius: 2rem 2rem 0 0;
+    border-radius: 1rem 1rem 0 0;
     box-shadow: 0px -2px 5px 0px rgba(254, 98, 110, 0.2);
     -webkit-box-shadow: 0px -2px 5px 0px rgba(254, 98, 110, 0.2);
     -moz-box-shadow: 0px -2px 5px 0px rgba(254, 98, 110, 0.2);

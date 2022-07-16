@@ -30,7 +30,7 @@ $(document).ready(function () {
 function handleBestSelling(width, products) {
     products.forEach(element => {
         const thumbnail = element.querySelector('.thumbnail');
-        if (width < 1200 && width >= 460) {
+        if (width < 1200 ) {
             element.classList.add('product-item--col');
             const tag = document.createElement("div");
             tag.classList.add('icon-action');

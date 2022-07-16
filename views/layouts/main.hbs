@@ -148,17 +148,25 @@
         </label>
         <div class="nav__content">
             <div class="branch">
-                <img src="/assets/img/logo.png" alt="logo">
+                <a href="/"><img src="/assets/img/logo.png" alt="logo"></a>
             </div>
             <div class="user">
                 {{#if lcAuthUser}}
-                <a href="/profile">
-                    <div class="login">
+                <div class="user__logged">
+                    {{!-- <div class="login">
                         <i class="fa-solid fa-right-to-bracket"></i>
                         <p>{{lcAuthUser.name}}</p>
 
+                    </div> --}}
+                    <div class="logged">
+                        <a href="/profile" class="logged__info">
+                            <img src="/assets/img/avatar.png" alt="">
+                            <p>Hi, <b>{{lcAuthUser.name}}</b></p>
+                        </a>
+                        <a href="#" onclick="logout(); return false;""><i title="Đăng xuất" class="fa-solid fa-arrow-right-from-bracket sign-out"></i></a>
                     </div>
-                </a>
+                    
+                </div>
                 {{else}}
                 <a href="/login">
                     <div class="login">
@@ -171,12 +179,7 @@
                     <p>Đăng ký</p>
                 </div>
                 {{/if}}
-                {{!-- <div class="logged">
-                    <img src="/assets/img/avatar.png" alt="">
-                    <p>Hi, <b>Nguyễn Trần Ngọc Tú</b></p>
-
-                </div>
-                <i title="Đăng xuất" class="fa-solid fa-arrow-right-from-bracket sign-out"></i> --}}
+                
             </div>
             <!-- <div class="nav_navbar">
                 <div class="nav_navbar__title">

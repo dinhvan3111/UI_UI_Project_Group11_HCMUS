@@ -18,32 +18,22 @@ function addToCart(productId) {
         if(jsonResp.code === 200){
             $('#cartNum').val(jsonResp.totalInCart);
             $('#cartNumStr').html(jsonResp.totalInCart.toString());
-            //alert(jsonResp.message);
-            notify("success",jsonResp.message);
+
+            
+            $('#addToCartModal .modal-body img').attr("src","/assets/img/check.png");
+            $('#addToCartModal .modal-body p').html("Sản phẩm đã được thêm vào giỏ hàng!");
+
+            // Display Modal
+            $('#addToCartModal').modal('show'); 
         }
         else{
-            notify("error",jsonResp.message);
+            $('#addToCartModal .modal-body img').attr("src","/assets/img/error.png");
+            $('#addToCartModal .modal-body p').html("Thêm giỏ hàng thất bại!");
+
+            // Display Modal
+            $('#addToCartModal').modal('show'); 
         }
     });
 }
 
-function notify(type,message){
-    (()=>{
-      let n = document.createElement("div");
-      let id = Math.random().toString(36).substr(2,10);
-      n.setAttribute("id",id);
-      n.classList.add("notification",type);
-      n.innerText = message;
-      document.getElementById("notification-area").appendChild(n);
-      setTimeout(()=>{
-        var notifications = document.getElementById("notification-area").getElementsByClassName("notification");
-        for(let i=0;i<notifications.length;i++){
-          if(notifications[i].getAttribute("id") == id){
-            notifications[i].remove();
-            break;
-          }
-        }
-      },5000);
-    })();
-  }
   

@@ -45,7 +45,7 @@ body {
 .login-form input {
     width: 100%;
     font-size: 1.8rem;
-    border-radius: 7.4rem;
+    border-radius: 1rem;
     border: 0.1rem solid #ccc;
     box-sizing: border-box;
     font-size: 1.8rem;
@@ -91,7 +91,7 @@ body {
     margin: 0 auto;
     font-size: 2rem;
     border: .1rem solid var(--back-color);
-    border-radius: 4.4rem;
+    border-radius: 1rem;
     width: 100%;
     height: 5.6rem;
     cursor: pointer;
