@@ -8,6 +8,10 @@ router.get('/login', function(req, res) {
     res.render('vwAccount/login', {layout:false});
 });
 
+router.get('/register', function(req,res){
+    res.render('vwAccount/register', {layout:false});
+})
+
 router.post('/auth/facebook', function(req, res, next) {
     req.session.loginInfo = {
         provider: 'Facebook'
