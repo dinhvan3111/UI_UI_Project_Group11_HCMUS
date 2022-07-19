@@ -2,6 +2,7 @@ import env from '../utils/env.js';
 import { engine } from 'express-handlebars';
 import hbs_sections from 'express-handlebars-sections';
 import express from 'express';
+import linkManager from '../utils/linkManager.js';
 
 export default function(app){
 	app.use(express.urlencoded({
@@ -23,7 +24,7 @@ export default function(app){
 	            return num;
 	        },
 			getImgLink(imgPath){
-				return `https://storage.googleapis.com/${env.STORAGE_BUCKET}/${imgPath}`;
+				return linkManager.getImgLink(imgPath);
 			},
 			section: hbs_sections(),
 			roundFloat(percentage){

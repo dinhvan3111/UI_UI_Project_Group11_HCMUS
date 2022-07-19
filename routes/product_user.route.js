@@ -1,6 +1,7 @@
 import express from 'express';
 import productModel from '../models/product.model.js';
 import categoryModel from '../models/category.model.js';
+import linkManager from '../utils/linkManager.js';
 
 const router = express.Router();
 
@@ -17,8 +18,13 @@ router.get('/search-autocomplete', async function(req, res) {
             message: 'Not enough characters'
         });
     }
-    console.log(queryStr);
-    const products = await productModel.searchAutocomplete(queryStr, 10);
+    // console.log(queryStr);
+    const products = await productModel.searchAutocomplete(queryStr, 4);
+    if(products.length > 0){
+        for(let i = 0; i < products.length; i++){
+            products[i].thumb = linkManager.getImgLink(products[i].thumb);
+        }
+    }
     return res.json({
         code: 200,
         status: 'OK',
