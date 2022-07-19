@@ -105,41 +105,101 @@ function logout(){
     });
 }
 
+// $(function() {
+//     $('#searchBox').autocomplete({
+//         source: function(req, res) {
+//             console.log('req: ', req);
+//             const encoded = encodeURI(req.term);
+//             $.ajax({
+//                 url: `/products/search-autocomplete?q=${encoded}`,
+//                 dataType: "json",
+//                 type: "GET"
+//             })
+//             .done(function(resp) {
+//                 console.log(resp);
+//                 let products = [];
+//                 for(let i = 0; i < resp.data.length; i++) {
+//                     products.push({
+//                         url: `/products/${resp.data[i]._id}`,
+//                         label: resp.data[i].title,
+//                         thumb: resp.data[i].thumb
+//                     });
+//                 }
+//                 products.push({
+//                     url: `/products?q=${encoded}`,
+//                     label: 'Xem tất cả'
+//                 })
+//                 res(products);
+//             })
+//             .fail(function(err) {
+//                 console.log(err.status);
+//             });
+//         },
+//         minLength: 2,
+//         select: function( event, ui ) {
+//             if(ui.item){
+//                 // $('#searchBox').text(ui.item.label);
+//                 window.location.href = ui.item.url;
+//             }
+//         }
+//     });
+// });
 $(function() {
-    $('#searchBox').autocomplete({
-        source: function(req, res) {
-            console.log('req: ', req);
-            const encoded = encodeURI(req.term);
-            $.ajax({
-                url: `/products/search-autocomplete?q=${encoded}`,
-                dataType: "json",
-                type: "GET"
-            })
-            .done(function(resp) {
-                console.log(resp);
-                let products = [];
-                for(let i = 0; i < resp.data.length; i++) {
-                    products.push({
-                        url: `/products/${resp.data[i]._id}`,
-                        label: resp.data[i].title
-                    });
-                }
+    $("#searchBox").autocomplete({
+      source: function(req, res) {
+        console.log('req: ', req);
+        const encoded = encodeURI(req.term);
+        $.ajax({
+            url: `/products/search-autocomplete?q=${encoded}`,
+            dataType: "json",
+            type: "GET"
+        })
+        .done(function(resp) {
+            console.log(resp);
+            let products = [];
+            for(let i = 0; i < resp.data.length; i++) {
                 products.push({
-                    url: `/products?q=${encoded}`,
-                    label: 'Xem tất cả'
-                })
-                res(products);
-            })
-            .fail(function(err) {
-                console.log(err.status);
-            });
-        },
-        minLength: 2,
-        select: function( event, ui ) {
-            if(ui.item){
-                // $('#searchBox').text(ui.item.label);
-                window.location.href = ui.item.url;
+                    url: `/products/${resp.data[i]._id}`,
+                    label: resp.data[i].title,
+                    thumb: resp.data[i].thumb
+                });
             }
+            products.push({
+                url: `/products?q=${encoded}`,
+                label: 'Xem tất cả'
+            })
+            res(products);
+        })
+        .fail(function(err) {
+            console.log(err.status);
+        });
+    },
+      minLength: 2,
+      open: function() {
+        var that = $(this);
+        var $li = $("<li>");
+        that.data("min-len", that.autocomplete("option", "minLength"));
+      },
+      select: function( event, ui ) {
+        if(ui.item){
+            // $('#searchBox').text(ui.item.label);
+            window.location.href = ui.item.url;
         }
-    });
-});
+        },
+      
+    }).data("ui-autocomplete")._renderItem = function(ul, item) {
+      console.log(ul.content)
+      var $div = $("<div>", {
+        class: "item-autocomplete-wrap"
+      });
+  
+      $("<img>", {
+        src: "	https://storage.googleapis.com/bestgear-355409.appspot.com/62cecb99e6378f651a47c5fb/img1.png"
+      }).appendTo($div);
+      $("<span>", {
+        class: "item-label"
+      }).text(item.label).appendTo($div);
+  
+      return $("<li>").append($div).appendTo(ul);
+    };
+  });
