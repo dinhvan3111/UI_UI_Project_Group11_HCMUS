@@ -4,13 +4,27 @@ import categoryModel from '../models/category.model.js';
 
 const router = express.Router();
 
-router.get('/cart', function(req,res){
-    res.render('vwCart/cart');
+router.get('/', function(req, res){
+    res.status(200).send('Search not implemented');
 });
 
-// test detail
-router.get('/detail', function(req,res){
-    res.render('vwProduct/detail');
+router.get('/search-autocomplete', async function(req, res) {
+    const queryStr = req.query.q || '';
+    if(queryStr.length < 2){
+        return res.json({
+            code: 400,
+            status: 'Bad Request',
+            message: 'Not enough characters'
+        });
+    }
+    console.log(queryStr);
+    const products = await productModel.searchAutocomplete(queryStr, 10);
+    return res.json({
+        code: 200,
+        status: 'OK',
+        message: 'OK',
+        data: products
+    });
 });
 
 router.get('/:id', async function(req, res) {

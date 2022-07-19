@@ -22,15 +22,49 @@ export default {
     async search(queryStr, page = 0){
         const products = await Product.find({
             '$search': {
-              'index': 'products',
-              'text': {
-                'query': queryStr,
-              }
+                'index': 'products',
+                'text': {
+                    'query': queryStr,
+                }
             }
-          })
+        })
             .limit(env.TOTAL_SEARCH_RESULTS)
             .skip(page * env.TOTAL_PRODUCTS_PER_PAGE)
             .limit(env.TOTAL_PRODUCTS_PER_PAGE);
+        return products;
+    },
+
+    async searchAutocomplete(queryStr, nResults){
+        const products = await Product.aggregate([
+            {
+                $search: {
+                    index: 'products',
+                    compound: {
+                        must: [
+                            {
+                                text: {
+                                    query: queryStr,
+                                    path: 'title',
+                                    fuzzy: {
+                                        maxEdits: 2,
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                $limit: nResults,
+            }, 
+            {
+                $project: {
+                    _id: 1,
+                    title: 1,
+                    thumb: 1,
+                }
+            }
+        ]);
         return products;
     },
 

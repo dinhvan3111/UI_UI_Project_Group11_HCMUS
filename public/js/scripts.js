@@ -104,3 +104,42 @@ function logout(){
         }
     });
 }
+
+$(function() {
+    $('#searchBox').autocomplete({
+        source: function(req, res) {
+            console.log('req: ', req);
+            const encoded = encodeURI(req.term);
+            $.ajax({
+                url: `/products/search-autocomplete?q=${encoded}`,
+                dataType: "json",
+                type: "GET"
+            })
+            .done(function(resp) {
+                console.log(resp);
+                let products = [];
+                for(let i = 0; i < resp.data.length; i++) {
+                    products.push({
+                        url: `/products/${resp.data[i]._id}`,
+                        label: resp.data[i].title
+                    });
+                }
+                products.push({
+                    url: `/products?q=${encoded}`,
+                    label: 'Xem tất cả'
+                })
+                res(products);
+            })
+            .fail(function(err) {
+                console.log(err.status);
+            });
+        },
+        minLength: 2,
+        select: function( event, ui ) {
+            if(ui.item){
+                // $('#searchBox').text(ui.item.label);
+                window.location.href = ui.item.url;
+            }
+        }
+    });
+});
