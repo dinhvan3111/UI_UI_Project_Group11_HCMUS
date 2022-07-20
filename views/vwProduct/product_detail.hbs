@@ -2,180 +2,194 @@
 <title>{{product.title}} - BestGear</title>
 {{/section}}
 
-<nav class="current-path"
-    style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
-    aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/"><i class="fa-solid fa-house"></i></a></li>
-        <li class="breadcrumb-item"><a href="/products">Sản phẩm</a></li>
-        <li class="breadcrumb-item"><a href="/categories/{{categoryOfProduct._id}}">{{categoryOfProduct.name}}</a></li>
-        <li class="breadcrumb-item active" aria-current="page"><a href="/products/{{product._id}}">{{product.title}}</a>
-        </li>
-    </ol>
-</nav>
-<div class="container product-detail-image-container">
-    <div class="row d-flex justify-content-center">
-        <div class="card">
-            <div class="row mb-5">
-                {{!-- Image --}}
-                <div class="col-md-6">
-                    <div id="sync1" class="owl-carousel owl-theme carousel-images">
-                        {{#each product.imgs}}
-                        <div class="item">
-                            <img class="main-img" src="{{getImgLink this}}">
+<div class="container">
+    <nav class="current-path"
+        style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+        aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/"><i class="fa-solid fa-house"></i></a></li>
+            <li class="breadcrumb-item"><a href="/products">Sản phẩm</a></li>
+            <li class="breadcrumb-item"><a href="/categories/{{categoryOfProduct._id}}">{{categoryOfProduct.name}}</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a href="/products/{{product._id}}">{{product.title}}</a>
+            </li>
+        </ol>
+    </nav>
+    <div class="container product-detail-image-container">
+        <div class="row d-flex justify-content-center">
+            <div class="card">
+                <div class="row mb-5">
+                    {{!-- Image --}}
+                    <div class="col-md-6">
+                        <div id="sync1" class="owl-carousel owl-theme carousel-images">
+                            {{#each product.imgs}}
+                            <div class="item">
+                                <img class="main-img" src="{{getImgLink this}}">
+                            </div>
+                            {{/each}}
                         </div>
-                        {{/each}}
+    
+                        <div id="sync2" class="d-flex justify-content-center owl-carousel owl-theme">
+                            {{#each product.imgs}}
+                            <div class="thumbnail">
+                                <img class="main-img" src="{{getImgLink this}}">
+                            </div>
+                            {{/each}}
+                        </div>
                     </div>
-
-                    <div id="sync2" class="d-flex justify-content-center owl-carousel owl-theme">
-                        {{#each product.imgs}}
-                        <div class="thumbnail">
-                            <img class="main-img" src="{{getImgLink this}}">
-                        </div>
-                        {{/each}}
-                    </div>
-                </div>
-                {{!-- Product info --}}
-                <div class="col-md-6 product-detail-description-container">
-                    <div class="p-4">
-                        <div class="mb-3">
-                            {{!-- Title --}}
-                            <h1 class="product-detail-title">{{product.title}}</h1>
-                            {{!-- Description --}}
-                            {{!-- <div class="product-detail-desription">
-                                {{product.description}}
-                            </div> --}}
-                            {{!-- Price info --}}
-                            <div class="product-price-container">
-                                <div>
-                                    <h4 class="price-text">Trong kho:</h4>
-                                    <span style="color: green;">{{product.stock}}</span>
+                    {{!-- Product info --}}
+                    <div class="col-md-6 product-detail-description-container">
+    
+                            <div >
+                                <div class="product-info-group">
+                                    {{!-- Title --}}
+                                    <h1 class="product-detail-title">{{product.title}}</h1>
+                                    {{!-- Description --}}
+                                    {{!-- <div class="product-detail-desription">
+                                        {{product.description}}
+                                    </div> --}}
+                                    {{!-- Price info --}}
+                                    <div class="product-price-container">
+                                        <div class="star">
+                                            <div class="star--item"><i class="fa-solid fa-star"></i></div>
+                                            <div class="star--item"><i class="fa-solid fa-star"></i></div>
+                                            <div class="star--item"><i class="fa-solid fa-star"></i></div>
+                                            <div class="star--item"><i class="fa-solid fa-star"></i></div>
+                                            <div class="star--item"><i class="fa-solid fa-star"></i></div>
+                                        </div>
+                                        <div class="product-price">
+                                            <p class="product-sale-price">
+                                                {{format_number product.sale_price}}đ
+                                            </p>
+                                            <p class="product-real-price">
+                                                {{format_number product.price}}đ
+                                            </p>
+                                            <p class="discount">
+                                                {{product.percentSale}}%
+                                            </p>
+                                        </div>
+    
+                                        {{!-- <div>
+                                            <h4 class="price-text">Trong kho:</h4>
+                                            <span style="color: green;">{{product.stock}}</span>
+                                        </div> --}}
+                                        <input type="hidden" id="stock" name="stock" value="{{product.stock}}">
+                                        <div class="product-quantity">
+                                            {{!-- <h4 class="price-text">Số lượng</h4>
+                                            <span>
+                                                <input type="number" id="quantity" name="quantity" value="1" class="qty"
+                                                    min="1">
+                                            </span> --}}
+                                            <p>Số lượng</p>
+                                            <div class="quantity-group btn-group">
+												<button type="button" class="btn btn-number btn-number-sub" data-type="minus"><i class="fa-solid fa-minus"></i></button>
+												<input type="text" class="input-number text-center" id="quantity" value="1" name="quantity" min="1" max="100" pattern="[0-9]*">
+												<button type="button" class="btn btn-number btn-number-plus" data-type="plus"><i class="fa-solid fa-plus"></i></button>
+											</div>
+                                        </div>
+    
+                                    </div>
+                                    {{!-- Button --}}
+                                    <div class="cart product-action-container">
+                                        {{#if lcAuthUser}}
+                                         <button data-bs-toggle="modal" data-bs-target="#addToCartModal" class="btn-add-to-cart" onclick="addToCart('{{product._id}}')">
+                                            <i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng
+                                        </button>
+                                        <button class="btn-favortie">
+                                            <i class="fa-brands fa-gratipay"></i> Yêu thích
+                                        </button>
+                                       
+                                        {{else}}
+                                        
+                                        <a href="/login">
+                                            <button class="btn-add-to-cart">
+                                                <i class="fa-solid fa-cart-plus"></i> Đăng nhập để mua hàng
+                                            </button>
+                                        </a>
+                                        <a href="/login">
+                                            <button class="btn-favortie">
+                                                <i class="fa-brands fa-gratipay"></i> Đăng nhập để yêu
+                                                thích
+                                            </button>
+                                        </a>
+                                        {{/if}}
+                                    </div>
                                 </div>
-
-                                <input type="hidden" id="stock" name="stock" value="{{product.stock}}">
-                                <div>
-                                    <h4 class="price-text">Quantity:</h4>
-                                    <span>
-                                        <input type="number" id="quantity" name="quantity" value="1" class="qty"
-                                            min="1">
-                                    </span>
+    
+                                <!-- Sale Policy -->
+                                <div class="product-detail-sale-policy">
+                                    <h3>Chính sách bán hàng</h3>
+                                    <div>
+                                        <ul>
+                                            <li class="sale-policy-item">
+                                                <i class="fa-solid fa-truck-fast"></i>
+                                                <span>Miễn phí giao hàng cho đơn hàng từ 800.000đ</span>
+                                            </li>
+                                            <li class="sale-policy-item">
+                                                <i class="fa-solid fa-badge-check"></i>
+                                                <span>Cam kết hàng chính hãng 100%</span>
+                                            </li>
+                                            <li class="sale-policy-item">
+                                                <i class="fa-solid fa-rotate"></i>
+                                                <span>Đổi trả trong vòng 10 ngày</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <h3>Dịch vụ khác</h3>
+                                    <div>
+                                        <ul>
+                                            <li class="sale-policy-item">
+                                                <i class="fa-solid fa-gear"></i>
+                                                <span>Sửa chữa đồng giá 150.000đ</span>
+                                            </li>
+                                            <li class="sale-policy-item">
+                                                <i class="fa-solid fa-display"></i>
+                                                <span>Vệ sinh máy tính, laptop</span>
+                                            </li>
+                                            <li class="sale-policy-item">
+                                                <i class="fa-solid fa-shield-check"></i>
+                                                <span>Bảo hành tại nhà</span>
+                                            </li>
+    
+                                        </ul>
+                                    </div>
                                 </div>
-
-                                <div>
-                                    <h4>Giá gốc:</h4>
-                                    <span class="product-real-price">
-                                        {{format_number product.price}} VNĐ
-                                    </span>
-                                </div>
-
-                                <div>
-                                    <h4>Chỉ còn: </h4>
-                                    <span class="product-sale-price">
-                                        {{format_number product.sale_price}} VNĐ
-                                    </span>
-                                </div>
-
                             </div>
-                            {{!-- Button --}}
-                            <div class="cart mt-4 align-items-center product-action-container">
-                                {{#if lcAuthUser}}
-                                <button class="btn-favortie">
-                                    <i class="fa-brands fa-gratipay"></i> Yêu thích
-                                </button>
-                                <button data-bs-toggle="modal" data-bs-target="#addToCartModal" class="btn-add-to-cart" onclick="addToCart('{{product._id}}')">
-                                    <i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng
-                                </button>
-                                {{else}}
-                                <a href="/login">
-                                    <button class="btn-favortie">
-                                        <i class="fa-brands fa-gratipay"></i> Đăng nhập để yêu
-                                        thích
-                                    </button>
-                                </a>
-
-                                <a href="/login">
-                                    <button class="btn-add-to-cart">
-                                        <i class="fa-solid fa-cart-plus"></i> Đăng nhập để mua hàng
-                                    </button>
-                                </a>
-
-                                {{/if}}
-                            </div>
-
-                            <!-- Sale Policy -->
-                            <div class="product-detail-sale-policy">
-                                <h3>Chính sách bán hàng</h3>
-                                <div>
-                                    <ul>
-                                        <li class="sale-policy-item">
-                                            <i class="fa-solid fa-truck-fast"></i>
-                                            <span>Miễn phí giao hàng cho đơn hàng từ 800.000đ</span>
-                                        </li>
-                                        <li class="sale-policy-item">
-                                            <i class="fa-solid fa-badge-check"></i>
-                                            <span>Cam kết hàng chính hãng 100%</span>
-                                        </li>
-                                        <li class="sale-policy-item">
-                                            <i class="fa-solid fa-rotate"></i>
-                                            <span>Đổi trả trong vòng 10 ngày</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <h3>Dịch vụ khác</h3>
-                                <div>
-                                    <ul>
-                                        <li class="sale-policy-item">
-                                            <i class="fa-solid fa-gear"></i>
-                                            <span>Sửa chữa đồng giá 150.000đ</span>
-                                        </li>
-                                        <li class="sale-policy-item">
-                                            <i class="fa-solid fa-display"></i>
-                                            <span>Vệ sinh máy tính, laptop</span>
-                                        </li>
-                                        <li class="sale-policy-item">
-                                            <i class="fa-solid fa-shield-check"></i>
-                                            <span>Bảo hành tại nhà</span>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+    
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row product-detail-nav-container">
-            {{!-- Tab navs --}}
-            <ul class="nav nav-tabs product-detail-navbar" id="myTab" role="tablist">
-                <li class="nav-item product-detail-nav-item" role="presentation">
-                    <button class="nav-link active link-dark" id="des-tab" data-bs-toggle="tab"
-                        data-bs-target="#description" type="button" role="tab" aria-controls="description"
-                        aria-selected="true">Mô tả chi tiết</button>
-                </li>
-                <li class="nav-item product-detail-nav-item" role="presentation">
-                    <button class="nav-link link-dark" id="waranty-tab" data-bs-toggle="tab" data-bs-target="#waranty"
-                        type="button" role="tab" aria-controls="waranty" aria-selected="false">
-                        Thông tin bảo hành
-                    </button>
-                </li>
-                <li class="nav-item product-detail-nav-item" role="presentation">
-                    <button class="nav-link link-dark" id="review-tab" data-bs-toggle="tab" data-bs-target="#review"
-                        type="button" role="tab" aria-controls="review" aria-selected="false">
-                        Đánh giá (0)
-                    </button>
-                </li>
-            </ul>
-            {{!-- Tab content --}}
-            <div class="tab-content product-detail-nav-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="des-tab">
-                    {{product.description}}
-                </div>
-                <div class="tab-pane fade" id="waranty" role="tabpanel" aria-labelledby="waranty-tab">
-                    {{product.waranty}}
-                </div>
-                <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
-                    Chưa có
+            <div class="row product-detail-nav-container">
+                {{!-- Tab navs --}}
+                <ul class="nav nav-tabs product-detail-navbar" id="myTab" role="tablist">
+                    <li class="nav-item product-detail-nav-item" role="presentation">
+                        <button class="nav-link active link-dark" id="des-tab" data-bs-toggle="tab"
+                            data-bs-target="#description" type="button" role="tab" aria-controls="description"
+                            aria-selected="true">Mô tả chi tiết</button>
+                    </li>
+                    <li class="nav-item product-detail-nav-item" role="presentation">
+                        <button class="nav-link link-dark" id="waranty-tab" data-bs-toggle="tab" data-bs-target="#waranty"
+                            type="button" role="tab" aria-controls="waranty" aria-selected="false">
+                            Thông tin bảo hành
+                        </button>
+                    </li>
+                    <li class="nav-item product-detail-nav-item" role="presentation">
+                        <button class="nav-link link-dark" id="review-tab" data-bs-toggle="tab" data-bs-target="#review"
+                            type="button" role="tab" aria-controls="review" aria-selected="false">
+                            Đánh giá (0)
+                        </button>
+                    </li>
+                </ul>
+                {{!-- Tab content --}}
+                <div class="tab-content product-detail-nav-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="des-tab">
+                        {{product.description}}
+                    </div>
+                    <div class="tab-pane fade" id="waranty" role="tabpanel" aria-labelledby="waranty-tab">
+                        {{product.waranty}}
+                    </div>
+                    <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                        Chưa có
+                    </div>
                 </div>
             </div>
         </div>

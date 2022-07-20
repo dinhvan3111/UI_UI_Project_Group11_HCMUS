@@ -27,12 +27,68 @@
 }
 
 .product-detail-description-container .product-price-container{
-    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.product-price-container .star{
+    display: flex;
+    gap: .2rem;
+}
+
+.product-price-container .star .star--item{
+    color: #ff9801;
+    font-size: 1.2rem;
 }
 
 .product-detail-description-container .p-4{
     padding-top: 0!important;
 }
+
+.product-price-container .product-price{
+    display: flex;
+    gap: 1rem;
+}
+
+.product-price-container .product-quantity{
+    display: flex;
+    align-items: center!important;
+    gap: 2rem;
+}
+
+.product-price-container .product-quantity .quantity-group{
+    width: 20.5rem;
+    height: 100%;
+    border-radius: 1rem;
+    border: 2px solid #ebebeb;
+}
+.product-quantity .quantity-group #quantity{
+    width: 35%;
+    margin: 0;
+    background-color: transparent;
+}
+
+.product-quantity .quantity-group #quantity,
+.product-quantity .quantity-group .btn-number{
+    padding: 1rem 0;
+}
+
+.product-quantity .quantity-group .btn-number:focus{
+    box-shadow: none;
+}
+
+.product-quantity .quantity-group .btn-number:hover{
+    cursor: pointer;
+}
+
+
+.product-price-container .product-quantity .price-text{
+    font-size: 1.8rem;
+}
+/* .product-price-container .product-quantity input{
+    align-items: c;
+} */
 
 .product-detail-description-container .product-price-container .product-sale-price {
     color: var(--sub-color);
@@ -42,19 +98,27 @@
 
 .product-detail-description-container .product-price-container .product-real-price{
     text-decoration: line-through;
+    font-weight: 500;
+    color: #6c757d;
+
+}
+
+.product-detail-description-container .product-price-container .discount{
+    background-color: #DC3545;
+    color: #fff;
+    font-size: 1.8rem;
+    padding: .3rem;
+    border-radius: .5rem;
 }
 .product-detail-description-container .product-price-container div{
     display: flex;
     align-items: flex-end;
-    margin-top: 1rem;
 }
 
-.product-detail-description-container .product-price-container div h4{
-    margin-right: 1rem;
-}
 
 .product-detail-description-container .product-action-container{
     display: flex;
+    gap: 2rem;
 }
 
 .product-detail-description-container .product-action-container .btn-favortie{
@@ -62,7 +126,6 @@
     padding: 1.5rem 2.5rem 1.5rem 2.5rem;
     color: white;
     border-radius: 0.5rem;
-    margin-right: 1rem;
 }
 
 .product-detail-description-container .product-action-container .btn-add-to-cart{
@@ -85,6 +148,12 @@
     padding-right: 0;
     border: 0.1rem solid var(--back-color);
     border-radius: 0.5rem;
+}
+
+.product-info-group{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .nav-tabs.product-detail-navbar{
@@ -169,6 +238,19 @@
     height: 10rem;
 }
 
+#sync2 .owl-item.current img{
+    
+    border-radius: 1rem;
+}
+
+#sync2 .owl-item.current .thumbnail{
+    border: 0.1rem solid #1d3ff2a3;
+    
+    border-radius: 1rem;
+}
+
+
+
 .price-container{
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
@@ -188,7 +270,10 @@
 .main-img {
     height: 100%;
 }
-
+#sync1 .owl-stage-outer{
+    border: 0.1rem solid #1d3ff2a3;
+    border-radius: 1rem;
+}
 
 #sync1 .item {
     color: #FFF;

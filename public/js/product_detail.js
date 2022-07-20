@@ -36,4 +36,23 @@ function addToCart(productId) {
     });
 }
 
+//Xử lý nút cộng trừ số lượng
+const plusBtn = document.querySelector('.btn-number-plus');
+const subBtn = document.querySelector('.btn-number-sub');
+const quantity = document.querySelector('#quantity');
+plusBtn.addEventListener('click', function(e) {
+    let currentValue = quantity.value;
+    quantity.value = +currentValue + 1;
+});
+subBtn.addEventListener('click', function(e) {
+    let currentValue = quantity.value;
+    if(quantity.value > 0){
+        quantity.value = +currentValue - 1;
+    }
+});
+
+//discount
+
+
+
   
