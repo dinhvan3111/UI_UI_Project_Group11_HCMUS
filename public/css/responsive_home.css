@@ -95,6 +95,10 @@
         display: flex;
     }
 
+    footer{
+        margin-bottom: 5rem;
+    }
+
     /* hint result */
     .ui-widget.ui-widget-content{
         left:15%!important;

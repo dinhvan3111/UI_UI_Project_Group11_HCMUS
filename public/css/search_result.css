@@ -1,0 +1,143 @@
+.sort-container{
+    display: flex;
+    width: 100%;
+}
+
+#search-result-text{
+    margin-top: 3rem;
+}
+
+/* Sort search result choices */
+.sort-container{
+    padding: 4rem;
+    border-bottom: 4px solid var(--back-color);
+}
+
+.sort-container h3{
+    padding: 1rem;
+}
+
+.sort-container .sort-choice{
+    flex: 1;
+    display: flex;
+    /* justify-content: space-around; */
+    /* position: relative; */
+    column-gap: 2rem;
+    margin-left: 2rem;
+}
+
+.sort-container .sort-item{
+    position: relative;
+    padding: 1rem 3rem;
+    border: 1px solid lightgray;
+    border-radius: 0.5rem;
+}
+
+.sort-container .sort-item:hover{
+    background-color: rgb(224, 224, 224);
+    cursor: pointer;
+}
+
+.sort-container .sort-choice .sort-item.active{
+    border-color: var(--sub-color);
+    background-color: rgb(230, 238, 255);
+    color: var(--back-color);
+    
+}
+
+
+.sort-active{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-top: 2rem solid var(--back-color);
+    border-left: 3rem solid transparent;
+}
+
+.sort-item .sort-active-check svg{
+    position: absolute;
+    color: white;
+    width: 1rem;
+    height: 1rem;
+    top: 0;
+    right: 0.2rem;
+}
+
+
+/* Sort search result choice end here */
+
+
+/* Search result item */
+.search-result-container{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: relative;
+}
+
+.search-result-container:hover{
+    display: flex;
+}
+
+.search-result-container{
+    padding: 2rem;
+    border-radius: 1rem;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    position: relative;
+    flex-wrap: wrap;
+    row-gap: 2rem;
+    column-gap: 1rem;
+    flex: 1;
+    justify-content: flex-start;
+}
+
+.search-result-container a{
+    width: calc((100% /5) - 1rem);
+}
+/* Search result item end here*/
+
+/*  Pagination */
+.pagination-container{
+    justify-content: center;
+    display: flex;
+    column-gap: 1rem;
+}
+
+.pagination-container .previous-page,
+.pagination-container .next-page{
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid rgb(228, 229, 240);
+}
+
+.pagination-container .page-number{
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid rgb(228, 229, 240);
+    font-weight: 500;
+}
+
+.pagination-container .page-number.active{
+    border-color: var(--back-color);
+    background-color: var(--back-color);
+    color: white;
+}
+
+.pagination-container .previous-page.disable,
+.pagination-container .next-page.disable{
+    cursor: default;
+    pointer-events: none;
+}
+.pagination-container .previous-page.disable svg,
+.pagination-container .next-page.disable svg{
+    color: lightgray;
+}
+/* Pagination end here */
+
+
+
+

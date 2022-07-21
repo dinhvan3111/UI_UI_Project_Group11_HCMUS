@@ -9,6 +9,10 @@ router.get('/', function(req, res){
     res.status(200).send('Search not implemented');
 });
 
+router.get('/search-result', function(req,res){
+    res.render('vwProduct/search_result');
+});
+
 router.get('/search-autocomplete', async function(req, res) {
     const queryStr = req.query.q || '';
     if(queryStr.length < 2){
