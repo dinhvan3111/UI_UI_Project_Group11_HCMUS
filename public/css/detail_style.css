@@ -60,7 +60,7 @@
 .product-price-container .product-quantity .quantity-group{
     width: 20.5rem;
     height: 100%;
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
     border: 2px solid #ebebeb;
 }
 .product-quantity .quantity-group #quantity{
@@ -180,7 +180,7 @@
 
 .product-detail-description-container .product-detail-sale-policy{
     margin-top: 2rem;
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
     padding: 1.6rem;
     background-color: rgb(247, 247, 247);
     border: 1px dotted var(--back-color);
@@ -240,13 +240,13 @@
 
 #sync2 .owl-item.current img{
     
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
 }
 
 #sync2 .owl-item.current .thumbnail{
     border: 0.1rem solid #1d3ff2a3;
     
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
 }
 
 
@@ -272,7 +272,7 @@
 }
 #sync1 .owl-stage-outer{
     border: 0.1rem solid #1d3ff2a3;
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
 }
 
 #sync1 .item {
@@ -306,7 +306,7 @@
 
 #addToCartModal .modal-content{
     padding: 1rem;
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
     width: 40rem;
 }
 
@@ -342,5 +342,5 @@
     border: none;
     color: var(--main-color);
     padding: 1rem;
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
 }

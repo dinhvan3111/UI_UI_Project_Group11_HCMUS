@@ -84,7 +84,7 @@
 
 .search-result-container{
     padding: 2rem;
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     position: relative;

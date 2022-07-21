@@ -13,6 +13,12 @@ router.get('/search-result', function(req,res){
     res.render('vwProduct/search_result');
 });
 
+router.get('/management/add-product', async function(req, res) {
+    res.render('vwProduct/add_product',{
+        layout: 'main.hbs',
+    });
+});
+
 router.get('/search-autocomplete', async function(req, res) {
     const queryStr = req.query.q || '';
     if(queryStr.length < 2){

@@ -129,7 +129,7 @@ table th:last-child{
 .cart-section .pay-button{
     padding: 1rem;
     background-color: var(--back-color);
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
     color: white;
     font-weight: bold;
     text-align: center;
@@ -149,7 +149,7 @@ table th:last-child{
 .cart-section .apply-coupon-button{
     padding: 0.5rem 2rem 0.5rem 2rem;
     background-color: var(--back-color);
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
     color: white;
     font-weight: bold;
     text-align: center;

@@ -1,0 +1,87 @@
+{{#section 'title'}}
+<title>Thêm sản phẩm - BestGear</title>
+{{/section}}
+<div class="add-product container">
+    <h1 class="title">
+        THÊM SẢN PHẨM
+    </h1>
+    <div class="name-category-product">
+        <div class="name">
+            <label for="add-product-name">Tên sản phẩm</label>
+            <input type="text" id="add-product-name" placeholder="Nhập tên sản phẩm..." required>
+        </div>
+        <div class="category">
+            <label for="add-product-category">Danh mục</label>
+            <div class="dropdown dropdown-category">
+                <button class="btn btn-secondary dropdown-toggle" type="button" aria-haspopup="false"
+                    id="add-product-category" data-bs-toggle="dropdown" aria-expanded="false">
+                    Chọn danh mục
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="add-product-category">
+                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Laptop</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Màn hình</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Bàn phím</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Chuột</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Tai nghe</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Ghế Gaming</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> PC Gaming</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Thiết bị mạng</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Phụ kiện</a></li>
+                </ul>
+            </div>
+            {{!-- <select name="add-product-category" id="add-product-category">
+                <option value="Laptop">Laptop</option>
+                <option value="Màn hình">Màn hình</option>
+                <option value="Bàn phím">Bàn phím</option>
+                <option value="Chuột">Chuột</option>
+                <option value="Tai nghe">Tai nghe</option>
+                <option value="Ghế Gaming">Ghế Gaming</option>
+                <option value="PC Gaming">PC Gaming</option>
+                <option value="Thiết bị mạng">Thiết bị mạng</option>
+                <option value="Phụ kiện">Phụ kiện</option>
+            </select> --}}
+        </div>
+    </div>
+    <div class="add-price">
+        <div class="real-price price-item">
+            <label for="add-real-price">Giá gốc</label>
+            <input type="text" id="add-real-price" placeholder="Nhập giá gốc..." name="add-real-price" required>
+        </div>
+        <div class="discount-price price-item">
+            <label for="add-discount-price">Giá khuyến mại</label>
+            <input type="text" id="add-discount-price" name="add-discount-price" placeholder="Nhập giá khuyến mại..." required>
+        </div>
+        <div class="inventory price-item">
+            <label for="add-inventory">Tồn kho</label>
+            <input type="text" id="add-inventory" placeholder="Nhập số lượng tồn kho..." name="add-inventory" required>
+        </div>
+
+    </div>
+    <div class="product-image">
+        <div class="thumbnail-product">
+            <label class="font-bold" for="imgThumbnail">Thumbnail sản phẩm</label>
+            <input id="imgThumbnail" name="imgThumbnail" type="file" class="file" data-browse-on-zone-click="true">
+            <p id="dangerThumb" style="color: red"></p>
+        </div>
+        <div class="sub-img-product">
+            <label class="font-bold mt-3" for="imgsExta">Hình ảnh phụ</label>
+            <input id="imgsExta" name="imgsExta" type="file" class="file" data-browse-on-zone-click="true" multiple>
+            <p id="dangerExtra" style="color: red"></p>
+        </div>
+    </div>
+    <div class="product-insurance">
+        <label class="font-bold" for="textInsurance">Chính sách bảo hành</label>
+        <textarea id="insurance" name="insurance" class="tiny_mce_insurance"></textarea>
+    </div>
+    <div class="product-desc">
+        <label class="font-bold" for="textDescription">Mô tả chi tiết</label>
+        <textarea id="description-add-product" name="description-add-product" class="tiny_mce"></textarea>
+    </div>
+    <div class="btn-add-product">
+        <button>Thêm</button>
+    </div>
+
+
+</div>
+</div>
+</div>

@@ -1,0 +1,27 @@
+@media screen and (max-width: 699.98px){
+    /* .add-product .add-price{
+        flex-wrap: wrap;
+    } */
+    .add-product .category button{
+        width: 20rem;
+    }
+    .add-product .add-price .price-item{
+        width: 50%;
+    }
+    .add-product .add-price input{
+        width: 15rem;
+    }
+}
+@media screen and (max-width: 521.98px){
+    
+    .add-product .category button{
+        width: 34rem;
+    }
+    .add-product .add-price,
+    .add-product .name-category-product{
+        flex-wrap: wrap;
+    }
+    .add-product .add-price input{
+        width: 34rem;
+    }
+}

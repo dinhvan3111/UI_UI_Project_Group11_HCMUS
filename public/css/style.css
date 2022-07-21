@@ -3,6 +3,7 @@
     --sub-color: #015C92;
     --back-color: #203e8f;
     --hover-color: #0b1768;
+    --border-radius:1rem;
 }
 
 *,
@@ -231,7 +232,7 @@ select {
 
 /* dropdown info */
 .dropdown-info .dropdown-menu{
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
     background-color: #fff;
 }
 .dropdown-info .dropdown-toggle::after{
@@ -271,11 +272,11 @@ select {
 }
 
 .dropdown-info li:first-child{
-    border-radius: 1rem 1rem 0 0;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 .dropdown-info li:last-child{
-    border-radius: 0 0 1rem 1rem ;
+    border-radius: 0 0 var(--border-radius) var(--border-radius) ;
 }
 
 /* Main content */
@@ -290,7 +291,7 @@ select {
 .main-content .menu-category {
     border: 0.1rem solid var(--sub-color);
 
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
     width: 25%;
 }
 
@@ -308,7 +309,7 @@ select {
 
 .main-content .banner-content img {
     width: 100%;
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
 }
 
 .main-content .banner-content .slogan,
@@ -336,7 +337,7 @@ select {
 .main-content .slogan .slogan-content__item {
     padding: 3rem 4.5rem;
     /* border: 0.1rem solid var(--sub-color); */
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -362,7 +363,7 @@ select {
 
 .main-content .menu-category .menu-category__title {
     background-color: var(--back-color);
-    border-radius: 1rem 1rem 0 0;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
     color: var(--main-color);
     text-align: center;
     border: 0.1rem solid var(--sub-color);
@@ -412,7 +413,7 @@ select {
 }
 
 .promotion-main .promotion-main__item {
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
     align-items: center;
     border: 0.1rem solid var(--main-color);
     font-size: 2rem;
@@ -440,7 +441,7 @@ select {
 .product-main .best-selling {
     width: 30%;
     border: 0.1rem solid var(--sub-color);
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
     display: flex;
     flex-direction: column;
 }
@@ -462,7 +463,7 @@ select {
     margin-bottom: 0;
     background-color: var(--back-color);
     color: var(--main-color);
-    border-radius: 1rem 1rem 0 0;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 .product-item {
@@ -485,7 +486,7 @@ select {
 }
 
 .product-item:last-child {
-    border-radius: 0 0 1rem 1rem;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
 }
 
 .product-item:hover {
@@ -500,7 +501,7 @@ select {
 .product-item .thumbnail {
     width: 14rem;
     padding: 1rem;
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
     /* background-color: #ebebeb; */
     border: 1px solid #ebebeb;
     position: relative;
@@ -525,7 +526,7 @@ select {
 .product-item .product-desc .buy-now{
     font-size: 1.5rem;
     padding: 1rem;
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
     background-color: var(--main-color);
     color: var(--sub-color);
     border: 0.1rem solid var(--sub-color);
@@ -630,7 +631,7 @@ select {
     left: 0;
     bottom: 0;
     content: "";
-    border-radius: 0 0 1rem 1rem;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
     transition: all .5s ease 0s;
 }
 
@@ -659,7 +660,7 @@ select {
     flex-wrap: nowrap;
     align-items: center;
     /* border: 0.1rem solid var(--back-color); */
-    border-radius: 1rem !important;
+    border-radius: var(--border-radius) !important;
 }
 
 
@@ -686,13 +687,13 @@ select {
     width: 70%;
     width: 70%;
     border: 1px solid var(--sub-color);
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
 }
 
 .product-main .selling .nav-pills {
     width: initial;
     background-color: var(--back-color);
-    border-radius: 1rem 1rem 0 0;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
     border-bottom: 0.1rem solid var(--sub-color);
     line-height: 1.2;
 }
@@ -707,7 +708,7 @@ select {
 
 .product-main .selling .tab-content {
     padding: 2rem;
-    border-radius: 1rem;
+    border-radius: var(--border-radius);
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     position: relative;
@@ -916,7 +917,7 @@ select {
     left: 0;
     /* height: 5rem; */
     padding: 1rem 0;
-    border-radius: 1rem 1rem 0 0;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
     box-shadow: 0px -2px 5px 0px rgba(254, 98, 110, 0.2);
     -webkit-box-shadow: 0px -2px 5px 0px rgba(254, 98, 110, 0.2);
     -moz-box-shadow: 0px -2px 5px 0px rgba(254, 98, 110, 0.2);
