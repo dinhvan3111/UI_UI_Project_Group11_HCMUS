@@ -48,7 +48,7 @@
     border-radius: .5rem;
     padding: .75rem;
 }
-.add-product .dropdown-category ul{
+.dropdown-category ul{
     inset:auto!important;
     transform: none!important;
     font-size: 1.6rem;
@@ -58,7 +58,7 @@
     border-radius: .5rem;
 }
 
-.add-product .dropdown-category .dropdown-item{
+.dropdown-category .dropdown-item{
     padding: 1rem 2rem;
 }
 .dropdown-category .dropdown-item i{

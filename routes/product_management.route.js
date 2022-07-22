@@ -75,5 +75,9 @@ router.post('/', cpUpload, async function(req, res) {
     
     
 });
-
+router.get('/management', async function(req, res) {
+    res.render('vwProduct/management',{
+        layout: 'main.hbs',
+    });
+});
 export default router;

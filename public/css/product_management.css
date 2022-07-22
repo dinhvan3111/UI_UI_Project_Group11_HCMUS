@@ -1,0 +1,152 @@
+
+.management-product {
+    margin-top: 2rem;
+}
+
+.management-product .management-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2rem;
+    align-items: center;
+    background-color: var(--back-color);
+    padding:  0.5rem;
+    border-radius: .5rem;
+}
+
+.management-product .management-header .title{
+    color: var(--main-color);
+    font-weight: 600;
+}
+
+.management-product .management-header button{
+    font-size: 2rem;
+    background-color: var(--main-color);
+    color: var(--sub-color);
+    box-shadow: none;
+    border: 0.1rem solid var(--sub-color);
+    border-radius: .5rem;
+    width: 20rem;
+}
+
+.management-header .dropdown-menu .dropdown-item{
+    color: var(--sub-color);
+    font-size: 2rem;
+    padding: 1.5rem 3rem;
+    
+}
+
+.management-header .dropdown-menu .dropdown-item:hover{
+    cursor: pointer;
+    background-color: #f8f9fa;
+}
+
+.management-product .product-list {
+    margin-bottom: 2rem;
+}
+
+.management-product .product-list img{
+    width: 15rem;
+    height: 15rem;
+}
+
+.management-product .product-list td,
+.management-product .product-list tr
+{
+    vertical-align: middle;
+    text-align: center;
+}
+
+.management-product .product-list th{
+    font-size: 1.8rem;
+    padding: 1rem 0;
+}
+
+
+.management-product .btn-delete i{
+    width: 1.25rem;
+    height: 1.25rem;
+}
+.management-product .btn-delete button{
+    font-size: 1.8rem;
+    font-weight: 600;
+    background-color: #DC3545;
+    color: var(--main-color);
+    padding: 0rem .7rem;
+    box-shadow: none;
+    border-radius: .5rem!important;
+}
+
+.management-product .product-list .name{
+    font-weight: 600;
+    font-size: 1.6rem;
+}
+
+.management-product .product-list .discount-price{
+    text-decoration: line-through;
+    font-style: italic;
+    color: #6c757d;
+}
+
+.management-product .product-list .real-price{
+    color: var(--sub-color);
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+
+/* Modal */
+#manageProductModal .modal-dialog {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+#manageProductModal .modal-content{
+    text-align: center;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border-radius: var(--border-radius);
+}
+#manageProductModal .modal-body, #manageProductModal .modal-footer{
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+#manageProductModal .modal-body {
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.8rem;
+    line-height: 1.5;
+}
+#manageProductModal .modal-body .icon{
+    width: 6rem;
+    margin-bottom: 2rem;
+}
+
+#manageProductModal .modal-footer button,
+#manageProductModal .modal-footer{
+    border: none;
+    margin: 0;
+}
+
+#manageProductModal .modal-footer{
+    gap: 1rem;
+}
+
+#manageProductModal .modal-footer button{
+    box-shadow: none;
+    border-radius: 0.5rem;
+    font-size: 1.8rem;
+    width: 7rem;
+}
+
+#manageProductModal .modal-footer button:first-child{
+    color: #000;
+    background-color: var(--main-color);
+}
+#manageProductModal .modal-footer button:last-child{
+    color: var(--main-color);
+    background-color: #DC3545;
+}
+
