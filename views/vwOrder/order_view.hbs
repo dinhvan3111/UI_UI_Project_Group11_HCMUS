@@ -1,0 +1,119 @@
+<div class="container-fluid">
+    <div class="card order-section">
+        <div class="card-header table-title">
+            <div class="row">
+                <div class="col-sm-8 align-self-center">
+                    <h2>Quản lý đơn hàng</h2>
+                </div>
+                <div class="col-sm-4 d-flex justify-content-end">
+                    <!-- Example single danger button -->
+                    <div class="btn-group btn-sort-order">
+                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Tất cả
+                        </button>
+                        <ul class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Tất cả</a>
+                            <a class="dropdown-item" href="#">Chờ xác nhận</a>
+                            <a class="dropdown-item" href="#">Đang giao hàng</a>
+                            <a class="dropdown-item" href="#">Đã thanh toán</a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="order-table table table-hover">
+            <thead>
+                <tr>
+                    <th>Mã đơn hàng</th>
+                    <th>Username</th>
+                    <th>Số điện thoại</th>
+                    <th>Mã voucher</th>
+                    <th>Tổng tiền</th>
+                    <th>Tình trang</th>
+                    <th>Ngày thanh toán</th>
+                    <th>Tùy chỉnh</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a id="order-id" href="#">
+                            10001 <i class="fa-solid fa-up-right-from-square fa-2xs"></i>
+                        </a>
+                    </td>
+                    <td>Thomas Hardy</td>
+                    <td>092121212</td>
+                    <td>VC1212</td>
+                    <td>800,000 đ</td>
+                    <td>Chờ xác nhận</td>
+                    <td>_</td>
+                    <td>
+                        <a href="#" class="approve" title="Duyệt" data-toggle="tooltip">
+                            <i class="fa-solid fa-square-check fa-xl"></i>
+                        </a>
+                        <a href="#" class="delete" title="Xóa" data-toggle="tooltip">
+                            <i class="fa-solid fa-square-xmark fa-xl"></i>
+                        </a>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a id="order-id" href="#">
+                            10001 <i class="fa-solid fa-up-right-from-square fa-2xs"></i>
+                        </a>
+                    </td>
+                    <td>Thomas Hardy</td>
+                    <td>092121212</td>
+                    <td>VC1212</td>
+                    <td>800,000 đ</td>
+                    <td>Chờ xác nhận</td>
+                    <td>_</td>
+                    <td>
+                        <a href="#" class="approve" title="Duyệt" data-toggle="tooltip">
+                            <i class="fa-solid fa-square-check fa-xl"></i>
+                        </a>
+                        <a href="#" class="delete" title="Xóa" data-toggle="tooltip">
+                            <i class="fa-solid fa-square-xmark fa-xl"></i>
+                        </a>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a id="order-id" href="#">
+                            10001 <i class="fa-solid fa-up-right-from-square fa-2xs"></i>
+                        </a>
+                    </td>
+                    <td>Thomas Hardy</td>
+                    <td>092121212</td>
+                    <td>VC1212</td>
+                    <td>800,000 đ</td>
+                    <td>Chờ xác nhận</td>
+                    <td>_</td>
+                    <td>
+                        <a href="#" class="approve" title="Duyệt" data-toggle="tooltip">
+                            <i class="fa-solid fa-square-check fa-xl"></i>
+                        </a>
+                        <a href="#" class="delete" title="Xóa" data-toggle="tooltip">
+                            <i class="fa-solid fa-square-xmark fa-xl"></i>
+                        </a>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="clearfix">
+            <div class="hint-text">Hiển thị <b>10</b> trong <b>25</b> đơn hàng</div>
+            <ul class="pagination order-pagination">
+                <li class="page-item"><a href="#" class="page-link"><i class="fas fa-angle-left"></i></a></li>
+                <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                <li class="page-item"><a href="#" class="page-link">2</a></li>
+                <li class="page-item"><a href="#" class="page-link">3</a></li>
+                <li class="page-item"><a href="#" class="page-link"><i class="fas fa-angle-right"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

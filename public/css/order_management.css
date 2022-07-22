@@ -1,0 +1,138 @@
+.order-section {
+    padding: 4rem 2rem 2rem 2rem;
+}
+
+.order-section .table-title {
+    padding: 1rem;
+    margin: 0 0 1rem;
+    min-width: 100%;
+    background: var(--back-color);
+    color: var(--main-color);
+    margin-bottom: 0;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.order-section .table-title h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.btn-sort-order button,
+.btn-sort-order ul {
+    background-color: var(--main-color);
+    font-size: 1.8rem;
+    border-radius: var(--border-radius);
+}
+
+.btn-sort-order .dropdown-menu {
+    padding: 0;
+    border-radius: var(--border-radius);
+}
+
+.btn-sort-order ul a {
+    border-bottom: 0.1rem solid #e5e5e5;
+    padding: 1rem;
+}
+
+.btn-sort-order ul a:last-child {
+    border-bottom: none;
+}
+
+.btn-sort-order ul a:hover {
+    background-color: var(--hover-color);
+    color: var(--main-color);
+}
+
+.btn-sort-order ul a:last-child:hover {
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+}
+
+.btn-sort-order ul a:first-child:hover {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+}
+
+.order-table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: separate;
+    border: 0.1rem solid var(--back-color);
+    font-size: 2rem;
+}
+
+.order-table thead tr {
+    height: 5rem;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.order-table tbody tr {
+    height: 10rem;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.order-table tbody tr:hover,
+.order-table tbody tr:hover #order-id {
+    background-color: var(--hover-color);
+    color: var(--main-color);
+}
+
+.order-table td a {
+    color: var(--sub-color);
+    display: inline-block;
+    margin: 0 0.5rem;
+}
+
+.order-table td a.approve {
+    color: green;
+}
+
+.order-table td a.delete {
+    color: #E34724;
+}
+
+.order-pagination {
+    float: right;
+}
+
+.order-pagination li a {
+    border: none;
+    font-size: 95%;
+    width: 3rem;
+    height: 3rem;
+    color: #999;
+    line-height: 3rem;
+    border-radius: 3rem !important;
+    text-align: center;
+    padding: 0;
+}
+
+.order-pagination li a:hover {
+    background-color: var(--hover-color);
+    color: var(--main-color);
+}
+
+.order-pagination .page-item.active .page-link {
+    background: var(--back-color);
+}
+
+.order-pagination .page-item.active .page-link:hover {
+    background: var(--hover-color);
+}
+
+.order-pagination li.disabled i {
+    color: #ccc;
+}
+
+.order-pagination li i {
+    font-size: 1.5rem;
+    padding-top: 0.5rem
+}
+
+.hint-text {
+    float: left;
+    margin-top: 0.5rem;
+    font-size: 95%;
+}
