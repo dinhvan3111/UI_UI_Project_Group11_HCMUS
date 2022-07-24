@@ -187,15 +187,95 @@
                     <div class="tab-pane fade" id="waranty" role="tabpanel" aria-labelledby="waranty-tab">
                         {{product.waranty}}
                     </div>
+                    {{!-- Review content --}}
                     <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
-                        Chưa có
+                        {{!-- User's self scoring --}}
+                        <form>
+                            <div class="d-flex self-review-container">                                    
+                                <div class="self-rating">
+                                    <p>Mức độ hài lòng của bạn về sản phẩm</p>
+                                    <div class="rating">
+                                        <input type="radio" id="star5" name="rate" value="5" />
+                                        <label for="star5"></label>
+                                        <input type="radio" id="star4" name="rate" value="4" />
+                                        <label for="star4"></label>
+                                        <input type="radio" id="star3" name="rate" value="3" />
+                                        <label for="star3"></label>
+                                        <input type="radio" id="star2" name="rate" value="2" />
+                                        <label for="star2"></label>
+                                        <input type="radio" id="star1" name="rate" value="1" />
+                                        <label for="star1"></label>
+                                    </div>
+                                </div>
+                                <div class="self-comment flex-fill">
+                                    <textarea placeholder="Hãy chia sẽ trải nghiệm của bạn về sản phẩm này" rows="3"></textarea>
+                                    <input type="submit"></input>
+                                </div>
+                            </div>                   
+                        </form>
+                        {{!-- Others review --}}
+                        <div class="card review-card">
+                            {{!-- Review header --}}
+                            <div class="review-header">
+                                {{!-- Avatar --}}
+                                <div class="avatar-container">
+                                    <img src="https://steamuserimages-a.akamaihd.net/ugc/1657851116010446238/4D754FBFFC9992EC79D4136B36177960E4A3112C/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false"
+                                        class="avatar">
+                                </div>
+                                {{!-- Username + score --}}
+                                <div class="info-container">
+                                    <div class="card-title">Wibu rách</div>
+                                    <small class="text-muted">22-07-2022</small>
+                                    <div class="star">
+                                        <span class="review-score"><i class="fa-solid fa-star"></i></span>
+                                        <span class="review-score"><i class="fa-solid fa-star"></i></span>
+                                        <span class="review-score"><i class="fa-solid fa-star"></i></span>
+                                        <span class="review-score"><i class="fa-solid fa-star"></i></span>
+                                        <span class="review-score"><i class="fa-regular fa-star"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            {{!-- Review text --}}
+                            <div class="card-body">
+                                <p class="card-text">
+                                    Sản phẩm ok xài ngon không. Dùng tốt hơn gear văn phỏng ghẻ
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card review-card">
+                            {{!-- Review header --}}
+                            <div class="review-header">
+                                {{!-- Avatar --}}
+                                <div class="avatar-container">
+                                    <img src="https://steamuserimages-a.akamaihd.net/ugc/1657851116010446238/4D754FBFFC9992EC79D4136B36177960E4A3112C/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false"
+                                        class="avatar">
+                                </div>
+                                {{!-- Username + score --}}
+                                <div class="info-container">
+                                    <div class="card-title">Wibu rách</div>
+                                    <small class="text-muted">22-07-2022</small>
+                                    <div class="star">
+                                        <span class="review-score"><i class="fa-solid fa-star"></i></span>
+                                        <span class="review-score"><i class="fa-solid fa-star"></i></span>
+                                        <span class="review-score"><i class="fa-solid fa-star"></i></span>
+                                        <span class="review-score"><i class="fa-solid fa-star"></i></span>
+                                        <span class="review-score"><i class="fa-regular fa-star"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            {{!-- Review text --}}
+                            <div class="card-body">
+                                <p class="card-text">
+                                    Sản phẩm ok xài ngon không. Dùng tốt hơn gear văn phỏng ghẻ
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <!-- Modal -->
 <div class="modal fade" id="addToCartModal" tabindex="-1" aria-labelledby="addToCartModalLabel" aria-hidden="true">

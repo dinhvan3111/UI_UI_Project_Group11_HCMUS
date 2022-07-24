@@ -344,3 +344,128 @@
     padding: 1rem;
     border-radius: var(--border-radius);
 }
+
+/* Review section */
+.review-card {
+    border: 0.1rem solid #e5e5e5;
+    margin: 1rem;
+    transition: transform .2s ease;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 1rem 0 0 0;
+}
+
+/* .review-card:hover {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+    transform: scale(1.05);
+} */
+
+.review-card .review-header {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1rem;
+}
+
+.review-card .info-container{
+    display: grid;
+    row-gap: 0.5rem;
+}
+
+.review-card .avatar-container {
+    height: 7rem;
+}
+
+.review-card .avatar {
+    height: 100%;
+    border-radius: 50%;
+}
+
+.review-card .card-title {
+    font-size: 2rem;
+}
+
+.review-card .star,
+.review-card .card-text {
+    margin-bottom: 0.5rem;
+    margin-left: auto;
+}
+
+.review-card .star .review-score {
+    color: #ff9801;
+    font-size: 1.5rem;
+}
+
+/* User self rating */
+.self-review-container {
+    text-align: center;
+    gap: 2rem;
+    background-color: var(--back-color);
+    border-radius: 0.5rem;
+    color: var(--main-color);
+    padding: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.rating {
+    text-align: center;
+    direction: rtl;
+    padding-top: 0.5rem;
+}
+
+.rating:not(:checked) > input {
+    position: absolute;
+    display: none;
+}
+
+.rating:not(:checked) > label {
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    color: #ccc;
+    width: 3rem;
+    font-size: 2.5rem;
+}
+
+.rating:not(:checked) > label::before {
+    /* content: '★'; */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f005";
+}
+
+.rating > input:checked ~ label {
+    color: #ff9801;
+}
+
+.rating:not(:checked)>label:hover,
+.rating:not(:checked)>label:hover~label {
+    color: #f7a62d;
+}
+
+/* Rating - comment section */
+.self-comment input {
+    padding: 0.2rem;
+}
+
+.self-comment textarea {
+    border: 1px solid #888;
+    border-radius: 0.5rem;
+    width: 100%;
+    min-width: 30rem;
+    padding: 0.5rem 0 0 0.5rem;
+}
+
+.self-comment {
+    display: inline-flex;
+    position: relative;
+    align-items: start;
+    gap: 0.5rem;
+}
+
+.self-comment input[type='submit'] {
+    height: 5.5rem;
+    width: 10rem;
+    border-radius: 0.5rem;
+    background-color: #ff9801;
+}
