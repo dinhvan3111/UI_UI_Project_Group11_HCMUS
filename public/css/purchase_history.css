@@ -20,6 +20,7 @@
 
 .purchased_history .header .delivery-success {
     font-weight: 500;
+    color: var(--sub-color);
 }
 
 .purchased_history .search {
