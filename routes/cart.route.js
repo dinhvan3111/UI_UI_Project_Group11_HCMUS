@@ -82,4 +82,8 @@ router.post('/api/cart', async function(req, res){
     });
 });
 
+router.get('/purchased-history', function(req,res){
+    res.render('vwCart/purchase_history');
+})
+
 export default router;
