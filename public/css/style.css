@@ -988,6 +988,11 @@ footer .footer-social-media{
     
 }
 
+footer .footer-icon-container{
+    display: flex;
+    column-gap: 0.5rem;
+}
+
 footer .footer-social-media-icon{
 
     color: grey;

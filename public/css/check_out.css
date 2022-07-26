@@ -1,0 +1,310 @@
+.checkout-container{
+    width: 100%;
+    display: flex;
+}
+
+.products-checkout{
+    padding: 1.6rem;
+    flex: 1;
+}
+
+.order-info{
+    flex: 2;
+    padding: 1.6rem;
+}
+
+.payment-method{
+    padding: 1.6rem;
+}
+
+
+/*-------------- Receive address information ----------- */
+
+.receive-address .navigation-pane{
+    display: flex;
+    /* column-gap: 2rem; */
+    padding: 0.5rem 1rem;
+    /* border-bottom: 0.3rem solid var(--back-color); */
+    width: 100%;
+    /* border-bottom: 1px solid rgb(228, 229, 240); */
+}
+
+.receive-address .navigation-tab{
+    padding: 1rem 2rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.receive-address .navigation-tab.active{
+    color: var(--back-color);
+    border-bottom: 0.3rem solid var(--back-color);
+}
+
+
+.receive-address-content{
+    padding: 1.6rem;
+}
+
+.receive-address .receive-address-content .infor-field{
+    padding: 1.2rem 0 0.5rem 1.2rem;
+}
+
+.receive-address-content .infor-field input{
+    border: 0.1rem solid lightgray;
+    width: 100%;
+    padding: 1rem;
+    font-size: small;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.receive-address-content .infor-field input[type='number']{
+    -moz-appearance:textfield;
+}
+
+.receive-address-content .infor-field input::-webkit-outer-spin-button,
+.receive-address-content .infor-field input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.display-flex{
+    display: flex;
+}
+
+.same-row div{
+    flex: 1;
+}
+
+.at-store{
+    display: none;
+}
+
+/*-------------- Receive address information end here ----------- */
+
+
+/*---------------Payment method ---------------*/
+.payment-method ul{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1.5rem;
+    row-gap: 1.5rem;
+    padding: 1.2rem 0 1.2rem 1.2rem;
+}
+
+.payment-method > h5{
+    padding: 1.2rem;
+}
+
+.payment-method .payment-method-item{
+    position: relative;
+    padding: 1.5rem 2rem;
+    border: 1px solid rgb(224, 224, 224);
+    border-radius: 0.5rem;
+    width: calc((100% / 2) - 1.5rem);
+    min-height: 10rem;
+}
+
+.payment-method .payment-method-item.active{
+    border-color: var(--sub-color);
+    /* background-color: rgb(230, 238, 255); */
+    color: var(--back-color);
+}
+
+.item-active{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-top: 4rem solid var(--back-color);
+    border-left: 4rem solid transparent;
+}
+
+.item-active-check{
+    position: absolute;
+    color: white;
+    width: 2.5rem;
+    height: 2.5rem;
+    top: 0;
+    right: 0rem;
+}
+
+.payment-method .payment-method-item:hover{
+    cursor: pointer;
+    background-color: rgb(230, 230, 230);
+}
+
+.payment-method .payment-method-item.active:hover{
+    cursor: pointer;
+    background-color: white;
+}
+
+.payment-method .payment-method-item h4 span{
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem;
+    color: white;
+    background-color: var(--back-color);
+    margin-left: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.payment-method .payment-method-item h5{
+    color: rgb(130, 134, 158);
+    line-height: 2rem;
+    margin-top: 1rem;
+    font-weight: 500;
+    opacity: 1;
+}
+/*-----------Payment method end here ----------*/
+
+/*------------- Product checkout  ----------- */
+.products-checkout .products-checkout-title{
+    display: flex;
+    justify-content: space-between;
+}
+
+.products-checkout .products-checkout-title a{
+    align-items: baseline;
+    color: blue;
+}
+.products-checkout .products-checkout-title a:hover{
+    color: var(--back-color);
+}
+.products-checkout .products-checkout-body{
+    margin-top: 2rem;
+    /* overflow-y: scroll;
+    height: 40rem; */
+}
+
+.products-checkout .product-info img{
+    width: 7rem;
+    height: 7rem;
+}
+
+.products-checkout .product-info{
+    display: flex;
+}
+
+.products-checkout .products-checkout-body .product-info{
+    margin-bottom: 2rem;
+}
+
+.products-checkout-body .product-info .product-info-text{
+    margin-left: 1rem;
+}
+
+.product-info .product-info-text span,a{
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.product-info .product-info-text a:hover{
+    color: var(--back-color);
+}
+
+.product-info .product-info-text .quantity{
+    color: grey
+}
+.product-info .product-info-text .sale-price{
+    font-size: large;
+    font-weight: bold;
+}
+.product-info .product-info-text .real-price{
+    color: grey;
+    text-decoration: line-through;
+}
+
+/*------------- Product checkout end here  ----------- */
+
+
+
+/*------------- Payment container ------------*/
+.products-checkout .payment-container{
+    margin-left: 0;
+}
+
+.products-checkout .payment-container .total-price table {
+    border-top: 0.3rem solid var(--back-color);
+    width: 100%;
+}
+
+.products-checkout .payment-container table tr:first-child td:first-child {
+    font-weight: bold;
+}
+
+.products-checkout .payment-container td:last-child {
+    padding-right: 2rem;
+    text-align: end;
+}
+
+.products-checkout .payment-container td {
+    padding: 1rem 0.5rem;
+}
+
+.products-checkout .payment-container .total-price .real-total-price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: red;
+}
+
+.products-checkout .payment-container .pay-button {
+    padding: 1rem;
+    background-color: var(--back-color);
+    border-radius: var(--border-radius);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
+#vat-tax{
+    color: grey;
+    font-size: small;
+    align-items: flex-end;
+}
+
+/*------------Payment container end here----------- */
+
+
+/*-----------------Error message--------------------*/
+.checkout-container .err-message{
+    color: red;
+    font-size: 1.3rem;
+    margin: 0.5rem 0 0 1.8rem;
+    display: none;
+}
+/*-----------------Error message end here--------------------*/
+
+/*--------------------Custom dropdown---------------------*/
+.receive-address .best-gear-select{
+    border: 1px solid lightgray;
+    padding: 1rem 1rem 1rem 1rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow:ellipsis;
+}
+
+.receive-address .best-gear-select{
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.receive-address .best-gear-select option[value=""][disabled]{
+    color: grey;
+}
+
+.receive-address .select-wrapper {
+    position: relative;
+}
+  
+.receive-address .select-wrapper::after {
+    content: "▼";
+    font-size: 1rem;
+    top: 1.5rem;
+    right: 10px;
+    position: absolute;
+  }
+/*--------------------Custom dropdown end here-------------*/
