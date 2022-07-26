@@ -4,6 +4,9 @@ import productUserRoute from '../routes/product_user.route.js';
 import cartRoute from '../routes/cart.route.js';
 import productModel from '../models/product.model.js';
 
+import apiCart from '../apis/cart.api.js';
+import apiAuth from '../apis/auth.api.js';
+
 export default function(app){
 
 	app.post('/logout', async function(req, res){
@@ -32,7 +35,9 @@ export default function(app){
 	app.use('/', cartRoute);
 	app.use('/products', productManagementRoute);
 	app.use('/products', productUserRoute);
-
+	
+	app.use('/api/cart', apiCart);
+	app.use('/api/auth', apiAuth);
 
 	app.get('/', async function(req, res) {
 		const topNew = await productModel.getTopNew(0, 6);

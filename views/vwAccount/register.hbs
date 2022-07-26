@@ -13,7 +13,7 @@
 
 <div class="container login-form align-items-center register-form">
     <h1>Đăng ký</h1>
-    <div class="form">
+    <div class="form" action="/register" method="POST">
 <form action="/register" method="post">
         <div class="form-group">
             <input type="text" name="username" placeholder="Username" autocomplete="off" readonly 
@@ -88,7 +88,7 @@ onfocus="this.removeAttribute('readonly');">
             </div>
         {{/if}}
 
-        <button class="register-btn login-btn">Đăng ký</button>
+        <button type="submit" class="register-btn login-btn">Đăng ký</button>
         <div class="seperator" ><b style="color: #666666;">hoặc</b></div>
     </form>
     <div class="social-icon d-flex justify-content-center">

@@ -70,24 +70,47 @@ function checkIfFieldHasChar(item){
 }
 
 // Kiểm tra email đã tồn tại hay chưa
-function checkIfEmailIsAlreadyExisted(item){
-    //TO DO
+async function isEmailNotExist(email){
+    const data = {
+        email: email,
+    };
+    let ret = false;
+    await $.ajax({
+        url: `/api/auth/email`,
+        method: "POST",
+        data: data,
+    })
+    .done(function( jsonResp ) {
+        if(jsonResp.code === 200){
+            ret = jsonResp.data;
+        }
+    });
+    return !ret;
 }
 
-
+function isValidEmail(email){
+    const regex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+    return regex.test(email);
+}
 
 //Xử lý thông báo và màu border input
-function handleErrorMessage(item,msg){
-    if(checkLength(item,min,max)){
-        if(item.name==="email"){
-            if(checkIfEmailIsAlreadyExisted(item)){ // Nếu email chưa tồn tại
+async function handleErrorMessage(item,msg){
+    if(checkLength(item,min,max) || item.name === "email"){
+        if(item.name === "email"){
+            console.log('before here');
+            if(!isValidEmail(item.value)){
+                msg.innerText = 'Email không hợp lệ'; 
+                msg.style.display = 'block';
+                return;
+            }
+            if(await isEmailNotExist(item.value)){ // Nếu email chưa tồn tại
                 item.style.border = '1px solid green';
                 msg.style.display = 'none';
             }
             else{ // Nếu email đã tồn tồn tại
                 msg.innerText = 'Email đã tồn tại'; 
                 msg.style.display = 'block';
-                
+                console.log('here');
             }
         }
         else{
@@ -102,7 +125,6 @@ function handleErrorMessage(item,msg){
         else if(item.name==="password"){
             msg.innerText = `Mật khẩu phải từ ${min} đến ${max} kí tự.`;
         }
-        
         msg.style.display = 'block';
     }
 }
@@ -140,8 +162,8 @@ address.addEventListener('focusout', (e) => {
     handleErrorMessage(address, errAddress);
 })
 
-email.addEventListener('focusout', (e) => {
-    handleErrorMessage(email, errEmail);
+email.addEventListener('focusout', async function (e) {
+    await handleErrorMessage(email, errEmail);
 })
 
 
@@ -157,11 +179,11 @@ renEnterPwd.addEventListener('focusout', (e) => {
 
 
 //Chặn đăng nhập khi lỗi
-registerBtn.addEventListener('click', function(e) {
+registerBtn.addEventListener('click', async function (e) {
     const isValidUrs = checkLength(urs,min,max);
     const isValidFullName = checkLength(fullName,min,max);
     const isValidAddress = checkLength(address,min,max);
-    const isValidEmail = checkLength(email,min,max) && checkIfEmailIsAlreadyExisted(email); 
+    const isValidEmail = checkLength(email,min,max) && await isEmailNotExist(email); 
     const isValidPwd = checkLength(pwd,min,max);
     const isValidReEnterPwd = checkReEnterPassword(pwd,renEnterPwd);
     
