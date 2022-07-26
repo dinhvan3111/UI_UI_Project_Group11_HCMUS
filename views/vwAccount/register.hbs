@@ -14,7 +14,7 @@
 <div class="container login-form align-items-center register-form">
     <h1>Đăng ký</h1>
     <div class="form" action="/register" method="POST">
-<form action="/register" method="post">
+<form id="register-form" action="/register" method="post">
         <div class="form-group">
             <input type="text" name="username" placeholder="Username" autocomplete="off" readonly 
 onfocus="this.removeAttribute('readonly');">
@@ -98,7 +98,6 @@ onfocus="this.removeAttribute('readonly');">
         <form action="/auth/facebook" method="post">
             <button class="bg-fb" type="submit"><i class="fa-brands fa-facebook"></i></button>
         </form>
-
     </div>
     <p class="d-flex"><a class="reset-psw let_register" href="/login">Trở lại đăng nhập ?</a><a
             class="reset-psw let_register" href="/">Về trang chủ?</a></p>
