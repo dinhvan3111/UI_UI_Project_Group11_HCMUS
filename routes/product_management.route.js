@@ -75,9 +75,26 @@ router.post('/', cpUpload, async function(req, res) {
     
     
 });
+
 router.get('/management', async function(req, res) {
+    const pagingRet = await productModel.getAll();
+    const products = [];
+    for(let i = 0; i < pagingRet.docs.length; i++) {
+        const product = {
+            _id: pagingRet.docs[i]._id.toString(),
+            thumb: pagingRet.docs[i].thumb,
+            title: pagingRet.docs[i].title,
+            stock: pagingRet.docs[i].stock,
+            price: pagingRet.docs[i].price,
+            sale_price: pagingRet.docs[i].sale_price,
+        };
+        products.push(product);
+    }
     res.render('vwProduct/management',{
-        layout: 'main.hbs',
+        products: products,
+        totalProducts: pagingRet.totalDocs,
+        curPage: pagingRet.page
     });
 });
+
 export default router;

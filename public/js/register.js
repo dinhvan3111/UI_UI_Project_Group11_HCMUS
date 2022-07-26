@@ -191,7 +191,7 @@ registerBtn.addEventListener('click', async function (e) {
         handleErrorMessage(urs,errUrs);
         handleErrorMessage(fullName,errFullName);
         handleErrorMessage(address,errAddress);
-        handleErrorMessage(email,errEmail);
+        await handleErrorMessage(email,errEmail);
         handleErrorMessage(pwd,errPwd);
         handleReEnterPassword(pwd,renEnterPwd,errReEnterPwd);
         e.preventDefault();

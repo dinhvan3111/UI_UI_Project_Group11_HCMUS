@@ -32,144 +32,34 @@
             <th>Xóa sản phẩm</th>
         </thead>
         <tbody>
-            <tr>
-                <td data-href="/products/62cf524746ce695718e5703d">
-                    <a href="/products/62cf524746ce695718e5703d" target="_blank">62ce0b11680de4477caaeca0</a>
-                </td>
-                <td>
-                    <a class="name" href="/products/62cf524746ce695718e5703d" target="_blank">Ghế DXRACER - Drifting
-                        Series
-                        OH/DJ133/NR</a>
-                </td>
-                <td>
-                    <a href="/products/62cf524746ce695718e5703d" target="_blank"><img
-                            src="https://storage.googleapis.com/bestgear-355409.appspot.com/62cf524746ce695718e5703d/img2.png"
-                            alt="photo"></a>
-                </td>
-                <td class="discount-price">10.000.000đ</td>
-                <td class="real-price">8.000.000đ</td>
+            {{#each products}}
+                <tr>
+                    <td data-href="/products/{{this._id}}">
+                        <a href="/products/{{this._id}}" target="_blank">{{this._id}}</a>
+                    </td>
+                    <td>
+                        <a class="name" href="/products/{{this._id}}" target="_blank">{{this.title}}</a>
+                    </td>
+                    <td>
+                        <a href="/products/{{this._id}}" target="_blank"><img
+                                src="{{getImgLink this.thumb}}"
+                                alt="photo"></a>
+                    </td>
+                    <td class="discount-price">{{format_number this.price}}đ</td>
+                    <td class="real-price">{{format_number this.sale_price}}đ</td>
 
-                <td>50</td>
-                <td class="btn-delete">
-                    {{!-- input hidden để lưu id sản phẩm trả về --}}
-                    <input type="hidden" value="1">
+                    <td>{{format_number this.stock}}</td>
+                    <td class="btn-delete">
+                        {{!-- input hidden để lưu id sản phẩm trả về --}}
+                        <input type="hidden" value="1">
 
-                    <button type="button" class="btn btn-default" data-bs-toggle="modal"
-                        data-bs-target="#manageProductModal">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td data-href="/products/62cf524746ce695718e5703d">
-                    <a href="/products/62cf524746ce695718e5703d" target="_blank">62ce0b11680de4477caaeca0</a>
-                </td>
-                <td>
-                    <a class="name" href="/products/62cf524746ce695718e5703d" target="_blank">Ghế Tình yêu</a>
-                </td>
-                <td>
-                    <a href="/products/62cf524746ce695718e5703d" target="_blank"><img
-                            src="https://storage.googleapis.com/bestgear-355409.appspot.com/62cf524746ce695718e5703d/img2.png"
-                            alt="photo"></a>
-                </td>
-                <td class="discount-price">10.000.000đ</td>
-                <td class="real-price">8.000.000đ</td>
-
-                <td>50</td>
-                <td class="btn-delete">
-                    {{!-- input hidden để lưu id sản phẩm trả về --}}
-                    <input type="hidden" value="1">
-
-                    <button type="button" class="btn btn-default" data-bs-toggle="modal"
-                        data-bs-target="#manageProductModal">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td data-href="/products/62cf524746ce695718e5703d">
-                    <a href="/products/62cf524746ce695718e5703d" target="_blank">62ce0b11680de4477caaeca0</a>
-                </td>
-                <td>
-                    <a class="name" href="/products/62cf524746ce695718e5703d" target="_blank">Ghế DXRACER - Drifting
-                        Series
-                        OH/DJ133/NR</a>
-                </td>
-                <td>
-                    <a href="/products/62cf524746ce695718e5703d" target="_blank"><img
-                            src="https://storage.googleapis.com/bestgear-355409.appspot.com/62cf524746ce695718e5703d/img2.png"
-                            alt="photo"></a>
-                </td>
-                <td class="discount-price">10.000.000đ</td>
-                <td class="real-price">8.000.000đ</td>
-
-                <td>50</td>
-                <td class="btn-delete">
-                    {{!-- input hidden để lưu id sản phẩm trả về --}}
-                    <input type="hidden" value="1">
-
-                    <button type="button" class="btn btn-default" data-bs-toggle="modal"
-                        data-bs-target="#manageProductModal">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td data-href="/products/62cf524746ce695718e5703d">
-                    <a href="/products/62cf524746ce695718e5703d" target="_blank">62ce0b11680de4477caaeca0</a>
-                </td>
-                <td>
-                    <a class="name" href="/products/62cf524746ce695718e5703d" target="_blank">Ghế DXRACER - Drifting
-                        Series
-                        OH/DJ133/NR</a>
-                </td>
-                <td>
-                    <a href="/products/62cf524746ce695718e5703d" target="_blank"><img
-                            src="https://storage.googleapis.com/bestgear-355409.appspot.com/62cf524746ce695718e5703d/img2.png"
-                            alt="photo"></a>
-                </td>
-                <td class="discount-price">10.000.000đ</td>
-                <td class="real-price">8.000.000đ</td>
-
-                <td>50</td>
-                <td class="btn-delete">
-                    {{!-- input hidden để lưu id sản phẩm trả về --}}
-                    <input type="hidden" value="1">
-
-                    <button type="button" class="btn btn-default" data-bs-toggle="modal"
-                        data-bs-target="#manageProductModal">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td data-href="/products/62cf524746ce695718e5703d">
-                    <a href="/products/62cf524746ce695718e5703d" target="_blank">62ce0b11680de4477caaeca0</a>
-                </td>
-                <td>
-                    <a class="name" href="/products/62cf524746ce695718e5703d" target="_blank">Ghế DXRACER - Drifting
-                        Series
-                        OH/DJ133/NR</a>
-                </td>
-                <td>
-                    <a href="/products/62cf524746ce695718e5703d" target="_blank"><img
-                            src="https://storage.googleapis.com/bestgear-355409.appspot.com/62cf524746ce695718e5703d/img2.png"
-                            alt="photo"></a>
-                </td>
-                <td class="discount-price">10.000.000đ</td>
-                <td class="real-price">8.000.000đ</td>
-
-                <td>50</td>
-                <td class="btn-delete">
-                    {{!-- input hidden để lưu id sản phẩm trả về --}}
-                    <input type="hidden" value="1">
-
-                    <button type="button" class="btn btn-default" data-bs-toggle="modal"
-                        data-bs-target="#manageProductModal">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </td>
-            </tr>
+                        <button type="button" class="btn btn-default" data-bs-toggle="modal"
+                            data-bs-target="#manageProductModal">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </td>
+                </tr>
+            {{/each}}
         </tbody>
     </table>
     <div class="pagination-container">
@@ -194,3 +84,12 @@
     </div>
 
 </div>
+
+{{#section 'js'}}
+<script>
+    $('.pagination-container').jqpaginator({
+        data: createData({{totalProducts}}),
+        render: renderer
+    });
+</script>
+{{/section}}

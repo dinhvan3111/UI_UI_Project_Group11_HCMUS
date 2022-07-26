@@ -45,7 +45,7 @@ router.get('/search-autocomplete', async function(req, res) {
         });
     }
     // console.log(queryStr);
-    const products = await productModel.searchAutocomplete(queryStr, 14);
+    const products = await productModel.searchAutocomplete(queryStr, 8);
     if(products.length > 0){
         for(let i = 0; i < products.length; i++){
             products[i].thumb = linkManager.getImgLink(products[i].thumb);

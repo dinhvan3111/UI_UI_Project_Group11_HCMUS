@@ -27,21 +27,22 @@ router.post('/register', async function (req, res){
             err_message: 'Email không hợp lệ'
         });
     }
-    if(await userModel.findById(req.body.email) === null){
+    if(await userModel.findById(req.body.email) !== null){
         return res.render('vwAccount/register', {
             layout: false,
             err_message: 'Email đã tồn tại trong hệ thống'
         });
     }
     if(await userModel.register(req.body) === null){
+        
         return res.render('vwAccount/register', {
             layout: false,
-            success_message: 'Đăng ký thành công'
+            err_message: 'Đã xảy ra lỗi! Vui lòng thử lại sau'
         });
     }
     return res.render('vwAccount/register', {
         layout: false,
-        err_message: 'Đã xảy ra lỗi! Vui lòng thử lại sau'
+        success_message: 'Đăng ký thành công'
     });
 });
 

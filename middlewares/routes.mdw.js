@@ -5,6 +5,7 @@ import cartRoute from '../routes/cart.route.js';
 import productModel from '../models/product.model.js';
 import paymentRoute from '../routes/payment.route.js';
 import categoryRoute from '../routes/category.route.js';
+import orderManagementRoute from '../routes/order_management.route.js';
 
 import apiCart from '../apis/cart.api.js';
 import apiAuth from '../apis/auth.api.js';
@@ -39,6 +40,7 @@ export default function(app){
 	app.use('/products', productManagementRoute);
 	app.use('/products', productUserRoute);
 	app.use('/categories', categoryRoute);
+	app.use('/orders', orderManagementRoute);
 
 	app.use('/api/cart', apiCart);
 	app.use('/api/auth', apiAuth);
