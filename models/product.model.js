@@ -3,6 +3,29 @@ import env from '../utils/env.js';
 import uploadModel from '../models/upload.model.js';
 import Product from '../schema/productsSchema.js';
 
+function getSearchQuery(queryStr){
+    return {
+        index: 'products',
+        compound : {
+            filter : [{ 
+                autocomplete : { 
+                    path: "title", 
+                    query: queryStr 
+                }
+            }],
+            must: [{ 
+                autocomplete: {
+                    query: queryStr,
+                    path: "title",
+                    fuzzy: {
+                        maxEdits: 2
+                    },
+                },
+            }]
+        }
+    };
+};
+
 export default {
     async findById(id) {
         return await Product.findById({_id: id}).exec();
@@ -20,23 +43,26 @@ export default {
     },
 
     async getTotalProductsSearch(queryStr){
-        const products = await Product.find({
-            $text: {
-                $search: queryStr
-            }
-        }).limit(env.TOTAL_SEARCH_RESULTS);
+        const products = await Product.aggregate([
+            {
+                $search:  getSearchQuery(queryStr)
+            }, 
+            {
+                $project: {
+                    _id: 1,
+                }
+            },
+        ]).limit(parseInt(env.TOTAL_SEARCH_RESULTS));
         return products.length;
     },
 
     async search(queryStr, page = 0){
-        const products = await Product.find({
-            $text: {
-                $search: queryStr
-            }
-        })
-            .limit(env.TOTAL_SEARCH_RESULTS)
+        const products = await Product.aggregate([{
+            $search: getSearchQuery(queryStr)
+        }
+        ])  .limit(parseInt(env.TOTAL_SEARCH_RESULTS))
             .skip(page * env.TOTAL_PRODUCTS_PER_PAGE)
-            .limit(env.TOTAL_PRODUCTS_PER_PAGE);
+            .limit(parseInt(env.TOTAL_PRODUCTS_PER_PAGE));
         return products;
     },
 
@@ -59,26 +85,7 @@ export default {
                 //         ]
                 //     }
                 // }
-                $search: {
-                    index: 'products',
-                    compound : {
-                        filter : [{ 
-                            text : { 
-                                path: "title", 
-                                query: queryStr 
-                            }
-                        }],
-                        must: [{ 
-                            autocomplete: {
-                                query: queryStr,
-                                path: "title",
-                                fuzzy: {
-                                    maxEdits: 2
-                                },
-                            },
-                        }]
-                    }
-                } 
+                $search: getSearchQuery(queryStr)
             },
             {
                 $limit: nResults,

@@ -13,7 +13,7 @@ router.get('/', async function(req, res){
     const productsQuery = await productModel.search(req.query.q);
     const products = [];
     for(let i = 0; i < productsQuery.length; i++) {
-        const product = productsQuery[i].toObject();
+        const product = productsQuery[i];
         product._id = product._id.toString();
         productModel.delSalePercentAttr(product);
         products.push(product);
@@ -45,7 +45,7 @@ router.get('/search-autocomplete', async function(req, res) {
         });
     }
     // console.log(queryStr);
-    const products = await productModel.searchAutocomplete(queryStr, 4);
+    const products = await productModel.searchAutocomplete(queryStr, 14);
     if(products.length > 0){
         for(let i = 0; i < products.length; i++){
             products[i].thumb = linkManager.getImgLink(products[i].thumb);
