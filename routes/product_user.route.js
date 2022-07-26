@@ -61,4 +61,8 @@ router.get('/:id', async function(req, res) {
     }
 });
 
+router.get('/list/:id', async function(req, res) {
+    res.render('vwProduct/search_result');
+});
+
 export default router;

@@ -46,7 +46,7 @@ plusBtn.addEventListener('click', function(e) {
 });
 subBtn.addEventListener('click', function(e) {
     let currentValue = quantity.value;
-    if(quantity.value > 0){
+    if(quantity.value > 1){
         quantity.value = +currentValue - 1;
     }
 });

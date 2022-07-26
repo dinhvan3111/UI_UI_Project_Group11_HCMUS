@@ -5,6 +5,26 @@
 <div class="container">
     <h1 id="search-result-text">Kết quả tìm kiếm cho: văn đẹp trai vô địch</h1>
     <div class="sort-container">
+        <div class="dropdown dropdown-category">
+            <button class="btn btn-secondary dropdown-toggle" type="button" aria-haspopup="false"
+                id="manage-product-category" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>  Danh mục sản phẩm
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="product-category">
+                <li><a class="dropdown-item" href="#"><i
+                            class="fa-solid fa-laptop"></i> Tất cả</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Laptop</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Màn hình</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Bàn phím</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Chuột</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Tai nghe</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Ghế Gaming</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> PC Gaming</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Thiết bị mạng</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Phụ kiện</a></li>
+            </ul>
+        </div>
+        
         <h3>Sắp xếp theo</h3>
         <ul class="sort-choice">
             <li class="sort-item active">
@@ -36,171 +56,309 @@
                 </div>
             </li>
         </ul>
+        
+        
     </div>
     <div class="search-result-container">
-        <a href="/products/{{_id}}" class="product-item product-item--col">
-            <div class="thumbnail">
-                <span class="discount">{{percentSale}}%</span>
-                <div class="icon-action">
-                    <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
-                    <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+        <a href="#" class="product-item product-item--col">
+                    <div class="thumbnail">
+                        <span class="discount">15%</span>
+                        <div class="icon-action">
+                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                            </div>
+                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                        </div>
+                        <img class="img-fluid" src="https://storage.googleapis.com/bestgear-355409.appspot.com/62cf524746ce695718e5703d/img2.png" alt="">
                     </div>
-                    <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
-                </div>
-                <img class="img-fluid" src="{{getImgLink thumb}}" alt="">
-            </div>
-            <div class="product-desc">
-                <h4 class="name-product"><b>{{title}}</b></h4>
-                <div class="star-comment">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                {{!-- <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div> --}}
-                <div class="product-price"><b>{{format_number sale_price}} đ</b><span class="true-price">{{format_number
-                        price}} đ</span></b>
-                </div>
-                <button class="buy-now">Mua ngay</button>
-            </div>
-        </a>
-        <a href="/products/{{_id}}" class="product-item product-item--col">
-            <div class="thumbnail">
-                <span class="discount">{{percentSale}}%</span>
-                <div class="icon-action">
-                    <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
-                    <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                    <div class="product-desc">
+                        <h4 class="name-product"><b>Ghế DXRACER - Drifting
+                                    Series OH/DJ133/NR</b></h4>
+                        <div class="star-comment">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        {{!-- <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div> --}}
+                        <div class="product-price"><b>8.000.000 đ</b><span class="true-price">10.000.000 đ</span></b>
+                        </div>
+                        <button class="buy-now">Mua ngay</button>
                     </div>
-                    <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
-                </div>
-                <img class="img-fluid" src="{{getImgLink thumb}}" alt="">
-            </div>
-            <div class="product-desc">
-                <h4 class="name-product"><b>{{title}}</b></h4>
-                <div class="star-comment">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                {{!-- <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div> --}}
-                <div class="product-price"><b>{{format_number sale_price}} đ</b><span class="true-price">{{format_number
-                        price}} đ</span></b>
-                </div>
-                <button class="buy-now">Mua ngay</button>
-            </div>
-        </a>
-        <a href="/products/{{_id}}" class="product-item product-item--col">
-            <div class="thumbnail">
-                <span class="discount">{{percentSale}}%</span>
-                <div class="icon-action">
-                    <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
-                    <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                </a>
+        <a href="#" class="product-item product-item--col">
+                    <div class="thumbnail">
+                        <span class="discount">15%</span>
+                        <div class="icon-action">
+                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                            </div>
+                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                        </div>
+                        <img class="img-fluid" src="https://storage.googleapis.com/bestgear-355409.appspot.com/62cf524746ce695718e5703d/img2.png" alt="">
                     </div>
-                    <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
-                </div>
-                <img class="img-fluid" src="{{getImgLink thumb}}" alt="">
-            </div>
-            <div class="product-desc">
-                <h4 class="name-product"><b>{{title}}</b></h4>
-                <div class="star-comment">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                {{!-- <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div> --}}
-                <div class="product-price"><b>{{format_number sale_price}} đ</b><span class="true-price">{{format_number
-                        price}} đ</span></b>
-                </div>
-                <button class="buy-now">Mua ngay</button>
-            </div>
-        </a>
-        <a href="/products/{{_id}}" class="product-item product-item--col">
-            <div class="thumbnail">
-                <span class="discount">{{percentSale}}%</span>
-                <div class="icon-action">
-                    <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
-                    <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                    <div class="product-desc">
+                        <h4 class="name-product"><b>Ghế DXRACER - Drifting
+                                    Series OH/DJ133/NR</b></h4>
+                        <div class="star-comment">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        {{!-- <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div> --}}
+                        <div class="product-price"><b>8.000.000 đ</b><span class="true-price">10.000.000 đ</span></b>
+                        </div>
+                        <button class="buy-now">Mua ngay</button>
                     </div>
-                    <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
-                </div>
-                <img class="img-fluid" src="{{getImgLink thumb}}" alt="">
-            </div>
-            <div class="product-desc">
-                <h4 class="name-product"><b>{{title}}</b></h4>
-                <div class="star-comment">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                {{!-- <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div> --}}
-                <div class="product-price"><b>{{format_number sale_price}} đ</b><span class="true-price">{{format_number
-                        price}} đ</span></b>
-                </div>
-                <button class="buy-now">Mua ngay</button>
-            </div>
-        </a>
-        </a>
-        <a href="/products/{{_id}}" class="product-item product-item--col">
-            <div class="thumbnail">
-                <span class="discount">{{percentSale}}%</span>
-                <div class="icon-action">
-                    <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
-                    <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                </a>
+        <a href="#" class="product-item product-item--col">
+                    <div class="thumbnail">
+                        <span class="discount">15%</span>
+                        <div class="icon-action">
+                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                            </div>
+                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                        </div>
+                        <img class="img-fluid" src="https://storage.googleapis.com/bestgear-355409.appspot.com/62cf524746ce695718e5703d/img2.png" alt="">
                     </div>
-                    <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
-                </div>
-                <img class="img-fluid" src="{{getImgLink thumb}}" alt="">
-            </div>
-            <div class="product-desc">
-                <h4 class="name-product"><b>{{title}}</b></h4>
-                <div class="star-comment">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                {{!-- <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div> --}}
-                <div class="product-price"><b>{{format_number sale_price}} đ</b><span class="true-price">{{format_number
-                        price}} đ</span></b>
-                </div>
-                <button class="buy-now">Mua ngay</button>
-            </div>
-        </a>
-        <a href="/products/{{_id}}" class="product-item product-item--col">
-            <div class="thumbnail">
-                <span class="discount">{{percentSale}}%</span>
-                <div class="icon-action">
-                    <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
-                    <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                    <div class="product-desc">
+                        <h4 class="name-product"><b>Ghế DXRACER - Drifting
+                                    Series OH/DJ133/NR</b></h4>
+                        <div class="star-comment">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        {{!-- <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div> --}}
+                        <div class="product-price"><b>8.000.000 đ</b><span class="true-price">10.000.000 đ</span></b>
+                        </div>
+                        <button class="buy-now">Mua ngay</button>
                     </div>
-                    <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
-                </div>
-                <img class="img-fluid" src="{{getImgLink thumb}}" alt="">
-            </div>
-            <div class="product-desc">
-                <h4 class="name-product"><b>{{title}}</b></h4>
-                <div class="star-comment">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                {{!-- <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div> --}}
-                <div class="product-price"><b>{{format_number sale_price}} đ</b><span class="true-price">{{format_number
-                        price}} đ</span></b>
-                </div>
-                <button class="buy-now">Mua ngay</button>
-            </div>
-        </a>
+                </a>
+        <a href="#" class="product-item product-item--col">
+                    <div class="thumbnail">
+                        <span class="discount">15%</span>
+                        <div class="icon-action">
+                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                            </div>
+                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                        </div>
+                        <img class="img-fluid" src="https://storage.googleapis.com/bestgear-355409.appspot.com/62cf524746ce695718e5703d/img2.png" alt="">
+                    </div>
+                    <div class="product-desc">
+                        <h4 class="name-product"><b>Ghế DXRACER - Drifting
+                                    Series OH/DJ133/NR</b></h4>
+                        <div class="star-comment">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        {{!-- <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div> --}}
+                        <div class="product-price"><b>8.000.000 đ</b><span class="true-price">10.000.000 đ</span></b>
+                        </div>
+                        <button class="buy-now">Mua ngay</button>
+                    </div>
+                </a>
+        <a href="#" class="product-item product-item--col">
+                    <div class="thumbnail">
+                        <span class="discount">15%</span>
+                        <div class="icon-action">
+                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                            </div>
+                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                        </div>
+                        <img class="img-fluid" src="https://storage.googleapis.com/bestgear-355409.appspot.com/62cf524746ce695718e5703d/img2.png" alt="">
+                    </div>
+                    <div class="product-desc">
+                        <h4 class="name-product"><b>Ghế DXRACER - Drifting
+                                    Series OH/DJ133/NR</b></h4>
+                        <div class="star-comment">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        {{!-- <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div> --}}
+                        <div class="product-price"><b>8.000.000 đ</b><span class="true-price">10.000.000 đ</span></b>
+                        </div>
+                        <button class="buy-now">Mua ngay</button>
+                    </div>
+                </a>
+        <a href="#" class="product-item product-item--col">
+                    <div class="thumbnail">
+                        <span class="discount">15%</span>
+                        <div class="icon-action">
+                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                            </div>
+                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                        </div>
+                        <img class="img-fluid" src="https://storage.googleapis.com/bestgear-355409.appspot.com/62cf524746ce695718e5703d/img2.png" alt="">
+                    </div>
+                    <div class="product-desc">
+                        <h4 class="name-product"><b>Ghế DXRACER - Drifting
+                                    Series OH/DJ133/NR</b></h4>
+                        <div class="star-comment">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        {{!-- <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div> --}}
+                        <div class="product-price"><b>8.000.000 đ</b><span class="true-price">10.000.000 đ</span></b>
+                        </div>
+                        <button class="buy-now">Mua ngay</button>
+                    </div>
+                </a>
+        <a href="#" class="product-item product-item--col">
+                    <div class="thumbnail">
+                        <span class="discount">15%</span>
+                        <div class="icon-action">
+                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                            </div>
+                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                        </div>
+                        <img class="img-fluid" src="https://storage.googleapis.com/bestgear-355409.appspot.com/62cf524746ce695718e5703d/img2.png" alt="">
+                    </div>
+                    <div class="product-desc">
+                        <h4 class="name-product"><b>Ghế DXRACER - Drifting
+                                    Series OH/DJ133/NR</b></h4>
+                        <div class="star-comment">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        {{!-- <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div> --}}
+                        <div class="product-price"><b>8.000.000 đ</b><span class="true-price">10.000.000 đ</span></b>
+                        </div>
+                        <button class="buy-now">Mua ngay</button>
+                    </div>
+                </a>
+        <a href="#" class="product-item product-item--col">
+                    <div class="thumbnail">
+                        <span class="discount">15%</span>
+                        <div class="icon-action">
+                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                            </div>
+                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                        </div>
+                        <img class="img-fluid" src="https://storage.googleapis.com/bestgear-355409.appspot.com/62cf524746ce695718e5703d/img2.png" alt="">
+                    </div>
+                    <div class="product-desc">
+                        <h4 class="name-product"><b>Ghế DXRACER - Drifting
+                                    Series OH/DJ133/NR</b></h4>
+                        <div class="star-comment">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        {{!-- <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div> --}}
+                        <div class="product-price"><b>8.000.000 đ</b><span class="true-price">10.000.000 đ</span></b>
+                        </div>
+                        <button class="buy-now">Mua ngay</button>
+                    </div>
+                </a>
+        <a href="#" class="product-item product-item--col">
+                    <div class="thumbnail">
+                        <span class="discount">15%</span>
+                        <div class="icon-action">
+                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                            </div>
+                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                        </div>
+                        <img class="img-fluid" src="https://storage.googleapis.com/bestgear-355409.appspot.com/62cf524746ce695718e5703d/img2.png" alt="">
+                    </div>
+                    <div class="product-desc">
+                        <h4 class="name-product"><b>Ghế DXRACER - Drifting
+                                    Series OH/DJ133/NR</b></h4>
+                        <div class="star-comment">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        {{!-- <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div> --}}
+                        <div class="product-price"><b>8.000.000 đ</b><span class="true-price">10.000.000 đ</span></b>
+                        </div>
+                        <button class="buy-now">Mua ngay</button>
+                    </div>
+                </a>
+        <a href="#" class="product-item product-item--col">
+                    <div class="thumbnail">
+                        <span class="discount">15%</span>
+                        <div class="icon-action">
+                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                            </div>
+                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                        </div>
+                        <img class="img-fluid" src="https://storage.googleapis.com/bestgear-355409.appspot.com/62cf524746ce695718e5703d/img2.png" alt="">
+                    </div>
+                    <div class="product-desc">
+                        <h4 class="name-product"><b>Ghế DXRACER - Drifting
+                                    Series OH/DJ133/NR</b></h4>
+                        <div class="star-comment">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        {{!-- <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div> --}}
+                        <div class="product-price"><b>8.000.000 đ</b><span class="true-price">10.000.000 đ</span></b>
+                        </div>
+                        <button class="buy-now">Mua ngay</button>
+                    </div>
+                </a>
+        <a href="#" class="product-item product-item--col">
+                    <div class="thumbnail">
+                        <span class="discount">15%</span>
+                        <div class="icon-action">
+                            <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                            <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                            </div>
+                            <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                        </div>
+                        <img class="img-fluid" src="https://storage.googleapis.com/bestgear-355409.appspot.com/62cf524746ce695718e5703d/img2.png" alt="">
+                    </div>
+                    <div class="product-desc">
+                        <h4 class="name-product"><b>Ghế DXRACER - Drifting
+                                    Series OH/DJ133/NR</b></h4>
+                        <div class="star-comment">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        {{!-- <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div> --}}
+                        <div class="product-price"><b>8.000.000 đ</b><span class="true-price">10.000.000 đ</span></b>
+                        </div>
+                        <button class="buy-now">Mua ngay</button>
+                    </div>
+                </a>
+
+        
     </div>
     <div class="pagination-container">
         
