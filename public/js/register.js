@@ -1,3 +1,4 @@
+const registerForm = document.querySelector('#register-form');
 const registerBtn = document.querySelector('.register-btn');
 const urs = document.querySelector('input[name="username"]');
 const fullName = document.querySelector('input[name="fullname"]');
@@ -97,7 +98,6 @@ function isValidEmail(email){
 async function handleErrorMessage(item,msg){
     if(checkLength(item,min,max) || item.name === "email"){
         if(item.name === "email"){
-            console.log('before here');
             if(!isValidEmail(item.value)){
                 msg.innerText = 'Email không hợp lệ'; 
                 msg.style.display = 'block';
@@ -191,11 +191,11 @@ registerBtn.addEventListener('click', async function (e) {
         handleErrorMessage(urs,errUrs);
         handleErrorMessage(fullName,errFullName);
         handleErrorMessage(address,errAddress);
-        handleErrorMessage(email,errEmail);
+        await handleErrorMessage(email,errEmail);
         handleErrorMessage(pwd,errPwd);
         handleReEnterPassword(pwd,renEnterPwd,errReEnterPwd);
         e.preventDefault();
-    };
+    }
 });
 
 // chặn nút space
