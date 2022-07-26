@@ -3,6 +3,7 @@ import productManagementRoute from '../routes/product_management.route.js';
 import productUserRoute from '../routes/product_user.route.js';
 import cartRoute from '../routes/cart.route.js';
 import productModel from '../models/product.model.js';
+import categoryRoute from '../routes/category.route.js';
 
 import apiCart from '../apis/cart.api.js';
 import apiAuth from '../apis/auth.api.js';
@@ -35,7 +36,8 @@ export default function(app){
 	app.use('/', cartRoute);
 	app.use('/products', productManagementRoute);
 	app.use('/products', productUserRoute);
-	
+	app.use('/categories', categoryRoute);
+
 	app.use('/api/cart', apiCart);
 	app.use('/api/auth', apiAuth);
 
@@ -52,16 +54,19 @@ export default function(app){
 				const productInTopSell = topSell[i].toObject();
 				productInTopSell._id = topSell[i]._id.toString();
 				productInTopSell.id_category = topSell[i].id_category.toString();
+				productModel.delSalePercentAttr(productInTopSell);
 				topSellTmp.push(productInTopSell);
 			}
 			const productInTopDiscount = topDiscount[i].toObject();
 			productInTopDiscount._id = topDiscount[i]._id.toString();
 			productInTopDiscount.id_category = topDiscount[i].id_category.toString();
+			productModel.delSalePercentAttr(productInTopDiscount);
 			topDiscountTmp.push(productInTopDiscount);
 
 			const productInTopNew = topNew[i].toObject();
 			productInTopNew._id = topNew[i]._id.toString();
 			productInTopNew.id_category = topNew[i].id_category.toString();
+			productModel.delSalePercentAttr(productInTopNew);
 			topNewTmp.push(productInTopNew);
 		}
 		res.render('home', {

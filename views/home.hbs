@@ -56,18 +56,6 @@
 </div>
 <div class="promotion-main">
     <div class="container">
-        <!-- <div class="promotion-main__item">
-                <div class="icon-item"><i class="fa-solid fa-gift"></i></div>
-                <p class="slogan-desc">Hàng ngàn khuyến mại</p>
-            </div>
-            <div class="promotion-main__item">
-                <div class="icon-item"><i class="fa-solid fa-gift"></i></div>
-                <p class="slogan-desc">Hàng ngàn khuyến mại</p>
-            </div>
-            <div class="promotion-main__item">
-                <div class="icon-item"><i class="fa-solid fa-gift"></i></div>
-                <p class="slogan-desc">Hàng ngàn khuyến mại</p>
-            </div> -->
         <div class="promotion-main__item">
             <a href="#"><img src="/assets/img/disount_1.jpg" alt="photo"></a>
         </div>
@@ -86,14 +74,13 @@
                 <h4 class="title">Bán chạy</h4>
                 <div class="best-selling__content">
                     {{#each topSell}}
-                    {{!-- <a href="/products/{{_id}}"> --}}
 
                         <a href="/products/{{_id}}" class="product-item">
                             <div class="thumbnail">
-                                <span class="discount">{{percentSale}}%</span>
+                                {{#if percentSale}}
+                                    <span class="discount">{{percentSale}}%</span>
+                                {{/if}}
                                 <img class="img-fluid" src="{{getImgLink thumb}}" alt="">
-                                {{!-- <img class="img-fluid" src="/assets/img/gearvn-laptop-gaming-dell-g15-55.jpg"
-                                    alt=""> --}}
                             </div>
                             <div class="product-desc">
                                 <h4 class="name-product"><b>{{title}}</b></h4>
@@ -104,15 +91,12 @@
                                     <i class="fa-solid fa-star"></i>
                                     <i class="fa-solid fa-star"></i>
                                 </div>
-                                {{!-- <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div> --}}
                                 <div class="product-price"><b>{{format_number sale_price}} đ</b><span
                                         class="true-price">{{format_number price}} đ</span>
                                 </div>
                                 <button class="buy-now">Mua ngay</button>
                             </div>
                         </a>
-
-                        {{!-- </a> --}}
                     {{/each}}
                     <div class="more more__right"><i class="fa-solid fa-angle-right"></i></div>
                     <div class="more more__left"><i class="fa-solid fa-chevron-left"></i></div>
@@ -145,8 +129,6 @@
                                         </div>
                                         <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
                                     </div>
-                                    {{!-- <img class="img-fluid" src="/assets/img/gearvn-laptop-gaming-dell-g15-55.jpg"
-                                        alt=""> --}}
                                     <img class="img-fluid" src="{{getImgLink thumb}}" alt="">
                                 </div>
                                 <div class="product-desc">
@@ -158,7 +140,6 @@
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                     </div>
-                                    {{!-- <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div> --}}
                                     <div class="product-price"><b>{{format_number sale_price}} đ</b><span
                                             class="true-price">{{format_number price}} đ </span></b>
                                     </div>
@@ -192,7 +173,6 @@
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
                                     </div>
-                                    {{!-- <div class="sold-number">Đã bán: <b>{{format_number sold}}</b></div> --}}
                                     <div class="product-price"><b>{{format_number sale_price}} đ</b><span
                                             class="true-price">{{format_number price}} đ</span></b>
                                     </div>

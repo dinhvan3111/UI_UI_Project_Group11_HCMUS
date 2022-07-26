@@ -128,7 +128,7 @@ $(function() {
                 products.push({
                     url: `/products?q=${encoded}`,
                     label: 'Xem tất cả'
-                })
+                });
                 res(products);
             })
             .fail(function(err) {
@@ -165,63 +165,40 @@ $(function() {
     
         return $("<li>").append($div).appendTo(ul);
     };
-  });
+});
 
-  //paging
-  function createData() {
+//paging
+function createData(totalProducts) {
     var arr = [];
     var i = 0;
-  
-    while (i < 1000) {
+
+    while (i < totalProducts) {
         arr.push("Item: " + i.toString());
         i++;
     }
-  
+
     return arr;
-  }
-  
-  function dataFunc(done) {
+}
+
+function dataFunc(done) {
     var data = [];
-  
+
     while (data.length < itemsPerPage) {
         var num = Math.floor(Math.random() * 100);
         data.push(num);
     }
-  
+
     var handler = function() {
         done(data, 100);
     };
     setTimeout(handler, 1000);
-  }
-  function renderer(data) {
-    $('#content').empty();
-  
-    $.each(data, function(i, v) {
-      $('#content').append("<p>" + v + "</p>");
-    });
-  };
-  $('.pagination-container').jqpaginator({
-    data: createData(),
-    render: renderer
-  });
-  $('.pagination-container').jqpaginator({
+}
 
-    // items to show per page
-    itemsPerPage: 10,
-  
-    // text for next/prev buttons
-    buttonText: ["<<", ">>"],
-  
-    // shows pagination links
-    showNumbers: true,
-  
-    // shows next/prev buttons
-    showButtons: true,
-  
-    // shows an input which allows you to directly go to specific page
-    showInput: true,
-  
-    // the margin between pagination links
-    numberMargin: 2
-    
-  });
+function renderer(data) {
+    $('#content').empty();
+
+    $.each(data, function(i, v) {
+        $('#content').append("<p>" + v + "</p>");
+    });
+};
+

@@ -19,13 +19,19 @@ export default {
         return null;
     },
 
+    async getTotalProductsSearch(queryStr){
+        const products = await Product.find({
+            $text: {
+                $search: queryStr
+            }
+        }).limit(env.TOTAL_SEARCH_RESULTS);
+        return products.length;
+    },
+
     async search(queryStr, page = 0){
         const products = await Product.find({
-            '$search': {
-                'index': 'products',
-                'text': {
-                    'query': queryStr,
-                }
+            $text: {
+                $search: queryStr
             }
         })
             .limit(env.TOTAL_SEARCH_RESULTS)
@@ -37,22 +43,42 @@ export default {
     async searchAutocomplete(queryStr, nResults){
         const products = await Product.aggregate([
             {
+                // $search: {
+                //     index: 'products',
+                //     compound: {
+                //         must: [
+                //             {
+                //                 text: {
+                //                     query: queryStr,
+                //                     path: 'title',
+                //                     fuzzy: {
+                //                         maxEdits: 2,
+                //                     }
+                //                 }
+                //             }
+                //         ]
+                //     }
+                // }
                 $search: {
                     index: 'products',
-                    compound: {
-                        must: [
-                            {
-                                text: {
-                                    query: queryStr,
-                                    path: 'title',
-                                    fuzzy: {
-                                        maxEdits: 2,
-                                    }
-                                }
+                    compound : {
+                        filter : [{ 
+                            text : { 
+                                path: "title", 
+                                query: queryStr 
                             }
-                        ]
+                        }],
+                        must: [{ 
+                            autocomplete: {
+                                query: queryStr,
+                                path: "title",
+                                fuzzy: {
+                                    maxEdits: 2
+                                },
+                            },
+                        }]
                     }
-                }
+                } 
             },
             {
                 $limit: nResults,
@@ -130,5 +156,11 @@ export default {
             .skip(offset)
             .limit(numOfProduct);
         return products;
+    },
+    
+    async delSalePercentAttr(product){
+        if(product.percentSale === 0){
+            delete product.percentSale;
+        }
     }
 }

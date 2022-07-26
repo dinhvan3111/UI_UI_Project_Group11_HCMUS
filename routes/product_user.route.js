@@ -5,12 +5,28 @@ import linkManager from '../utils/linkManager.js';
 
 const router = express.Router();
 
-router.get('/', function(req, res){
-    res.status(200).send('Search not implemented');
-});
-
-router.get('/search-result', function(req,res){
-    res.render('vwProduct/search_result');
+router.get('/', async function(req, res){
+    if(req.query.q === undefined ||
+        req.query.q.length === 0){
+            return res.status(404).send('Not Found');
+    }
+    const productsQuery = await productModel.search(req.query.q);
+    const products = [];
+    for(let i = 0; i < productsQuery.length; i++) {
+        const product = productsQuery[i].toObject();
+        product._id = product._id.toString();
+        productModel.delSalePercentAttr(product);
+        products.push(product);
+    }
+    let totalProducts = 0;
+    if(products.length !== 0){
+        totalProducts = await productModel.getTotalProductsSearch(req.query.q)
+    }
+    res.render('vwProduct/search_result', {
+        keyword: req.query.q,
+        products: products,
+        totalProducts: totalProducts
+    });
 });
 
 router.get('/management/add-product', async function(req, res) {
@@ -45,7 +61,6 @@ router.get('/search-autocomplete', async function(req, res) {
 
 router.get('/:id', async function(req, res) {
     const product = await productModel.findById(req.params.id);
-    console.log(product);
     if(product === null){
         res.status(404);
     }
@@ -59,10 +74,6 @@ router.get('/:id', async function(req, res) {
             categoryOfProduct: category.toObject(),
         });
     }
-});
-
-router.get('/list/:id', async function(req, res) {
-    res.render('vwProduct/search_result');
 });
 
 export default router;
