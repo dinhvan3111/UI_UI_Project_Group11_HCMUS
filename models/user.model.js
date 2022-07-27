@@ -3,7 +3,12 @@ import User from '../schema/usersSchema.js';
 import { PERMISSION_ENUM } from '../utils/database.js';
 import bcrypt from 'bcrypt';
 
+const SUCCESS_CODE = 0;
+const ERROR_CODE = -1;
+
 export default {
+    SUCCESS_CODE,
+    ERROR_CODE,
 
     async findById(id) {
         const userRet = await User.findById({ _id: id }).exec();
@@ -22,10 +27,29 @@ export default {
                 provider: provider,
                 id_permission: PERMISSION_ENUM.USER
             });
-            return this.add(user);
+            const newUser = await this.add(user);
+            if (newUser === null) {
+                return {
+                    code: ERROR_CODE,
+                    message: 'Đã xảy ra lỗi, vui lòng thử lại sau'
+                }
+            }
+            return {
+                code: SUCCESS_CODE,
+                data: user,
+            }
         }
         else {
-            return userInfo;
+            if (userInfo.provider !== provider) {
+                return {
+                    code: ERROR_CODE,
+                    message: `Email được liên kết với tài khoản ${provider} của bạn đã dùng để đăng nhập với một tài khoản đã có trong hệ thống. Vui lòng sử dụng tài khoản khác`,
+                }
+            }
+            return {
+                code: SUCCESS_CODE,
+                data: userInfo,
+            };
         }
     },
 

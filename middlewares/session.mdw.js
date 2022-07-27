@@ -15,12 +15,12 @@ async function findOrCreate(profile) {
 	const displayName = profile.displayName;
 	// console.log('session:')
 	// console.log(profile);
-	var username = null;
-	if (typeof (profile.usernames) !== 'undefined') {
-		username = profile.usernames[0].value;
+	var email = null;
+	if (typeof (profile.emails) !== 'undefined') {
+		email = profile.emails[0].value;
 	}
 	const info = await UserModel.findOrCreateByThirdPartyAcc(
-		idThirdPartyAcc, displayName, username, provider);
+		idThirdPartyAcc, displayName, email, provider);
 	return info;
 }
 
@@ -57,13 +57,14 @@ export default function (app) {
 		clientID: env.FB_APP_ID,
 		clientSecret: env.FB_SECRET,
 		callbackURL: env.FB_CALLBACK_URL,
-		profileFields: ['id', 'usernames', 'displayName']
+		profileFields: ['id', 'email', 'displayName']
 	},
 		async function (accessToken, refreshToken, profile, done) {
+			console.log(profile);
 			const info = await findOrCreate(profile);
 			console.log(info);
-			if (info === null) {
-				return done(null, false);
+			if (info.code === UserModel.ERROR_CODE) {
+				return done(null, false, { message: info.message })
 			}
 			return done(null, info);
 		}
@@ -77,8 +78,8 @@ export default function (app) {
 		async function (accessToken, refreshToken, profile, done) {
 			const info = await findOrCreate(profile);
 			console.log('info: ', info);
-			if (info === null) {
-				return done(null, false);
+			if (info.code === UserModel.ERROR_CODE) {
+				return done(null, false, { message: info.message })
 			}
 			return done(null, info);
 		}
