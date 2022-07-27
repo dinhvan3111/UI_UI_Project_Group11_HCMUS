@@ -18,15 +18,13 @@
                     Chọn danh mục
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="add-product-category">
-                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Laptop</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Màn hình</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Bàn phím</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Chuột</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Tai nghe</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Ghế Gaming</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> PC Gaming</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Thiết bị mạng</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Phụ kiện</a></li>
+                    {{#each lcCategories}}
+                    <li>
+                        <a href="#" onclick="return false;" class="dropdown-item">
+                            <i class="{{ico}}"></i> {{name}}
+                        </a>
+                    </li>
+                    {{/each}}
                 </ul>
             </div>
             {{!-- <select name="add-product-category" id="add-product-category">
@@ -85,3 +83,11 @@
 </div>
 </div>
 </div>
+
+{{#section 'js'}}
+<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.5/js/fileinput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.5/js/locales/vi.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.5/themes/fa/theme.min.js"></script>
+<script src="https://cdn.tiny.cloud/1/l7esw4pbq2603cjs4b89iyleorm9rhq01t2dhp5u88xtbwxk/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="/js/add_product.js"></script>
+{{/section}}

@@ -1,15 +1,15 @@
 import express from 'express';
 import env from '../utils/env.js';
 import bucket from '../models/firebase.model.js';
-import productModel from '../models/product.model.js';
+import ProductModel from '../models/product.model.js';
 import multer from 'multer';
 const upload = multer({
     storage: multer.memoryStorage(),
 });
 
 const cpUpload = upload.fields([
-    {name: 'thumb', maxCount: 1},
-    {name: 'imgs', maxCount: 5}
+    { name: 'thumb', maxCount: 1 },
+    { name: 'imgs', maxCount: 5 }
 ]);
 
 function onlyNumbers(str) {
@@ -18,34 +18,34 @@ function onlyNumbers(str) {
 
 const router = express.Router();
 
-router.post('/', cpUpload, async function(req, res) {
+router.post('/', cpUpload, async function (req, res) {
     // Thieu middleware check permission
-    if(!req.files || !req.files.thumb[0] || !req.files.thumb[0].mimetype.includes('image/')){
+    if (!req.files || !req.files.thumb[0] || !req.files.thumb[0].mimetype.includes('image/')) {
         res.status(400).send('Error: No thumb found');
     }
-    if(!req.files.thumb[0].size >= env.MAX_IMG_SIZE){
+    if (!req.files.thumb[0].size >= env.MAX_IMG_SIZE) {
         res.status(413).send('Error: Image too large');
     }
-    for(let i = 0; i < req.files.imgs.length; i++){
-        if(!req.files.imgs[i] || !req.files.imgs[i].mimetype.includes('image/')){
+    for (let i = 0; i < req.files.imgs.length; i++) {
+        if (!req.files.imgs[i] || !req.files.imgs[i].mimetype.includes('image/')) {
             res.status(400).send('Error: No imgs found');
         }
-        if(!req.files.imgs[i].size >= env.MAX_IMG_SIZE){
+        if (!req.files.imgs[i].size >= env.MAX_IMG_SIZE) {
             res.status(413).send('Error: Image too large');
         }
     }
-    if(!req.body.title || req.body.title.length === 0 || 
+    if (!req.body.title || req.body.title.length === 0 ||
         !req.body.description || req.body.description.length === 0 ||
-        !req.body.price || req.body.price <= 0 || 
-        !req.body.sale_price || req.body.sale_price <= 0 || 
+        !req.body.price || req.body.price <= 0 ||
+        !req.body.sale_price || req.body.sale_price <= 0 ||
         !req.body.stock || req.body.stock <= 0 ||
         !onlyNumbers(req.body.price) || !onlyNumbers(req.body.sale_price) || !onlyNumbers(req.body.stock) ||
         !req.body.id_category || req.body.id_category.length === 0
-        ){
-            res.status(400).send('Error: Invalid request');
+    ) {
+        res.status(400).send('Error: Invalid request');
     }
-    const isAdded = await productModel.add(req);
-    if(isAdded === null) {
+    const isAdded = await ProductModel.add(req);
+    if (isAdded === null) {
         res.status(500).send('Error: Please try again');
     }
     else {
@@ -70,16 +70,16 @@ router.post('/', cpUpload, async function(req, res) {
     // });
 
     // blobWriter.end(thumb.buffer);
-    
-    
-    
-    
+
+
+
+
 });
 
-router.get('/management', async function(req, res) {
-    const pagingRet = await productModel.getAll();
+router.get('/management', async function (req, res) {
+    const pagingRet = await ProductModel.getAll();
     const products = [];
-    for(let i = 0; i < pagingRet.docs.length; i++) {
+    for (let i = 0; i < pagingRet.docs.length; i++) {
         const product = {
             _id: pagingRet.docs[i]._id.toString(),
             thumb: pagingRet.docs[i].thumb,
@@ -90,10 +90,16 @@ router.get('/management', async function(req, res) {
         };
         products.push(product);
     }
-    res.render('vwProduct/management',{
+    res.render('vwProduct/management', {
         products: products,
         totalProducts: pagingRet.totalDocs,
         curPage: pagingRet.page
+    });
+});
+
+router.get('/management/add-product', async function (req, res) {
+    res.render('vwProduct/add_product', {
+        layout: 'main.hbs',
     });
 });
 
