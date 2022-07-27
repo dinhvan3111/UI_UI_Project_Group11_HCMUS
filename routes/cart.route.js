@@ -5,15 +5,15 @@ import productModel from '../models/product.model.js';
 const FREE_SHIP_AMMOUNT = 500000;
 const router = express.Router();
 
-router.get('/cart', async function(req,res){
-    if(req.session.passport === undefined){
+router.get('/cart', async function (req, res) {
+    if (req.session.passport === undefined) {
         return res.redirect('/login');
     }
     const cart = await cartModel.findById(req.session.passport.user._id);
     const products = [];
     let totalPrice = 0;
     let cartRet = {};
-    if(cart !== null){
+    if (cart !== null) {
         for (let i = 0; i < cart.products.length; i++) {
             const product = await productModel.findById(cart.products[i]._id);
             const productTemp = product.toObject();
@@ -25,11 +25,11 @@ router.get('/cart', async function(req,res){
         cartRet = cart.toObject();
 
     }
-    
+
     cartRet.products = products;
     cartRet.totalPrice = totalPrice;
     let shipPrice = 0;
-    if(cartRet.totalPrice < FREE_SHIP_AMMOUNT && totalPrice > 0){
+    if (cartRet.totalPrice < FREE_SHIP_AMMOUNT && totalPrice > 0) {
         shipPrice = 30000;
     }
     cartRet.finalPrice = cartRet.totalPrice + shipPrice;
@@ -39,7 +39,7 @@ router.get('/cart', async function(req,res){
     });
 });
 
-router.get('/purchased-history', function(req,res){
+router.get('/purchased-history', function (req, res) {
     res.render('vwCart/purchase_history');
 })
 

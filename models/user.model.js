@@ -4,15 +4,16 @@ import { PERMISSION_ENUM } from '../utils/database.js';
 import bcrypt from 'bcrypt';
 
 export default {
+
     async findById(id) {
-        const userRet = await User.findById({_id: id}).exec();
+        const userRet = await User.findById({ _id: id }).exec();
         // console.log(userRet);
         return userRet;
     },
 
     async findOrCreateByThirdPartyAcc(idThirdPartyAcc, displayName, email, provider) {
         const userInfo = await this.findById(email);
-        if(userInfo === null){
+        if (userInfo === null) {
             const user = new User({
                 name: displayName,
                 _id: email,
@@ -28,12 +29,12 @@ export default {
         }
     },
 
-    async add(user){
-        try{
+    async add(user) {
+        try {
             const ret = await user.save();
             return ret;
         }
-        catch(err) {
+        catch (err) {
             console.log(err.code);
         }
         return null;
@@ -43,12 +44,20 @@ export default {
         const hashedPwd = bcrypt.hashSync(reqBody.password, 10);;
         const user = new User({
             name: reqBody.fullname,
-            _id: reqBody.username,
+            _id: reqBody.email,
             password: hashedPwd,
             addr: reqBody.address,
             provider: null,
             id_permission: PERMISSION_ENUM.USER
         });
         return await this.add(user);
+    },
+
+    async checkLogin(email, password) {
+        const user = await this.findById(email);
+        if (user !== null && user.password !== null && bcrypt.compareSync(password, user.password)) {
+            return user;
+        }
+        return null;
     },
 }

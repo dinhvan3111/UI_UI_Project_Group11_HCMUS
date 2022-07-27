@@ -17,8 +17,8 @@
     <h1>Đăng nhập</h1>
     <form action="/login" method="post">
         <div class="form-group">
-            <input type="text" name="username" placeholder="Username" {{#if username}}
-                value="{{username}}"
+            <input type="text" name="username" placeholder="Email" {{#if email}}
+                value="{{email}}"
             {{/if}} autofocus >
             <span class="input-icon"><i class="fa fa-user"></i></span>
         </div>
@@ -54,7 +54,7 @@
             </div>
         {{/if}}
 
-        <button class="login-btn">Đăng nhập</button>
+        <button type="submit" class="login-btn">Đăng nhập</button>
 
         <a class="reset-psw" href="/forgot-password">Quên mật khẩu?</a>
         <div class="seperator" ><b style="color: #666666;">hoặc</b></div>
