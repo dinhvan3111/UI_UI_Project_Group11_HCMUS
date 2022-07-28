@@ -160,6 +160,7 @@
     /* border: 0.1rem solid var(--back-color); */
     background-color: var(--back-color);
     border-radius: 0.5rem 0.5rem 0 0.5rem;
+    height: 3.6rem;
 }
 
 .nav-item.product-detail-nav-item{
@@ -170,6 +171,7 @@
     background-color: var(--back-color);
     color: white;
     border-radius: 0.5rem 0.5rem 0rem 0rem;
+    height: 3.6rem;
 }
 .row.product-detail-nav-container .product-detail-nav-content{
     /* border-bottom: 0.1rem solid var(--back-color);

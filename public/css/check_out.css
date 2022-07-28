@@ -194,7 +194,8 @@
     margin-left: 1rem;
 }
 
-.product-info .product-info-text span,a{
+.product-info .product-info-text span,
+.product-info .product-info-text a{
     margin-bottom: 0.5rem;
     display: block;
 }

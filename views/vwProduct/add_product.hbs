@@ -1,7 +1,7 @@
 {{#section 'title'}}
 <title>Thêm sản phẩm - BestGear</title>
 {{/section}}
-<form id="addProductForm" method="post" action="/products/management/add-product" enctype="multipart/form-data">
+<form id="addProductForm" method="post" action="/products" enctype="multipart/form-data">
     <div class="add-product container">
         <h1 class="title">
             THÊM SẢN PHẨM
@@ -9,7 +9,7 @@
         <div class="name-category-product">
             <div class="name">
                 <label for="add-product-name">Tên sản phẩm</label>
-                <input type="text" id="add-product-name" name="name" placeholder="Nhập tên sản phẩm..." required>
+                <input type="text" id="title" name="title" placeholder="Nhập tên sản phẩm..." required>
             </div>
             <div class="category">
                 <label for="add-product-category">Danh mục</label>
@@ -18,12 +18,13 @@
                         id="add-product-category" data-bs-toggle="dropdown" aria-expanded="false">
                         Chọn danh mục
                     </button>
-                    <input type="hidden" name="category" id="add_category" value="null">
+                    <input type="hidden" name="id_category" id="id_category" value="null">
                     <ul class="dropdown-menu" aria-labelledby="add-product-category">
                         {{#each lcCategories}}
                         <li>
                             <a href="#" onclick="return false;" class="dropdown-item">
                                 <i class="{{ico}}"></i> {{name}}
+                                <p style="display: none;" >{{id}}</p>
                             </a>
                         </li>
                         {{/each}}
@@ -44,35 +45,36 @@
         </div>
         <div class="add-price">
             <div class="real-price price-item">
-                <label for="add-real-price">Giá gốc</label>
-                <input type="text"data-type="currency" id="add-real-price" name="real_price" placeholder="Nhập giá gốc..." required>
+                <label for="price">Giá gốc</label>
+                <input type="text"data-type="currency" id="price" name="price" placeholder="Nhập giá gốc..." required>
             </div>
             <div class="discount-price price-item">
-                <label for="add-discount-price">Giá khuyến mại</label>
-                <input type="text"data-type="currency" id="add-discount-price" name="discount_price" placeholder="Nhập giá khuyến mại..."
+                <label for="sale_price">Giá khuyến mại</label>
+                <input type="text"data-type="currency" id="sale_price" name="sale_price" placeholder="Nhập giá khuyến mại..."
                     required>
             </div>
             <div class="inventory price-item">
-                <label for="add-inventory">Tồn kho</label>
-                <input type="text" id="add-inventory" placeholder="Nhập số lượng tồn kho..." name="add_inventory" required>
+                <label for="stock">Tồn kho</label>
+                <input type="text" id="stock" placeholder="Nhập số lượng tồn kho..." name="stock" required>
             </div>
+            <p class="overload-price">Giá khuyến mãi phải nhỏ hơn giá gốc</p>
     
         </div>
         <div class="product-image">
             <div class="thumbnail-product">
                 <label class="font-bold" for="imgThumbnail">Thumbnail sản phẩm</label>
-                <input id="imgThumbnail" name="imgThumbnail" type="file" class="file" accept="image/*">
+                <input id="imgThumbnail" name="thumb" type="file" class="file" accept="image/*">
                 <p id="dangerThumb" style="color: red"></p>
             </div>
             <div class="sub-img-product">
                 <label class="font-bold mt-3" for="imgsExta">Hình ảnh phụ</label>
-                <input id="imgsExta" name="imgsExta" type="file" class="file"  accept="image/*" multiple>
+                <input id="imgsExta" name="imgs" type="file" class="file"  accept="image/*" multiple>
                 <p id="dangerExtra" style="color: red"></p>
             </div>
         </div>
         <div class="product-insurance">
             <label class="font-bold" for="textInsurance">Chính sách bảo hành</label>
-            <textarea id="insurance" name="insurance" class="tiny_mce_insurance"></textarea>
+            <textarea id="insurance" name="waranty" class="tiny_mce_insurance"></textarea>
         </div>
         <div class="product-desc">
             <label class="font-bold" for="textDescription">Mô tả chi tiết</label>

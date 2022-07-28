@@ -10,7 +10,7 @@ export default function(app){
 	    limit: '25mb'
 	}));
 	app.use(express.json({
-	  type: "*/*",
+	  type: "application/json",
 	  limit: '25mb'
 	}));
 	app.engine('hbs', engine({

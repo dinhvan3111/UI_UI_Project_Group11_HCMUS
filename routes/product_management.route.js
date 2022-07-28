@@ -20,19 +20,24 @@ function onlyNumbers(str) {
 const router = express.Router();
 
 router.post('/', cpUpload, async function (req, res) {
+    console.log(req.body);
     // Thieu middleware check permission
     if (!req.files || !req.files.thumb[0] || !req.files.thumb[0].mimetype.includes('image/')) {
         res.status(400).send('Error: No thumb found');
+        return;
     }
     if (!req.files.thumb[0].size >= env.MAX_IMG_SIZE) {
         res.status(413).send('Error: Image too large');
+        return;
     }
     for (let i = 0; i < req.files.imgs.length; i++) {
         if (!req.files.imgs[i] || !req.files.imgs[i].mimetype.includes('image/')) {
             res.status(400).send('Error: No imgs found');
+            return;
         }
         if (!req.files.imgs[i].size >= env.MAX_IMG_SIZE) {
             res.status(413).send('Error: Image too large');
+            return;
         }
     }
     if (!req.body.title || req.body.title.length === 0 ||
@@ -44,13 +49,16 @@ router.post('/', cpUpload, async function (req, res) {
         !req.body.id_category || req.body.id_category.length === 0
     ) {
         res.status(400).send('Error: Invalid request');
+        return;
     }
     const isAdded = await ProductModel.add(req);
     if (isAdded === null) {
         res.status(500).send('Error: Please try again');
+        return;
     }
     else {
         res.status(200).send('Success' + isAdded);
+        
     }
     // const path = getNewObjectId().toString() + '/thumb/' + thumb.originalname;
     // const blob = bucket.file(path);
@@ -104,8 +112,8 @@ router.get('/management/add-product', async function (req, res) {
     });
 });
 
-router.post('/management/add-product', async function (req, res){
-    console.log(JSON.stringify(req.body));
+router.post('/management/add-product', cpUpload, async function (req, res){
+    console.log(req.body);
     res.render('vwProduct/add_product', {
         layout: 'main.hbs',
     });

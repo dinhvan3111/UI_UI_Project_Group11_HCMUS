@@ -1079,6 +1079,7 @@ footer .footer-copyright a:hover{
 }
 .ui-menu .ui-menu-item-wrapper{
     padding: 1rem!important;
+    gap: 1rem;
 }
 .ui-menu .ui-menu-item-wrapper:hover{
     cursor: pointer;

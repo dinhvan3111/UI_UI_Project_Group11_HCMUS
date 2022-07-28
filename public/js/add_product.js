@@ -54,11 +54,12 @@ tinymce.init({
 
 //gán dữ liệu từ dropdown
 const btnDropdown = document.querySelector('.name-category-product');
-const inputCat = btnDropdown.querySelector("#add_category");
+const inputCat = btnDropdown.querySelector("#id_category");
 const itemCat = btnDropdown.querySelectorAll('.dropdown-item');
 itemCat.forEach(item => {
 	item.addEventListener('click', () => {
-		inputCat.value = item.innerText;
+		let id = item.querySelector('p').innerText;
+		inputCat.value = id;
 	});
 });
 
@@ -68,7 +69,22 @@ $('#addProductForm').on('submit', function (e) {
 	
 	var numFilesThumb = $('#imgThumbnail')[0].files.length;
 	var numFilesExtra = $('#imgsExta')[0].files.length;
+	var realPrice = document.getElementById('price');
+	var salePrice = document.getElementById('sale_price');
+
+	//parse the price before post
+	realPrice.value = realPrice.value.replace(/[^0-9]/g, '');
+	salePrice.value = salePrice.value.replace(/[^0-9]/g, '');
 	
+	if(realPrice.value * 1 < salePrice.value * 1) {
+		let msg = document.querySelector('.overload-price');
+		msg.style.display = 'block';
+	}
+	else{
+		let msg = document.querySelector('.overload-price');
+		msg.style.display = 'none';
+	}
+
 	if(numFilesThumb === 0){
 		$('#dangerThumb').html('Chưa có hình ảnh thumbnail cho sản phẩm!');
 		e.preventDefault();
@@ -90,8 +106,6 @@ $('#addProductForm').on('submit', function (e) {
 	else{
 		$('#dangerExtra').html('');
 	}
-	$(this) = JSON.stringify($(this).serialize())
-		alert(this);
 	$('#addProductForm').off('submit').submit();
 });
 
@@ -135,5 +149,14 @@ function formatCurrency(input) {
   caret_pos = updated_len - original_len + caret_pos;
   input[0].setSelectionRange(caret_pos, caret_pos);
 }
+
+
+//chỉ nhập số ở stock
+$(document).ready(function(){
+    $('#stock').keypress(function( e ) {
+        if(e.which === 32 || ( e.which<48 || e.which>57)) 
+            return false;
+    });
+})
 
 

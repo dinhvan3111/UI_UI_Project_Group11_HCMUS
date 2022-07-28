@@ -10,6 +10,7 @@ export default function (app) {
         for (let i = 0; i < categories.length; i++) {
             categoriesRes.push({
                 name: categories[i].name,
+                id: categories[i].id,
                 ico: categories[i].ico
             });
         }
