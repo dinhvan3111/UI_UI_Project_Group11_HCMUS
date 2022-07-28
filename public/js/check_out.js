@@ -2,7 +2,7 @@ const paymentForm = document.querySelector('#payment-form');
 const payBtn = document.querySelector('.checkout-container .pay-button');
 const productCheckOutBody = document.querySelector('.products-checkout-body');
 const paymentMethodItems = document.querySelectorAll('.payment-method ul .payment-method-item');
-const navigationTabs = document.querySelectorAll('.receive-address .navigation-tab')
+const navigationTabs = document.querySelectorAll('.receive-address .navigation-tab');
 
 //Min max là số kí tự tối thiểu và tối đa của họ và tên
 let min = 6;
@@ -143,5 +143,16 @@ payBtn.addEventListener('click', function (e) {
     }
 });
 
+// Datetimepicer
+
+jQuery('#datetimepicker').datetimepicker();
+
+$('#datetimepicker').datetimepicker({
+    format: 'd.m.Y H:i',
+    minDate: 0,
+    minTime: 1,
+    format: 'd/m/Y H:i',
+    mask: true,
+});
 
 

@@ -67,16 +67,18 @@
                             <h4>Chọn cửa hàng *</h4>
                             <div class="select-wrapper">
                                 <select class="best-gear-select" id="stores" name="store" required>
-                                <option value="" disabled selected>Chọn cửa hàng</option>
-                                <option value="hcm">227 Nguyễn Văn Cừ, phường 4, quận 5, TP.HCM fdwq eqwe qưe qư</option>
-                                <option value="hn">Hà Nội</option>
-                            </select>
+                                    <option value="" disabled selected>Chọn cửa hàng</option>
+                                    <option value="hcm">227 Nguyễn Văn Cừ, phường 4, quận 5, TP.HCM fdwq eqwe qưe qư
+                                    </option>
+                                    <option value="hn">Hà Nội</option>
+                                </select>
                             </div>
                         </div>
                         <div class="err-message err-message__store">Vui lòng chọn cửa hàng</div>
                         <div class="infor-field">
                             <h4>Ngày nhận hàng *</h4>
-                            <input type="text" name="addres" placeholder="Nhập địa chỉ muốn nhận hàng">
+                            <input id="datetimepicker" type="text" name="addres"
+                                placeholder="Nhập địa chỉ muốn nhận hàng">
                         </div>
                         <div class="err-message err-message__store">Vui lòng chọn ngày nhận hàng</div>
                     </div>
@@ -197,5 +199,9 @@
 
 
 {{#section 'js'}}
+<link rel="stylesheet" type="text/css" href="/jquery.datetimepicker.css" />
 <script src="/js/check_out.js"></script>
+<script src="/build/jquery.datetimepicker.full.min.js"></script>
+
+
 {{/section}}

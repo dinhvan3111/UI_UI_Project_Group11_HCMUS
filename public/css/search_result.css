@@ -27,6 +27,9 @@
 }
 
 .sort-container .sort-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
     padding: 1rem;
     border: 1px solid lightgray;
@@ -173,7 +176,7 @@
 
     .sort-container .sort-item{
         padding: 1rem;
-        width: 40%;
+        width: 45%;
     }
 
     .sort-container .sort-choice{

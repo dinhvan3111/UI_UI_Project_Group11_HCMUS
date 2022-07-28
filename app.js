@@ -39,13 +39,13 @@ const server = app.listen(port, function () {
 // WebSocket(server);
 
 
-setInterval(function () {
-    const jsonResp = {
-        total: 10,
-        id: '111111',
-        description: 'This is a test notification',
-    }
-    console.log('do notify');
-    broadcastNotify(JSON.stringify(jsonResp));
-}, 10 * 1000);
+// setInterval(function () {
+//     const jsonResp = {
+//         total: 10,
+//         id: '111111',
+//         description: 'This is a test notification',
+//     }
+//     console.log('do notify');
+//     broadcastNotify(JSON.stringify(jsonResp));
+// }, 10 * 1000);
 
