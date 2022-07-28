@@ -6,17 +6,18 @@ import productModel from '../models/product.model.js';
 import paymentRoute from '../routes/payment.route.js';
 import categoryRoute from '../routes/category.route.js';
 import orderManagementRoute from '../routes/order_management.route.js';
+import notiRoute from '../routes/notification.route.js';
 
 import apiCart from '../apis/cart.api.js';
 import apiAuth from '../apis/auth.api.js';
 
-export default function(app){
+export default function (app) {
 
-	app.post('/logout', async function(req, res){
-		if(typeof(req.session.passport) !== 'undefined'){
-	      	// delete req.session.idAcc;
-			await req.logout(function(err) {
-				if (err) { 
+	app.post('/logout', async function (req, res) {
+		if (typeof (req.session.passport) !== 'undefined') {
+			// delete req.session.idAcc;
+			await req.logout(function (err) {
+				if (err) {
 					return res.json({
 						code: 400,
 						status: 'Bad Request',
@@ -30,11 +31,11 @@ export default function(app){
 				});
 			});
 			// const url = req.headers.referer || '/';
-	    }
-	    
+		}
+
 	});
 
-    app.use('/', authRoute);
+	app.use('/', authRoute);
 	app.use('/', cartRoute);
 	app.use('/', paymentRoute);
 	app.use('/products', productManagementRoute);
@@ -45,7 +46,9 @@ export default function(app){
 	app.use('/api/cart', apiCart);
 	app.use('/api/auth', apiAuth);
 
-	app.get('/', async function(req, res) {
+	notiRoute(app);
+
+	app.get('/', async function (req, res) {
 		const topNew = await productModel.getTopNew(0, 6);
 		const topDiscount = await productModel.getTopDiscount(0, 6);
 		const topSell = await productModel.getTopSell(0, 4);
@@ -53,8 +56,8 @@ export default function(app){
 		const topDiscountTmp = [];
 		const topSellTmp = [];
 
-		for(let i = 0; i < topNew.length; i++){
-			if(topSell[i] !== undefined){
+		for (let i = 0; i < topNew.length; i++) {
+			if (topSell[i] !== undefined) {
 				const productInTopSell = topSell[i].toObject();
 				productInTopSell._id = topSell[i]._id.toString();
 				productInTopSell.id_category = topSell[i].id_category.toString();

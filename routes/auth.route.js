@@ -77,6 +77,7 @@ router.post('/auth/facebook', function (req, res, next) {
 router.get('/auth/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/login', failureMessage: true }),
     function (req, res) {
+        delete req.session.passport.user.password;
         if (typeof (req.session.idAcc) !== 'undefined') {
             delete req.session.idAcc;
         }
@@ -100,6 +101,7 @@ router.post('/auth/google', function (req, res, next) {
 router.get('/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/login', failureMessage: true }),
     function (req, res) {
+        delete req.session.passport.user.password;
         if (typeof (req.session.idAcc) !== 'undefined') {
             delete req.session.idAcc;
         }

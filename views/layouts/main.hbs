@@ -327,5 +327,23 @@
 <script src="/js/jqpaginator.js"></script>
 <script src="/js/scripts.js"></script>
 
+{{#if lcAuthUser}}
+<script>
+    // ws
+    let HOST = location.origin.replace(/^http/, 'ws');
+    console.log(HOST);
+    let ws = new WebSocket(HOST + '/ws');
+
+    ws.onopen = function () {
+        // ws.send("{\"num\": 1}");
+    }
+
+    ws.onmessage = function (event) {
+        console.log(event.data);
+        alert(JSON.parse(event.data).description);
+    }
+</script>
+{{/if}}
+
 {{{_sections.js}}}
 </html>

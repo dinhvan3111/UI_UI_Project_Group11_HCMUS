@@ -29,11 +29,12 @@ export default function (app) {
 	app.use(session({
 		secret: env.SECRET_APP,
 		resave: false,
-		saveUninitialized: true,
+		saveUninitialized: false,
 		store: MongoStore.create({
 			mongoUrl: connectionInfo.connectionUrl,
 			ttl: 14 * 24 * 60 * 60, // = 14 days. Default
-			autoRemove: 'native', // Default
+			autoRemove: 'native', // Default,
+			touchAfter: 24 * 3600 // time period in seconds
 		}),
 		proxy: true,
 		// Enable cookie secure = true when deploy
