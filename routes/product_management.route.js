@@ -7,6 +7,7 @@ const upload = multer({
     storage: multer.memoryStorage(),
 });
 
+
 const cpUpload = upload.fields([
     { name: 'thumb', maxCount: 1 },
     { name: 'imgs', maxCount: 5 }
@@ -98,6 +99,13 @@ router.get('/management', async function (req, res) {
 });
 
 router.get('/management/add-product', async function (req, res) {
+    res.render('vwProduct/add_product', {
+        layout: 'main.hbs',
+    });
+});
+
+router.post('/management/add-product', async function (req, res){
+    console.log(JSON.stringify(req.body));
     res.render('vwProduct/add_product', {
         layout: 'main.hbs',
     });
