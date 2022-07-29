@@ -194,6 +194,27 @@ table th:last-child{
         margin-left: 0rem;
     }
 }
+
+.empty-cart{
+    text-align: center;
+}
+
+.empty-cart-image{
+    display: flex;
+    justify-content: center;
+}
+
+.empty-cart .empty-cart-image img{
+    width: 30rem;
+    height: 30rem; 
+    align-items: center;
+}
+
+.empty-cart .buy-now{
+    margin-top: 2rem;
+}
+
+
 /*--------------------Cart Section end here--------------------*/
 
 /*--------------------Footer--------------------*/

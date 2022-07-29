@@ -76,6 +76,17 @@ select {
     border: none;
 }
 
+.bestgear-button{
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--back-color);
+    color: var(--main-color);
+}
+
+.bestgear-button:hover{
+    background-color: var(--hover-color);
+}
+
 /* HEADER */
 .header {
     border-bottom: 1px solid #dadaef;
