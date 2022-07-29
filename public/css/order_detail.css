@@ -1,0 +1,55 @@
+.order-detail-container .order-detail-form {
+    border-radius: var(--border-radius);
+    border: 0.1rem solid var(--back-color);
+    width: 90%;
+    font-size: 2rem;
+}
+
+.order-detail-container #username,
+.order-detail-container .order-title {
+    color: var(--back-color);
+}
+
+.order-detail-container .card-footer {
+    background-color: var(--back-color);
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+}
+
+.order-detail-form .progress {
+    height: 1.5rem;
+    border-radius: var(--border-radius);
+}
+
+.order-detail-form .progress .progress-bar {
+    width: 25%;
+    background-color: var(--back-color);
+}
+
+.order-detail-form hr {
+    background-color: #e0e0e0;
+    opacity: 1;
+}
+
+.order-detail-form .order-state {
+    font-size: 1.8rem;
+}
+
+.order-state .state-title {
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.order-detail-form .payment-detail {
+    margin-bottom: 3rem;
+}
+
+.order-detail-form .payment-detail p {
+    margin-bottom: 1rem;
+}
+
+.order-detail-form .payment-detail .price-info {
+    text-align: end;
+    display: flex;
+    justify-content: flex-end;
+}
