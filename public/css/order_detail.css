@@ -53,3 +53,25 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.order-detail-form .payment-detail .order-detail {
+    text-align: start;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.order-detail-item {
+    max-height: 42.8rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* Responsive */
+@media(max-width: 770px) {
+
+    .order-detail-form .payment-detail .price-info,
+    .order-detail-form .payment-detail .order-detail {
+        text-align: start;
+        justify-content: center;
+    }
+}

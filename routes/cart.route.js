@@ -5,6 +5,10 @@ import productModel from '../models/product.model.js';
 const FREE_SHIP_AMMOUNT = 500000;
 const router = express.Router();
 
+router.get('/order/detail', async function(req, res) {
+    res.render('vwOrder/order_detail');
+});
+
 router.get('/cart', async function (req, res) {
     if (req.session.passport === undefined) {
         return res.redirect('/login');
