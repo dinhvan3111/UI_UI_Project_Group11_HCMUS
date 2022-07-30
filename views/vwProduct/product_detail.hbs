@@ -9,15 +9,17 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/"><i class="fa-solid fa-house"></i></a></li>
             <li class="breadcrumb-item"><a href="/products">Sản phẩm</a></li>
-            <li class="breadcrumb-item"><a href="/categories/{{categoryOfProduct._id}}">{{categoryOfProduct.name}}</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a href="/products/{{product._id}}">{{product.title}}</a>
+            <li class="breadcrumb-item"><a href="/categories/{{categoryOfProduct._id}}">{{categoryOfProduct.name}}</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page"><a
+                    href="/products/{{product._id}}">{{product.title}}</a>
             </li>
         </ol>
     </nav>
     <div class="container product-detail-image-container">
         <div class="row d-flex justify-content-center">
             <div class="card">
-                <div class="row mb-5">
+                <div class="row mb-5 product-detail-content">
                     {{!-- Image --}}
                     <div class="col-md-6">
                         <div id="sync1" class="owl-carousel owl-theme carousel-images">
@@ -27,8 +29,8 @@
                             </div>
                             {{/each}}
                         </div>
-    
-                        <div id="sync2" class="d-flex justify-content-center owl-carousel owl-theme">
+
+                        <div id="sync2" class="d-flex owl-carousel owl-theme">
                             {{#each product.imgs}}
                             <div class="thumbnail">
                                 <img class="main-img" src="{{getImgLink this}}">
@@ -38,123 +40,126 @@
                     </div>
                     {{!-- Product info --}}
                     <div class="col-md-6 product-detail-description-container">
-    
-                            <div >
-                                <div class="product-info-group">
-                                    {{!-- Title --}}
-                                    <h1 class="product-detail-title">{{product.title}}</h1>
-                                    {{!-- Description --}}
-                                    {{!-- <div class="product-detail-desription">
-                                        {{product.description}}
-                                    </div> --}}
-                                    {{!-- Price info --}}
-                                    <div class="product-price-container">
-                                        <div class="star">
-                                            <div class="star--item"><i class="fa-solid fa-star"></i></div>
-                                            <div class="star--item"><i class="fa-solid fa-star"></i></div>
-                                            <div class="star--item"><i class="fa-solid fa-star"></i></div>
-                                            <div class="star--item"><i class="fa-solid fa-star"></i></div>
-                                            <div class="star--item"><i class="fa-solid fa-star"></i></div>
-                                        </div>
-                                        <div class="product-price">
-                                            <p class="product-sale-price">
-                                                {{format_number product.sale_price}}đ
-                                            </p>
-                                            <p class="product-real-price">
-                                                {{format_number product.price}}đ
-                                            </p>
-                                            <p class="discount">
-                                                {{product.percentSale}}%
-                                            </p>
-                                        </div>
-    
-                                        {{!-- <div>
-                                            <h4 class="price-text">Trong kho:</h4>
-                                            <span style="color: green;">{{product.stock}}</span>
-                                        </div> --}}
-                                        <input type="hidden" id="stock" name="stock" value="{{product.stock}}">
-                                        <div class="product-quantity">
-                                            {{!-- <h4 class="price-text">Số lượng</h4>
-                                            <span>
-                                                <input type="number" id="quantity" name="quantity" value="1" class="qty"
-                                                    min="1">
-                                            </span> --}}
-                                            <p>Số lượng</p>
-                                            <div class="quantity-group btn-group">
-												<button type="button" class="btn btn-number btn-number-sub" data-type="minus"><i class="fa-solid fa-minus"></i></button>
-												<input type="text" class="input-number text-center" id="quantity" value="1" name="quantity" min="1" max="100" pattern="[0-9]*">
-												<button type="button" class="btn btn-number btn-number-plus" data-type="plus"><i class="fa-solid fa-plus"></i></button>
-											</div>
-                                        </div>
-    
-                                    </div>
-                                    {{!-- Button --}}
-                                    <div class="cart product-action-container">
-                                        {{#if lcAuthUser}}
-                                         <button data-bs-toggle="modal" data-bs-target="#addToCartModal" class="btn-add-to-cart" onclick="addToCart('{{product._id}}')">
-                                            <i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng
-                                        </button>
-                                        <button class="btn-favortie">
-                                            <i class="fa-brands fa-gratipay"></i> Yêu thích
-                                        </button>
-                                       
-                                        {{else}}
-                                        
-                                        <a href="/login">
-                                            <button class="btn-add-to-cart">
-                                                <i class="fa-solid fa-cart-plus"></i> Đăng nhập để mua hàng
-                                            </button>
-                                        </a>
-                                        <a href="/login">
-                                            <button class="btn-favortie">
-                                                <i class="fa-brands fa-gratipay"></i> Đăng nhập để yêu
-                                                thích
-                                            </button>
-                                        </a>
-                                        {{/if}}
+
+
+                        <div class="product-info-group">
+                            {{!-- Title --}}
+                            <h1 class="product-detail-title">{{product.title}}</h1>
+                            {{!-- Description --}}
+                            {{!-- <div class="product-detail-desription">
+                                {{product.description}}
+                            </div> --}}
+                            {{!-- Price info --}}
+                            <div class="product-price-container">
+                                <div class="star">
+                                    <div class="star--item"><i class="fa-solid fa-star"></i></div>
+                                    <div class="star--item"><i class="fa-solid fa-star"></i></div>
+                                    <div class="star--item"><i class="fa-solid fa-star"></i></div>
+                                    <div class="star--item"><i class="fa-solid fa-star"></i></div>
+                                    <div class="star--item"><i class="fa-solid fa-star"></i></div>
+                                </div>
+                                <div class="product-price">
+                                    <p class="product-sale-price">
+                                        {{format_number product.sale_price}}đ
+                                    </p>
+
+                                    <p class="discount">
+                                        {{product.percentSale}}%
+                                    </p>
+                                </div>
+                                <p class="product-real-price">
+                                    {{format_number product.price}}đ
+                                </p>
+                                {{!-- <div>
+                                    <h4 class="price-text">Trong kho:</h4>
+                                    <span style="color: green;">{{product.stock}}</span>
+                                </div> --}}
+                                <input type="hidden" id="stock" name="stock" value="{{product.stock}}">
+                                <div class="product-quantity">
+                                    {{!-- <h4 class="price-text">Số lượng</h4>
+                                    <span>
+                                        <input type="number" id="quantity" name="quantity" value="1" class="qty"
+                                            min="1">
+                                    </span> --}}
+                                    <p>Số lượng</p>
+                                    <div class="quantity-group btn-group">
+                                        <button type="button" class="btn btn-number btn-number-sub" data-type="minus"><i
+                                                class="fa-solid fa-minus"></i></button>
+                                        <input type="text" class="input-number text-center" id="quantity" value="1"
+                                            name="quantity" min="1" max="100" pattern="[0-9]*">
+                                        <button type="button" class="btn btn-number btn-number-plus" data-type="plus"><i
+                                                class="fa-solid fa-plus"></i></button>
                                     </div>
                                 </div>
-    
-                                <!-- Sale Policy -->
-                                <div class="product-detail-sale-policy">
-                                    <h3>Chính sách bán hàng</h3>
-                                    <div>
-                                        <ul>
-                                            <li class="sale-policy-item">
-                                                <i class="fa-solid fa-truck-fast"></i>
-                                                <span>Miễn phí giao hàng cho đơn hàng từ 800.000đ</span>
-                                            </li>
-                                            <li class="sale-policy-item">
-                                                <i class="fa-solid fa-badge-check"></i>
-                                                <span>Cam kết hàng chính hãng 100%</span>
-                                            </li>
-                                            <li class="sale-policy-item">
-                                                <i class="fa-solid fa-rotate"></i>
-                                                <span>Đổi trả trong vòng 10 ngày</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <h3>Dịch vụ khác</h3>
-                                    <div>
-                                        <ul>
-                                            <li class="sale-policy-item">
-                                                <i class="fa-solid fa-gear"></i>
-                                                <span>Sửa chữa đồng giá 150.000đ</span>
-                                            </li>
-                                            <li class="sale-policy-item">
-                                                <i class="fa-solid fa-display"></i>
-                                                <span>Vệ sinh máy tính, laptop</span>
-                                            </li>
-                                            <li class="sale-policy-item">
-                                                <i class="fa-solid fa-shield-check"></i>
-                                                <span>Bảo hành tại nhà</span>
-                                            </li>
-    
-                                        </ul>
-                                    </div>
-                                </div>
+
                             </div>
-    
+                            {{!-- Button --}}
+                            <div class="cart product-action-container">
+                                {{#if lcAuthUser}}
+                                <button data-bs-toggle="modal" data-bs-target="#addToCartModal" class="btn-add-to-cart"
+                                    onclick="addToCart('{{product._id}}')">
+                                    <i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ hàng
+                                </button>
+                                <button class="btn-favortie">
+                                    <i class="fa-brands fa-gratipay"></i> Yêu thích
+                                </button>
+
+                                {{else}}
+
+                                <a href="/login">
+                                    <button class="btn-add-to-cart">
+                                        <i class="fa-solid fa-cart-plus"></i> Đăng nhập để mua hàng
+                                    </button>
+                                </a>
+                                <a href="/login">
+                                    <button class="btn-favortie">
+                                        <i class="fa-brands fa-gratipay"></i> Đăng nhập để yêu
+                                        thích
+                                    </button>
+                                </a>
+                                {{/if}}
+                            </div>
+                        </div>
+
+                        <!-- Sale Policy -->
+                        <div class="product-detail-sale-policy">
+                            <h3>Chính sách bán hàng</h3>
+                            <div>
+                                <ul>
+                                    <li class="sale-policy-item">
+                                        <i class="fa-solid fa-truck-fast"></i>
+                                        <span>Miễn phí giao hàng cho đơn hàng từ 800.000đ</span>
+                                    </li>
+                                    <li class="sale-policy-item">
+                                        <i class="fa-solid fa-badge-check"></i>
+                                        <span>Cam kết hàng chính hãng 100%</span>
+                                    </li>
+                                    <li class="sale-policy-item">
+                                        <i class="fa-solid fa-rotate"></i>
+                                        <span>Đổi trả trong vòng 10 ngày</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <h3>Dịch vụ khác</h3>
+                            <div>
+                                <ul>
+                                    <li class="sale-policy-item">
+                                        <i class="fa-solid fa-gear"></i>
+                                        <span>Sửa chữa đồng giá 150.000đ</span>
+                                    </li>
+                                    <li class="sale-policy-item">
+                                        <i class="fa-solid fa-display"></i>
+                                        <span>Vệ sinh máy tính, laptop</span>
+                                    </li>
+                                    <li class="sale-policy-item">
+                                        <i class="fa-solid fa-shield-check"></i>
+                                        <span>Bảo hành tại nhà</span>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -167,8 +172,9 @@
                             aria-selected="true">Mô tả chi tiết</button>
                     </li>
                     <li class="nav-item product-detail-nav-item" role="presentation">
-                        <button class="nav-link link-dark" id="waranty-tab" data-bs-toggle="tab" data-bs-target="#waranty"
-                            type="button" role="tab" aria-controls="waranty" aria-selected="false">
+                        <button class="nav-link link-dark" id="waranty-tab" data-bs-toggle="tab"
+                            data-bs-target="#waranty" type="button" role="tab" aria-controls="waranty"
+                            aria-selected="false">
                             Thông tin bảo hành
                         </button>
                     </li>
@@ -182,7 +188,10 @@
                 {{!-- Tab content --}}
                 <div class="tab-content product-detail-nav-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="des-tab">
-                        {{{product.description}}}
+                        <div class="des-wrap">{{{product.description}}}
+                            <div class="gradient"></div>
+                        </div>
+                        <div class="read-more"><button>Xem thêm</button></div>
                     </div>
                     <div class="tab-pane fade" id="waranty" role="tabpanel" aria-labelledby="waranty-tab">
                         {{{product.waranty}}}
@@ -191,7 +200,7 @@
                     <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
                         {{!-- User's self scoring --}}
                         <form>
-                            <div class="d-flex self-review-container">                                    
+                            <div class="d-flex self-review-container">
                                 <div class="self-rating">
                                     <p>Mức độ hài lòng của bạn về sản phẩm</p>
                                     <div class="rating">
@@ -208,10 +217,11 @@
                                     </div>
                                 </div>
                                 <div class="self-comment flex-fill">
-                                    <textarea placeholder="Hãy chia sẽ trải nghiệm của bạn về sản phẩm này" rows="3"></textarea>
+                                    <textarea placeholder="Hãy chia sẽ trải nghiệm của bạn về sản phẩm này"
+                                        rows="3"></textarea>
                                     <input type="submit"></input>
                                 </div>
-                            </div>                   
+                            </div>
                         </form>
                         {{!-- Others review --}}
                         <div class="card review-card">
@@ -273,25 +283,170 @@
                     </div>
                 </div>
             </div>
+            <div class="related-products">
+                <div class="title">Sản phẩm liên quan</div>
+                <div class="content">
+                    <a href="#" class="product-item product-item--col">
+                        <div class="thumbnail">
+                            <span class="discount">10%</span>
+                            
+
+                            <div class="icon-action">
+                                <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                </div>
+                                <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                            </div>
+                            <img class="img-fluid" src="	https://storage.googleapis.com/bestgear-355409.appspot.com/62ce004082ee775bec00778c/thumb/thumb.png" alt="">
+                        </div>
+                        <div class="product-desc">
+                            <h4 class="name-product"><b>Laptop Lenovo IdeaPad Gaming 3 15ACH6 82K201BCVN</b></h4>
+                            <div class="star-comment">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="product-price"><b>15,490,000 đ</b><span
+                                    class="true-price">19,990,000 đ</span></b>
+                            </div>
+                            <button class="buy-now">Mua ngay</button>
+                        </div>
+                    </a>
+                    <a href="#" class="product-item product-item--col">
+                        <div class="thumbnail">
+                            <span class="discount">10%</span>
+                            
+
+                            <div class="icon-action">
+                                <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                </div>
+                                <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                            </div>
+                            <img class="img-fluid" src="	https://storage.googleapis.com/bestgear-355409.appspot.com/62ce004082ee775bec00778c/thumb/thumb.png" alt="">
+                        </div>
+                        <div class="product-desc">
+                            <h4 class="name-product"><b>Laptop Lenovo IdeaPad Gaming 3 15ACH6 82K201BCVN</b></h4>
+                            <div class="star-comment">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="product-price"><b>15,490,000 đ</b><span
+                                    class="true-price">19,990,000 đ</span></b>
+                            </div>
+                            <button class="buy-now">Mua ngay</button>
+                        </div>
+                    </a>
+                    <a href="#" class="product-item product-item--col">
+                        <div class="thumbnail">
+                            <span class="discount">10%</span>
+                            
+
+                            <div class="icon-action">
+                                <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                </div>
+                                <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                            </div>
+                            <img class="img-fluid" src="	https://storage.googleapis.com/bestgear-355409.appspot.com/62ce004082ee775bec00778c/thumb/thumb.png" alt="">
+                        </div>
+                        <div class="product-desc">
+                            <h4 class="name-product"><b>Laptop Lenovo IdeaPad Gaming 3 15ACH6 82K201BCVN</b></h4>
+                            <div class="star-comment">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="product-price"><b>15,490,000 đ</b><span
+                                    class="true-price">19,990,000 đ</span></b>
+                            </div>
+                            <button class="buy-now">Mua ngay</button>
+                        </div>
+                    </a>
+                    <a href="#" class="product-item product-item--col">
+                        <div class="thumbnail">
+                            <span class="discount">10%</span>
+                            
+
+                            <div class="icon-action">
+                                <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                </div>
+                                <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                            </div>
+                            <img class="img-fluid" src="	https://storage.googleapis.com/bestgear-355409.appspot.com/62ce004082ee775bec00778c/thumb/thumb.png" alt="">
+                        </div>
+                        <div class="product-desc">
+                            <h4 class="name-product"><b>Laptop Lenovo IdeaPad Gaming 3 15ACH6 82K201BCVN</b></h4>
+                            <div class="star-comment">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="product-price"><b>15,490,000 đ</b><span
+                                    class="true-price">19,990,000 đ</span></b>
+                            </div>
+                            <button class="buy-now">Mua ngay</button>
+                        </div>
+                    </a>
+                    <a href="#" class="product-item product-item--col">
+                        <div class="thumbnail">
+                            <span class="discount">10%</span>
+                            
+
+                            <div class="icon-action">
+                                <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
+                                <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
+                                </div>
+                                <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
+                            </div>
+                            <img class="img-fluid" src="	https://storage.googleapis.com/bestgear-355409.appspot.com/62ce004082ee775bec00778c/thumb/thumb.png" alt="">
+                        </div>
+                        <div class="product-desc">
+                            <h4 class="name-product"><b>Laptop Lenovo IdeaPad Gaming 3 15ACH6 82K201BCVN</b></h4>
+                            <div class="star-comment">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="product-price"><b>15,490,000 đ</b><span
+                                    class="true-price">19,990,000 đ</span></b>
+                            </div>
+                            <button class="buy-now">Mua ngay</button>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <!-- Modal -->
 <div class="modal fade" id="addToCartModal" tabindex="-1" aria-labelledby="addToCartModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      
-      <div class="modal-body">
-        <img class="icon" src="" alt="">
-        <p>Sản phẩm đã được thêm vào giỏ hàng</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" data-bs-dismiss="modal" >Đóng</button>
-      </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
 
-      
+            <div class="modal-body">
+                <img class="icon" src="" alt="">
+                <p>Sản phẩm đã được thêm vào giỏ hàng</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-bs-dismiss="modal">Đóng</button>
+            </div>
+
+
+        </div>
     </div>
-  </div>
 </div>
 <script src="/js/product_detail.js"></script>

@@ -153,7 +153,7 @@
     color: var(--sub-color);
 }
 
-.purchased-item .footer .btn-repurchase {
+.purchased-item .footer button {
     background-color: #fff;
     border: 0.1rem solid var(--sub-color);
     color: var(--sub-color);

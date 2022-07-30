@@ -51,7 +51,32 @@ subBtn.addEventListener('click', function(e) {
     }
 });
 
-//discount
+//read more
+const readMoreElement = document.querySelector('.read-more');
+const readMoreBtn = document.querySelector('.read-more button');
+const gradient = document.querySelector('.gradient');
+const desWrap = document.querySelector('.des-wrap');
+if(desWrap.offsetHeight <= 500){
+    readMoreElement.style.display = 'none';
+    gradient.style.display = 'none';
+}
+else{
+    readMoreElement.style.display = 'flex';
+    desWrap.style.height = '50rem';
+}
+
+readMoreBtn.addEventListener('click', function(e) {
+    if(readMoreBtn.innerText === 'Xem thêm'){
+        readMoreBtn.innerText = "Ẩn bớt nội dung";
+        gradient.style.display = 'none';
+        desWrap.style.height = '100%';
+    }
+    else{
+        readMoreBtn.innerText = "Xem thêm";
+        gradient.style.display = 'block';
+        desWrap.style.height = '50rem';
+    }
+});
 
 
 

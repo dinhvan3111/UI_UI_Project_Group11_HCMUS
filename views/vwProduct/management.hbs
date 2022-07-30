@@ -1,4 +1,7 @@
-<div class="container management-product">
+{{#section 'title'}}
+<title>Quản lý sản phẩm - BestGear</title>
+{{/section}}
+<div class=" management-product">
     <div class="management-header">
         <div class="title">Quản lý sản phẩm</div>
         <div class="dropdown dropdown-category">
@@ -49,10 +52,10 @@
                     <td class="real-price">{{format_number this.sale_price}}đ</td>
 
                     <td>{{format_number this.stock}}</td>
-                    <td class="btn-delete">
+                    <td class="btn-management">
                         {{!-- input hidden để lưu id sản phẩm trả về --}}
                         <input type="hidden" value="1">
-
+                        <a href="#"class="btn-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                         <button type="button" class="btn btn-default" data-bs-toggle="modal"
                             data-bs-target="#manageProductModal">
                             <i class="fa-solid fa-xmark"></i>

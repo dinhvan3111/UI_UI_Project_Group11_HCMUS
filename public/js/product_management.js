@@ -8,9 +8,9 @@ dropdownMenuManage.forEach(element => {
 });
 
 //đỗ tên sản phẩm lên modall body
-const btnDelete = document.querySelectorAll('.product-list .btn-delete');
+const btnManagement = document.querySelectorAll('.product-list .btn-management');
 const bodyModal = document.querySelector('#manageProductModal .modal-body b');
-btnDelete.forEach(element => {
+btnManagement.forEach(element => {
     element.addEventListener('click', () =>{
         const parentElement = element.parentElement;// lấy element cha của btn
         const name = parentElement.querySelector('.name').innerText;
