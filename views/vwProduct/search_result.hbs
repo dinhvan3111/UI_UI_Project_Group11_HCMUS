@@ -3,7 +3,9 @@
 {{/section}}
 
 <div class="container">
+    {{#if keyword}}
     <h1 id="search-result-text">Kết quả tìm kiếm cho: {{keyword}}</h1>
+    {{/if}}
     <div class="sort-container">
         <div class="dropdown dropdown-category">
             <button class="btn btn-secondary dropdown-toggle" type="button" aria-haspopup="false"
