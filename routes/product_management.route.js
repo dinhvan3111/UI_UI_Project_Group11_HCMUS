@@ -2,6 +2,7 @@ import express from 'express';
 import env from '../utils/env.js';
 import bucket from '../models/firebase.model.js';
 import ProductModel from '../models/product.model.js';
+import categoryModel from '../models/category.model.js';
 import multer from 'multer';
 const upload = multer({
     storage: multer.memoryStorage(),
@@ -115,6 +116,33 @@ router.get('/management/add-product', async function (req, res) {
 router.post('/management/add-product', cpUpload, async function (req, res){
     console.log(req.body);
     res.render('vwProduct/add_product', {
+        layout: 'main.hbs',
+    });
+});
+
+router.get('/edit/:id', async function (req, res) {
+    const product = await ProductModel.findById(req.params.id);
+    if (product === null) {
+        res.status(404);
+    }
+    else {
+        const productRet = product.toObject();
+        productRet.id_category = productRet.id_category.toString();
+        const category = await categoryModel.findById(productRet.id_category);
+        productRet._id = productRet._id.toString();
+        
+        res.render('vwProduct/edit_product', {
+            product: productRet,
+            category: category.toObject()
+        });
+    }
+});
+
+router.post('/edit/:id',  async function (req, res){
+    console.log(req.params.id);
+
+    //TODO
+    res.render('vwProduct/management', {
         layout: 'main.hbs',
     });
 });

@@ -77,11 +77,13 @@ $('#addProductForm').on('submit', function (e) {
 	salePrice.value = salePrice.value.replace(/[^0-9]/g, '');
 	
 	if(realPrice.value * 1 < salePrice.value * 1) {
-		let msg = document.querySelector('.overload-price');
+		let msg = document.querySelector('#addProductForm .overload-price');
 		msg.style.display = 'block';
+		e.preventDefault();
+		return;
 	}
 	else{
-		let msg = document.querySelector('.overload-price');
+		let msg = document.querySelector('#addProductForm .overload-price');
 		msg.style.display = 'none';
 	}
 
@@ -159,4 +161,32 @@ $(document).ready(function(){
     });
 })
 
+
+//kiểm tra dữ liệu submit
+$('#editProductForm').on('submit', function (e) {
+	
+
+	var realPrice = document.getElementById('price');
+	var salePrice = document.getElementById('sale_price');
+	console.log(realPrice,salePrice);
+
+	//parse the price before post
+	realPrice.value = realPrice.value.replace(/[^0-9]/g, '');
+	salePrice.value = salePrice.value.replace(/[^0-9]/g, '');
+	console.log(realPrice.value * 1 , salePrice.value * 1);
+	if(realPrice.value * 1 < salePrice.value * 1) {
+		let msg = document.querySelector('#editProductForm  .overload-price');
+		console.log(msg.innerText);
+		msg.style.display = 'block';
+		e.preventDefault();
+		return;
+	}
+	else{
+		let msg = document.querySelector('#editProductForm .overload-price');
+		msg.style.display = 'none';
+	}
+
+	
+	$('#editProductForm').off('submit').submit();
+});
 

@@ -1,0 +1,80 @@
+{{#section 'title'}}
+<title>Chỉnh sửa - {{product.title}}</title>
+{{/section}}
+{{#section 'css'}}
+    <link rel="stylesheet" href="/css/edit_product.css">
+{{/section}}
+<form id="editProductForm" method="post" action="/products/edit/{{product._id}}">
+    <div class="add-product container">
+        <h1 class="title">
+            Chỉnh sửa - {{product.title}}
+        </h1>
+        <div class="name-category-product">
+            <div class="name">
+                <label for="add-product-name">Tên sản phẩm</label>
+                <input type="text" id="title" name="title" value="{{product.title}}" placeholder="Nhập tên sản phẩm..." required>
+            </div>
+            <div class="category">
+                <label for="add-product-category">Danh mục</label>
+                <div class="dropdown dropdown-category">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" aria-haspopup="false"
+                        id="add-product-category" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="{{category.ico}}"></i> {{category.name}}
+                    </button>
+                    <input type="hidden" name="id_category" id="id_category" value="null">
+                    <ul class="dropdown-menu" aria-labelledby="add-product-category">
+                        {{#each lcCategories}}
+                        <li>
+                            <a href="#" onclick="return false;" class="dropdown-item">
+                                <i class="{{ico}}"></i> {{name}}
+                                <p style="display: none;" >{{id}}</p>
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+               
+            </div>
+        </div>
+        <div class="add-price">
+            <div class="real-price price-item">
+                <label for="price">Giá gốc</label>
+                <input type="text"data-type="currency" id="price" value="(đ) {{format_number product.price}}" name="price" placeholder="Nhập giá gốc..." required>
+            </div>
+            <div class="discount-price price-item">
+                <label for="sale_price" >Giá khuyến mại</label>
+                <input type="text"data-type="currency" id="sale_price" name="sale_price" placeholder="Nhập giá khuyến mại..."
+                value="(đ) {{format_number product.sale_price}}"    required>
+            </div>
+            <div class="inventory price-item">
+                <label for="stock">Tồn kho</label>
+                <input type="text" id="stock" placeholder="Nhập số lượng tồn kho..." name="stock" value="{{product.stock}}" required>
+            </div>
+            <p class="overload-price">Giá khuyến mãi phải nhỏ hơn giá gốc</p>
+    
+        </div>
+        <div class="product-insurance">
+            <label class="font-bold" for="textInsurance">Chính sách bảo hành</label>
+            <textarea id="insurance" name="waranty" class="tiny_mce_insurance">{{{product.waranty}}}</textarea>
+        </div>
+        <div class="product-desc">
+            <label class="font-bold" for="textDescription">Mô tả chi tiết</label>
+            <textarea id="description-add-product" name="description" class="tiny_mce">{{{product.description}}}</textarea>
+        </div>
+        <div class="btn-add-product">
+            <button type="submit">Cập nhật</button>
+        </div>
+    
+    
+    </div>
+    </div>
+    </div>
+</form>
+{{#section 'js'}}
+<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.5/js/fileinput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.5/js/locales/vi.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.2.5/themes/fa/theme.min.js"></script>
+<script src="https://cdn.tiny.cloud/1/l7esw4pbq2603cjs4b89iyleorm9rhq01t2dhp5u88xtbwxk/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
+<script src="/js/add_product.js"></script>
+{{/section}}
