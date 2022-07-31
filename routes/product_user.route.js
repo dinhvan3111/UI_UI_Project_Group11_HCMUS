@@ -60,12 +60,17 @@ router.get('/:id', async function (req, res) {
     }
     else {
         const category = await categoryModel.findById(product.id_category.toString());
-        const productRet = product.toObject();
-        productRet.id_category = productRet.id_category.toString();
-        productRet._id = productRet._id.toString();
+        const productRet = productModel.toObject(product);
+
+        const relatedProducts = await productModel.getRelatedProducts(productRet._id, productRet.id_category, 5);
+        for (let i = 0; i < relatedProducts.length; i++) {
+            relatedProducts[i] = productModel.toObject(relatedProducts[i]);
+        }
+
         res.render('vwProduct/product_detail', {
             product: productRet,
             categoryOfProduct: category.toObject(),
+            relatedProducts: relatedProducts,
         });
     }
 });

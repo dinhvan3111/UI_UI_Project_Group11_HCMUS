@@ -286,9 +286,12 @@
             <div class="related-products">
                 <div class="title">Sản phẩm liên quan</div>
                 <div class="content">
-                    <a href="#" class="product-item product-item--col">
+                    {{#each relatedProducts }}
+                    <a href="/products/{{_id}}" class="product-item product-item--col">
                         <div class="thumbnail">
-                            <span class="discount">10%</span>
+                            {{#if percentSale}}
+                            <span class="discount">{{percentSale}}%</span>
+                            {{/if}}
                             
 
                             <div class="icon-action">
@@ -297,10 +300,10 @@
                                 </div>
                                 <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
                             </div>
-                            <img class="img-fluid" src="	https://storage.googleapis.com/bestgear-355409.appspot.com/62ce004082ee775bec00778c/thumb/thumb.png" alt="">
+                            <img class="img-fluid" src="{{getImgLink thumb}}" alt="">
                         </div>
                         <div class="product-desc">
-                            <h4 class="name-product"><b>Laptop Lenovo IdeaPad Gaming 3 15ACH6 82K201BCVN</b></h4>
+                            <h4 class="name-product"><b>{{title}}</b></h4>
                             <div class="star-comment">
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
@@ -308,124 +311,13 @@
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
                             </div>
-                            <div class="product-price"><b>15,490,000 đ</b><span
-                                    class="true-price">19,990,000 đ</span></b>
+                            <div class="product-price"><b>{{format_number sale_price}} đ</b><span
+                                    class="true-price">{{format_number price}} đ</span></b>
                             </div>
                             <button class="buy-now">Mua ngay</button>
                         </div>
                     </a>
-                    <a href="#" class="product-item product-item--col">
-                        <div class="thumbnail">
-                            <span class="discount">10%</span>
-                            
-
-                            <div class="icon-action">
-                                <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
-                                <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
-                                </div>
-                                <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
-                            </div>
-                            <img class="img-fluid" src="	https://storage.googleapis.com/bestgear-355409.appspot.com/62ce004082ee775bec00778c/thumb/thumb.png" alt="">
-                        </div>
-                        <div class="product-desc">
-                            <h4 class="name-product"><b>Laptop Lenovo IdeaPad Gaming 3 15ACH6 82K201BCVN</b></h4>
-                            <div class="star-comment">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </div>
-                            <div class="product-price"><b>15,490,000 đ</b><span
-                                    class="true-price">19,990,000 đ</span></b>
-                            </div>
-                            <button class="buy-now">Mua ngay</button>
-                        </div>
-                    </a>
-                    <a href="#" class="product-item product-item--col">
-                        <div class="thumbnail">
-                            <span class="discount">10%</span>
-                            
-
-                            <div class="icon-action">
-                                <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
-                                <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
-                                </div>
-                                <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
-                            </div>
-                            <img class="img-fluid" src="	https://storage.googleapis.com/bestgear-355409.appspot.com/62ce004082ee775bec00778c/thumb/thumb.png" alt="">
-                        </div>
-                        <div class="product-desc">
-                            <h4 class="name-product"><b>Laptop Lenovo IdeaPad Gaming 3 15ACH6 82K201BCVN</b></h4>
-                            <div class="star-comment">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </div>
-                            <div class="product-price"><b>15,490,000 đ</b><span
-                                    class="true-price">19,990,000 đ</span></b>
-                            </div>
-                            <button class="buy-now">Mua ngay</button>
-                        </div>
-                    </a>
-                    <a href="#" class="product-item product-item--col">
-                        <div class="thumbnail">
-                            <span class="discount">10%</span>
-                            
-
-                            <div class="icon-action">
-                                <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
-                                <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
-                                </div>
-                                <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
-                            </div>
-                            <img class="img-fluid" src="	https://storage.googleapis.com/bestgear-355409.appspot.com/62ce004082ee775bec00778c/thumb/thumb.png" alt="">
-                        </div>
-                        <div class="product-desc">
-                            <h4 class="name-product"><b>Laptop Lenovo IdeaPad Gaming 3 15ACH6 82K201BCVN</b></h4>
-                            <div class="star-comment">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </div>
-                            <div class="product-price"><b>15,490,000 đ</b><span
-                                    class="true-price">19,990,000 đ</span></b>
-                            </div>
-                            <button class="buy-now">Mua ngay</button>
-                        </div>
-                    </a>
-                    <a href="#" class="product-item product-item--col">
-                        <div class="thumbnail">
-                            <span class="discount">10%</span>
-                            
-
-                            <div class="icon-action">
-                                <div class="icon-action__item"><i class="fa-solid fa-eye"></i></div>
-                                <div class="icon-action__item"><i class="fa-solid fa-basket-shopping"></i>
-                                </div>
-                                <div class="icon-action__item"><i class="fa-solid fa-heart"></i></div>
-                            </div>
-                            <img class="img-fluid" src="	https://storage.googleapis.com/bestgear-355409.appspot.com/62ce004082ee775bec00778c/thumb/thumb.png" alt="">
-                        </div>
-                        <div class="product-desc">
-                            <h4 class="name-product"><b>Laptop Lenovo IdeaPad Gaming 3 15ACH6 82K201BCVN</b></h4>
-                            <div class="star-comment">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </div>
-                            <div class="product-price"><b>15,490,000 đ</b><span
-                                    class="true-price">19,990,000 đ</span></b>
-                            </div>
-                            <button class="buy-now">Mua ngay</button>
-                        </div>
-                    </a>
+                    {{/each}}
                 </div>
             </div>
         </div>
