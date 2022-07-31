@@ -56,7 +56,7 @@ router.get('/search-autocomplete', async function (req, res) {
 router.get('/:id', async function (req, res) {
     const product = await productModel.findById(req.params.id);
     if (product === null) {
-        res.status(404);
+        res.sendStatus(404);
     }
     else {
         const category = await categoryModel.findById(product.id_category.toString());

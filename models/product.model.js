@@ -28,7 +28,13 @@ function getSearchQuery(queryStr) {
 
 export default {
     async findById(id) {
-        return await Product.findById({ _id: id }).exec();
+        try {
+            const product = await Product.findById({ _id: id }).exec();
+            return product;
+        }
+        catch (err) {
+            return null;
+        }
     },
 
     async save(product) {
