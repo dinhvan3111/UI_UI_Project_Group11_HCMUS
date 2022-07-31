@@ -13,6 +13,7 @@ import { ObjectId, getNewObjectId, toObjectId } from './utils/database.js';
 import userModel from './models/user.model.js';
 import validator from './utils/validator.js';
 import { broadcastNotify } from './routes/notification.route.js';
+import CategoryModel from './models/category.model.js';
 
 
 const __dirname = dirname(fileURLToPath(import.meta.url));

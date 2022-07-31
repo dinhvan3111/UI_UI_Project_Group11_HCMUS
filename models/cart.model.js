@@ -1,8 +1,8 @@
-import {ObjectId, getNewObjectId, toObjectId} from '../utils/database.js';
+import { ObjectId, getNewObjectId, toObjectId } from '../utils/database.js';
 import env from '../utils/env.js';
-import {Cart, CartInfo, CartsState} from '../schema/cartsSchema.js';
+import { Cart, CartInfo, CartsState } from '../schema/cartsSchema.js';
 
-async function createNewCart(userId, productId, price, quantity){
+async function createNewCart(userId, productId, price, quantity) {
     userCart = await this.save(new Cart({
         _id: userId,
         products: [
@@ -13,7 +13,7 @@ async function createNewCart(userId, productId, price, quantity){
             }),
         ]
     }));
-    if(userCart === null){
+    if (userCart === null) {
         return false;
     }
     return true;
@@ -21,93 +21,98 @@ async function createNewCart(userId, productId, price, quantity){
 
 export default {
     async findById(id) {
-        return await Cart.findById({_id: id}).exec();
+        return await Cart.findById({ _id: id }).exec();
     },
 
-    async save(cart){
-        try{
+    async save(cart) {
+        try {
             const ret = await cart.save();
             return ret;
         }
-        catch(err) {
+        catch (err) {
             console.log(err.code);
         }
         return null;
     },
 
-    async getAll(){
+    async getAll() {
         return await Cart.find({}).exec();
 
     },
 
-    async addToCart(userId, product, quantity){
+    async addToCart(userId, product, quantity) {
+        console.log('hit addToCart');
         let userCart = await this.findById(userId);
-        if(userCart === null){
+        if (userCart === null) {
             // Create a doc for this user in cart schema
             return await this.createNewCart(userId, product._id, product.sale_price, quantity);
         }
-
+        console.log('hit 50');
         const res = await this.findByFilter({
+            "_id": userId,
             "products._id": product._id.toString()
         });
-        if(res.length > 0){
+        console.log(res);
+        if (res.length > 0) {
             // product is already in cart of user
             res[0].products.id(product._id.toString()).quantity += quantity;
             return await res[0].save() !== null;
         }
+        console.log('hit');
         // product is not in cart of user
         userCart.products.push(
             new CartInfo({
                 _id: product._id,
                 price: product.sale_price,
                 quantity: quantity
-            }) 
+            })
         );
         const result = await userCart.save();
-        if(result === null){
+        console.log(result);
+        if (result === null) {
             return false;
         }
         return true;
     },
 
-    async findByFilter(filter){
+    async findByFilter(filter) {
         return await Cart.find(filter).exec();
     },
 
-    async removeFromCart(userId, productIdStr){
+    async removeFromCart(userId, productIdStr) {
         const res = await this.findByFilter({
             "_id": userId,
             "products._id": productIdStr
         });
-        if(res.length > 0){
-            res[0].products.pull( {_id: productIdStr} );
+        if (res.length > 0) {
+            res[0].products.pull({ _id: productIdStr });
             return await res[0].save() !== null;
         }
         return true;
     },
 
-    async getTotalItems(userIdStr){
+    async getTotalItems(userIdStr) {
         const userCart = await this.findById(userIdStr);
-        if(userCart === null){
+        if (userCart === null) {
             return 0;
         }
         return userCart.products.length;
     },
 
-    async createNewCart(userId, productId, price, quantity){
-    const userCart = await this.save(new Cart({
-        _id: userId,
-        products: [
-            new CartInfo({
-                _id: productId,
-                price: price,
-                quantity: quantity
-            }),
-        ]
-    }));
-    if(userCart === null){
-        return false;
+    async createNewCart(userId, productId, price, quantity) {
+        const userCart = await this.save(new Cart({
+            _id: userId,
+            products: [
+                new CartInfo({
+                    _id: productId,
+                    price: price,
+                    quantity: quantity
+                }),
+            ]
+        }));
+        if (userCart === null) {
+            return false;
+        }
+        return true;
     }
-    return true;
-}
 }
