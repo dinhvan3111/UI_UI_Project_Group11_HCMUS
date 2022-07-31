@@ -18,6 +18,7 @@
                     <td class="cart-remove-product"><a href=""><i class="fa-solid fa-trash-can"></i></a></td>
                     <td>
                         <div class="cart-info">
+                            <span class="cart-product-id" style="display: none;">{{_id}}</span>
                             <img src="{{getImgLink thumb}}" alt="{{thumb}}">
                             <div>
                                 <p class="cart-product-name">{{title}}</p>
@@ -84,3 +85,7 @@
     </div>
     {{/if}}
 </div>
+
+{{#section 'js'}}
+    <script src="/js/cart.js"></script>
+{{/section}}

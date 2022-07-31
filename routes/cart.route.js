@@ -47,4 +47,8 @@ router.get('/purchased-history', function (req, res) {
     res.render('vwCart/purchase_history');
 })
 
+router.post('/cart', function(req,res){
+    console.log(req.body);
+});
+
 export default router;
