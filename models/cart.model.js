@@ -41,24 +41,20 @@ export default {
     },
 
     async addToCart(userId, product, quantity) {
-        console.log('hit addToCart');
         let userCart = await this.findById(userId);
         if (userCart === null) {
             // Create a doc for this user in cart schema
             return await this.createNewCart(userId, product._id, product.sale_price, quantity);
         }
-        console.log('hit 50');
         const res = await this.findByFilter({
             "_id": userId,
             "products._id": product._id.toString()
         });
-        console.log(res);
         if (res.length > 0) {
             // product is already in cart of user
             res[0].products.id(product._id.toString()).quantity += quantity;
             return await res[0].save() !== null;
         }
-        console.log('hit');
         // product is not in cart of user
         userCart.products.push(
             new CartInfo({

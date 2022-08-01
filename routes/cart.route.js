@@ -5,7 +5,7 @@ import productModel from '../models/product.model.js';
 const FREE_SHIP_AMMOUNT = 500000;
 const router = express.Router();
 
-router.get('/order/detail', async function(req, res) {
+router.get('/order/detail', async function (req, res) {
     res.render('vwOrder/order_detail');
 });
 
@@ -43,12 +43,12 @@ router.get('/cart', async function (req, res) {
     });
 });
 
+router.post('/cart', function (req, res) {
+    console.log(req.body);
+});
+
 router.get('/purchased-history', function (req, res) {
     res.render('vwCart/purchase_history');
 })
-
-router.post('/cart', function(req,res){
-    console.log(req.body);
-});
 
 export default router;

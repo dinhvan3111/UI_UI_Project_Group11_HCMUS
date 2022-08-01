@@ -2,6 +2,7 @@ import { ObjectId, getNewObjectId, toObjectId } from '../utils/database.js';
 import env from '../utils/env.js';
 import uploadModel from '../models/upload.model.js';
 import Product from '../schema/productsSchema.js';
+import CategoryModel from './category.model.js';
 
 function getSearchQuery(queryStr) {
     return {
@@ -173,6 +174,26 @@ export default {
             percentSale: percentSale
         });
 
+        return await this.save(product);
+    },
+
+    async update(reqBody) {
+        const product = await this.findById(reqBody._id);
+        const category = await CategoryModel.findById(reqBody.id_category);
+        if (product === null ||
+            category === null) {
+            return false;
+        }
+        product.title = reqBody.title;
+        product.id_category = category._id;
+        product.price = reqBody.price;
+        product.sale_price = reqBody.sale_price;
+        const percentSale = Math.round(((product.price - product.sale_price) /
+            product.price) * 100);
+        product.percentSale = percentSale;
+        product.stock = reqBody.stock;
+        product.waranty = reqBody.waranty;
+        product.description = reqBody.description;
         return await this.save(product);
     },
 

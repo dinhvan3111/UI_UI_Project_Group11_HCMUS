@@ -2,8 +2,11 @@ import express from 'express';
 import env from '../utils/env.js';
 import bucket from '../models/firebase.model.js';
 import ProductModel from '../models/product.model.js';
-import categoryModel from '../models/category.model.js';
+import CategoryModel from '../models/category.model.js';
 import multer from 'multer';
+import Validator from '../utils/validator.js';
+import { request } from 'http';
+
 const upload = multer({
     storage: multer.memoryStorage(),
 });
@@ -21,7 +24,6 @@ function onlyNumbers(str) {
 const router = express.Router();
 
 router.post('/', cpUpload, async function (req, res) {
-    console.log(req.body);
     // Thieu middleware check permission
     if (!req.files || !req.files.thumb[0] || !req.files.thumb[0].mimetype.includes('image/')) {
         res.status(400).send('Error: No thumb found');
@@ -59,7 +61,7 @@ router.post('/', cpUpload, async function (req, res) {
     }
     else {
         res.status(200).send('Success' + isAdded);
-        
+
     }
     // const path = getNewObjectId().toString() + '/thumb/' + thumb.originalname;
     // const blob = bucket.file(path);
@@ -113,24 +115,14 @@ router.get('/management/add-product', async function (req, res) {
     });
 });
 
-router.post('/management/add-product', cpUpload, async function (req, res){
-    console.log(req.body);
-    res.render('vwProduct/add_product', {
-        layout: 'main.hbs',
-    });
-});
-
 router.get('/edit/:id', async function (req, res) {
     const product = await ProductModel.findById(req.params.id);
     if (product === null) {
-        res.status(404);
+        res.sendStatus(404);
     }
     else {
-        const productRet = product.toObject();
-        productRet.id_category = productRet.id_category.toString();
-        const category = await categoryModel.findById(productRet.id_category);
-        productRet._id = productRet._id.toString();
-        
+        const productRet = ProductModel.toObject(product);
+        const category = await CategoryModel.findById(productRet.id_category);
         res.render('vwProduct/edit_product', {
             product: productRet,
             category: category.toObject()
@@ -138,13 +130,20 @@ router.get('/edit/:id', async function (req, res) {
     }
 });
 
-router.post('/edit/:id',  async function (req, res){
-    console.log(req.params.id);
-
-    //TODO
-    res.render('vwProduct/management', {
-        layout: 'main.hbs',
-    });
+router.post('/edit/:id', async function (req, res) {
+    req.body._id = req.params.id;
+    req.body.id_category = '62cd83e90750f92d66e16bdd';
+    if (!Validator.isValidStr(req.body.title) ||
+        !Validator.isValidStr(req.body.id_category) ||
+        !Validator.isValidNum(req.body.price) ||
+        !Validator.isValidNum(req.body.sale_price) ||
+        !Validator.isValidNum(req.body.stock) ||
+        !Validator.isValidStr(req.body.waranty) ||
+        !Validator.isValidStr(req.body.description) ||
+        !await ProductModel.update(req.body)) {
+        return res.redirect(`/products/edit/${req.params.id}`);
+    }
+    return res.redirect(`/products/${req.params.id}`);
 });
 
 export default router;
