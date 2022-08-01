@@ -1,6 +1,8 @@
 {{#section 'title'}}
-<title>Giỏ hàng</title>
+<title id="title">Giỏ hàng</title>
 {{/section}}
+<div class="loader loader--hidden"></div>
+
 <div class="cart-section">
     {{#if cart.products.length}}
     <h1>Giỏ hàng</h1>
@@ -15,7 +17,8 @@
                 </tr>
                 {{#each cart.products}}
                 <tr id="{{_id}}">
-                    <td class="cart-remove-product"><button onclick="remove('{{_id}}');"><i class="fa-solid fa-trash-can"></i></a></td>
+                    <td class="cart-remove-product"><button onclick="remove('{{_id}}');"><i
+                                class="fa-solid fa-trash-can"></i></a></td>
                     <td>
                         <div class="cart-info">
                             <span class="cart-product-id" style="display: none;">{{_id}}</span>
@@ -85,7 +88,204 @@
     </div>
     {{/if}}
 </div>
+<div class="container">
+    <form id="payment-form" action="/payment" method="post">
+        <div class="checkout-container">
+            <div class="order-info">
+                <div class="receive-address">
+                    <div class="navigation-pane">
+                        <div class="navigation-tab active">Nhận hàng tại nhà</div>
+                        <div class="navigation-tab">Nhận hàng tại cửa hàng</div>
+                    </div>
+                    <div class="receive-address-content at-your-place">
+                        <h2>Thông tin nhận hàng</h2>
+                        <div class="infor-field">
+                            <h4>Họ và tên *</h4>
+                            <input type="text" name="fullname" placeholder="Nhập tên của bạn">
+                        </div>
+                        <div class="err-message err-message__fullname">Vui lòng nhập họ và tên</div>
+                        <div class="same-row display-flex">
+                            <div>
+                                <div class="infor-field">
+                                    <h4>Số điện thoại *</h4>
+                                    <input type="number" name="phonenumber" placeholder="Nhập số điện thoại">
+                                </div>
+                                <div class="err-message err-message__phonenumber">Vui lòng nhập số điện thoại</div>
+                            </div>
+
+                            <div>
+                                <div class="infor-field">
+                                    <h4>Email</h4>
+                                    <input type="email" name="email" placeholder="Nhập email của bạn">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="infor-field">
+                            <h4>Địa chỉ nhận hàng *</h4>
+                            <input type="text" name="address" placeholder="Nhập địa chỉ muốn nhận hàng">
+
+                        </div>
+                        <div class="err-message err-message__address">Vui lòng nhập địa chỉ nhận hàng</div>
+                    </div>
+                    <div class="receive-address-content at-store">
+                        <h2>Thông tin nhận hàng</h2>
+                        <div class="infor-field">
+                            <h4>Họ và tên *</h4>
+                            <input type="text" name="fullname" placeholder="Nhập tên của bạn">
+                        </div>
+                        <div class="err-message err-message__fullname">Vui lòng nhập họ và tên</div>
+                        <div class="same-row display-flex">
+                            <div>
+                                <div class="infor-field">
+                                    <h4>Số điện thoại *</h4>
+                                    <input type="number" name="phonenumber" placeholder="Nhập số điện thoại">
+                                </div>
+                                <div class="err-message err-message__phonenumber">Vui lòng nhập số điện thoại</div>
+                            </div>
+
+                            <div>
+                                <div class="infor-field">
+                                    <h4>Email</h4>
+                                    <input type="email" name="email" placeholder="Nhập email của bạn">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="infor-field">
+                            <h4>Chọn cửa hàng *</h4>
+                            <div class="select-wrapper">
+                                <select class="best-gear-select" id="stores" name="store" required>
+                                    <option value="" disabled selected>Chọn cửa hàng</option>
+                                    <option value="hcm">227 Nguyễn Văn Cừ, phường 4, quận 5, TP.HCM fdwq eqwe qưe qư
+                                    </option>
+                                    <option value="hn">Hà Nội</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="err-message err-message__store">Vui lòng chọn cửa hàng</div>
+                        <div class="infor-field">
+                            <h4>Ngày nhận hàng *</h4>
+                            <input id="datetimepicker" type="text" name="receivedate"
+                                placeholder="Nhập địa chỉ muốn nhận hàng">
+                        </div>
+                        <div class="err-message err-message__date">Vui lòng chọn ngày nhận hàng</div>
+                    </div>
+                </div>
+                <div class="payment-method">
+                    <h2>Phương thức thanh toán</h2>
+                    <h5>Thông tin thanh toán của bạn sẽ luôn được bảo mật</h5>
+                    <ul>
+                        <li class="payment-method-item active">
+                            <h4>Thanh toán quá VNPAY <span>Khuyên dùng</span></h4>
+                            <h5>Thanh toán qua Internet Banking, Visa, Master Card, JCB, VNPAY-QR</h5>
+                            <div class="item-active"></div>
+                            <span class="item-active-check"><i class="fa fa-check"></i></span>
+
+                        </li>
+                        <li class="payment-method-item">
+                            <h4>Thanh toán khi nhận hàng</h4>
+                        </li>
+                        <li class="payment-method-item">
+                            <h4>Thanh toán qua trả góp</h4>
+                            <h5>Áp dụng cho khách hàng trên 18 tuổi và đơn trên 3.000.000đ</h5>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="products-checkout">
+                <div class="products-checkout-title">
+                    <h2>Thông tin đơn hàng</h2>
+                    <a href="/cart">Chỉnh sửa</a>
+                </div>
+                <div class="products-checkout-body">
+                    <div class="product-info">
+                        <img class="img-fluid" src="./assets/img/frog.png" alt="Image">
+                        <div class="product-info-text">
+                            <a href="#">Tên sản phẩm</a>
+                            <span class="quantity">Số lượng: 1</span>
+                            <span class="sale-price">3.790.000đ</span>
+                            <span class="real-price">3.990.000đ</span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <img class="img-fluid" src="./assets/img/frog.png" alt="Image">
+                        <div class="product-info-text">
+                            <a href="#">Tên sản phẩm</a>
+                            <span class="quantity">Số lượng: 1</span>
+                            <span class="sale-price">3.790.000đ</span>
+                            <span class="real-price">3.990.000đ</span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <img class="img-fluid" src="./assets/img/frog.png" alt="Image">
+                        <div class="product-info-text">
+                            <a href="#">Tên sản phẩm</a>
+                            <span class="quantity">Số lượng: 1</span>
+                            <span class="sale-price">3.790.000đ</span>
+                            <span class="real-price">3.990.000đ</span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <img class="img-fluid" src="./assets/img/frog.png" alt="Image">
+                        <div class="product-info-text">
+                            <a href="#">Tên sản phẩm</a>
+                            <span class="quantity">Số lượng: 1</span>
+                            <span class="sale-price">3.790.000đ</span>
+                            <span class="real-price">3.990.000đ</span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <img class="img-fluid" src="./assets/img/frog.png" alt="Image">
+                        <div class="product-info-text">
+                            <a href="#">Tên sản phẩm</a>
+                            <span class="quantity">Số lượng: 1</span>
+                            <span class="sale-price">3.790.000đ</span>
+                            <span class="real-price">3.990.000đ</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment-container">
+                    <div class="total-price">
+                        <table>
+                            <tr>
+                                <td>Thanh toán</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Tạm tính</td>
+                                <td>{{format_number cart.totalPrice}} VNĐ</td>
+                            </tr>
+                            <tr>
+                                <td>Phí vận chuyển</td>
+                                <td>{{format_number cart.shipPrice}} VNĐ</td>
+                            </tr>
+                            <tr>
+                                <td>Thành tiền</td>
+                                <td class="real-total-price ">{{format_number cart.finalPrice}} VNĐ</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" id="vat-tax"><span>(Đã bao gồm VAT)</span></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div class="pay-button">
+                                        Thanh toán
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>
 
 {{#section 'js'}}
-    <script src="/js/cart.js"></script>
+<script src="/js/cart.js"></script>
+<script src="/js/check_out.js"></script>
+<script src="/build/jquery.datetimepicker.full.min.js"></script>
 {{/section}}

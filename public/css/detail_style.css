@@ -160,11 +160,11 @@
     border-radius: 0.5rem;
 }
 
-.product-info{
+/* .product-info{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
+} */
 
 .product-info-group{
     display: flex;

@@ -1,5 +1,5 @@
 const paymentForm = document.querySelector('#payment-form');
-const payBtn = document.querySelector('.checkout-container .pay-button');
+const payBtnCheckout = document.querySelector('.checkout-container .pay-button');
 const productCheckOutBody = document.querySelector('.products-checkout-body');
 const paymentMethodItems = document.querySelectorAll('.payment-method ul .payment-method-item');
 const navigationTabs = document.querySelectorAll('.receive-address .navigation-tab');
@@ -7,6 +7,18 @@ const navigationTabs = document.querySelectorAll('.receive-address .navigation-t
 //Min max là số kí tự tối thiểu và tối đa của họ và tên
 let min = 6;
 let max = 15;
+
+// Datetimepicker
+
+jQuery('#datetimepicker').datetimepicker();
+
+$('#datetimepicker').datetimepicker({
+    format: 'd.m.Y H:i',
+    minDate: 0,
+    minTime: 1,
+    format: 'd/m/Y H:i',
+    mask: true,
+});
 
 // Xử lí scroll khi đơn hàng quá 4 sản phẩm khác nhau
 if (productCheckOutBody.childElementCount > 4) {
@@ -83,8 +95,24 @@ function handleErrorMessage(item, msg) {
     }
 }
 
-function handleErrorMessageForSelct(item, msg) {
+function handleErrorMessageForSelect(item, msg) {
     if (item.value != "") {
+        item.style.border = '1px solid green';
+        msg.style.display = 'none';
+    }
+    else {
+        item.style.border = '1px solid red';
+        // if (item.name === "username")
+        //     msg.innerText = `Tài khoản phải từ ${min} đến ${max} kí tự.`;
+        // else if (item.name === "password") {
+        //     msg.innerText = `Mật khẩu phải từ ${min} đến ${max} kí tự.`;
+        // }
+        msg.style.display = 'block';
+    }
+}
+
+function handleErrorMessageForDate(item, msg) {
+    if (item.value != "__/__/____ __:__") {
         item.style.border = '1px solid green';
         msg.style.display = 'none';
     }
@@ -103,15 +131,16 @@ function handleErrorMessageForSelct(item, msg) {
 const fullName2 = document.querySelector('.receive-address-content.at-store .infor-field input[name="fullname"]');
 const phoneNumber2 = document.querySelector('.receive-address-content.at-store .infor-field input[name="phonenumber"]');
 const receiveStore = document.querySelector('select[name="store"]');
-// const receiveDate = document.querySelector('input[name="date"]');
+const receiveDate = document.querySelector('input[name="receivedate"]');
 
 const errFullName2 = document.querySelector('.at-store .err-message__fullname');
 const errPhoneNum2 = document.querySelector('.at-store .err-message__phonenumber');
 const errStore = document.querySelector('.err-message__store');
+const errDate = document.querySelector('.err-message__date');
 
 
 
-payBtn.addEventListener('click', function (e) {
+payBtnCheckout.addEventListener('click', function (e) {
     const activeTab = document.querySelector('.receive-address .navigation-tab.active');
     if (activeTab.innerHTML == 'Nhận hàng tại nhà') {
         const isValidFullName = checkLength(fullName, min, max);
@@ -131,28 +160,20 @@ payBtn.addEventListener('click', function (e) {
         const isValidFullName = checkLength(fullName2, min, max);
         const isValidPhoneNumber = checkLength(phoneNumber2, 10, 10);
         const isValidStore = receiveStore.value != "" ? true : false;
-        if (!isValidFullName || !isValidPhoneNumber || !isValidStore) {
+        const isValidDate = receiveDate.value != "__/__/____ __:__" ? true : false;
+        if (!isValidFullName || !isValidPhoneNumber || !isValidStore || !isValidDate) {
             handleErrorMessage(fullName2, errFullName2);
             handleErrorMessage(phoneNumber2, errPhoneNum2);
-            handleErrorMessageForSelct(receiveStore, errStore);
+            handleErrorMessageForSelect(receiveStore, errStore);
+            handleErrorMessageForDate(receiveDate,errDate);
             e.preventDefault();
         }
         else {
             paymentForm.submit();
         };
+        console.log(receiveDate.value);
     }
 });
 
-// Datetimepicer
-
-jQuery('#datetimepicker').datetimepicker();
-
-$('#datetimepicker').datetimepicker({
-    format: 'd.m.Y H:i',
-    minDate: 0,
-    minTime: 1,
-    format: 'd/m/Y H:i',
-    mask: true,
-});
 
 

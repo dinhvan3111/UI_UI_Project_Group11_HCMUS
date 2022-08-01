@@ -214,6 +214,41 @@ table th:last-child{
     margin-top: 2rem;
 }
 
+/* ------------------Loader-----------------------*/
+.loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightgrey;
+    background-color: rgba(211, 211, 211, 0.4);
+}
+
+.loader--hidden{
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader::after{
+    content: "";
+    width: 7.5rem;
+    height: 7.5rem;
+    border: 1.5rem solid white;
+    border-top-color: var(--back-color);
+    border-radius: 50%;
+    animation: loading 0.75s ease infinite;
+}
+
+@keyframes loading{
+    form{ transform: rotate(0turn)}
+    to{ transform: rotate(1turn)}
+}
+/* ---------------Loader end here------------------*/
+
 
 /*--------------------Cart Section end here--------------------*/
 
