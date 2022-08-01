@@ -1,17 +1,33 @@
 import express from 'express';
 import cartModel from '../models/cart.model.js';
 import productModel from '../models/product.model.js';
+import Validator from '../utils/validator.js';
 
 const router = express.Router();
 
-router.post('/', async function(req, res){
-    if(req.body.productId === undefined || 
+router.delete('/:id', async function (req, res) {
+    if (!Validator.isValidStr(req.params.id) ||
+        !await cartModel.removeFromCart(req.session.passport.user._id, req.params.id)) {
+        return res.json({
+            code: 400,
+            status: 'Bad Request',
+            message: 'Invalid required field'
+        });
+    }
+    return res.json({
+        code: 200,
+        status: 'OK'
+    });
+});
+
+router.post('/', async function (req, res) {
+    if (req.body.productId === undefined ||
         req.body.productId === null ||
         req.body.productId.length === 0 ||
         req.body.quantity === undefined ||
         req.body.quantity === null ||
         req.body.quantity.length === 0 ||
-        /^[0-9]+$/.test(req.body.quantity) === false){
+        /^[0-9]+$/.test(req.body.quantity) === false) {
         res.json({
             code: 422,
             status: 'Unprocessable Entity',
@@ -20,7 +36,7 @@ router.post('/', async function(req, res){
         return;
     }
     const product = await productModel.findById(req.body.productId);
-    if(product === null){
+    if (product === null) {
         res.json({
             code: 400,
             status: 'Bad Request',
@@ -28,10 +44,10 @@ router.post('/', async function(req, res){
         });
     }
     const result = await cartModel.addToCart(
-        req.session.passport.user._id, 
+        req.session.passport.user._id,
         product,
         parseInt(req.body.quantity));
-    if(result === true){
+    if (result === true) {
         const totalInCart = await cartModel.getTotalItems(req.session.passport.user._id);
         return res.json({
             code: 200,
@@ -46,5 +62,6 @@ router.post('/', async function(req, res){
         message: 'Failed to add product to cart. Please try again'
     });
 });
+
 
 export default router;

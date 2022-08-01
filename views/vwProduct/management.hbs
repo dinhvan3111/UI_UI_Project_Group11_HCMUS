@@ -10,17 +10,16 @@
                 Tất cả
             </button>
             <ul class="dropdown-menu" aria-labelledby="manage-product-category">
-                <li><a class="dropdown-item" href="/products/62cf524746ce695718e5703d"><i
+                <li><a class="dropdown-item" href="#"><i
                             class="fa-solid fa-laptop"></i> Tất cả</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Laptop</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Màn hình</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Bàn phím</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Chuột</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Tai nghe</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Ghế Gaming</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> PC Gaming</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Thiết bị mạng</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-laptop"></i> Phụ kiện</a></li>
+                {{#each lcCategories}}
+                    <li>
+                        <a href="#" onclick="return false;" class="dropdown-item">
+                            <i class="{{ico}}"></i> {{name}}
+                            <p style="display: none;" >{{id}}</p>
+                        </a>
+                    </li>
+                {{/each}}
             </ul>
         </div>
     </div>
@@ -54,8 +53,8 @@
                     <td>{{format_number this.stock}}</td>
                     <td class="btn-management">
                         {{!-- input hidden để lưu id sản phẩm trả về --}}
-                        <input type="hidden" value="1">
-                        <a href="#"class="btn-edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <input type="hidden" value="{{this._id}}">
+                        <a href="/products/edit/{{_id}}"class="btn-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                         <button type="button" class="btn btn-default" data-bs-toggle="modal"
                             data-bs-target="#manageProductModal">
                             <i class="fa-solid fa-xmark"></i>

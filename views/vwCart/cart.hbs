@@ -14,8 +14,8 @@
                     <th>Giá tiền</th>
                 </tr>
                 {{#each cart.products}}
-                <tr>
-                    <td class="cart-remove-product"><a href=""><i class="fa-solid fa-trash-can"></i></a></td>
+                <tr id="{{_id}}">
+                    <td class="cart-remove-product"><button onclick="remove('{{_id}}');"><i class="fa-solid fa-trash-can"></i></a></td>
                     <td>
                         <div class="cart-info">
                             <span class="cart-product-id" style="display: none;">{{_id}}</span>

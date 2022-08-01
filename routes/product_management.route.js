@@ -11,7 +11,6 @@ const upload = multer({
     storage: multer.memoryStorage(),
 });
 
-
 const cpUpload = upload.fields([
     { name: 'thumb', maxCount: 1 },
     { name: 'imgs', maxCount: 5 }

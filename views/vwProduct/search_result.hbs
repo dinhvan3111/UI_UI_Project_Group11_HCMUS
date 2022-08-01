@@ -84,13 +84,32 @@
                     </div>
                     <div class="product-price"><b>{{format_number sale_price}} đ</b><span class="true-price">{{format_number price}} đ</span></b>
                     </div>
-                    <button class="buy-now">Mua ngay</button>
+                    
                 </div>
             </a>
+            <button class="buy-now" onclick="addToCart('{{_id}}', 1);">Mua ngay</button>
         {{/each}}
     </div>
     <div class="pagination-container">
         
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addToCartModal" tabindex="-1" aria-labelledby="addToCartModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <img class="icon" src="" alt="">
+                <p>Sản phẩm đã được thêm vào giỏ hàng</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-bs-dismiss="modal">Đóng</button>
+            </div>
+
+
+        </div>
     </div>
 </div>
 

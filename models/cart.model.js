@@ -64,7 +64,6 @@ export default {
             })
         );
         const result = await userCart.save();
-        console.log(result);
         if (result === null) {
             return false;
         }

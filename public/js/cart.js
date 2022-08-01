@@ -7,7 +7,7 @@ payBtn.addEventListener('click', function (e) {
 
     const result = [];
     for (let i = 0; i < productId.length; i++) {
-        var temp = {productId: productId[i].innerHTML , productQuantity: productQuantity[i].value };
+        var temp = { productId: productId[i].innerHTML, productQuantity: productQuantity[i].value };
         result.push(temp);
     }
     for (let i = 0; i < result.length; i++) {
@@ -25,3 +25,17 @@ payBtn.addEventListener('click', function (e) {
     // }).then(response => console.log(response.json));
 });
 
+function remove(productId) {
+    $.ajax({
+        url: `/api/cart/${productId}`,
+        method: "DELETE"
+    }).done(function (jsonResp) {
+        console.log(jsonResp);
+        if (jsonResp.code === 200) {
+            const inCartNum = $('#cartNum').val();
+            $('#cartNum').val(inCartNum - 1);
+            $('#cartNumStr').html((inCartNum - 1).toString());
+            $(`#${productId}`).remove();
+        }
+    });
+}
