@@ -615,7 +615,7 @@ select {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 0 1rem;
+    gap: 0 .5rem;
 }
 
 .product-item .product-price .true-price {
@@ -873,6 +873,11 @@ select {
 
 .nav__mobile .nav__content .logged {
     align-items: center;
+}
+
+.nav__mobile .nav__content .logged-purchased{
+    color: var(--sub-color);
+    font-style: italic;
 }
 
 .nav__mobile .logged .logged__info{

@@ -11,7 +11,7 @@
             <ul>
                 {{#each lcCategories}}
                 <li>
-                    <a href="/categories/{{id}}" onclick="return false;" class="menu-category__item">
+                    <a href="/categories/{{id}}"  class="menu-category__item">
                         <i class="{{ico}}"></i>
                         <p>{{name}}</p>
                     </a>
@@ -94,9 +94,9 @@
                                 <div class="product-price"><b>{{format_number sale_price}} đ</b><span
                                         class="true-price">{{format_number price}} đ</span>
                                 </div>
+                        <button class="buy-now" onclick="event.preventDefault(); addToCart('{{_id}}', 1);">Mua ngay</button>
                             </div>
                         </a>
-                        <button class="buy-now" onclick="addToCart('{{_id}}', 1);">Mua ngay</button>
                     {{/each}}
                     <div class="more more__right"><i class="fa-solid fa-angle-right"></i></div>
                     <div class="more more__left"><i class="fa-solid fa-chevron-left"></i></div>
@@ -143,10 +143,9 @@
                                     <div class="product-price"><b>{{format_number sale_price}} đ</b><span
                                             class="true-price">{{format_number price}} đ </span></b>
                                     </div>
-                                    
+                                    <button class="buy-now" onclick="event.preventDefault(); addToCart('{{_id}}', 1);">Mua ngay</button>
                                 </div>
                             </a>
-                            <button class="buy-now" onclick="addToCart('{{_id}}', 1);">Mua ngay</button>
                         </div>
                         {{/each}}
                     </div>

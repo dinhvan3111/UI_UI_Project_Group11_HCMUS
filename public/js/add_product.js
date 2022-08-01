@@ -60,6 +60,7 @@ itemCat.forEach(item => {
 	item.addEventListener('click', () => {
 		let id = item.querySelector('p').innerText;
 		inputCat.value = id;
+		console.log(inputCat.value);
 	});
 });
 

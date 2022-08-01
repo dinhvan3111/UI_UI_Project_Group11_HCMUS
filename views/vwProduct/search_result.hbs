@@ -1,5 +1,10 @@
 {{#section 'title'}}
-<title>{{product.title}} Tìm kiếm: {{keyword}} - BestGear</title>
+{{#if category}}
+                    <title>{{category.name}}- BestGear</title>
+                {{else}}
+                   <title>{{product.title}} Tìm kiếm: {{keyword}} - BestGear</title>
+                {{/if}}
+
 {{/section}}
 
 <div class="container">
@@ -10,14 +15,19 @@
         <div class="dropdown dropdown-category">
             <button class="btn btn-secondary dropdown-toggle" type="button" aria-haspopup="false"
                 id="manage-product-category" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa-solid fa-bars"></i>  Danh mục sản phẩm
+                {{#if category}}
+                    <i class="{{category.ico}}"></i> {{category.name}}
+                {{else}}
+                    <i class="fa-solid fa-bars"></i>  Danh mục sản phẩm
+                {{/if}}
+                
             </button>
             <ul class="dropdown-menu" aria-labelledby="product-category">
-                <li><a class="dropdown-item" href="#"><i
-                            class="fa-solid fa-bars"></i> Tất cả</a></li>
+                {{!-- <li><a class="dropdown-item" href="#"><i
+                            class="fa-solid fa-bars"></i> Tất cả</a></li> --}}
                 {{#each lcCategories}}
                 <li>
-                    <a href="#" onclick="return false;" class="dropdown-item">
+                    <a href="/categories/{{id}}"class="dropdown-item">
                         <i class="{{ico}}"></i> {{name}}
                     </a>
                 </li>
@@ -83,11 +93,9 @@
                         <i class="fa-solid fa-star"></i>
                     </div>
                     <div class="product-price"><b>{{format_number sale_price}} đ</b><span class="true-price">{{format_number price}} đ</span></b>
-                    </div>
-                    
+                    </div><button class="buy-now" onclick="event.preventDefault(); addToCart('{{_id}}', 1);">Mua ngay</button>
                 </div>
             </a>
-            <button class="buy-now" onclick="addToCart('{{_id}}', 1);">Mua ngay</button>
         {{/each}}
     </div>
     <div class="pagination-container">

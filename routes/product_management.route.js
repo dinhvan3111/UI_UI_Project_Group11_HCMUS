@@ -131,7 +131,6 @@ router.get('/edit/:id', async function (req, res) {
 
 router.post('/edit/:id', async function (req, res) {
     req.body._id = req.params.id;
-    req.body.id_category = '62cd83e90750f92d66e16bdd';
     if (!Validator.isValidStr(req.body.title) ||
         !Validator.isValidStr(req.body.id_category) ||
         !Validator.isValidNum(req.body.price) ||

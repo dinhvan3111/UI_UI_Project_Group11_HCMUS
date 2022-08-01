@@ -97,6 +97,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown-infor">
                                 <li><a class="dropdown-item" href="/profile">Thông tin cá nhân</a></li>
+                                <li><a class="dropdown-item" href="/purchased-history">Lịch sử mua hàng</a></li>
                                 <li><a class="dropdown-item" href="#" onclick="logout(); return false;"><i
                                             class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
                             </ul>
@@ -175,8 +176,12 @@
                     </div> --}}
                     <div class="logged">
                         <a href="/profile" class="logged__info">
-                            <img src="/assets/img/avatar.png" alt="">
-                            <p>Hi, <b>{{lcAuthUser.name}}</b></p>
+                                <img src="/assets/img/avatar.png" alt="">
+                            <div class="logged-name">
+                                <p>Hi, <b>{{lcAuthUser.name}}</b></p>
+                                <a href="/purchased-history" class="logged-purchased">Lịch sử mua hàng</a>
+                            </div>
+                            
                         </a>
                         <a href="#" onclick="logout(); return false;"><i title="Đăng xuất"
                                 class="fa-solid fa-arrow-right-from-bracket sign-out"></i></a>
@@ -216,7 +221,7 @@
 
                     {{#each lcCategories}}
                     <li>
-                        <a href="/categories/{{id}}" onclick="return false;" class="menu-category__item">
+                        <a href="/categories/{{id}}" class="menu-category__item">
                             <i class="{{ico}}"></i>
                             <p>{{name}}</p>
                         </a>
