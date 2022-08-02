@@ -35,7 +35,7 @@
         </thead>
         <tbody>
             {{#each products}}
-                <tr>
+                <tr id="{{_id}}">
                     <td data-href="/products/{{this._id}}">
                         <a href="/products/{{this._id}}" target="_blank">{{this._id}}</a>
                     </td>
@@ -53,7 +53,7 @@
                     <td>{{format_number this.stock}}</td>
                     <td class="btn-management">
                         {{!-- input hidden để lưu id sản phẩm trả về --}}
-                        <input type="hidden" value="{{this._id}}">
+                        <input class="pid" type="hidden" value="{{this._id}}">
                         <a href="/products/edit/{{_id}}"class="btn-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                         <button type="button" class="btn btn-default" data-bs-toggle="modal"
                             data-bs-target="#manageProductModal">
@@ -74,12 +74,12 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <p>Bạn có chắc chắn muốn xóa sản phẩm </p>
+                    <p>Bạn có chắc chắn muốn ẩn sản phẩm </p>
                     <b>Ghế DXRACER - Drifting Series OH/DJ133/NR?</b>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn btn-primary">Xóa</button>
+                    <button id="hideProductBtn" type="button" class="btn btn-primary">Ẩn</button>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import { ObjectId, getNewObjectId, toObjectId } from '../utils/database.js';
 import env from '../utils/env.js';
-import { Cart, CartInfo, CartsState } from '../schema/cartsSchema.js';
+import { Cart, CartInfo } from '../schema/cartsSchema.js';
 
 async function createNewCart(userId, productId, price, quantity) {
     userCart = await this.save(new Cart({

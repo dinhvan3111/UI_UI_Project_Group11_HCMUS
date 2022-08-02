@@ -1,3 +1,4 @@
+import { NUM_TO_CART_STATE } from './database.js';
 
 export default {
     isValidStr(str) {
@@ -13,5 +14,12 @@ export default {
 
     isValidNum(str) {
         return this.isValidStr(str) && /^[0-9]+$/.test(str);
+    },
+
+    isValidOrderState(state) {
+        if (!this.isValidNum(state.toString())) {
+            return false;
+        }
+        return NUM_TO_CART_STATE[`${state}`] !== undefined;
     },
 }

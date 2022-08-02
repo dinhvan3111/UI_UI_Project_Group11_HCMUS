@@ -230,11 +230,12 @@ export default {
         }
     },
 
-    async getAll(page = 0, limit = 5, selection = { _id: 1, title: 1, thumb: 1, stock: 1, price: 1, sale_price: 1 }) {
+    async getAll(page = 0, limit = 10, selection = { _id: 1, title: 1, thumb: 1, stock: 1, price: 1, sale_price: 1 }) {
         const products = await Product.paginate({}, {
             page: page,
             limit: limit,
-            select: selection
+            select: selection,
+            sort: { stock: -1, _id: 1, }
         });
         return products;
     },
@@ -248,5 +249,14 @@ export default {
             select: selection
         });
         return products;
+    },
+
+    async emptyStock(productId) {
+        const product = await this.findById(productId);
+        if (product !== null) {
+            product.stock = 0;
+            return await this.save(product) !== null;
+        }
+        return false;
     },
 }

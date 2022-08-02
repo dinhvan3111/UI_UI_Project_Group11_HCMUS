@@ -14,6 +14,7 @@ import userModel from './models/user.model.js';
 import validator from './utils/validator.js';
 import { broadcastNotify } from './routes/notification.route.js';
 import CategoryModel from './models/category.model.js';
+import OrderModel from './models/order.model.js';
 
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
