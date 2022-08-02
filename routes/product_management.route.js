@@ -59,8 +59,8 @@ router.post('/', cpUpload, async function (req, res) {
         return;
     }
     else {
-        res.status(200).send('Success' + isAdded);
-
+        // res.status(200).send('Success' + isAdded);
+        res.redirect('/products/management/add-product');
     }
     // const path = getNewObjectId().toString() + '/thumb/' + thumb.originalname;
     // const blob = bucket.file(path);
@@ -101,10 +101,12 @@ router.get('/management', async function (req, res) {
         };
         products.push(product);
     }
+    console.log(pagingRet);
     res.render('vwProduct/management', {
         products: products,
         totalProducts: pagingRet.totalDocs,
-        curPage: pagingRet.page
+        curPage: pagingRet.page,
+        totalPages: pagingRet.totalPages
     });
 });
 

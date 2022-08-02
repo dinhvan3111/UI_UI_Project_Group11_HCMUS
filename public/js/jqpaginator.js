@@ -2,6 +2,7 @@
  * Simple pagination, nice and easy.
  */
 (function($) {
+    
     var defaults = {
         parentcls: 'jqpaginator',
         wrapcls: 'jqp-wrap',
@@ -268,6 +269,7 @@
             this.buildPaginator();
 
             // Get first page
+            
             this.goto(1);
         },
         // interaction
@@ -403,3 +405,104 @@
     };
 
 })(jQuery);
+
+//
+
+
+var currentPage = window.location.href.split('?page=')[1]||1;
+if(window.location.href.includes("?q=")){
+    currentPage = window.location.href.split('&page=')[1]||1
+}
+console.log(currentPage + ": current");
+//go to page
+$( document ).ready(function() {
+    let paging = $(".pagination-container").jqpaginator("goto",currentPage*1);
+    let pages = document.querySelectorAll('.jqpaginator .jqp-pages .jqp-page');
+
+    pages.forEach(function (page) {
+        page.addEventListener('click', function(e) {
+            const splitLink = window.location.href.split('?');
+            let currentLink ="";
+            if(splitLink.length > 1){
+                if(splitLink[1].includes("q=")){
+                    currentLink = splitLink[0] +"?" + splitLink[1].split('&')[0];
+                    window.location.href = currentLink + '&page=' + page.innerText;
+                } 
+                else{
+                    currentLink = splitLink[0];
+                    window.location.href = currentLink + '?page=' + page.innerText;
+                } 
+            }
+            else{
+                currentLink = splitLink[0];
+                window.location.href = currentLink + '?page=' + page.innerText;
+            }
+            
+        });
+    })
+
+    let totalPages = document.querySelector('.pagination-container .total-page').value;
+    //next, previous
+    let prevElement = document.querySelector('.pagination-container .jqp-prev');
+    let nextElement = document.querySelector('.pagination-container .jqp-next');
+    let prevBtn = prevElement.querySelector('button');
+    let nextBtn = nextElement.querySelector('button');
+    nextBtn.addEventListener('click', function(e) {
+        
+        let nextPages = currentPage * 1;
+            if(currentPage < totalPages*1){
+                nextPages = nextPages + 1;
+            }
+            else{
+                return
+            }
+            const splitLink = window.location.href.split('?');
+            let currentLink ="";
+            if(splitLink.length > 1){
+                if(splitLink[1].includes("q=")){
+                    currentLink = splitLink[0] +"?" + splitLink[1].split('&')[0];
+                    window.location.href = currentLink + '&page=' + nextPages;
+                } 
+                else{
+                    currentLink = splitLink[0];
+                    window.location.href = currentLink + '?page=' + nextPages;
+                } 
+            }
+            else{
+                currentLink = splitLink[0];
+                window.location.href = currentLink + '?page=' + nextPages;
+            }
+        
+    });
+
+    prevBtn.addEventListener('click', function(e) {
+        let prevPages = currentPage * 1;
+            if(currentPage > 1){
+                prevPages = prevPages - 1;
+            }
+            else{return}
+            // const currentLink = window.location.href.split('?')[0];
+            // window.location.href = currentLink + '?page=' + prevPages;
+            const splitLink = window.location.href.split('?');
+            let currentLink ="";
+            if(splitLink.length > 1){
+                if(splitLink[1].includes("q=")){
+                    currentLink = splitLink[0] +"?" + splitLink[1].split('&')[0];
+                    window.location.href = currentLink + '&page=' + prevPages;
+                } 
+                else{
+                    currentLink = splitLink[0];
+                    window.location.href = currentLink + '?page=' + prevPages;
+                } 
+            }
+            else{
+                currentLink = splitLink[0];
+                window.location.href = currentLink + '?page=' + prevPages;
+            }
+        
+    });
+    
+});
+
+
+

@@ -592,7 +592,7 @@ select {
 
 .product-item .product-desc .buy-now{
     font-size: 1.5rem;
-    padding: 1rem;
+    padding: 1rem .5rem;
     border-radius: var(--border-radius);
     background-color: var(--main-color);
     color: var(--sub-color);
@@ -669,9 +669,8 @@ select {
 
 .product-item .product-price {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 0 .5rem;
+    flex-direction: column;
+    gap: .5rem;
 }
 
 .product-item .product-price .true-price {

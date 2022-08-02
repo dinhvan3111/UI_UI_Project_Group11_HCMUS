@@ -176,10 +176,10 @@
                                     <div class="product-price"><b>{{format_number sale_price}} đ</b><span
                                             class="true-price">{{format_number price}} đ</span></b>
                                     </div>
+                                    <button class="buy-now" onclick="event.preventDefault(); addToCart('{{_id}}', 1);">Mua ngay</button>
                                     
                                 </div>
                             </a>    
-                            <button class="buy-now" onclick="addToCart('{{_id}}', 1);">Mua ngay</button>
                         {{/each}}
 
                     </div>

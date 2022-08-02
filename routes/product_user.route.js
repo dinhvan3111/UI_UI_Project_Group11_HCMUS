@@ -10,7 +10,7 @@ router.get('/', async function (req, res) {
         req.query.q.length === 0) {
         return res.status(404).send('Not Found');
     }
-    const productsQuery = await productModel.search(req.query.q);
+    const productsQuery = await productModel.search(req.query.q,req.query.page * 1 - 1 || 0);
     const products = [];
     for (let i = 0; i < productsQuery.length; i++) {
         const product = productsQuery[i];
@@ -22,10 +22,12 @@ router.get('/', async function (req, res) {
     if (products.length !== 0) {
         totalProducts = await productModel.getTotalProductsSearch(req.query.q)
     }
+    let totalPages = totalProducts % 10 + 1;
     res.render('vwProduct/search_result', {
         keyword: req.query.q,
         products: products,
-        totalProducts: totalProducts
+        totalProducts: totalProducts,
+        totalPages
     });
 });
 

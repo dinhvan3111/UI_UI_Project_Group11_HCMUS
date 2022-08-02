@@ -222,6 +222,21 @@
     padding: 3rem;
 }
 
+.tab-content.product-detail-nav-content p{
+    line-height: 1.5;
+    margin-bottom: .5rem;
+}
+
+.tab-content.product-detail-nav-content img{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+}
+.tab-content.product-detail-nav-content h2,
+.tab-content.product-detail-nav-content h3{
+    margin-bottom: .5rem;
+}
+
 .tab-content .des-wrap{
     overflow: hidden;
     position: relative;
