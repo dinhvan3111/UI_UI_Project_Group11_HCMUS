@@ -66,14 +66,79 @@
                 </div>
                 <div class="header-control">
                     <div class="announce">
-                        <a href="">
-                            <div class="icon">
-                                <i class="fa-solid fa-bell"></i>
-                            </div>
-                            <div class="text">
-                                Thông báo
-                            </div>
-                        </a>
+                        <div class="dropdown-noti">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-notification"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="icon">
+                                    <i class="fa-solid fa-bell"></i>
+                                </div>
+                                <div class="text">
+                                    Thông báo
+                                </div>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown-notif">
+                                <div class="noti-control mt-2 mb-2">
+                                    <button>Xóa tất cả thông báo</button>
+                                </div>
+                                <div class="item-container">
+                                    <li class="item">
+                                        <a class="dropdown-item" href="#">
+                                            <img
+                                                src="https://cdn.shopify.com/s/files/1/0024/9803/5810/products/517518-Product-0-I-637756975358868585_a1f8076b-3e38-4c5b-8f52-3a088f73731e_540x540.jpg?v=1658208964">
+                                            <div class="order-info">
+                                                <p>Đơn hàng 1001</p>
+                                                <small class="text-muted">22/12/2022</small>
+                                            </div>
+                                            <span class="state-pending ms-4">Chờ xác nhận</span>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a class="dropdown-item" href="#">
+                                            <img
+                                                src="https://cdn.shopify.com/s/files/1/0024/9803/5810/products/517518-Product-0-I-637756975358868585_a1f8076b-3e38-4c5b-8f52-3a088f73731e_540x540.jpg?v=1658208964">
+                                            <div class="order-info">
+                                                <p>Đơn hàng 1001</p>
+                                                <small class="text-muted">22/12/2022</small>
+                                            </div>
+                                            <span class="state-approve ms-4">Đã xác nhận</span>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a class="dropdown-item" href="#">
+                                            <img
+                                                src="https://cdn.shopify.com/s/files/1/0024/9803/5810/products/517518-Product-0-I-637756975358868585_a1f8076b-3e38-4c5b-8f52-3a088f73731e_540x540.jpg?v=1658208964">
+                                            <div class="order-info">
+                                                <p>Đơn hàng 1001</p>
+                                                <small class="text-muted">22/12/2022</small>
+                                            </div>
+                                            <span class="state-approve ms-4">Đang giao</span>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a class="dropdown-item" href="#">
+                                            <img
+                                                src="https://cdn.shopify.com/s/files/1/0024/9803/5810/products/517518-Product-0-I-637756975358868585_a1f8076b-3e38-4c5b-8f52-3a088f73731e_540x540.jpg?v=1658208964">
+                                            <div class="order-info">
+                                                <p>Đơn hàng 1001</p>
+                                                <small class="text-muted">22/12/2022</small>
+                                            </div>
+                                            <span class="state-success ms-4">Giao thành công</span>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a class="dropdown-item" href="#">
+                                            <img
+                                                src="https://cdn.shopify.com/s/files/1/0024/9803/5810/products/517518-Product-0-I-637756975358868585_a1f8076b-3e38-4c5b-8f52-3a088f73731e_540x540.jpg?v=1658208964">
+                                            <div class="order-info">
+                                                <p>Đơn hàng 1001</p>
+                                                <small class="text-muted">22/12/2022</small>
+                                            </div>
+                                            <span class="state-failed ms-4">Bị hủy</span>
+                                        </a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </div>
                     </div>
                     <div class="cart">
                         <a href="/cart">
@@ -99,6 +164,8 @@
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown-infor">
                                 <li><a class="dropdown-item" href="/profile">Thông tin cá nhân</a></li>
                                 <li><a class="dropdown-item" href="/purchased-history">Lịch sử mua hàng</a></li>
+                                <li><a class="dropdown-item" href="/orders/management">Quản lý đơn hàng</a></li>
+                                <li><a class="dropdown-item" href="/order/detail">Chi tiết đơn</a></li>
                                 <li><a class="dropdown-item" href="#" onclick="logout(); return false;"><i
                                             class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
                             </ul>
