@@ -22,14 +22,14 @@
                     <td>
                         <div class="cart-info">
                             <span class="cart-product-id" style="display: none;">{{_id}}</span>
-                            <img src="{{getImgLink thumb}}" alt="{{thumb}}">
+                            <img src="{{getImgLink thumb}}" id="thumb{{_id}}" alt="{{thumb}}">
                             <div>
-                                <p class="cart-product-name">{{title}}</p>
+                                <p class="cart-product-name" id="title{{_id}}">{{title}}</p>
                             </div>
                         </div>
                     </td>
                     <td class="cart-product-quantity"><input type="number" value="{{quantity}}"></td>
-                    <td class="product-price">{{format_number buy_price}} VNĐ</td>
+                    <td id="price{{_id}}" class="product-price">{{format_number buy_price}} VNĐ</td>
                 </tr>
                 {{/each}}
 
@@ -198,52 +198,8 @@
                     <h2>Thông tin đơn hàng</h2>
                     <a href="/cart">Chỉnh sửa</a>
                 </div>
-                <div class="products-checkout-body">
-                    <div class="product-info">
-                        <img class="img-fluid" src="./assets/img/frog.png" alt="Image">
-                        <div class="product-info-text">
-                            <a href="#">Tên sản phẩm</a>
-                            <span class="quantity">Số lượng: 1</span>
-                            <span class="sale-price">3.790.000đ</span>
-                            <span class="real-price">3.990.000đ</span>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <img class="img-fluid" src="./assets/img/frog.png" alt="Image">
-                        <div class="product-info-text">
-                            <a href="#">Tên sản phẩm</a>
-                            <span class="quantity">Số lượng: 1</span>
-                            <span class="sale-price">3.790.000đ</span>
-                            <span class="real-price">3.990.000đ</span>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <img class="img-fluid" src="./assets/img/frog.png" alt="Image">
-                        <div class="product-info-text">
-                            <a href="#">Tên sản phẩm</a>
-                            <span class="quantity">Số lượng: 1</span>
-                            <span class="sale-price">3.790.000đ</span>
-                            <span class="real-price">3.990.000đ</span>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <img class="img-fluid" src="./assets/img/frog.png" alt="Image">
-                        <div class="product-info-text">
-                            <a href="#">Tên sản phẩm</a>
-                            <span class="quantity">Số lượng: 1</span>
-                            <span class="sale-price">3.790.000đ</span>
-                            <span class="real-price">3.990.000đ</span>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <img class="img-fluid" src="./assets/img/frog.png" alt="Image">
-                        <div class="product-info-text">
-                            <a href="#">Tên sản phẩm</a>
-                            <span class="quantity">Số lượng: 1</span>
-                            <span class="sale-price">3.790.000đ</span>
-                            <span class="real-price">3.990.000đ</span>
-                        </div>
-                    </div>
+                <div class="products-checkout-body" id="productsCheckOutList">
+                    
                 </div>
                 <div class="payment-container">
                     <div class="total-price">

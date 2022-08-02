@@ -14,17 +14,23 @@ payBtn.addEventListener('click', function (e) {
 
     const result = [];
     for (let i = 0; i < productId.length; i++) {
-        var temp = { productId: productId[i].innerHTML, productQuantity: productQuantity[i].value };
+        const productIdStr = productId[i].innerHTML;
+        const productQuantityNum = productQuantity[i].value;
+        var temp = {
+            productId: productId,
+            productQuantity: productQuantityNum
+        };
+        addProductCheckOut(productIdStr, productQuantityNum);
         result.push(temp);
     }
     for (let i = 0; i < result.length; i++) {
         console.log(result[i]);
     }
-    
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/cart');
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(result));
+
+    // var xhr = new XMLHttpRequest();
+    // xhr.open('POST', '/cart');
+    // xhr.setRequestHeader('Content-Type', 'application/json');
+    // xhr.send(JSON.stringify(result));
 
     // Xử lí ẩn hiện container cart và check-out
     const checkoutContainer = document.querySelector('.checkout-container');
@@ -38,7 +44,7 @@ payBtn.addEventListener('click', function (e) {
 
 });
 
-async function showLoader(timeout){
+async function showLoader(timeout) {
     loader.classList.remove('loader--hidden');
     await sleep(timeout);
     loader.classList.add('loader--hidden');
@@ -57,4 +63,19 @@ function remove(productId) {
             $(`#${productId}`).remove();
         }
     });
+}
+
+function addProductCheckOut(productId, quantity) {
+    const img = $(`#thumb${productId}`).attr('src');
+    const title = $(`#title${productId}`).html();
+    const sale_price = $(`#price${productId}`).html();
+    const html = `<div class="product-info" id="checkOut${productId}">
+                    <img class="img-fluid" src="${img}" alt="Image">
+                    <div class="product-info-text">
+                        <a href="/products/${productId}">${title}</a>
+                        <span class="quantity">Số lượng: ${quantity}</span>
+                        <span class="sale-price">${sale_price}</span>
+                    </div>
+                </div>`;
+    $(`#productsCheckOutList`).append(html);
 }

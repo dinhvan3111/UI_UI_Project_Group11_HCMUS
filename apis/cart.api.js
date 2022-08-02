@@ -2,6 +2,7 @@ import express from 'express';
 import cartModel from '../models/cart.model.js';
 import productModel from '../models/product.model.js';
 import Validator from '../utils/validator.js';
+import Checker from '../middlewares/permission.mdw.js';
 
 const router = express.Router();
 
@@ -20,7 +21,7 @@ router.delete('/:id', async function (req, res) {
     });
 });
 
-router.post('/', async function (req, res) {
+router.post('/', Checker.notLogin, async function (req, res) {
     if (req.body.productId === undefined ||
         req.body.productId === null ||
         req.body.productId.length === 0 ||

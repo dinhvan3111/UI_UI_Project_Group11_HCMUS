@@ -21,7 +21,7 @@
                         id="add-product-category" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="{{category.ico}}"></i> {{category.name}}
                     </button>
-                    <input type="hidden" name="id_category" id="id_category" value="{{category.id}}">
+                    <input type="hidden" name="id_category" id="id_category" value="{{category._id}}">
                     <ul class="dropdown-menu" aria-labelledby="add-product-category">
                         {{#each lcCategories}}
                         <li>
