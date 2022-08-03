@@ -1,23 +1,7 @@
 import { ObjectId, getNewObjectId, toObjectId } from '../utils/database.js';
 import env from '../utils/env.js';
 import { Cart, CartInfo } from '../schema/cartsSchema.js';
-
-async function createNewCart(userId, productId, price, quantity) {
-    userCart = await this.save(new Cart({
-        _id: userId,
-        products: [
-            new CartInfo({
-                _id: productId,
-                price: price,
-                quantity: quantity
-            }),
-        ]
-    }));
-    if (userCart === null) {
-        return false;
-    }
-    return true;
-}
+import Product from '../schema/productsSchema.js';
 
 export default {
     async findById(id) {
@@ -109,5 +93,35 @@ export default {
             return false;
         }
         return true;
+    },
+
+    async getProductsInCart(userId, productIds) {
+        const productIdsObj = [];
+        for (let i = 0; i < productIds.length; i++) {
+            productIdsObj.push(toObjectId(productIds[i]));
+        }
+        return await Cart.aggregate([
+            {
+                "$match": {
+                    "_id": userId,
+                    "products._id": {
+                        "$in": productIdsObj
+                    }
+                }
+            },
+            {
+                "$project": {
+                    "products": {
+                        "$filter": {
+                            "input": "$products",
+                            "as": "productList",
+                            "cond": {
+                                "$in": ["$$productList._id", productIdsObj]
+                            }
+                        }
+                    }
+                }
+            }
+        ]);
     },
 }

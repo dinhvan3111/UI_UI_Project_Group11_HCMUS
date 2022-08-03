@@ -7,6 +7,7 @@ const Notifications = new Schema({
         {
             title: String,
             description: String,
+            date: String,
         }
     ],
 }, { versionKey: false });

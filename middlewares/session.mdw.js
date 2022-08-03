@@ -21,6 +21,8 @@ async function findOrCreate(profile) {
 	}
 	const info = await UserModel.findOrCreateByThirdPartyAcc(
 		idThirdPartyAcc, displayName, email, provider);
+	const data = info.data.toObject();
+	info.data = data;
 	return info;
 }
 
@@ -58,15 +60,16 @@ export default function (app) {
 		clientID: env.FB_APP_ID,
 		clientSecret: env.FB_SECRET,
 		callbackURL: env.FB_CALLBACK_URL,
-		profileFields: ['id', 'email', 'displayName']
+		profileFields: ['id', 'displayName', 'name', 'email', 'picture.type(large)']
 	},
 		async function (accessToken, refreshToken, profile, done) {
-			console.log(profile);
 			const info = await findOrCreate(profile);
-			console.log(info);
 			if (info.code === UserModel.ERROR_CODE) {
 				return done(null, false, { message: info.message })
 			}
+			delete info.code;
+			info.data.avt = profile.photos[0].value;
+			console.log('info', info);
 			return done(null, info);
 		}
 	));
@@ -78,10 +81,11 @@ export default function (app) {
 	},
 		async function (accessToken, refreshToken, profile, done) {
 			const info = await findOrCreate(profile);
-			console.log('info: ', info);
 			if (info.code === UserModel.ERROR_CODE) {
 				return done(null, false, { message: info.message })
 			}
+			delete info.code;
+			info.data.avt = profile.photos[0].value;
 			return done(null, info);
 		}
 	));

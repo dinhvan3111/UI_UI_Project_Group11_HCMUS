@@ -17,16 +17,26 @@ export const PERMISSION_ENUM = {
 
 export const STATE_CART_ENUM = {
     ORDERING: 0,
-    PROCESSING: 1,
+    CONFIRMED: 1,
     TRANSPORTING: 2,
-    DONE: 3
+    DONE: 3,
+    CANCEL: 4,
 };
 
 export const NUM_TO_CART_STATE = {
     0: STATE_CART_ENUM.ORDERING,
-    1: STATE_CART_ENUM.PROCESSING,
+    1: STATE_CART_ENUM.CONFIRMED,
     2: STATE_CART_ENUM.TRANSPORTING,
-    3: STATE_CART_ENUM.DONE
+    3: STATE_CART_ENUM.DONE,
+    4: STATE_CART_ENUM.CANCEL,
+};
+
+export const NUM_TO_DESCRIPTION = {
+    0: 'Chờ xác nhận',
+    1: 'Đã xác nhận',
+    2: 'Đang giao',
+    3: 'Giao thành công',
+    4: 'Bị hủy',
 };
 
 export function getNewObjectId() {

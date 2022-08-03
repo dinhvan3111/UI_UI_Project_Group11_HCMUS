@@ -28,5 +28,5 @@ export const Orders = new Schema({
 }, { versionKey: false });
 
 
-const Order = db.model('orders', Orders);
+export const Order = db.model('orders', Orders);
 export default Order;

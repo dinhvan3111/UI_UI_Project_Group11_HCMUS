@@ -86,6 +86,7 @@ router.get('/auth/facebook/callback',
         if (typeof (req.session.retUrl) !== 'undefined') {
             delete req.session.retUrl;
         }
+        console.log('session ', req.session.passport.user);
         res.redirect(url);
     }
 );

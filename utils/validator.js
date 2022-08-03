@@ -22,4 +22,24 @@ export default {
         }
         return NUM_TO_CART_STATE[`${state}`] !== undefined;
     },
+
+    isValidOrder(reqBody) {
+        if (reqBody.products.length < 1 ||
+            !this.isValidStr(reqBody.name) ||
+            !this.isValidNum(reqBody.phone) ||
+            !this.isValidStr(reqBody.email) ||
+            !this.isValidStr(reqBody.address)) {
+            return false;
+        }
+        if (reqBody.recvDay && !this.isValidStr(reqBody.recvDay)) {
+            return false;
+        }
+        for (let i = 0; i < reqBody.products.length; i++) {
+            if (!this.isValidStr(reqBody.products[i].id) ||
+                !this.isValidNum(reqBody.products[i].quantity)) {
+                return false;
+            }
+        }
+        return true;
+    },
 }

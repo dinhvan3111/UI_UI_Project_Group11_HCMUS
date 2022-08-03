@@ -47,6 +47,8 @@ export default function (app) {
             // req.user.id_permission = user.id_permission;
             authUser.user.id_permission = user.id_permission;
             req.session.passport.id_permission = user.id_permission;
+            // console.log('hit', req.session.passport);
+            authUser.user.avt = req.session.passport.user.avt;
         }
         res.locals.lcAuthUser = authUser.user;
         // console.log('lcAuthUser', res.locals.lcAuthUser);

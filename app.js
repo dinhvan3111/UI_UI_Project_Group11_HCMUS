@@ -15,7 +15,7 @@ import validator from './utils/validator.js';
 import { broadcastNotify } from './routes/notification.route.js';
 import CategoryModel from './models/category.model.js';
 import OrderModel from './models/order.model.js';
-
+import CartModel from './models/cart.model.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 console.log(__dirname);
@@ -31,7 +31,6 @@ sessionMdw(app);
 viewMdw(app);
 localsMdw(app);
 routeMdw(app);
-
 
 
 const server = app.listen(port, function () {

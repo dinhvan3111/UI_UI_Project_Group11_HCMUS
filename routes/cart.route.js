@@ -1,6 +1,8 @@
 import express from 'express';
-import cartModel from '../models/cart.model.js';
-import productModel from '../models/product.model.js';
+import CartModel from '../models/cart.model.js';
+import ProductModel from '../models/product.model.js';
+import Validator from '../utils/validator.js';
+import OrderModel from '../models/order.model.js';
 
 const FREE_SHIP_AMMOUNT = 500000;
 const router = express.Router();
@@ -13,13 +15,13 @@ router.get('/cart', async function (req, res) {
     if (req.session.passport === undefined) {
         return res.redirect('/login');
     }
-    const cart = await cartModel.findById(req.session.passport.user._id);
+    const cart = await CartModel.findById(req.session.passport.user._id);
     const products = [];
     let totalPrice = 0;
     let cartRet = {};
     if (cart !== null) {
         for (let i = 0; i < cart.products.length; i++) {
-            const product = await productModel.findById(cart.products[i]._id);
+            const product = await ProductModel.findById(cart.products[i]._id);
             const productTemp = product.toObject();
             productTemp.quantity = cart.products[i].quantity;
             productTemp.buy_price = cart.products[i].price;
@@ -43,8 +45,14 @@ router.get('/cart', async function (req, res) {
     });
 });
 
-router.post('/cart', function (req, res) {
+router.post('/cart', async function (req, res) {
     console.log(req.body);
+    const userId = req.session.passport.user._id;
+    if (!Validator.isValidOrder(req.body) ||
+        !await OrderModel.ordering(userId, req.body)) {
+        return res.redirect('/cart');
+    }
+    return res.redirect('/order-confirm?sucess=true');
 });
 
 router.get('/purchased-history', function (req, res) {

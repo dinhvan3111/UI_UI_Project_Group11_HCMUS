@@ -52,7 +52,7 @@
             <div class="header-main">
                 <a class="header-logo" href="/">
                     <img class="img-fluid" src="/assets/img/logo_not_slogan.png">
-                    <img class="img-fluid" src="/assets/img/logo.png">
+                    <img class="img-fluid" src="/assets/img/logo.png">`
                 </a>
                 <div class="header-search">
                     <form action="/products">
@@ -158,7 +158,12 @@
 
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-information"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa-regular fa-circle-user"></i>
+                                {{#if lcAuthUser.avt}}
+                                    <img src="{{lcAuthUser.avt}}" alt="logo">
+                                {{else}}
+                                    <i class="fa-regular fa-circle-user"></i>
+                                {{/if}}
+
                                 {{lcAuthUser.name}}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown-infor">
