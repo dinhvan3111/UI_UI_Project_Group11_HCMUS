@@ -54,6 +54,20 @@ routeMdw(app);
 // ]);
 // console.log(res[0].data);
 
+// const ids = [
+//     toObjectId('62cdfef382ee775bec00778a'),
+//     toObjectId('62cdfef382ee775bec000000'),
+//     toObjectId('62ce004082ee775bec00778c'),
+// ];
+
+// const products = await Product.find({ _id: { $in: ids } }).select({ _id: 1, price: 1, sale_price: 1 });
+// console.log(products);
+
+
+
+const server = app.listen(port, function () {
+    console.log(`Example app listening at http://localhost:${port}`)
+});
 
 // WebSocket(server);
 

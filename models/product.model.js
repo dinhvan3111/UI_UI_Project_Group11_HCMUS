@@ -3,6 +3,7 @@ import env from '../utils/env.js';
 import uploadModel from '../models/upload.model.js';
 import Product from '../schema/productsSchema.js';
 import CategoryModel from './category.model.js';
+import CartModel from './cart.model.js';
 
 function getSearchQuery(queryStr) {
     return {
@@ -194,7 +195,12 @@ export default {
         product.stock = reqBody.stock;
         product.waranty = reqBody.waranty;
         product.description = reqBody.description;
-        return await this.save(product);
+        const isUpdated = await this.save(product);
+        if (isUpdated) {
+            CartModel.changeProductPriceInCart(product._id.toString(), product.sale_price);
+            return true;
+        }
+        return false;
     },
 
     async getTopSell(offset, numOfProduct) {

@@ -124,4 +124,12 @@ export default {
             }
         ]);
     },
+
+    async changeProductPriceInCart(productIdStr, price) {
+        return await Cart.updateMany(
+            {
+                'products._id': productIdStr
+            },
+            { '$set': { 'products.$.price': price } });
+    },
 }
