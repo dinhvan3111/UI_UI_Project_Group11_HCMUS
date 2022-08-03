@@ -16,6 +16,8 @@ import { broadcastNotify } from './routes/notification.route.js';
 import CategoryModel from './models/category.model.js';
 import OrderModel from './models/order.model.js';
 import CartModel from './models/cart.model.js';
+import Cart from './schema/cartsSchema.js';
+import Product from './schema/productsSchema.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 console.log(__dirname);
@@ -32,10 +34,26 @@ viewMdw(app);
 localsMdw(app);
 routeMdw(app);
 
+// const res = await Cart.aggregate([
 
-const server = app.listen(port, function () {
-    console.log(`Example app listening at http://localhost:${port}`)
-});
+//     { '$unwind': '$products' },
+//     { '$match': { '_id': 'vutuanhaigk123@gmail.com', 'products.quantity': { '$gt': 0 } } },
+//     {
+//         '$facet': {
+//             'data': [
+//                 { '$skip': 0 },
+//                 { '$limit': 3 },
+//                 { '$project': { '_id': 1, 'products': 1 } },
+//                 { '$sort': { 'products.price': -1 } },
+//             ],
+//             "total": [
+//                 { "$count": "count" }
+//             ]
+//         }
+//     }
+// ]);
+// console.log(res[0].data);
+
 
 // WebSocket(server);
 

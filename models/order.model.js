@@ -56,12 +56,50 @@ async function popProducts(userId, productIds) {
         return await userCart.save() !== null;
     }
     return true;
-}
+};
+
+function page2SkipItems(page, limit) {
+    // start from 1
+    if (page <= 1) {
+        return 0;
+    }
+    return (page * limit) - limit;
+};
+
+async function toOrdersPagingQuery(conditions, skip, limit, selections) {
+    return await Order.aggregate([
+        { '$unwind': '$orders' },
+        { '$match': conditions },
+        {
+            '$facet': {
+                'data': [
+                    { '$skip': skip },
+                    { '$limit': limit },
+                    { '$project': selections },
+                    { '$sort': { 'orders.state': 1 } },
+                ],
+                "total": [
+                    { "$count": "count" }
+                ]
+            }
+        }
+    ]);
+};
 
 export default {
     async findById(id) {
         try {
             const order = await Order.findById({ _id: id }).exec();
+            return order;
+        }
+        catch (err) {
+            return null;
+        }
+    },
+
+    async findOrderById(userId, orderId) {
+        try {
+            const order = await Order.findById({ _id: id, orders: { _id: orderId } }).exec();
             return order;
         }
         catch (err) {
@@ -156,5 +194,33 @@ export default {
         userOrder.orders.push(orderInfo);
         const result = await userOrder.save();
         return result;
+    },
+
+    // Retrieve all orders of a user
+    async getAllOrdersOfUser(userId, page = 0, limit = 10, selections = { 'orders': 1 }) {
+        const skip = page2SkipItems(page, limit);
+        const conditions = { '_id': userId };
+        return await toOrdersPagingQuery(conditions, skip, limit, selections);
+    },
+
+    // Retrieve all orders of a user by order status
+    async getAllOrdersByStateOfUser(userId, cartState, page = 0, limit = 10, selections = { 'orders': 1 }) {
+        const skip = page2SkipItems(page, limit);
+        const conditions = { '_id': userId, 'orders.state': cartState };
+        return await toOrdersPagingQuery(conditions, skip, limit, selections);
+    },
+
+    // Retrieve all orders (for manager/ staff)
+    async getAllOrders(page = 0, limit = 10, selections = { '_id': 1, 'orders': 1 }) {
+        const skip = page2SkipItems(page, limit);
+        const conditions = {};
+        return await toOrdersPagingQuery(conditions, skip, limit, selections);
+    },
+
+    // Retrive all orders by order status (for manager/ staff)
+    async getAllOrdersByState(cartState, page = 0, limit = 10, selections = { '_id': 1, 'orders': 1 }) {
+        const skip = page2SkipItems(page, limit);
+        const conditions = { 'orders.state': cartState };
+        return await toOrdersPagingQuery(conditions, skip, limit, selections);
     },
 }

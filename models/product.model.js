@@ -259,4 +259,25 @@ export default {
         }
         return false;
     },
+
+    async multiGet(idsStr, selection = { _id: 1, price: 1, sale_price: 1 }) {
+        selection._id = 1;
+        const ids = [];
+        const mapRet = {};
+        for (let i = 0; i < idsStr.length; i++) {
+            ids.push(toObjectId(idsStr[i]));
+            mapRet[`${idsStr[i]}`] = null;
+        }
+        const products = await Product.find({ _id: { $in: ids } }).select(selection);
+        // return value format:
+        // ret = {
+        //     id1: product1,
+        //     id2: product2,
+        //     ...
+        // }
+        for (let i = 0; i < products.length; i++) {
+            mapRet[`${products[i]._id.toString()}`] = products[i];
+        }
+        return mapRet;
+    }
 }
