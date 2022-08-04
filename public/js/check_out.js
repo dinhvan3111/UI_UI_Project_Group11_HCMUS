@@ -13,11 +13,12 @@ let max = 15;
 jQuery('#datetimepicker').datetimepicker();
 
 $('#datetimepicker').datetimepicker({
-    format: 'd.m.Y H:i',
+    format: 'd.m.Y',
     minDate: 0,
     minTime: 1,
-    format: 'd/m/Y H:i',
+    format: 'd/m/Y',
     mask: true,
+    timepicker: false,
 });
 
 // Xử lí scroll khi đơn hàng quá 4 sản phẩm khác nhau
@@ -112,7 +113,7 @@ function handleErrorMessageForSelect(item, msg) {
 }
 
 function handleErrorMessageForDate(item, msg) {
-    if (item.value != "__/__/____ __:__") {
+    if (item.value != "__/__/____" && item.value != "") {
         item.style.border = '1px solid green';
         msg.style.display = 'none';
     }
@@ -141,6 +142,20 @@ const errDate = document.querySelector('.err-message__date');
 
 
 payBtnCheckout.addEventListener('click', function (e) {
+    // const fullname = document.querySelector('.receive-address-content.at-store input[name="fullname"]');
+    // const phoneNum = document.querySelector('.receive-address-content.at-store input[name="phonenumber"]');
+    // const email = document.querySelector('.receive-address-content.at-store input[name="email"]');
+    // const store = document.querySelector('.receive-address-content.at-store .infor-field select[name="store"]');
+    // const receiveDate = document.querySelector('.receive-address-content.at-store .infor-field input[name="receivedate"]');
+    // const paymentMethod = document.querySelector('.payment-method .payment-method-item.active h4');
+    // const productResult = postCheckoutProductsToServer();
+    // console.log("Full name:" + fullname.value);
+    // console.log("Phone number:" + phoneNum.value);
+    // console.log("Email " + email.value);
+    // console.log("Payment method " + paymentMethod.innerHTML);
+    // console.log("Products " + productResult[0].productId);
+    // console.log("Store " + store.value);
+    // console.log("Receive date " + receiveDate.value);
     const activeTab = document.querySelector('.receive-address .navigation-tab.active');
     if (activeTab.innerHTML == 'Nhận hàng tại nhà') {
         const isValidFullName = checkLength(fullName, min, max);
@@ -153,6 +168,25 @@ payBtnCheckout.addEventListener('click', function (e) {
             e.preventDefault();
         }
         else {
+            const fullname = document.querySelector('.receive-address-content.at-your-place input[name="fullname"]');
+            const phoneNum = document.querySelector('.receive-address-content.at-your-place input[name="phonenumber"]');
+            const email = document.querySelector('.receive-address-content.at-your-place input[name="email"]');
+            const address = document.querySelector('.receive-address-content.at-your-place .infor-field input[name="address"]');
+            const paymentMethod = document.querySelector('.payment-method .payment-method-item.active h4');
+            const productResult = checkoutProductsToServer();
+            var checkoutInfo = {
+                receiveAt: "0", // 0: tại nhà, 1: tại cửa hàng
+                name: fullname.value,
+                phone: phoneNum.value,
+                email: email.value,
+                address: address.value,
+                recvDay: null,
+                products: productResult,
+            }
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/cart');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify(checkoutInfo));
             paymentForm.submit();
         };
     }
@@ -165,15 +199,56 @@ payBtnCheckout.addEventListener('click', function (e) {
             handleErrorMessage(fullName2, errFullName2);
             handleErrorMessage(phoneNumber2, errPhoneNum2);
             handleErrorMessageForSelect(receiveStore, errStore);
-            handleErrorMessageForDate(receiveDate,errDate);
+            handleErrorMessageForDate(receiveDate, errDate);
             e.preventDefault();
         }
         else {
+            const fullname = document.querySelector('.receive-address-content.at-store input[name="fullname"]');
+            const phoneNum = document.querySelector('.receive-address-content.at-store input[name="phonenumber"]');
+            const email = document.querySelector('.receive-address-content.at-store input[name="email"]');
+            const store = document.querySelector('.receive-address-content.at-store .infor-field select[name="store"]');
+            const receiveDate = document.querySelector('.receive-address-content.at-store .infor-field input[name="receivedate"]');
+            const paymentMethod = document.querySelector('.payment-method .payment-method-item.active h4');
+            const productResult = checkoutProductsToServer();
+            var checkoutInfo = {
+                receiveAt: "1", // 0: tại nhà, 1: tại cửa hàng
+                name: fullname.value,
+                phoneNumber: phoneNum.value,
+                email: email.value,
+                address: store.options[store.selectedIndex].text,
+                recvDay: receiveDate.value,
+                products: productResult,
+            }
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/cart');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify(checkoutInfo));
             paymentForm.submit();
         };
-        console.log(receiveDate.value);
     }
 });
+
+function checkoutProductsToServer() {
+    // Post về server chi tiết để check-out
+    const productId = document.querySelectorAll('.cart-detail .cart-info .cart-product-id');
+    // const productName = document.querySelectorAll('.cart-detail .cart-info .cart-product-name');
+    const productQuantity = document.querySelectorAll('.cart-detail .cart-product-quantity input');
+
+    const productResult = [];
+    for (let i = 0; i < productId.length; i++) {
+        const productIdStr = productId[i].innerHTML;
+        const productQuantityNum = productQuantity[i].value;
+        var temp = {
+            productId: productIdStr,
+            productQuantity: productQuantityNum
+        };
+        productResult.push(temp);
+    }
+    for (let i = 0; i < productResult.length; i++) {
+        console.log(productResult[i]);
+    }
+    return productResult;
+}
 
 
 

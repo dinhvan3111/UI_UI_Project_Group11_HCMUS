@@ -22,14 +22,23 @@
                     <td>
                         <div class="cart-info">
                             <span class="cart-product-id" style="display: none;">{{_id}}</span>
-                            <img src="{{getImgLink thumb}}" id="thumb{{_id}}" alt="{{thumb}}">
+                            <a href="/products/{{_id}}"><img src="{{getImgLink thumb}}" id="thumb{{_id}}" alt="{{thumb}}"></a>
                             <div>
-                                <p class="cart-product-name" id="title{{_id}}">{{title}}</p>
+                                <a href="/products/{{_id}}"><p class="cart-product-name" id="title{{_id}}">{{title}}</p></a>
                             </div>
                         </div>
                     </td>
-                    <td class="cart-product-quantity"><input type="number" value="{{quantity}}"></td>
-                    <td id="price{{_id}}" class="product-price">{{format_number buy_price}} VNĐ</td>
+                    <td class="cart-product-quantity">
+                        <div class="quantity-group btn-group">
+                            <button type="button" class="btn btn-number btn-number-sub" data-type="minus"><i
+                                    class="fa-solid fa-minus"></i></button>
+                            <input type="text" class="input-number text-center" id="quantity" value="{{quantity}}" name="quantity"
+                                min="1" max="100" pattern="[0-9]*" disabled>
+                            <button type="button" class="btn btn-number btn-number-plus" data-type="plus"><i
+                                    class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </td>
+                    <td id="price{{_id}}" class="product-price"><span class="format-price">{{format_number buy_price}} VNĐ </span><span class="before-format" style="display: none;">{{buy_price}}</span></td>
                 </tr>
                 {{/each}}
 
@@ -44,18 +53,18 @@
                     </tr>
                     <tr>
                         <td>Tạm tính</td>
-                        <td>{{format_number cart.totalPrice}} VNĐ</td>
+                        <td class="temp-price">{{format_number cart.totalPrice}} VNĐ</td>
                     </tr>
                     <tr>
                         <td>Phí vận chuyển</td>
-                        <td>{{format_number cart.shipPrice}} VNĐ</td>
+                        <td class="ship-price">{{cart.shipPrice}} VNĐ</td>
                     </tr>
                     <tr>
                         <td>Thành tiền</td>
                         <td class="real-total-price ">{{format_number cart.finalPrice}} VNĐ</td>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <td colspan="2" style="display: none;">
                             <div class="coupon-container">
                                 <h3>
                                     Chọn mã giảm giá/phiếu mua hàng
@@ -84,12 +93,12 @@
             <img src="./assets/img/empty_cart.jpg" alt="cart_empty">
         </div>
         <h2 class="empty-cart">Chưa có sản phẩm nào</h2>
-        <button class="buy-now bestgear-button">Mua sắm ngay</button>
+        <a href="/"><button class="buy-now bestgear-button">Mua sắm ngay</button></a>
     </div>
     {{/if}}
 </div>
 <div class="container">
-    <form id="payment-form" action="/payment" method="post">
+    <form id="payment-form" action="/cart" method="post">
         <div class="checkout-container">
             <div class="order-info">
                 <div class="receive-address">
@@ -157,7 +166,6 @@
                                     <option value="" disabled selected>Chọn cửa hàng</option>
                                     <option value="hcm">227 Nguyễn Văn Cừ, phường 4, quận 5, TP.HCM fdwq eqwe qưe qư
                                     </option>
-                                    <option value="hn">Hà Nội</option>
                                 </select>
                             </div>
                         </div>
@@ -175,15 +183,15 @@
                     <h5>Thông tin thanh toán của bạn sẽ luôn được bảo mật</h5>
                     <ul>
                         <li class="payment-method-item active">
-                            <h4>Thanh toán quá VNPAY <span>Khuyên dùng</span></h4>
-                            <h5>Thanh toán qua Internet Banking, Visa, Master Card, JCB, VNPAY-QR</h5>
+                            <h4>Thanh toán khi nhận hàng</h4>
                             <div class="item-active"></div>
                             <span class="item-active-check"><i class="fa fa-check"></i></span>
-
                         </li>
                         <li class="payment-method-item">
-                            <h4>Thanh toán khi nhận hàng</h4>
+                            <h4>Thanh toán quá VNPAY <span>Khuyên dùng</span></h4>
+                            <h5>Thanh toán qua Internet Banking, Visa, Master Card, JCB, VNPAY-QR</h5>
                         </li>
+
                         <li class="payment-method-item">
                             <h4>Thanh toán qua trả góp</h4>
                             <h5>Áp dụng cho khách hàng trên 18 tuổi và đơn trên 3.000.000đ</h5>
@@ -199,7 +207,7 @@
                     <a href="/cart">Chỉnh sửa</a>
                 </div>
                 <div class="products-checkout-body" id="productsCheckOutList">
-                    
+
                 </div>
                 <div class="payment-container">
                     <div class="total-price">
@@ -210,11 +218,11 @@
                             </tr>
                             <tr>
                                 <td>Tạm tính</td>
-                                <td>{{format_number cart.totalPrice}} VNĐ</td>
+                                <td class="temp-price">{{format_number cart.totalPrice}} VNĐ</td>
                             </tr>
                             <tr>
                                 <td>Phí vận chuyển</td>
-                                <td>{{format_number cart.shipPrice}} VNĐ</td>
+                                <td >{{format_number cart.shipPrice}} VNĐ</td>
                             </tr>
                             <tr>
                                 <td>Thành tiền</td>

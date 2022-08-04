@@ -72,6 +72,9 @@ table th:last-child{
     height: 2rem;
     padding: 0.5rem;
 }
+
+.cart-section .cart-product-quantity .quantity-group input:disabled{background-color:transparent;}
+
 .cart-section .cart-product-quantity input[type=number]::-webkit-inner-spin-button,
 .cart-section .cart-product-quantity input[type=number]::-webkit-outer-spin-button {
     margin-left: 1rem;

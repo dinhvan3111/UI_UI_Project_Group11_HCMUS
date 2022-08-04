@@ -61,13 +61,13 @@
     gap: 1rem;
 }
 
-.product-price-container .product-quantity{
+.product-quantity{
     display: flex;
     align-items: center!important;
     gap: 2rem;
 }
 
-.product-price-container .product-quantity .quantity-group{
+.quantity-group{
     width: 20.5rem;
     height: 100%;
     border-radius: var(--border-radius);
