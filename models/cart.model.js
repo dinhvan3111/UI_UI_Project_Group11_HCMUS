@@ -3,6 +3,14 @@ import env from '../utils/env.js';
 import { Cart, CartInfo } from '../schema/cartsSchema.js';
 import Product from '../schema/productsSchema.js';
 
+async function update(userId, newFields) {
+    const res = await Cart.updateOne({ '_id': userId }, newFields);
+    if (res.modifiedCount && res.modifiedCount > 0) {
+        return true;
+    }
+    return false;
+}
+
 export default {
     async findById(id) {
         return await Cart.findById({ _id: id }).exec();
@@ -40,6 +48,7 @@ export default {
             return await res[0].save() !== null;
         }
         // product is not in cart of user
+
         userCart.products.push(
             new CartInfo({
                 _id: product._id,
@@ -59,15 +68,25 @@ export default {
     },
 
     async removeFromCart(userId, productIdStr) {
-        const res = await this.findByFilter({
-            "_id": userId,
-            "products._id": productIdStr
-        });
-        if (res.length > 0) {
-            res[0].products.pull({ _id: productIdStr });
-            return await res[0].save() !== null;
+        const newFields = {
+            '$pull': {
+                'products': { '_id': productIdStr }
+            }
         }
-        return true;
+        return await update(userId, newFields);
+    },
+
+    async mmultiRemoveFromCart(userId, productIdsStr) {
+        const newFields = {
+            '$pull': {
+                'products': {
+                    '_id': {
+                        '$in': productIdsStr
+                    }
+                }
+            }
+        }
+        return await update(userId, newFields);
     },
 
     async getTotalItems(userIdStr) {

@@ -28,6 +28,14 @@ function getSearchQuery(queryStr) {
     };
 };
 
+async function updateProduct(productId, newFields) {
+    const res = await Product.updateOne({ '_id': productId }, newFields);
+    if (res.modifiedCount && res.modifiedCount > 0) {
+        return true;
+    }
+    return false;
+}
+
 export default {
     async findById(id) {
         try {
@@ -185,17 +193,31 @@ export default {
             category === null) {
             return false;
         }
-        product.title = reqBody.title;
-        product.id_category = category._id;
-        product.price = reqBody.price;
-        product.sale_price = reqBody.sale_price;
+        // product.title = reqBody.title;
+        // product.id_category = category._id;
+        // product.price = reqBody.price;
+        // product.sale_price = reqBody.sale_price;
         const percentSale = Math.round(((product.price - product.sale_price) /
             product.price) * 100);
-        product.percentSale = percentSale;
-        product.stock = reqBody.stock;
-        product.waranty = reqBody.waranty;
-        product.description = reqBody.description;
-        const isUpdated = await this.save(product);
+        // product.percentSale = percentSale;
+        // product.stock = reqBody.stock;
+        // product.waranty = reqBody.waranty;
+        // product.description = reqBody.description;
+
+        const newFields = {
+            '$set': {
+                'title': reqBody.title,
+                'id_category': category._id,
+                'price': reqBody.price,
+                'sale_price': reqBody.sale_price,
+                'percentSale': percentSale,
+                'stock': reqBody.stock,
+                'waranty': reqBody.waranty,
+                'description': reqBody.description,
+            }
+        }
+        const isUpdated = await updateProduct(reqBody._id, newFields);
+        // const isUpdated = await this.save(product);
         if (isUpdated) {
             CartModel.changeProductPriceInCart(product._id.toString(), product.sale_price);
             return true;
@@ -258,12 +280,18 @@ export default {
     },
 
     async emptyStock(productId) {
-        const product = await this.findById(productId);
-        if (product !== null) {
-            product.stock = 0;
-            return await this.save(product) !== null;
+        const newFields = {
+            '$set': {
+                'stock': 0
+            }
         }
-        return false;
+        return await updateProduct(productId, newFields);
+        // const product = await this.findById(productId);
+        // if (product !== null) {
+        //     product.stock = 0;
+        //     return await this.save(product) !== null;
+        // }
+        // return false;
     },
 
     async multiGet(idsStr, selection = { _id: 1, price: 1, sale_price: 1 }) {

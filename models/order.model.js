@@ -43,19 +43,20 @@ async function createNewOrder(userId, orderInfo) {
 };
 
 async function popProducts(userId, productIds) {
-    let updated = false;
-    const userCart = await CartModel.findById(userId);
-    for (let i = 0; productIds.length > 0 && i < userCart.products.length; i++) {
-        const productIdInCart = productIds[productIds.length - 1].id;
-        if (userCart.products[i]._id.toString() === productIdInCart) {
-            updated = true;
-            userCart.products.pull({ _id: productIdInCart });
-        }
-    }
-    if (updated) {
-        return await userCart.save() !== null;
-    }
-    return true;
+    // let updated = false;
+    // const userCart = await CartModel.findById(userId);
+    // for (let i = 0; productIds.length > 0 && i < userCart.products.length; i++) {
+    //     const productIdInCart = productIds[productIds.length - 1].id;
+    //     if (userCart.products[i]._id.toString() === productIdInCart) {
+    //         updated = true;
+    //         userCart.products.pull({ _id: productIdInCart });
+    //     }
+    // }
+    // if (updated) {
+    //     return await userCart.save() !== null;
+    // }
+    // return true;
+    return await CartModel.mmultiRemoveFromCart(userId, productIds);
 };
 
 function page2SkipItems(page, limit) {
@@ -98,13 +99,29 @@ export default {
     },
 
     async findOrderById(userId, orderId) {
-        try {
-            const order = await Order.findById({ _id: id, orders: { _id: orderId } }).exec();
-            return order;
-        }
-        catch (err) {
+        const orders = await Cart.aggregate([
+            { '$match': { '_id': userId, 'orders._id': toObjectId(orderId) } },
+            {
+                "$project": {
+                    "orders": {
+                        "$filter": {
+                            "input": "$orders",
+                            "as": "orders",
+                            "cond": {
+                                "$eq": [
+                                    "$$orders._id",
+                                    toObjectId(orderId)
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        ]);
+        if (orders.length === 0) {
             return null;
         }
+        return orders[0];
     },
 
     async save(order) {
@@ -222,5 +239,26 @@ export default {
         const skip = page2SkipItems(page, limit);
         const conditions = { 'orders.state': cartState };
         return await toOrdersPagingQuery(conditions, skip, limit, selections);
+    },
+
+    async changeState(userIdOrder, orderId, cartState) {
+        const cartStateExist = NUM_TO_CART_STATE[`${cartState}`];
+        if (cartStateExist) {
+            const res = await Order.updateOne(
+                {
+                    '_id': userIdOrder,
+                    'orders._id': orderId
+                },
+                {
+                    '$set': {
+                        'orders.$.state': cartState
+                    }
+                }
+            );
+            if (res.modifiedCount && res.modifiedCount > 0) {
+                return true;
+            }
+        }
+        return false;
     },
 }
