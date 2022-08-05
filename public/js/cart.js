@@ -6,7 +6,7 @@ async function sleep(seconds) {
 }
 
 payBtn.addEventListener('click', function (e) {
-    // Xử lí ẩn hiện container cart và check-out
+    // Xử lí ẩn hiện container cart và check-out  
     const checkoutContainer = document.querySelector('.checkout-container');
     const cartContainer = document.querySelector('.cart-section');
     const title = document.querySelector('#title');
@@ -67,8 +67,8 @@ function addProductCheckOut(productId, quantity) {
 
 // Xử lí khi nhấn tăng, giảm, xoá sản phẩm
 
-$('#quantity').keypress(function( e ) {
-    if(e.which === 32 || ( e.which<48 || e.which>57)) 
+$('#quantity').keypress(function (e) {
+    if (e.which === 32 || (e.which < 48 || e.which > 57))
         return false;
 });
 
@@ -82,7 +82,7 @@ function format_number(num) {
 
 const plusBtn = document.querySelectorAll('.cart-detail .cart-product-quantity .quantity-group .btn-number-plus');
 const minusBtn = document.querySelectorAll('.cart-detail .cart-product-quantity .quantity-group .btn-number-sub ');
-const deleteBtn =  Array.from(document.querySelectorAll('.cart-detail .cart-remove-product'));
+const deleteBtn = Array.from(document.querySelectorAll('.cart-detail .cart-remove-product'));
 const productsPrice = Array.from(document.querySelectorAll('.cart-detail .product-price .before-format'));
 const productsPriceFormat = document.querySelectorAll('.cart-detail .product-price .format-price');
 const productsQuantity = document.querySelectorAll('.cart-detail .cart-product-quantity input');
@@ -92,7 +92,7 @@ const realTotalPrice = document.querySelectorAll('.total-price .real-total-price
 const inputQuantity = document.querySelectorAll('.cart-detail .cart-product-quantity .quantity-group input');
 
 // Xử lí tính tiền khi mới vào cart
-for(let i =0 ;i < productsPrice.length;i++){
+for (let i = 0; i < productsPrice.length; i++) {
     let price = parseInt(productsPrice[i].innerHTML);
     console.log(price);
     let quantity = parseInt(productsQuantity[i].value);
@@ -110,15 +110,15 @@ inputQuantity.forEach((element, index) => {
     var quantity = parseInt(productsQuantity[index].value);
     var productPrice = parseInt(productsPrice[index].innerHTML) / quantity;
     console.log(productPrice);
-    element.addEventListener('change', function(e){
-        if(element.value === ""){
+    element.addEventListener('change', function (e) {
+        if (element.value === "") {
             element.value = '1';
         }
         console.log("-----------------------------------");
         let afterQuantity = parseInt(element.value);
         element.value = afterQuantity > 50 ? "50" : afterQuantity.toString();
-        afterQuantity = afterQuantity > 50 ? 50 : afterQuantity;  
-        console.log("Quantity before: " +quantity);
+        afterQuantity = afterQuantity > 50 ? 50 : afterQuantity;
+        console.log("Quantity before: " + quantity);
         console.log("Productprice: " + productPrice);
         productsQuantity[index].value = afterQuantity.toString();
         productPrice = productPrice * afterQuantity; // Tính lại giá tiền từng món
@@ -186,7 +186,7 @@ minusBtn.forEach((btn, index) => {
 });
 deleteBtn.forEach((btn, index) => {
     btn.addEventListener('click', function (e) {
-        var total = parseInt(totalPrice[0].innerHTML.replace(/[^0-9]/g , ''));
+        var total = parseInt(totalPrice[0].innerHTML.replace(/[^0-9]/g, ''));
         console.log(total);
         // var total = 0;
         // console.log(btn.parentElement.lastElementChild.lastElementChild.innerHTML);
@@ -206,7 +206,7 @@ deleteBtn.forEach((btn, index) => {
         totalPrice[1].innerHTML = format_number(total) + ' VNĐ';
         realTotalPrice[1].innerHTML = format_number(realTotal) + ' VNĐ';
         productsPrice.splice(index, 1);
-        deleteBtn.splice(index,1);
+        deleteBtn.splice(index, 1);
         // for (let i = 0; i < productsPrice.length; i++) {
         //     console.log(productsPrice[i]);
         // }

@@ -6,6 +6,9 @@ import { CartInfos } from '../schema/cartsSchema.js';
 import Validator from '../utils/validator.js';
 import Notification from '../schema/notificationsSchema.js';
 
+const RECEIVE_AT_HOME = 0;
+const RECEIVE_AT_SHOP = 1;
+
 function newDeliveryInfo(reqBody) {
     return new DeliveryInfo({
         recvDay: reqBody.recvDay || null,
@@ -13,6 +16,7 @@ function newDeliveryInfo(reqBody) {
         phone: reqBody.phone,
         email: reqBody.email,
         addr: reqBody.address,
+        receiveAt: parseInt(reqBody.receiveAt)
     });
 };
 
@@ -41,6 +45,14 @@ async function createNewOrder(userId, orderInfo) {
     }));
     return newOrder;
 };
+
+function sumPrice(products) {
+    let price = 0;
+    for (let i = 0; i < products.length; i++) {
+        price += products[i].price;
+    }
+    return price;
+}
 
 async function popProducts(userId, productIds) {
     // let updated = false;
@@ -88,6 +100,9 @@ async function toOrdersPagingQuery(conditions, skip, limit, selections) {
 };
 
 export default {
+    RECEIVE_AT_HOME,
+    RECEIVE_AT_SHOP,
+
     async findById(id) {
         try {
             const order = await Order.findById({ _id: id }).exec();
@@ -164,11 +179,13 @@ export default {
 
     async ordering(userId, reqBody) {
         const productIds = [];
+        const quantities = {};
         for (let i = 0; i < reqBody.products.length; i++) {
             productIds.push(reqBody.products[i].id);
+            quantities[`${reqBody.products[i].id}`] = parseInt(reqBody.products[i].quantity);
         }
         // Init user's order
-        const order = await add(userId, reqBody, productIds);
+        const order = await add(userId, reqBody, productIds, quantities);
         if (order !== null) {
             // pop products from user's cart
             popProducts(userId, productIds);
@@ -181,22 +198,25 @@ export default {
         return null;
     },
 
-    async add(userId, reqBody, productIds) {
+    async add(userId, reqBody, productIds, quantities) {
 
         const productsInCart = await CartModel.getProductsInCart(userId, productIds);
         if (productsInCart.length < 1) {
             return null;
         }
+        for (let i = 0; i < productsInCart[0].length; i++) {
+            productsInCart[0].quantity = quantities[`${productsInCart[0].id}`];
+        }
         const deliveryInfo = newDeliveryInfo(reqBody);
         const cartInfos = newCartInfos(productsInCart[0]);
-        const totalPrice = 0;
-        const startDay = null;
+        let totalPrice = sumPrice(productsInCart[0]);
+        const startDay = NotiModel.getCurDateTime();
 
         const orderInfo = {
             cartInfos: [cartInfos],
-            totalPrice: Number,
+            totalPrice: totalPrice,
             state: STATE_CART_ENUM.ORDERING,
-            startDay: String,
+            startDay: startDay,
             paidDay: null,
             voucherId: null,
             deliveryInfo: deliveryInfo,

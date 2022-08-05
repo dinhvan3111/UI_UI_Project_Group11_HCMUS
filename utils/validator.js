@@ -1,4 +1,5 @@
 import { NUM_TO_CART_STATE } from './database.js';
+import OrderModel from '../models/order.model.js';
 
 export default {
     isValidStr(str) {
@@ -23,12 +24,19 @@ export default {
         return NUM_TO_CART_STATE[`${state}`] !== undefined;
     },
 
+    isValidDeliveryMethod(receiveAt) {
+        return this.isValidNum(receiveAt) &&
+            (parseInt(receiveAt) === OrderModel.RECEIVE_AT_HOME ||
+                parseInt(receiveAt) === OrderModel.RECEIVE_AT_SHOP);
+    },
+
     isValidOrder(reqBody) {
         if (reqBody.products.length < 1 ||
             !this.isValidStr(reqBody.name) ||
             !this.isValidNum(reqBody.phone) ||
             !this.isValidStr(reqBody.email) ||
-            !this.isValidStr(reqBody.address)) {
+            !this.isValidStr(reqBody.address) ||
+            !this.isValidDeliveryMethod(reqBody.receiveAt)) {
             return false;
         }
         if (reqBody.recvDay && !this.isValidStr(reqBody.recvDay)) {

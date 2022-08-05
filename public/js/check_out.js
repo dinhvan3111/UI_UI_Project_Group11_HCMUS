@@ -223,7 +223,6 @@ payBtnCheckout.addEventListener('click', function (e) {
             xhr.open('POST', '/cart');
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify(checkoutInfo));
-            paymentForm.submit();
         };
     }
 });

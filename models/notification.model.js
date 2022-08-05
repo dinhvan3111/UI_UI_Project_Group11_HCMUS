@@ -2,19 +2,6 @@ import { ObjectId, getNewObjectId, toObjectId } from '../utils/database.js';
 import Notification from '../schema/notificationsSchema.js';
 import { broadcastNotify } from '../routes/notification.route.js';
 
-function getCurDateTime() {
-    const date = new Date();
-    return date.toLocaleString('tr-TR', {
-        timeZone: 'Asia/Ho_Chi_Minh',
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-    });
-};
-
 async function createNewNoti(userId, message) {
     const newNoti = await this.save(new Notification({
         _id: userId,
@@ -51,7 +38,7 @@ export default {
         const message = {
             title: title,
             description: description,
-            date: getCurDateTime()
+            date: this.getCurDateTime()
         };
         const userNoti = await this.findById(userId);
         if (userNoti === null) {
@@ -64,5 +51,18 @@ export default {
 
         // notify user
         broadcastNotify(JSON.stringify(message), userId);
+    },
+
+    getCurDateTime() {
+        const date = new Date();
+        return date.toLocaleString('tr-TR', {
+            timeZone: 'Asia/Ho_Chi_Minh',
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+        });
     },
 }

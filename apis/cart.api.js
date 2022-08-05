@@ -3,6 +3,7 @@ import cartModel from '../models/cart.model.js';
 import productModel from '../models/product.model.js';
 import Validator from '../utils/validator.js';
 import Checker from '../middlewares/permission.mdw.js';
+import OrderModel from '../models/order.model.js';
 
 const router = express.Router();
 
@@ -61,6 +62,24 @@ router.post('/', Checker.notLogin, async function (req, res) {
         code: 400,
         status: 'Bad Request',
         message: 'Failed to add product to cart. Please try again'
+    });
+});
+
+router.post('/cart', async function (req, res) {
+    console.log(req.body);
+    const userId = req.session.passport.user._id;
+    if (!Validator.isValidOrder(req.body) ||
+        !await OrderModel.ordering(userId, req.body)) {
+        return res.json({
+            code: 400,
+            status: 'Bad Request',
+            message: 'Retry later'
+        });
+    }
+    return res.json({
+        code: 200,
+        status: 'OK',
+        message: 'Success'
     });
 });
 

@@ -8,6 +8,7 @@ export const DeliveryInfo = new Schema({
     phone: String,
     email: String,
     addr: String,
+    receiveAt: Number,
 }, { versionKey: false, _id: false });
 
 

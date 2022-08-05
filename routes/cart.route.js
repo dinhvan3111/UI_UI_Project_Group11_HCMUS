@@ -47,15 +47,15 @@ router.get('/cart', async function (req, res) {
 
 router.post('/cart', async function (req, res) {
     // Post về 2 lần (cái đầu tiên hợp lệ vì có field products) nên phải lấy cái có products
-    if(req.body.products !== undefined){
-        console.log(req.body);
-        const userId = req.session.passport.user._id;
-        if (!Validator.isValidOrder(req.body) ||
-            !await OrderModel.ordering(userId, req.body)) {
-            return res.redirect('/cart');
-        }
-        return res.redirect('/order-confirm?sucess=true');
+    // if(req.body.products !== undefined){
+    console.log(req.body);
+    const userId = req.session.passport.user._id;
+    if (!Validator.isValidOrder(req.body) ||
+        !await OrderModel.ordering(userId, req.body)) {
+        return res.redirect('/cart');
     }
+    return res.redirect('/order-confirm?sucess=true');
+    // }
 });
 
 router.get('/purchased-history', function (req, res) {

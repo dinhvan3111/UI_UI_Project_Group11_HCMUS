@@ -26,7 +26,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.5/css/fileinput.min.css" media="all"
         rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="/jquery.datetimepicker.css" />
+    {{!-- <link rel="stylesheet" type="text/css" href="/jquery.datetimepicker.css" /> --}}
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/responsive_home.css">
     <link rel="stylesheet" href="/css/cart.css">
@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="/css/product_management.css">
     <link rel="stylesheet" href="/css/purchase_history.css">
     <link rel="stylesheet" href="/css/jqpaginator.css">
-    <link rel="stylesheet" href="/css/product_list.css">
+    {{!-- <link rel="stylesheet" href="/css/product_list.css"> --}}
     <link rel="stylesheet" href="/css/order_confirm.css">
     <link rel="stylesheet" href="/css/order_detail.css">
 
@@ -52,7 +52,7 @@
             <div class="header-main">
                 <a class="header-logo" href="/">
                     <img class="img-fluid" src="/assets/img/logo_not_slogan.png">
-                    <img class="img-fluid" src="/assets/img/logo.png">`
+                    <img class="img-fluid" src="/assets/img/logo.png">
                 </a>
                 <div class="header-search">
                     <form action="/products">
@@ -159,7 +159,7 @@
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-information"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 {{#if lcAuthUser.avt}}
-                                    <img src="{{lcAuthUser.avt}}" alt="logo">
+                                    <img src="{{lcAuthUser.avt}}" alt="logo" crossorigin="anonymous" referrerpolicy="no-referrer">
                                 {{else}}
                                     <i class="fa-regular fa-circle-user"></i>
                                 {{/if}}
