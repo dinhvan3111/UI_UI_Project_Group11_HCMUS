@@ -67,19 +67,22 @@
                 <div class="header-control">
                     <div class="announce">
                         <div class="dropdown-noti">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-notification"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-default" type="button" id="dropdown-notification"
+                                data-bs-toggle="dropdown" aria-expanded="false" onclick="removeShake()">
                                 <div class="icon">
+                                    {{!-- Bell will shake when new notification arrive --}}
+                                    {{#if lcTotalInCart}}
+                                    <i class="fa-solid fa-bell fa-shake"></i>
+                                    {{else}}
                                     <i class="fa-solid fa-bell"></i>
+                                    {{/if}}
                                 </div>
                                 <div class="text">
                                     Thông báo
                                 </div>
                             </button>
+                            {{!-- Populated notification --}}
                             <ul class="dropdown-menu" aria-labelledby="dropdown-notif">
-                                <div class="noti-control mt-2 mb-2">
-                                    <button>Xóa tất cả thông báo</button>
-                                </div>
                                 <div class="item-container">
                                     <li class="item">
                                         <a class="dropdown-item" href="#">
@@ -137,7 +140,17 @@
                                         </a>
                                     </li>
                                 </div>
+                                <div class="noti-control">
+                                    <button>Xóa tất cả thông báo</button>
+                                </div>
                             </ul>
+                            {{!-- Empty notification --}}
+                            {{!-- <ul class="dropdown-menu" aria-labelledby="dropdown-notif">
+                                <div class="text-muted empty-noti">
+                                    <i class="fa-solid fa-bell-slash fa-6x"></i>
+                                    <p>Không có thông báo</p>
+                                </div>
+                            </ul> --}}
                         </div>
                     </div>
                     <div class="cart">
@@ -308,7 +321,19 @@
     </ul>
 
     {{{body}}}
-
+    
+    {{!-- Toast --}}
+    <div class="toast-container position-fixed bottom-0 end-0">
+        <div id="liveToast" class="toast noti-toast" role="alert" aria-live="assertive" 
+            aria-atomic="true" data-bs-autohide="false">
+            <div class="toast-body">
+                <i class="fa-solid fa-bell fa-shake fa-xl"></i>
+                <span>Đơn hàng của bạn đã được xác nhận</span>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+    
     <!-- Footer -->
     <footer>
         <!-- Footer social media section -->
@@ -411,6 +436,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script src="/js/jqpaginator.js"></script>
+<script src="/js/notification.js"></script>
 <script src="/js/scripts.js"></script>
 
 {{#if lcAuthUser}}
