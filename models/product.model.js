@@ -313,5 +313,5 @@ export default {
             mapRet[`${products[i]._id.toString()}`] = products[i];
         }
         return mapRet;
-    }
+    },
 }

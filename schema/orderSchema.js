@@ -2,7 +2,7 @@ import db from '../utils/database.js';
 import { Schema, ObjectId, STATE_CART_ENUM } from '../utils/database.js';
 import { CartInfos } from './cartsSchema.js';
 
-export const DeliveryInfo = new Schema({
+export const DeliveryInfos = new Schema({
     recvDay: String,
     name: String,
     phone: String,
@@ -22,7 +22,7 @@ export const Orders = new Schema({
             startDay: String,
             paidDay: String,
             voucherId: String,
-            deliveryInfo: DeliveryInfo,
+            deliveryInfo: DeliveryInfos,
         }
     ]
 
@@ -30,4 +30,5 @@ export const Orders = new Schema({
 
 
 export const Order = db.model('orders', Orders);
+export const DeliveryInfo = db.model('deliveryinfo', DeliveryInfos);
 export default Order;

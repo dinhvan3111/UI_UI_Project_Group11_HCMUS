@@ -2,15 +2,7 @@ import { ObjectId, getNewObjectId, toObjectId } from '../utils/database.js';
 import Notification from '../schema/notificationsSchema.js';
 import { broadcastNotify } from '../routes/notification.route.js';
 
-async function createNewNoti(userId, message) {
-    const newNoti = await this.save(new Notification({
-        _id: userId,
-        notifications: [
-            message,
-        ]
-    }));
-    return newOrder;
-}
+
 
 export default {
     async findById(id) {
@@ -34,6 +26,16 @@ export default {
         return null;
     },
 
+    async createNewNoti(userId, message) {
+        const newNoti = await this.save(new Notification({
+            _id: userId,
+            notifications: [
+                message,
+            ]
+        }));
+        return newNoti;
+    },
+
     async newNotiAndNotify(userId, title, description) {
         const message = {
             title: title,
@@ -42,7 +44,7 @@ export default {
         };
         const userNoti = await this.findById(userId);
         if (userNoti === null) {
-            await createNewNoti(userId, message);
+            await this.createNewNoti(userId, message);
         }
         else {
             userNoti.notifications.push(message);

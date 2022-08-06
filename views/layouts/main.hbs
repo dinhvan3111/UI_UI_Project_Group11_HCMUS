@@ -183,7 +183,7 @@
                                 <li><a class="dropdown-item" href="/profile">Thông tin cá nhân</a></li>
                                 <li><a class="dropdown-item" href="/purchased-history">Lịch sử mua hàng</a></li>
                                 <li><a class="dropdown-item" href="/orders/management">Quản lý đơn hàng</a></li>
-                                <li><a class="dropdown-item" href="/order/detail">Chi tiết đơn</a></li>
+                                <li><a class="dropdown-item" href="/order/detail/a">Chi tiết đơn</a></li>
                                 <li><a class="dropdown-item" href="#" onclick="logout(); return false;"><i
                                             class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
                             </ul>
@@ -328,7 +328,7 @@
             aria-atomic="true" data-bs-autohide="false">
             <div class="toast-body">
                 <i class="fa-solid fa-bell fa-shake fa-xl"></i>
-                <span>Đơn hàng của bạn đã được xác nhận</span>
+                <span id="notiContent">Đơn hàng của bạn đang chờ được xác nhận</span>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
         </div>
@@ -452,7 +452,7 @@
 
     ws.onmessage = function (event) {
         console.log(event.data);
-        alert(JSON.parse(event.data).description);
+        showToast();
     }
 </script>
 {{/if}}

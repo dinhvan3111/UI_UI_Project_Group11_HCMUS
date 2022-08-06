@@ -30,16 +30,15 @@ router.post('/', Checker.notLogin, async function (req, res) {
         req.body.quantity === null ||
         req.body.quantity.length === 0 ||
         /^[0-9]+$/.test(req.body.quantity) === false) {
-        res.json({
+        return res.json({
             code: 422,
             status: 'Unprocessable Entity',
             message: 'Missing field'
         });
-        return;
     }
     const product = await productModel.findById(req.body.productId);
     if (product === null) {
-        res.json({
+        return res.json({
             code: 400,
             status: 'Bad Request',
             message: 'Product Id not found'
@@ -65,9 +64,10 @@ router.post('/', Checker.notLogin, async function (req, res) {
     });
 });
 
-router.post('/cart', async function (req, res) {
+router.post('/check-out', async function (req, res) {
     console.log(req.body);
     const userId = req.session.passport.user._id;
+    console.log(userId);
     if (!Validator.isValidOrder(req.body) ||
         !await OrderModel.ordering(userId, req.body)) {
         return res.json({

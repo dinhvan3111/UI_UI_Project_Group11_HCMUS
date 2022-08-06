@@ -2,26 +2,27 @@ import { ObjectId, getNewObjectId, toObjectId, STATE_CART_ENUM, NUM_TO_DESCRIPTI
 import CartModel from './cart.model.js';
 import NotiModel from './notification.model.js';
 import { Order, DeliveryInfo } from '../schema/orderSchema.js';
-import { CartInfos } from '../schema/cartsSchema.js';
+import { CartInfo } from '../schema/cartsSchema.js';
 import Validator from '../utils/validator.js';
+import ProductModel from './product.model.js';
 import Notification from '../schema/notificationsSchema.js';
 
 const RECEIVE_AT_HOME = 0;
 const RECEIVE_AT_SHOP = 1;
 
-function newDeliveryInfo(reqBody) {
+function newDeliveryInfo(reqBody, defaultEmail) {
     return new DeliveryInfo({
         recvDay: reqBody.recvDay || null,
         name: reqBody.name,
         phone: reqBody.phone,
-        email: reqBody.email,
+        email: reqBody.email || defaultEmail,
         addr: reqBody.address,
         receiveAt: parseInt(reqBody.receiveAt)
     });
 };
 
 function newCartInfo(productIdObj, price, quantity) {
-    return new CartInfos({
+    return new CartInfo({
         _id: productIdObj,
         price: price,
         quantity: quantity
@@ -31,19 +32,12 @@ function newCartInfo(productIdObj, price, quantity) {
 function newCartInfos(products) {
     const cartInfos = [];
     for (let i = 0; i < products.length; i++) {
-        cartInfos.push(newCartInfo(products[i]._id, products[i].price, products[i].quantity));
+        const orderInCart = newCartInfo(products[i]._id, products[i].price, products[i].quantity);
+        console.log('orderInCart:', orderInCart);
+        cartInfos.push(orderInCart);
     }
+    console.log('cartInfos:', cartInfos);
     return cartInfos;
-};
-
-async function createNewOrder(userId, orderInfo) {
-    const newOrder = await this.save(new Order({
-        _id: userId,
-        orders: [
-            orderInfo,
-        ]
-    }));
-    return newOrder;
 };
 
 function sumPrice(products) {
@@ -114,7 +108,7 @@ export default {
     },
 
     async findOrderById(userId, orderId) {
-        const orders = await Cart.aggregate([
+        const orders = await Order.aggregate([
             { '$match': { '_id': userId, 'orders._id': toObjectId(orderId) } },
             {
                 "$project": {
@@ -185,7 +179,7 @@ export default {
             quantities[`${reqBody.products[i].id}`] = parseInt(reqBody.products[i].quantity);
         }
         // Init user's order
-        const order = await add(userId, reqBody, productIds, quantities);
+        const order = await this.add(userId, reqBody, productIds, quantities);
         if (order !== null) {
             // pop products from user's cart
             popProducts(userId, productIds);
@@ -207,13 +201,12 @@ export default {
         for (let i = 0; i < productsInCart[0].length; i++) {
             productsInCart[0].quantity = quantities[`${productsInCart[0].id}`];
         }
-        const deliveryInfo = newDeliveryInfo(reqBody);
-        const cartInfos = newCartInfos(productsInCart[0]);
-        let totalPrice = sumPrice(productsInCart[0]);
+        const deliveryInfo = newDeliveryInfo(reqBody, userId);
+        const cartInfos = newCartInfos(productsInCart[0].products);
+        let totalPrice = sumPrice(productsInCart[0].products);
         const startDay = NotiModel.getCurDateTime();
-
         const orderInfo = {
-            cartInfos: [cartInfos],
+            cartInfos: cartInfos,
             totalPrice: totalPrice,
             state: STATE_CART_ENUM.ORDERING,
             startDay: startDay,
@@ -225,7 +218,7 @@ export default {
         let userOrder = await this.findById(userId);
         // user order is not initialized yet
         if (userOrder === null) {
-            return await createNewOrder(userId, orderInfo);
+            return await this.createNewOrder(userId, orderInfo);
         }
         // else user order is initialized already
         userOrder.orders.push(orderInfo);
@@ -233,15 +226,25 @@ export default {
         return result;
     },
 
+    async createNewOrder(userId, orderInfo) {
+        const newOrder = await this.save(new Order({
+            _id: userId,
+            orders: [
+                orderInfo,
+            ]
+        }));
+        return newOrder;
+    },
+
     // Retrieve all orders of a user
-    async getAllOrdersOfUser(userId, page = 0, limit = 10, selections = { 'orders': 1 }) {
+    async getAllOrdersOfUser(userId, page = 0, limit = 10, selections = { '_id': 0, 'orders': 1 }) {
         const skip = page2SkipItems(page, limit);
         const conditions = { '_id': userId };
         return await toOrdersPagingQuery(conditions, skip, limit, selections);
     },
 
     // Retrieve all orders of a user by order status
-    async getAllOrdersByStateOfUser(userId, cartState, page = 0, limit = 10, selections = { 'orders': 1 }) {
+    async getAllOrdersByStateOfUser(userId, cartState, page = 0, limit = 10, selections = { '_id': 0, 'orders': 1 }) {
         const skip = page2SkipItems(page, limit);
         const conditions = { '_id': userId, 'orders.state': cartState };
         return await toOrdersPagingQuery(conditions, skip, limit, selections);
@@ -281,4 +284,49 @@ export default {
         }
         return false;
     },
+
+    async getSingleOrderInfo(order) {
+        const productIds = [];
+        order.orders[0]._id = order.orders[0]._id.toString();
+        for (let i = 0; i < order.orders[0].cartInfos.length; i++) {
+            order.orders[0].cartInfos[i]._id = order.orders[0].cartInfos[i]._id.toString();
+            productIds.push(order.orders[0].cartInfos[i]._id);
+        }
+        const products = await ProductModel.multiGet(productIds, { thumb: 1, title: 1 });
+        console.log(products);
+        for (let i = 0; i < order.orders[0].cartInfos.length; i++) {
+            order.orders[0].cartInfos[i].thumb = products[`${order.orders[0].cartInfos[i]._id}`].thumb;
+            order.orders[0].cartInfos[i].title = products[`${order.orders[0].cartInfos[i]._id}`].title;
+        }
+        return order.orders[0];
+    },
+
+    async getMultiOrderInfo(ordersRet) {
+        const productIds = [];
+        const orders = [];
+        for (let i = 0; i < ordersRet[0].data.length; i++) {
+            for (let j = 0; j < ordersRet[0].data[i].orders.cartInfos.length; j++) {
+                const order = ordersRet[0].data[i].orders;
+                order._id = order._id.toString();
+                order.cartInfos[j]._id = order.cartInfos[j]._id.toString();
+                orders.push(order);
+                if (!productIds.includes(order.cartInfos[j]._id)) {
+                    productIds.push(order.cartInfos[j]._id);
+                }
+
+            }
+        }
+
+        const products = await ProductModel.multiGet(productIds, { thumb: 1, title: 1 });
+        console.log(products);
+
+        for (let i = 0; i < orders.length; i++) {
+            for (let j = 0; j < orders[i].cartInfos.length; j++) {
+                orders[i].cartInfos[j].thumb = products[`${orders[i].cartInfos[j]._id}`].thumb;
+                orders[i].cartInfos[j].title = products[`${orders[i].cartInfos[j]._id}`].title;
+            }
+        }
+        console.log(orders[0]);
+        return orders;
+    }
 }

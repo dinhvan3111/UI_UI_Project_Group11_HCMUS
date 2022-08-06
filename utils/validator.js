@@ -14,7 +14,7 @@ export default {
     },
 
     isValidNum(str) {
-        return this.isValidStr(str) && /^[0-9]+$/.test(str);
+        return this.isValidStr(str.toString()) && /^[0-9]+$/.test(str);
     },
 
     isValidOrderState(state) {
@@ -31,12 +31,14 @@ export default {
     },
 
     isValidOrder(reqBody) {
-        if (reqBody.products.length < 1 ||
+        if (!reqBody.products ||
+            reqBody.products.length < 1 ||
             !this.isValidStr(reqBody.name) ||
             !this.isValidNum(reqBody.phone) ||
             !this.isValidStr(reqBody.email) ||
             !this.isValidStr(reqBody.address) ||
             !this.isValidDeliveryMethod(reqBody.receiveAt)) {
+            console.log(this.isValidStr(reqBody.receiveAt));
             return false;
         }
         if (reqBody.recvDay && !this.isValidStr(reqBody.recvDay)) {
@@ -49,5 +51,9 @@ export default {
             }
         }
         return true;
+    },
+
+    isValidState(state) {
+        return this.isValidNum(state) && NUM_TO_CART_STATE[`${state}`] !== undefined;
     },
 }

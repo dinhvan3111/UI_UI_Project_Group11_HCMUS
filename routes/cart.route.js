@@ -7,8 +7,23 @@ import OrderModel from '../models/order.model.js';
 const FREE_SHIP_AMMOUNT = 500000;
 const router = express.Router();
 
-router.get('/order/detail', async function (req, res) {
-    res.render('vwOrder/order_detail');
+router.get('/order/detail/:id', async function (req, res) {
+    const userId = req.session.passport.user._id;
+    let order = null;
+    let orderDetail = null;
+    try {
+        order = await OrderModel.findOrderById(userId, req.params.id);
+    }
+    catch (err) {
+        order = null;
+    }
+    if (order !== null) {
+        orderDetail = await OrderModel.getSingleOrderInfo(order);
+        console.log(orderDetail);
+    }
+    res.render('vwOrder/order_detail', {
+        orderDetail: orderDetail,
+    });
 });
 
 router.get('/cart', async function (req, res) {
@@ -58,8 +73,30 @@ router.post('/cart', async function (req, res) {
     // }
 });
 
-router.get('/purchased-history', function (req, res) {
-    res.render('vwCart/purchase_history');
+router.get('/purchased-history', async function (req, res) {
+    const page = req.query.page || 1;
+    const userId = req.session.passport.user._id;
+    let state = req.query.state || -1;
+
+    let orders = [];
+    let ordersRet = null;
+    if (state === -1) {
+        ordersRet = await OrderModel.getAllOrdersOfUser(userId, page);
+    }
+    else {
+        if (!Validator.isValidState(state)) {
+            return res.redirect('/purchased-history');
+        }
+        state = parseInt(state);
+        ordersRet = await OrderModel.getAllOrdersByStateOfUser(userId, state, page);
+    }
+    if (ordersRet !== null && ordersRet[0].data.length > 0) {
+        orders = await OrderModel.getMultiOrderInfo(ordersRet);
+    }
+    console.log(orders);
+    res.render('vwCart/purchase_history', {
+        orders: orders,
+    });
 })
 
 export default router;

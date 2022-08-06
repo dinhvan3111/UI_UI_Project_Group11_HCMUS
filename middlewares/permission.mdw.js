@@ -1,7 +1,7 @@
 import userModel from '../models/user.model.js';
 
 function isLogon(req, res) {
-    if(typeof (req.user) !== 'undefined'){
+	if (typeof (req.user) !== 'undefined') {
 		req.session.retUrl = req.originalUrl;
 		const url = '/login';
 		res.redirect(url);
@@ -10,8 +10,8 @@ function isLogon(req, res) {
 	return false;
 }
 
-function notLogin(req, res){
-	if(typeof (req.user) === 'undefined'){
+function notLogin(req, res) {
+	if (typeof (req.user) === 'undefined') {
 		req.session.retUrl = req.originalUrl;
 		const url = '/login';
 		res.redirect(url);
@@ -21,16 +21,17 @@ function notLogin(req, res){
 }
 
 export default {
-	isLogon(req, res, next){
-		if(isLogon(req, res) !== true){
+	isLogon(req, res, next) {
+		if (isLogon(req, res) !== true) {
 			next();
 		}
 	},
 
-	notLogin(req, res, next){
-		if(notLogin(req, res) !== true){
-			next();
+	notLogin(req, res, next) {
+		if (notLogin(req, res) !== true) {
+			return next();
 		}
+		return res.redirect('/login');
 	},
-	
+
 }

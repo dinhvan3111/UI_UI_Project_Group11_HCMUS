@@ -184,7 +184,7 @@ payBtnCheckout.addEventListener('click', function (e) {
                 products: productResult,
             }
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/cart');
+            xhr.open('POST', '/api/cart/check-out');
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify(checkoutInfo));
             paymentForm.submit();
@@ -220,7 +220,7 @@ payBtnCheckout.addEventListener('click', function (e) {
                 products: productResult,
             }
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/cart');
+            xhr.open('POST', '/api/cart/check-out');
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify(checkoutInfo));
         };
