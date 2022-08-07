@@ -175,19 +175,27 @@ payBtnCheckout.addEventListener('click', function (e) {
             const paymentMethod = document.querySelector('.payment-method .payment-method-item.active h4');
             const productResult = checkoutProductsToServer();
             var checkoutInfo = {
-                receiveAt: "0", // 0: tại nhà, 1: tại cửa hàng
-                name: fullname.value,
-                phone: phoneNum.value,
-                email: email.value,
-                address: address.value,
-                recvDay: null,
-                products: productResult,
+                "recvDay": null,
+                "name": fullname.value,
+                "phone": phoneNum.value,
+                "email": email.value,
+                "address": address.value,
+                "receiveAt": "0", // 0: tại nhà, 1: tại cửa hàng
+                "products": productResult,
             }
             var xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                var result = JSON.parse(this.responseText);
+                if(result["code"] === 200){
+                    window.location.href = "/order-confirm";
+                }
+                else if(result["code"] === 400){
+                    window.location.href = "/order-failed";
+                }
+            };
             xhr.open('POST', '/api/cart/check-out');
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify(checkoutInfo));
-            paymentForm.submit();
         };
     }
     else {
@@ -211,15 +219,24 @@ payBtnCheckout.addEventListener('click', function (e) {
             const paymentMethod = document.querySelector('.payment-method .payment-method-item.active h4');
             const productResult = checkoutProductsToServer();
             var checkoutInfo = {
-                receiveAt: "1", // 0: tại nhà, 1: tại cửa hàng
-                name: fullname.value,
-                phoneNumber: phoneNum.value,
-                email: email.value,
-                address: store.options[store.selectedIndex].text,
-                recvDay: receiveDate.value,
-                products: productResult,
+                "recvDay": receiveDate.value,
+                "name": fullname.value,
+                "phone": phoneNum.value,
+                "email": email.value,
+                "address": store.options[store.selectedIndex].text,
+                "receiveAt": "1", // 0: tại nhà, 1: tại cửa hàng
+                "products": productResult,
             }
             var xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                var result = JSON.parse(this.responseText);
+                if(result["code"] === 200){
+                    window.location.href = "/order-confirm";
+                }
+                else if(result["code"] === 400){
+                    window.location.href = "/order-failed";
+                }
+            };
             xhr.open('POST', '/api/cart/check-out');
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify(checkoutInfo));
@@ -238,8 +255,8 @@ function checkoutProductsToServer() {
         const productIdStr = productId[i].innerHTML;
         const productQuantityNum = productQuantity[i].value;
         var temp = {
-            productId: productIdStr,
-            productQuantity: productQuantityNum
+            "id": productIdStr,
+            "quantity": productQuantityNum
         };
         productResult.push(temp);
     }
@@ -248,6 +265,7 @@ function checkoutProductsToServer() {
     }
     return productResult;
 }
+
 
 
 

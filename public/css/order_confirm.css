@@ -20,6 +20,13 @@
     margin-bottom: 2rem;
 }
 
+.order-confirm .order-failed{
+    color: rgb(222, 0, 0);
+    width: 5rem;
+    height: 5rem;
+    margin-bottom: 2rem;
+}
+
 .order-confirm .order-confirm-img{
     display: flex;
     justify-content: center;
