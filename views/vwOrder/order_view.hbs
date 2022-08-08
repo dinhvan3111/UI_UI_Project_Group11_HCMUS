@@ -13,12 +13,12 @@
                             Tất cả
                         </button>
                         <ul class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Tất cả</a>
-                            <a class="dropdown-item" href="#">Chờ xác nhận</a>
-                            <a class="dropdown-item" href="#">Đã xác nhận</a>
-                            <a class="dropdown-item" href="#">Đang giao</a>
-                            <a class="dropdown-item" href="#">Giao thành công</a>
-                            <a class="dropdown-item" href="#">Bị hủy</a>
+                            <a class="dropdown-item" href="/orders/management">Tất cả</a>
+                            <a class="dropdown-item" href="/orders/management?state=0">Chờ xác nhận</a>
+                            <a class="dropdown-item" href="/orders/management?state=1">Đã xác nhận</a>
+                            <a class="dropdown-item" href="/orders/management?state=2">Đang giao</a>
+                            <a class="dropdown-item" href="/orders/management?state=3">Giao thành công</a>
+                            <a class="dropdown-item" href="/orders/management?state=4">Bị hủy</a>
                         </ul>
                     </div>
                 </div>
@@ -30,7 +30,6 @@
                     <th>Mã đơn hàng</th>
                     <th>Username</th>
                     <th>Số điện thoại</th>
-                    <th>Mã voucher</th>
                     <th>Tổng tiền</th>
                     <th>Tình trang</th>
                     <th>Ngày thanh toán</th>
@@ -41,13 +40,12 @@
                 {{#each orders}}
                 <tr>
                     <td>
-                        <a id="order-id" href="/order/detail/a">
+                        <a id="order-id" href="/order/detail/{{orders._id}}">
                             {{orders._id}} <i class="fa-solid fa-up-right-from-square fa-2xs"></i>
                         </a>
                     </td>
                     <td>{{_id}}</td>
                     <td>092121212</td>
-                    <td>VC1212</td>
                     <td>{{format_number orders.totalPrice}} đ</td>
                     <td>{{convertToState orders.state}}</td>
                     {{#if orders.paidDay}}
