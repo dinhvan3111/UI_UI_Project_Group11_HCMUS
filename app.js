@@ -18,6 +18,7 @@ import OrderModel from './models/order.model.js';
 import CartModel from './models/cart.model.js';
 import Cart from './schema/cartsSchema.js';
 import Product from './schema/productsSchema.js';
+import NotiModel from './models/notification.model.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 console.log(__dirname);
@@ -33,6 +34,7 @@ sessionMdw(app);
 viewMdw(app);
 localsMdw(app);
 routeMdw(app);
+
 
 
 

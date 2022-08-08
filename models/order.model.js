@@ -82,7 +82,7 @@ async function toOrdersPagingQuery(conditions, skip, limit, selections, sort) {
                 'data': [
                     { '$skip': skip },
                     { '$limit': limit },
-                    { '$project': selections },
+                    // { '$project': selections },
                     { '$sort': sort },
                 ],
                 "total": [

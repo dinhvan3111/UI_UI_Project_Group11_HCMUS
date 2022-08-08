@@ -11,6 +11,7 @@ import notiRoute from '../routes/notification.route.js';
 import apiCart from '../apis/cart.api.js';
 import apiAuth from '../apis/auth.api.js';
 import apiProductManagement from '../apis/product_management.api.js';
+import apiNoti from '../apis/noti.api.js';
 
 export default function (app) {
 
@@ -47,6 +48,7 @@ export default function (app) {
 	app.use('/api/cart', apiCart);
 	app.use('/api/auth', apiAuth);
 	app.use('/api/products/management', apiProductManagement);
+	app.use('/api/notifications', apiNoti);
 
 	notiRoute(app);
 
@@ -85,7 +87,7 @@ export default function (app) {
 		});
 	});
 	app.get('/about-us', async function (req, res) {
-		
+
 		res.render('about');
 	});
 

@@ -2,6 +2,7 @@ import { request } from 'express';
 import categoryModel from '../models/category.model.js';
 import userModel from '../models/user.model.js';
 import cartModel from '../models/cart.model.js';
+import NotiModel from '../models/notification.model.js';
 
 export default function (app) {
     app.use(async function (req, res, next) {
@@ -52,6 +53,15 @@ export default function (app) {
         }
         res.locals.lcAuthUser = authUser.user;
         // console.log('lcAuthUser', res.locals.lcAuthUser);
+        next();
+    });
+
+    app.use(async function (req, res, next) {
+        if (res.locals.lcAuthUser) {
+            const noti = await NotiModel.getAllNoti(res.locals.lcAuthUser._id, 0);
+            res.locals.lcNotis = noti[0];
+            console.log(res.locals.lcNotis);
+        }
         next();
     });
 }

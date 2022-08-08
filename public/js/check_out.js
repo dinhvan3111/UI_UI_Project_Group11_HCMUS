@@ -186,10 +186,10 @@ payBtnCheckout.addEventListener('click', function (e) {
             var xhr = new XMLHttpRequest();
             xhr.onload = function () {
                 var result = JSON.parse(this.responseText);
-                if(result["code"] === 200){
-                    window.location.href = "/order-confirm";
+                if (result["code"] === 200) {
+                    window.location.href = "/order-confirm?id=" + result["data"];
                 }
-                else if(result["code"] === 400){
+                else if (result["code"] === 400) {
                     window.location.href = "/order-failed";
                 }
             };
@@ -230,10 +230,10 @@ payBtnCheckout.addEventListener('click', function (e) {
             var xhr = new XMLHttpRequest();
             xhr.onload = function () {
                 var result = JSON.parse(this.responseText);
-                if(result["code"] === 200){
+                if (result["code"] === 200) {
                     window.location.href = "/order-confirm";
                 }
-                else if(result["code"] === 400){
+                else if (result["code"] === 400) {
                     window.location.href = "/order-failed";
                 }
             };

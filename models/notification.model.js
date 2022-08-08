@@ -2,7 +2,33 @@ import { ObjectId, getNewObjectId, toObjectId } from '../utils/database.js';
 import Notification from '../schema/notificationsSchema.js';
 import { broadcastNotify } from '../routes/notification.route.js';
 
+async function toNotisPagingQuery(conditions, skip, limit, selections, sort) {
+    return await Notification.aggregate([
+        { '$unwind': '$notifications' },
+        { '$match': conditions },
+        {
+            '$facet': {
+                'data': [
+                    { '$skip': skip },
+                    { '$limit': limit },
+                    { '$project': selections },
+                    { '$sort': sort },
+                ],
+                "total": [
+                    { "$count": "count" }
+                ]
+            }
+        }
+    ]);
+};
 
+function page2SkipItems(page, limit) {
+    // start from 1
+    if (page <= 1) {
+        return 0;
+    }
+    return (page * limit) - limit;
+};
 
 export default {
     async findById(id) {
@@ -66,5 +92,11 @@ export default {
             minute: '2-digit',
             second: '2-digit',
         });
+    },
+
+    async getAllNoti(userId, page = 0, limit = 10, selections = { '_id': 0, 'notifications': 1 }, sort = { '_id': -1 }) {
+        const skip = page2SkipItems(page, limit);
+        const conditions = { '_id': userId };
+        return await toNotisPagingQuery(conditions, skip, limit, selections, sort);
     },
 }

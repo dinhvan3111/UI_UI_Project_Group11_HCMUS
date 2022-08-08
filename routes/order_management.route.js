@@ -25,6 +25,7 @@ router.get('/management', async function (req, res) {
         state = parseInt(state);
         ordersRet = await OrderModel.getAllOrdersByState(state, page, 10, selections);
     }
+    console.log(ordersRet[0].data);
     for (let i = 0; i < ordersRet[0].data.length; i++) {
         const order = ordersRet[0].data[i];
         order.orders._id = ordersRet[0].data[i].orders._id.toString();
@@ -36,7 +37,7 @@ router.get('/management', async function (req, res) {
     else {
         total = 0;
     }
-    console.log(orders, '\n', total);
+    // console.log(orders, '\n', total);
 
     return res.render('vwOrder/order_view', {
         orders: orders,

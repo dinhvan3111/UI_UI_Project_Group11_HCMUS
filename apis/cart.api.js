@@ -68,18 +68,21 @@ router.post('/check-out', async function (req, res) {
     console.log(req.body);
     const userId = req.session.passport.user._id;
     console.log(userId);
+    let order = null;
     if (!Validator.isValidOrder(req.body) ||
-        !await OrderModel.ordering(userId, req.body)) {
+        !(order = await OrderModel.ordering(userId, req.body))) {
         return res.json({
             code: 400,
             status: 'Bad Request',
             message: 'Retry later'
         });
     }
+    console.log('order:', order);
     return res.json({
         code: 200,
         status: 'OK',
-        message: 'Success'
+        message: 'Success',
+        data: order.orders[order.orders.length - 1]._id.toString()
     });
 });
 
