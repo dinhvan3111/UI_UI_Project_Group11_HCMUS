@@ -84,6 +84,10 @@ export default function (app) {
 			topSell: topSellTmp,
 		});
 	});
+	app.get('/about-us', async function (req, res) {
+		
+		res.render('about');
+	});
 
 	// app.get('/err', function(req, res){
 	//     throw new Error('Error');
