@@ -89,11 +89,12 @@ router.get('/purchased-history', async function (req, res) {
         }
         state = parseInt(state);
         ordersRet = await OrderModel.getAllOrdersByStateOfUser(userId, state, page);
+        // console.log('ordersRet: ', ordersRet[0].data[0]);
     }
     if (ordersRet !== null && ordersRet[0].data.length > 0) {
         orders = await OrderModel.getMultiOrderInfo(ordersRet);
     }
-    console.log(orders);
+    console.log('orders:', orders);
     res.render('vwCart/purchase_history', {
         orders: orders,
     });

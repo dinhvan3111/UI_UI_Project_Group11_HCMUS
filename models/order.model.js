@@ -73,7 +73,7 @@ function page2SkipItems(page, limit) {
     return (page * limit) - limit;
 };
 
-async function toOrdersPagingQuery(conditions, skip, limit, selections) {
+async function toOrdersPagingQuery(conditions, skip, limit, selections, sort) {
     return await Order.aggregate([
         { '$unwind': '$orders' },
         { '$match': conditions },
@@ -83,9 +83,29 @@ async function toOrdersPagingQuery(conditions, skip, limit, selections) {
                     { '$skip': skip },
                     { '$limit': limit },
                     { '$project': selections },
-                    { '$sort': { 'orders.state': 1 } },
+                    { '$sort': sort },
                 ],
                 "total": [
+                    { "$count": "count" }
+                ]
+            }
+        }
+    ]);
+};
+
+async function toUserOrdersPagingQuery(conditions, skip, limit, selections, sort) {
+    return await Order.aggregate([
+        { '$match': conditions },
+        {
+            '$facet': {
+                'data': [
+                    { '$skip': skip },
+                    { '$limit': limit },
+                    { '$project': selections },
+                    { '$sort': sort },
+                ],
+                "total": [
+                    { '$unwind': '$orders' },
                     { "$count": "count" }
                 ]
             }
@@ -237,31 +257,33 @@ export default {
     },
 
     // Retrieve all orders of a user
-    async getAllOrdersOfUser(userId, page = 0, limit = 10, selections = { '_id': 0, 'orders': 1 }) {
+    async getAllOrdersOfUser(userId, page = 0, limit = 10, selections = { '_id': 0, 'orders': 1 }, sort = { 'orders.state': 1 }) {
         const skip = page2SkipItems(page, limit);
         const conditions = { '_id': userId };
-        return await toOrdersPagingQuery(conditions, skip, limit, selections);
+        return await toUserOrdersPagingQuery(conditions, skip, limit, selections, sort);
     },
 
     // Retrieve all orders of a user by order status
-    async getAllOrdersByStateOfUser(userId, cartState, page = 0, limit = 10, selections = { '_id': 0, 'orders': 1 }) {
+    async getAllOrdersByStateOfUser(userId, cartState, page = 0, limit = 10,
+        selections = { '_id': 0, 'orders': { '$filter': { 'input': '$orders', 'as': 'orders', 'cond': { '$eq': ['$$orders.state', cartState] } } } },
+        sort = { 'orders.state': 1 }) {
         const skip = page2SkipItems(page, limit);
         const conditions = { '_id': userId, 'orders.state': cartState };
-        return await toOrdersPagingQuery(conditions, skip, limit, selections);
+        return await toUserOrdersPagingQuery(conditions, skip, limit, selections, sort);
     },
 
     // Retrieve all orders (for manager/ staff)
-    async getAllOrders(page = 0, limit = 10, selections = { '_id': 1, 'orders': 1 }) {
+    async getAllOrders(page = 0, limit = 10, selections = { '_id': 1, 'orders': 1 }, sort = { 'orders.state': 1, 'orders._id': 1 }) {
         const skip = page2SkipItems(page, limit);
         const conditions = {};
-        return await toOrdersPagingQuery(conditions, skip, limit, selections);
+        return await toOrdersPagingQuery(conditions, skip, limit, selections, sort);
     },
 
     // Retrive all orders by order status (for manager/ staff)
-    async getAllOrdersByState(cartState, page = 0, limit = 10, selections = { '_id': 1, 'orders': 1 }) {
+    async getAllOrdersByState(cartState, page = 0, limit = 10, selections = { '_id': 1, 'orders': 1 }, sort = { 'orders.state': 1, 'orders._id': 1 }) {
         const skip = page2SkipItems(page, limit);
         const conditions = { 'orders.state': cartState };
-        return await toOrdersPagingQuery(conditions, skip, limit, selections);
+        return await toOrdersPagingQuery(conditions, skip, limit, selections, sort);
     },
 
     async changeState(userIdOrder, orderId, cartState) {
@@ -304,21 +326,23 @@ export default {
     async getMultiOrderInfo(ordersRet) {
         const productIds = [];
         const orders = [];
-        for (let i = 0; i < ordersRet[0].data.length; i++) {
-            for (let j = 0; j < ordersRet[0].data[i].orders.cartInfos.length; j++) {
-                const order = ordersRet[0].data[i].orders;
+        // console.log(ordersRet[0].data[0].orders);
+        for (let i = 0; i < ordersRet[0].data[0].orders.length; i++) {
+            let order = null;
+            for (let j = 0; j < ordersRet[0].data[0].orders[i].cartInfos.length; j++) {
+                order = ordersRet[0].data[0].orders[i];
                 order._id = order._id.toString();
                 order.cartInfos[j]._id = order.cartInfos[j]._id.toString();
-                orders.push(order);
+
                 if (!productIds.includes(order.cartInfos[j]._id)) {
                     productIds.push(order.cartInfos[j]._id);
                 }
-
             }
+            orders.push(order);
         }
 
         const products = await ProductModel.multiGet(productIds, { thumb: 1, title: 1 });
-        console.log(products);
+        // console.log('order.model.js:341 ', products);
 
         for (let i = 0; i < orders.length; i++) {
             for (let j = 0; j < orders[i].cartInfos.length; j++) {
@@ -326,7 +350,7 @@ export default {
                 orders[i].cartInfos[j].title = products[`${orders[i].cartInfos[j]._id}`].title;
             }
         }
-        console.log(orders[0]);
+        // console.log(orders);
         return orders;
     }
 }
