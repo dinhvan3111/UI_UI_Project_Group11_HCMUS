@@ -411,6 +411,7 @@
     display: flex;
     flex-wrap: nowrap;
     gap: 1rem;
+    align-items: center;
 }
 
 .review-card .info-container{
@@ -419,7 +420,9 @@
 }
 
 .review-card .avatar-container {
-    height: 7rem;
+    height: 6rem;
+    display: flex;
+    align-items: center;
 }
 
 .review-card .avatar {

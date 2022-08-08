@@ -3,6 +3,7 @@ import { engine } from 'express-handlebars';
 import hbs_sections from 'express-handlebars-sections';
 import express from 'express';
 import linkManager from '../utils/linkManager.js';
+import { NUM_TO_DESCRIPTION } from '../utils/database.js';
 
 export default function (app) {
 	app.use(express.urlencoded({
@@ -32,6 +33,18 @@ export default function (app) {
 					var rounded = percentage.toFixed();
 					return rounded;
 				}
+			},
+			convertToState(num){
+				return NUM_TO_DESCRIPTION[num];
+			},
+			toJSDate (dateTime) {
+				var dateTime = new Date(dateTime);
+				const options = {};
+				options.hour = '2-digit';
+				options.minute = '2-digit';
+				options.hour12 = 'true';
+
+				return dateTime.toLocaleDateString('en-GB', options);
 			}
 		}
 	}));

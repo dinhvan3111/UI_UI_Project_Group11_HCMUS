@@ -269,6 +269,7 @@ select {
     gap: 1rem;
     color: var(--back-color);
     background: transparent;
+    padding: 0;
 }
 
 .dropdown-info button:focus,

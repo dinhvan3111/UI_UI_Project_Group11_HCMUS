@@ -217,7 +217,7 @@
                                     </div>
                                 </div>
                                 <div class="self-comment flex-fill">
-                                    <textarea placeholder="Hãy chia sẽ trải nghiệm của bạn về sản phẩm này"
+                                    <textarea placeholder="Hãy chia sẽ trải nghiệm của bạn về sản phẩm"
                                         rows="3"></textarea>
                                     <input type="submit"></input>
                                 </div>
@@ -280,6 +280,9 @@
                                 </p>
                             </div>
                         </div>
+                        <div class="pagination-container">
+                            <input type="hidden" class="total-page" value="{{totalPages}}">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -341,4 +344,12 @@
         </div>
     </div>
 </div>
+{{#section 'js'}}
 <script src="/js/product_detail.js"></script>
+<script>
+    $('.pagination-container').jqpaginator({
+            data: createData({{ totalProducts }}),
+            render: renderer
+    });
+</script>
+{{/section}}
