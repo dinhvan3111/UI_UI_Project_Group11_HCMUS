@@ -3,6 +3,7 @@ import CartModel from '../models/cart.model.js';
 import ProductModel from '../models/product.model.js';
 import Validator from '../utils/validator.js';
 import OrderModel from '../models/order.model.js';
+import { NUM_TO_DESCRIPTION } from '../utils/database.js';
 
 const FREE_SHIP_AMMOUNT = 500000;
 const router = express.Router();
@@ -72,7 +73,25 @@ router.post('/cart', async function (req, res) {
     return res.redirect('/order-confirm?sucess=true');
     // }
 });
-
+// function getEachOrder(orders){
+//     let newOrder = [];
+//     let idArr = [];
+//     orders.forEach(function(order){
+//         if(!idArr.includes(order._id)){
+//             idArr.push(order._id);
+//         }
+//     });
+//     idArr.forEach(function(id){
+//         let order = [];
+//         orders.forEach(function(e){
+//             if(e._id === id){
+//                 order.push(e);
+//             }
+//         });
+//         newOrder.push(order);
+//     });
+//     return newOrder;
+// }
 router.get('/purchased-history', async function (req, res) {
     const page = req.query.page || 1;
     const userId = req.session.passport.user._id;
@@ -94,9 +113,14 @@ router.get('/purchased-history', async function (req, res) {
     if (ordersRet !== null && ordersRet[0].data.length > 0) {
         orders = await OrderModel.getMultiOrderInfo(ordersRet);
     }
-    console.log('orders:', orders);
+    let descState = "Tất cả";
+    if(state!==-1){
+        descState =  NUM_TO_DESCRIPTION[state];
+    }
+    console.log(descState);
     res.render('vwCart/purchase_history', {
         orders: orders,
+        state: descState
     });
 })
 

@@ -16,3 +16,15 @@ purchasedItem.forEach(function (item) {
     total = total.toLocaleString('vi', { style: 'currency', currency: 'VND' });
     totalElement.innerHTML = `Tổng tiền: <b>${total}</b>`;
 });
+
+const btnDropdownOrder = document.querySelector('.dropdown-type-order');
+const inputOrder = btnDropdownOrder.querySelector("#id_type_order");
+const itemOrder = btnDropdownOrder.querySelectorAll('.dropdown-item');
+itemOrder.forEach(item => {
+	item.addEventListener('click', () => {
+		let id = item.innerText;
+		// inputOrder.innerText = id;
+		// console.log(inputOrder.value);
+        btnDropdownOrder.querySelector('button').innerText = id;
+	});
+});

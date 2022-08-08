@@ -12,6 +12,41 @@
     gap: 1rem;
 }
 
+.purchased_history .purchased-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.purchased_history .purchased-header button{
+    font-size: 2rem;
+    width: 25rem;
+    background-color: var(--main-color);
+    color: var(--sub-color);
+    box-shadow: none;
+    border: 0.1rem solid var(--sub-color);
+    border-radius: 0.5rem;
+}
+
+.purchased-header .dropdown-type-order ul{
+    inset: auto!important;
+    transform: none!important;
+    font-size: 1.6rem;
+    width: 100%;
+    padding: 0;
+    margin-top: 0.2rem!important;
+    border-radius: 0.5rem;
+}
+
+.dropdown-type-order .dropdown-item{
+    color: var(--sub-color);
+    font-size: 2rem;
+    padding: 1rem 3rem;
+}
+
+.dropdown-type-order .dropdown-item:active{
+    background-color: var(--main-color);
+}
+
 .purchased_history .header {
     display: flex;
     justify-content: space-between;
@@ -89,7 +124,7 @@
     border: 0.1rem solid rgb(196, 196, 207);
     border-left: none;
     border-right: none;
-    height: 28.2rem;
+    max-height: 28.2rem;
     overflow-x: hidden;
     overflow-y: auto;
 }

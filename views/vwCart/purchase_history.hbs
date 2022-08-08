@@ -4,7 +4,43 @@
 <div class="purchased_history_conainer">
     <div class="container">
         <div class="purchased_history">
-            <h1 class="title">Lịch sử mua hàng</h1>
+            <div class="purchased-header">
+                <h1 class="title">Lịch sử mua hàng</h1>
+                <div class="dropdown dropdown-type-order">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" aria-haspopup="false"
+                        id="btn-type-order" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{state}}
+                    </button>
+                    <input type="hidden" name="id_type_order" id="id_type_order" value="null">
+                    <ul class="dropdown-menu" aria-labelledby="btn-type-order">
+                        <li>
+                            <a href="/purchased-history?state=0"  class="dropdown-item">
+                                Chờ xác nhận
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/purchased-history?state=1"  class="dropdown-item">
+                                Đã xác nhận
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/purchased-history?state=2"  class="dropdown-item">
+                                Đang giao
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/purchased-history?state=3"  class="dropdown-item">
+                                Giao thành công
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/purchased-history?state=4"  class="dropdown-item">
+                                Bị hủy
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <div class="search">
                 <input type="text">
 
@@ -14,7 +50,45 @@
                 </button>
             </div>
             <div class="purchased_list">
+                    {{#each orders}}
                 <div class="purchased-item">
+                        <div class="header">
+                        <div class="delivery-success"><i class="fa-solid fa-truck"></i> Giao hàng thành công</div>
+                        <div class="code">
+                            Mã đơn hàng: <b>{{_id}}</b>
+                        </div>
+                        </div>
+                        <div class="content">
+                           {{#each cartInfos}}
+                            <a href="/products/{{_id}}" target="_blank" class="content-item">
+                                <div class="thumb">
+                                    <img src="{{getImgLink thumb}}"
+                                        alt="">
+                                    <div class="quantity">X{{quantity}}</div>
+                                </div>
+                                <div class="info">
+                                    <div class="name">{{title}}</div>
+                                    <div class="branch"><i class="fa-solid fa-store"></i> BestGear Company</div>
+                                </div>
+                                <div class="price">{{price}}</div>
+                            </a>
+                            {{/each}}
+                        </div>
+                        <div class="footer">
+                            <div class="total-price">Tổng tiền: <b>{{format_number totalPrice}} đ</b></div>
+                            <div class="footer__button">
+                                <button class="btn-repurchase">
+                                    Mua lại
+                                </button>
+                                <button class="btn-detail-order">
+                                <i class="fa-solid fa-eye"></i> Chi tiết
+                                </button>
+                            </div>
+                        </div>
+                    
+                </div>
+                    {{/each}}
+                {{!-- <div class="purchased-item">
                     <div class="header">
                         <div class="delivery-success"><i class="fa-solid fa-truck"></i> Giao hàng thành công</div>
                         <div class="code">
@@ -146,7 +220,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="pagination-container">
                 <input type="hidden" class="total-page" value="{{totalPages}}">
