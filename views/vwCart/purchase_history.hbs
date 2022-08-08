@@ -1,11 +1,11 @@
 {{#section 'title'}}
-<title>Lịch sử mua hàng - BestGear</title>
+<title>Đơn hàng - {{state}} - BestGear</title>
 {{/section}}
 <div class="purchased_history_conainer">
     <div class="container">
         <div class="purchased_history">
             <div class="purchased-header">
-                <h1 class="title">Lịch sử mua hàng</h1>
+                <h1 class="title">Đơn hàng - {{state}}</h1>
                 <div class="dropdown dropdown-type-order">
                     <button class="btn btn-secondary dropdown-toggle" type="button" aria-haspopup="false"
                         id="btn-type-order" data-bs-toggle="dropdown" aria-expanded="false">
@@ -13,6 +13,11 @@
                     </button>
                     <input type="hidden" name="id_type_order" id="id_type_order" value="null">
                     <ul class="dropdown-menu" aria-labelledby="btn-type-order">
+                        <li>
+                            <a href="/purchased-history"  class="dropdown-item">
+                                Tất cả
+                            </a>
+                        </li>
                         <li>
                             <a href="/purchased-history?state=0"  class="dropdown-item">
                                 Chờ xác nhận
@@ -53,7 +58,7 @@
                     {{#each orders}}
                 <div class="purchased-item">
                         <div class="header">
-                        <div class="delivery-success"><i class="fa-solid fa-truck"></i> Giao hàng thành công</div>
+                        <div class="delivery-success"><i class="fa-solid fa-truck"></i> {{state}}</div>
                         <div class="code">
                             Mã đơn hàng: <b>{{_id}}</b>
                         </div>
@@ -80,7 +85,7 @@
                                 <button class="btn-repurchase">
                                     Mua lại
                                 </button>
-                                <button class="btn-detail-order">
+                                <button onclick="location.href='/order/detail/{{_id}}'"class="btn-detail-order">
                                 <i class="fa-solid fa-eye"></i> Chi tiết
                                 </button>
                             </div>

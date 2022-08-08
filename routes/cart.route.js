@@ -73,25 +73,7 @@ router.post('/cart', async function (req, res) {
     return res.redirect('/order-confirm?sucess=true');
     // }
 });
-// function getEachOrder(orders){
-//     let newOrder = [];
-//     let idArr = [];
-//     orders.forEach(function(order){
-//         if(!idArr.includes(order._id)){
-//             idArr.push(order._id);
-//         }
-//     });
-//     idArr.forEach(function(id){
-//         let order = [];
-//         orders.forEach(function(e){
-//             if(e._id === id){
-//                 order.push(e);
-//             }
-//         });
-//         newOrder.push(order);
-//     });
-//     return newOrder;
-// }
+
 router.get('/purchased-history', async function (req, res) {
     const page = req.query.page || 1;
     const userId = req.session.passport.user._id;
@@ -117,7 +99,10 @@ router.get('/purchased-history', async function (req, res) {
     if(state!==-1){
         descState =  NUM_TO_DESCRIPTION[state];
     }
-    console.log(descState);
+    orders.forEach(function(order){
+        order.state = NUM_TO_DESCRIPTION[order.state];
+    });
+    console.log(orders);
     res.render('vwCart/purchase_history', {
         orders: orders,
         state: descState
