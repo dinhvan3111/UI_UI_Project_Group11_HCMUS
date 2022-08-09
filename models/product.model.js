@@ -314,4 +314,12 @@ export default {
         }
         return mapRet;
     },
+
+    async incSold(productIds) {
+        await Product.updateMany({
+            _id: { $in: productIds }
+        }, {
+            $inc: { sold: 1 }
+        });
+    }
 }

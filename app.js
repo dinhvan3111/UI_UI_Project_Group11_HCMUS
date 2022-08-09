@@ -8,7 +8,7 @@ import routeMdw from './middlewares/routes.mdw.js';
 import env from './utils/env.js';
 import localsMdw from './middlewares/locals.mdw.js';
 import WebSocket from './websocket.js';
-import productModel from './models/product.model.js';
+import ProductModel from './models/product.model.js';
 import { ObjectId, getNewObjectId, toObjectId } from './utils/database.js';
 import userModel from './models/user.model.js';
 import validator from './utils/validator.js';
@@ -39,7 +39,7 @@ routeMdw(app);
 
 
 const server = app.listen(port, function () {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Example app listening at http://localhost:${port}`);
 });
 
 // WebSocket(server);

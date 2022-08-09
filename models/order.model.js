@@ -153,6 +153,32 @@ export default {
         return orders[0];
     },
 
+    async findOrderByInfo(userId, productId, orderId) {
+        const orders = await Order.aggregate([
+            { '$match': { '_id': userId, 'orders._id': toObjectId(orderId), 'orders.cartInfos._id': toObjectId(productId) } },
+            {
+                "$project": {
+                    "orders": {
+                        "$filter": {
+                            "input": "$orders",
+                            "as": "orders",
+                            "cond": {
+                                "$eq": [
+                                    "$$orders._id",
+                                    toObjectId(orderId)
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        ]);
+        if (orders.length === 0) {
+            return null;
+        }
+        return orders[0];
+    },
+
     async save(order) {
         try {
             const ret = await order.save();
@@ -314,9 +340,27 @@ export default {
 
         const order = await this.findOrderById(userIdOrder, orderId);
         if (order && order.orders.state < STATE_CART_ENUM.DONE) {
-            return await changeState(userIdOrder, orderId, order.orders.state + 1);
+            const res = await changeState(userIdOrder, orderId, order.orders.state + 1);
+            if (res && order.orders.state + 1 === STATE_CART_ENUM.DONE) {
+                const productIds = [];
+                for (let i = 0; i < order.orders[0].cartInfos.length; i++) {
+                    productIds.push(order.orders[0].cartInfos[i]._id.toString());
+                }
+                ProductModel.incSold(productIds);
+            }
+            return res;
         }
-        return null;
+        return false;
+    },
+
+    async cancelOrder(userIdOrder, orderId) {
+
+        const order = await this.findOrderById(userIdOrder, orderId);
+        if (order && order.orders.state < STATE_CART_ENUM.DONE) {
+            const res = await changeState(userIdOrder, orderId, STATE_CART_ENUM.CANCEL);
+            return res;
+        }
+        return false;
     },
 
     async getSingleOrderInfo(order) {

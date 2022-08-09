@@ -56,4 +56,8 @@ export default {
     isValidState(state) {
         return this.isValidNum(state) && NUM_TO_CART_STATE[`${state}`] !== undefined;
     },
+
+    isValidStar(star) {
+        return this.isValidNum(star) && star > 0 && star < 6;
+    },
 }

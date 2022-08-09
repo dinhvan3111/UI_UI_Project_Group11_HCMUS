@@ -46,4 +46,36 @@ router.get('/management', async function (req, res) {
 
 });
 
+router.post('/management', async function (req, res) {
+    let page = req.body.page;
+    let state = req.body.state;
+    let url = '/orders/management';
+    if (Checker.isValidStr(req.body.userId) &&
+        Checker.isValidStr(req.body.orderId) &&
+        Checker.isValidNum(req.body.type) &&
+        (req.body.type === 0 ||
+            req.body.type === 1)) {
+        if (!Checker.isValidNum(page)) {
+            page = 1;
+        }
+        else {
+            url = url + '?page=' + page;
+        }
+        if (!Checker.isValidOrderState(state)) {
+            state = -1;
+        }
+        else {
+            url = url + '?state=' + state;
+        }
+        if (req.body.type === 0) {
+            OrderModel.cancelOrder(req.body.userId, req.body.orderId);
+        }
+        else {
+            OrderModel.toNextState(req.body.userId, req.body.orderId);
+        }
+    }
+
+    return res.redirect(url);
+});
+
 export default router;

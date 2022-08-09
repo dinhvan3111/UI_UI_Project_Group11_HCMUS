@@ -11,7 +11,9 @@ import notiRoute from '../routes/notification.route.js';
 import apiCart from '../apis/cart.api.js';
 import apiAuth from '../apis/auth.api.js';
 import apiProductManagement from '../apis/product_management.api.js';
+import apiRating from '../apis/rating.api.js';
 import apiNoti from '../apis/noti.api.js';
+import { application } from 'express';
 
 export default function (app) {
 
@@ -48,6 +50,7 @@ export default function (app) {
 	app.use('/api/cart', apiCart);
 	app.use('/api/auth', apiAuth);
 	app.use('/api/products/management', apiProductManagement);
+	app.use('/api/rating', apiRating);
 	app.use('/api/notifications', apiNoti);
 
 	notiRoute(app);
