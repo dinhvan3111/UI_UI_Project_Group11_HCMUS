@@ -1,4 +1,4 @@
-import { ObjectId, getNewObjectId, toObjectId, STATE_CART_ENUM, NUM_TO_DESCRIPTION } from '../utils/database.js';
+import { ObjectId, getNewObjectId, toObjectId, STATE_CART_ENUM, NUM_TO_DESCRIPTION, NUM_TO_CART_STATE } from '../utils/database.js';
 import CartModel from './cart.model.js';
 import NotiModel from './notification.model.js';
 import { Order, DeliveryInfo } from '../schema/orderSchema.js';
@@ -301,10 +301,22 @@ export default {
                 }
             );
             if (res.modifiedCount && res.modifiedCount > 0) {
+                NotiModel.newNotiAndNotify(userIdOrder,
+                    `Đơn hàng ${orderId}`,
+                    `${cartStateExist}`);
                 return true;
             }
         }
         return false;
+    },
+
+    async toNextState(userIdOrder, orderId) {
+
+        const order = await this.findOrderById(userIdOrder, orderId);
+        if (order && order.orders.state < STATE_CART_ENUM.DONE) {
+            return await changeState(userIdOrder, orderId, order.orders.state + 1);
+        }
+        return null;
     },
 
     async getSingleOrderInfo(order) {

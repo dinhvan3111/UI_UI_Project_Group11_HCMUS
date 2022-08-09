@@ -1,7 +1,7 @@
-import { log } from 'console';
 import express from 'express';
 import CategoryModel from '../models/category.model.js';
 import ProductModel from '../models/product.model.js';
+import env from '../utils/env.js';
 
 const router = express.Router();
 
@@ -11,7 +11,7 @@ router.get('/:id', async function (req, res) {
         res.sendStatus(404);
     }
     else {
-        const ret = await ProductModel.getAllInCategory(req.params.id,req.query.page||null);
+        const ret = await ProductModel.getAllInCategory(req.params.id, req.query.page || null);
         const products = ret.docs;
         for (let i = 0; i < products.length; i++) {
             products[i] = ProductModel.toObject(products[i]);
@@ -20,7 +20,8 @@ router.get('/:id', async function (req, res) {
             products: products,
             totalProducts: ret.totalDocs,
             totalPages: ret.totalPages,
-            category: category.toObject()
+            category: category.toObject(),
+            limit: env.TOTAL_SEARCH_RESULTS,
         });
     }
 });

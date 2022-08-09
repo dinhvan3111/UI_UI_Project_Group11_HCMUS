@@ -268,7 +268,7 @@ export default {
         return products;
     },
 
-    async getAllInCategory(categoryId, page = 0, limit = 10, selection = { _id: 1, title: 1, thumb: 1, price: 1, sale_price: 1 }) {
+    async getAllInCategory(categoryId, page = 0, limit = env.TOTAL_SEARCH_RESULTS, selection = { _id: 1, title: 1, thumb: 1, price: 1, sale_price: 1 }) {
         const products = await Product.paginate({
             id_category: categoryId
         }, {

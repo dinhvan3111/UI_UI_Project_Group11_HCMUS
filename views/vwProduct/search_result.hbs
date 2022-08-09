@@ -127,7 +127,8 @@
 <script>
     $('.pagination-container').jqpaginator({
         data: createData({{totalProducts}}),
-        render: renderer
+        render: renderer,
+        itemsPerPage: {{limit}}
     });
 </script>
 {{/section}}

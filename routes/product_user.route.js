@@ -2,6 +2,7 @@ import express from 'express';
 import productModel from '../models/product.model.js';
 import categoryModel from '../models/category.model.js';
 import linkManager from '../utils/linkManager.js';
+import env from '../utils/env.js';
 
 const router = express.Router();
 
@@ -10,7 +11,7 @@ router.get('/', async function (req, res) {
         req.query.q.length === 0) {
         return res.status(404).send('Not Found');
     }
-    const productsQuery = await productModel.search(req.query.q,req.query.page * 1 - 1 || 0);
+    const productsQuery = await productModel.search(req.query.q, req.query.page * 1 - 1 || 0);
     const products = [];
     for (let i = 0; i < productsQuery.length; i++) {
         const product = productsQuery[i];
@@ -27,7 +28,8 @@ router.get('/', async function (req, res) {
         keyword: req.query.q,
         products: products,
         totalProducts: totalProducts,
-        totalPages
+        totalPages,
+        limit: env.TOTAL_SEARCH_RESULTS,
     });
 });
 
