@@ -1,5 +1,5 @@
 {{#section 'title'}}
-    <title>Quản lý đơn hàng</title>
+<title>Quản lý đơn hàng</title>
 {{/section}}
 
 <div class="container-fluid">
@@ -28,52 +28,56 @@
                 </div>
             </div>
         </div>
-        <table class="order-table table table-hover">
-            <thead>
-                <tr>
-                    <th>Mã đơn hàng</th>
-                    <th>Username</th>
-                    <th>Số điện thoại</th>
-                    <th>Tổng tiền</th>
-                    <th>Tình trang</th>
-                    <th>Ngày thanh toán</th>
-                    <th>Tùy chỉnh</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each orders}}
-                <tr>
-                    <td>
-                        <a id="order-id" href="/order/detail/{{orders._id}}">
-                            {{orders._id}} <i class="fa-solid fa-up-right-from-square fa-2xs"></i>
-                        </a>
-                    </td>
-                    <td>{{_id}}</td>
-                    <td>092121212</td>
-                    <td>{{format_number orders.totalPrice}} đ</td>
-                    <td>{{convertToState orders.state}}</td>
-                    {{#if orders.paidDay}}
+        <div class="table-responsive">
+            <table class="order-table table">
+                <thead>
+                    <tr>
+                        <th>Mã đơn hàng</th>
+                        <th>Username</th>
+                        <th>Số điện thoại</th>
+                        <th>Tổng tiền</th>
+                        <th>Tình trang</th>
+                        <th>Ngày thanh toán</th>
+                        <th>Tùy chỉnh</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each orders}}
+                    <tr>
+                        <td>
+                            <a class="order-id" href="/order/detail/{{orders._id}}">
+                                {{orders._id}} <i class="fa-solid fa-up-right-from-square fa-2xs"></i>
+                            </a>
+                        </td>
+                        <td>{{_id}}</td>
+                        <td>092121212</td>
+                        <td>{{format_number orders.totalPrice}} đ</td>
+                        <td>{{convertToState orders.state}}</td>
+                        {{#if orders.paidDay}}
                         <td>{{toJSDate orders.paidDay}}</td>
-                    {{else}}
-                        <td>_</td>
-                    {{/if}}
-                    <td>
-                        {{#if (ifCond orders.state '<' 1)}}
-                            <a href="#" class="approve" title="Duyệt" data-toggle="tooltip">
-                                <i class="fa-solid fa-square-check fa-xl"></i>
-                            </a>
-                            <a href="#" class="delete" title="Xóa" data-toggle="tooltip">
-                                <i class="fa-solid fa-square-xmark fa-xl"></i>
-                            </a>
                         {{else}}
-                            _
+                        <td>_</td>
                         {{/if}}
-                    </td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
-        <div class="pagination-container">
+                        <td>
+                            {{#if (ifCond orders.state '<' 1)}} <a href="#" class="approve" title="Duyệt"
+                                data-toggle="tooltip">
+                                <i class="fa-solid fa-square-check fa-xl"></i>
+                                </a>
+                                <a href="#" class="delete" title="Xóa" data-toggle="tooltip">
+                                    <i class="fa-solid fa-square-xmark fa-xl"></i>
+                                </a>
+                                {{else}}
+                                _
+                                {{/if}}
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <div class="table-responsive">
+            <div class="pagination-container">
+            </div>
         </div>
     </div>
 </div>
@@ -82,9 +86,10 @@
 <script src="/js/order.js"></script>
 <script>
     $('.pagination-container').jqpaginator({
+        data: createData({{ total }}),
         data: createData({{total}}),
         render: renderer,
-        itemsPerPage: {{limit}} 
+        itemsPerPage: {{limit}}
     });
 </script>
 {{/section}}

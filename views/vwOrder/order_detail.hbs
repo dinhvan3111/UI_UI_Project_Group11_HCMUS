@@ -7,7 +7,7 @@
         <div class="card order-detail-form">
             {{!-- Header --}}
             <div class="card-header px-4 py-5">
-                <h1 class="text-muted mb-0">Cảm ơn bạn đã đặt hàng, <span id="username">Wibu rách</span>!
+                <h1 class="text-muted mb-0">Cảm ơn bạn đã đặt hàng, <span id="username">{{orderDetail.deliveryInfo.name}}</span>!
                 </h1>
             </div>
             {{!-- Order items --}}
@@ -17,82 +17,27 @@
                 </div>
                 {{!-- Items --}}
                 <div class="order-detail-item">
-                    <a href="#" class="card shadow-0 border mb-4">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/13.webp"
-                                        class="img-fluid" alt="Phone">
-                                </div>
-                                <div class="col-md-4 text-center d-flex justify-content-center align-items-center">
-                                    <p class="text-muted mb-0">Samsung Galaxy</p>
-                                </div>
-                                <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
-                                    <p class="text-muted mb-0 small">Số lượng: 1</p>
-                                </div>
-                                <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
-                                    <p class="text-muted mb-0 small">10,000,000 đ</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="card shadow-0 border mb-4">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/1.webp"
-                                        class="img-fluid" alt="Phone">
-                                </div>
-                                <div class="col-md-4 text-center d-flex justify-content-center align-items-center">
-                                    <p class="text-muted mb-0">iPad</p>
-                                </div>
-                                <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
-                                    <p class="text-muted mb-0 small">Số lượng: 1</p>
-                                </div>
-                                <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
-                                    <p class="text-muted mb-0 small">8,000,000 đ</p>
+                    {{#each orderDetail.cartInfos}}
+                        <a href="/products/{{_id}}" class="card shadow-0 border mb-4">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <img src="{{getImgLink thumb}}"
+                                            class="img-fluid" alt="Phone">
+                                    </div>
+                                    <div class="col-md-4 text-center d-flex justify-content-center align-items-center">
+                                        <p class="text-muted mb-0">{{title}}</p>
+                                    </div>
+                                    <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
+                                        <p class="text-muted mb-0 small">Số lượng: {{quantity}}</p>
+                                    </div>
+                                    <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
+                                        <p class="text-muted mb-0 small">{{format_number price}} đ</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                    <a href="#" class="card shadow-0 border mb-4">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/13.webp"
-                                        class="img-fluid" alt="Phone">
-                                </div>
-                                <div class="col-md-4 text-center d-flex justify-content-center align-items-center">
-                                    <p class="text-muted mb-0">Samsung Galaxy</p>
-                                </div>
-                                <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
-                                    <p class="text-muted mb-0 small">Số lượng: 1</p>
-                                </div>
-                                <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
-                                    <p class="text-muted mb-0 small">10,000,000 đ</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="card shadow-0 border mb-4">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/1.webp"
-                                        class="img-fluid" alt="Phone">
-                                </div>
-                                <div class="col-md-4 text-center d-flex justify-content-center align-items-center">
-                                    <p class="text-muted mb-0">iPad</p>
-                                </div>
-                                <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
-                                    <p class="text-muted mb-0 small">Số lượng: 1</p>
-                                </div>
-                                <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
-                                    <p class="text-muted mb-0 small">8,000,000 đ</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+                        </a>
+                    {{/each}}
                 </div>
                 {{!-- Order state --}}
                 <div class="row gy-2 d-flex align-items-center order-state mt-2">
@@ -128,9 +73,17 @@
                             <p>Mã voucher:</p>
                         </div>
                         <div>
-                            <p>788152</p>
-                            <p>01/01/2022</p>
-                            <p>18KU-62IIK</p>
+                            <p>{{orderDetail._id}}</p>
+                            {{#if orderDetail.paidDay}}
+                                <p>{{orderDetail.paidDay}}</p>
+                            {{else}}
+                                <p>_</p>
+                            {{/if}}
+                            {{#if orderDetail.voucherId}}
+                                <p>{{orderDetail.voucherId}}</p>
+                            {{else}}
+                                <p>_</p>
+                            {{/if}}
                         </div>
                     </div>
 
@@ -141,7 +94,7 @@
                             <p class="fw-bold me-4">Phí vận chuyển</p>
                         </div>
                         <div>
-                            <p>18,000,000 đ</p>
+                            <p>{{format_number orderDetail.totalPrice}} đ</p>
                             <p>1,000 đ</p>
                             <p>30,000 đ</p>
                         </div>
@@ -152,7 +105,7 @@
             {{!-- Order final price --}}
             <div class="card-footer border-0 px-4 py-5">
                 <div class="d-flex align-items-center justify-content-end text-white mb-0">
-                    <h1 class="mb-0 ms-2">Thành tiền: 18,029,000 đ</h1>
+                    <h1 class="mb-0 ms-2">Thành tiền: {{format_number orderDetail.totalPrice}} đ</h1>
                 </div>
             </div>
         </div>
