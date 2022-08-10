@@ -4,7 +4,7 @@ import ProductModel from '../models/product.model.js';
 import Validator from '../utils/validator.js';
 import OrderModel from '../models/order.model.js';
 import { NUM_TO_DESCRIPTION } from '../utils/database.js';
-
+import env from '../utils/env.js';
 const FREE_SHIP_AMMOUNT = 500000;
 const router = express.Router();
 
@@ -78,6 +78,7 @@ router.get('/purchased-history', async function (req, res) {
     const page = req.query.page || 1;
     const userId = req.session.passport.user._id;
     let state = req.query.state || -1;
+    let total = 0;
 
     let orders = [];
     let ordersRet = null;
@@ -104,9 +105,18 @@ router.get('/purchased-history', async function (req, res) {
         order.state = NUM_TO_DESCRIPTION[order.state];
     });
     // console.log(orders);
+    if (ordersRet[0].total.length > 0) {
+        total = ordersRet[0].total[0].count;
+    }
+    else {
+        total = 0;
+    }
+    console.log(total);
     res.render('vwCart/purchase_history', {
         orders: orders,
-        state: descState
+        state: descState,
+        totalProducts: total,
+        limit: env.TOTAL_SEARCH_RESULTS
     });
 })
 

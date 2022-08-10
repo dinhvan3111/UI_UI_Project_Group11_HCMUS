@@ -23,12 +23,11 @@ router.get('/', async function (req, res) {
     if (products.length !== 0) {
         totalProducts = await productModel.getTotalProductsSearch(req.query.q)
     }
-    let totalPages = totalProducts % 10 + 1;
+    //let totalPages = totalProducts % 10 + 1;
     res.render('vwProduct/search_result', {
         keyword: req.query.q,
         products: products,
         totalProducts: totalProducts,
-        totalPages,
         limit: env.TOTAL_SEARCH_RESULTS,
     });
 });
@@ -75,6 +74,7 @@ router.get('/:id', async function (req, res) {
             product: productRet,
             categoryOfProduct: category.toObject(),
             relatedProducts: relatedProducts,
+            limit: env.TOTAL_SEARCH_RESULTS
         });
     }
 });

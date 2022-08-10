@@ -19,7 +19,6 @@ router.get('/:id', async function (req, res) {
         res.render('vwProduct/search_result', {
             products: products,
             totalProducts: ret.totalDocs,
-            totalPages: ret.totalPages,
             category: category.toObject(),
             limit: env.TOTAL_SEARCH_RESULTS,
         });

@@ -258,7 +258,7 @@ export default {
         }
     },
 
-    async getAll(page = 0, limit = 10, selection = { _id: 1, title: 1, thumb: 1, stock: 1, price: 1, sale_price: 1 }) {
+    async getAll(page = 0, limit = env.TOTAL_SEARCH_RESULTS, selection = { _id: 1, title: 1, thumb: 1, stock: 1, price: 1, sale_price: 1 }) {
         const products = await Product.paginate({}, {
             page: page,
             limit: limit,

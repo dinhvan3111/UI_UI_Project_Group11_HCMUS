@@ -1,8 +1,10 @@
 /**
  * Simple pagination, nice and easy.
  */
+
+//  let itemsPerPage = document.querySelector('.pagination-container .item-per-page').value * 1 || 10;
+
 (function($) {
-    
     var defaults = {
         parentcls: 'jqpaginator',
         wrapcls: 'jqp-wrap',
@@ -418,7 +420,7 @@ console.log(currentPage + ": current");
 $( document ).ready(function() {
     let paging = $(".pagination-container").jqpaginator("goto",currentPage*1);
     let pages = document.querySelectorAll('.jqpaginator .jqp-pages .jqp-page');
-
+    console.log(pages);
     pages.forEach(function (page) {
         page.addEventListener('click', function(e) {
             const splitLink = window.location.href.split('?');
@@ -441,7 +443,8 @@ $( document ).ready(function() {
         });
     })
 
-    let totalPages = document.querySelector('.pagination-container .total-page').value;
+    // let totalPages = document.querySelector('.pagination-container .total-page').value;
+    let totalPages =  (pages[pages.length - 1]).innerText * 1;
     //next, previous
     let prevElement = document.querySelector('.pagination-container .jqp-prev');
     let nextElement = document.querySelector('.pagination-container .jqp-next');

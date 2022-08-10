@@ -281,7 +281,7 @@
                             </div>
                         </div>
                         <div class="pagination-container">
-                            <input type="hidden" class="total-page" value="{{totalPages}}">
+                            
                         </div>
                     </div>
                 </div>
@@ -349,7 +349,8 @@
 <script>
     $('.pagination-container').jqpaginator({
             data: createData({{ totalProducts }}),
-            render: renderer
+            render: renderer,
+            itemsPerPage: {{limit}}
     });
 </script>
 {{/section}}

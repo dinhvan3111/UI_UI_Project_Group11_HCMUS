@@ -88,8 +88,10 @@ router.post('/', cpUpload, async function (req, res) {
 });
 
 router.get('/management', async function (req, res) {
-    const pagingRet = await ProductModel.getAll();
+    const page = req.query.page || 1;
+    const pagingRet = await ProductModel.getAll(page);
     const products = [];
+    console.log(pagingRet);
     for (let i = 0; i < pagingRet.docs.length; i++) {
         const product = {
             _id: pagingRet.docs[i]._id.toString(),
@@ -101,12 +103,11 @@ router.get('/management', async function (req, res) {
         };
         products.push(product);
     }
-    console.log(pagingRet);
     res.render('vwProduct/management', {
         products: products,
         totalProducts: pagingRet.totalDocs,
         curPage: pagingRet.page,
-        totalPages: pagingRet.totalPages
+        limit: env.TOTAL_SEARCH_RESULTS
     });
 });
 

@@ -6,6 +6,7 @@ import { CartInfo } from '../schema/cartsSchema.js';
 import Validator from '../utils/validator.js';
 import ProductModel from './product.model.js';
 import Notification from '../schema/notificationsSchema.js';
+import env from '../utils/env.js';
 
 const RECEIVE_AT_HOME = 0;
 const RECEIVE_AT_SHOP = 1;
@@ -283,14 +284,14 @@ export default {
     },
 
     // Retrieve all orders of a user
-    async getAllOrdersOfUser(userId, page = 0, limit = 3, selections = { '_id': 0, 'orders': 1 }, sort = { 'orders.state': 1, 'orders._id': -1 }) {
+    async getAllOrdersOfUser(userId, page = 0, limit = env.TOTAL_SEARCH_RESULTS * 1, selections = { '_id': 0, 'orders': 1 }, sort = { 'orders.state': 1, 'orders._id': -1 }) {
         const skip = page2SkipItems(page, limit);
         const conditions = { '_id': userId };
         return await toOrdersPagingQuery(conditions, skip, limit, selections, sort);
     },
 
     // Retrieve all orders of a user by order status
-    async getAllOrdersByStateOfUser(userId, cartState, page = 0, limit = 3,
+    async getAllOrdersByStateOfUser(userId, cartState, page = 0, limit = env.TOTAL_SEARCH_RESULTS,
         selections = { '_id': 0, 'orders': { '$filter': { 'input': '$orders', 'as': 'orders', 'cond': { '$eq': ['$$orders.state', cartState] } } } },
         sort = { 'orders.state': 1, 'orders._id': -1 }) {
         const skip = page2SkipItems(page, limit);
@@ -299,14 +300,14 @@ export default {
     },
 
     // Retrieve all orders (for manager/ staff)
-    async getAllOrders(page = 0, limit = 10, selections = { '_id': 1, 'orders': 1 }, sort = { 'orders.state': 1, 'orders._id': 1 }) {
+    async getAllOrders(page = 0, limit = env.TOTAL_SEARCH_RESULTS, selections = { '_id': 1, 'orders': 1 }, sort = { 'orders.state': 1, 'orders._id': 1 }) {
         const skip = page2SkipItems(page, limit);
         const conditions = {};
         return await toOrdersPagingQuery(conditions, skip, limit, selections, sort);
     },
 
     // Retrive all orders by order status (for manager/ staff)
-    async getAllOrdersByState(cartState, page = 0, limit = 10, selections = { '_id': 1, 'orders': 1 }, sort = { 'orders.state': 1, 'orders._id': 1 }) {
+    async getAllOrdersByState(cartState, page = 0, limit = env.TOTAL_SEARCH_RESULTS, selections = { '_id': 1, 'orders': 1 }, sort = { 'orders.state': 1, 'orders._id': 1 }) {
         const skip = page2SkipItems(page, limit);
         const conditions = { 'orders.state': cartState };
         return await toOrdersPagingQuery(conditions, skip, limit, selections, sort);
