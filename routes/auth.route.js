@@ -14,6 +14,10 @@ router.get('/login', function (req, res) {
     res.render('vwAccount/login', { layout: false, err_message: err_message });
 });
 
+router.get('/profile/:id', function (req, res) {
+    res.render('vwAccount/profile');
+});
+
 router.post('/login',
     passport.authenticate('local', { failureRedirect: '/login', failureMessage: true }),
     async function (req, res) {

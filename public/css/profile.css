@@ -1,0 +1,92 @@
+.profile-container{
+    display: flex;
+    font-weight: 600;
+    justify-content: center;
+    margin-top: 5rem;
+}
+.profile-container .profile{
+    width: 46.8rem;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 5px 0px rgba(79,184,191,0.85);
+-webkit-box-shadow: 0px 0px 5px 0px rgba(79,184,191,0.85);
+-moz-box-shadow: 0px 0px 5px 0px rgba(79,184,191,0.85);
+}
+
+.profile-container .profile .title{
+    text-align: center;
+    margin-top: 2rem;
+    font-size:3rem;
+}
+
+.profile-container .profile .avt{
+    margin-top: 2rem;
+}
+
+.profile-container .profile img{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.profile .content{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 2rem;
+}
+
+.profile .content .item{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.profile-container .profile label{
+    width: 20%;
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.profile-container .profile .icon{
+    display: none;
+}
+.profile-container .profile input{
+    font-size: 1.8rem;
+    width: 80%;
+    border: .1rem solid var(--sub-color);
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    font-weight: 400;
+    margin-left: 1rem;
+}
+
+.profile-container .profile .update{
+    text-align: center;
+    margin-top: 1rem;
+}
+.profile .update button{
+    
+    font-size: 2rem;
+    padding: 1rem 2rem;
+    background-color: var(--back-color);
+    border-radius: 1rem;
+    color: var(--main-color);
+    font-weight:500
+}
+
+@media screen and (max-width: 467.75px){
+    .profile-container .profile label{
+        display: none;
+    }
+    .profile-container .profile input{
+        width: 100%;
+        margin: 0;
+        padding-left: 5rem;
+    }
+    .profile-container .profile .icon{
+        display: block;
+        position: absolute;
+        left: 2rem;
+        font-size: 2rem;
+    }
+}

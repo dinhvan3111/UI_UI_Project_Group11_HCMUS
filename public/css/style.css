@@ -1014,6 +1014,7 @@ select {
 
 .nav__mobile .logged img {
     width: 5rem;
+    border-radius: 50%;
 }
 
 .nav__mobile .logged p {

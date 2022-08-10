@@ -262,7 +262,11 @@
                     </div> --}}
                     <div class="logged">
                         <a href="/profile" class="logged__info">
-                            <img src="/assets/img/avatar.png" alt="">
+                            {{#if lcAuthUser.avt}}
+                                    <img src="{{lcAuthUser.avt}}" alt="logo" crossorigin="anonymous" referrerpolicy="no-referrer">
+                                {{else}}
+                                    <i class="fa-regular fa-circle-user"></i>
+                                {{/if}}
                             <div class="logged-name">
                                 <p>Hi, <b>{{lcAuthUser.name}}</b></p>
                                 <a href="/purchased-history" class="logged-purchased">Lịch sử mua hàng</a>

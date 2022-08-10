@@ -1,0 +1,35 @@
+{{#section 'title'}}
+<title>Thông tin cá nhân</title>
+{{/section}}
+
+<div class="container profile-container">
+    <div class="profile">
+    <h1 class="title">Thông tin tài khoản</h1>
+        <div class="avt">
+            <img src="https://lh3.googleusercontent.com/a/AItbvmkK8Go4njrbJw1B8ovK0soqq54FA1ov0sH2e6GT=s96-c" alt="avatar">
+        </div>
+        <div class="content">
+            <div class="item email">
+                <label for="email">Email: </label>
+                <input type="text" name="email" value="ngoctu.280801@gmail.com" disabled>
+                <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+            </div>
+            <div class="item name">
+                <label for="name">Họ & tên: </label>
+                <input id="name" type="text" name="name" value="Nguyễn Trần Ngọc Tú" >
+                <div class="icon"><i class="fa-solid fa-user"></i></div>
+            </div>
+            <div class="item address">
+                <label for="address">Địa chỉ: </label>
+                <input id="address" type="text" value="Ấp Đông, Long Hựu Đông, Cần Đước, Long An" name="address" title="Ấp Đông, Long Hựu Đông, Cần Đước, Long An" >
+                <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+            </div>
+            <div class="update"><button >Cập nhật</button></div>
+        </div>
+    </div>
+</div>
+
+{{#section 'js'}}
+<link rel="stylesheet" type="text/css" href="/css/profile.css" />
+
+{{/section}}
