@@ -45,6 +45,32 @@ export default function (app) {
 				options.hour12 = 'true';
 
 				return dateTime.toLocaleDateString('en-GB', options);
+			},
+			ifCond(v1, operator, v2) {
+				switch (operator) {
+					case '==':
+						return (v1 == v2) ? true : false;
+					case '===':
+						return (v1 === v2) ? true : false;
+					case '!=':
+						return (v1 != v2) ? true : false;
+					case '!==':
+						return (v1 !== v2) ? true : false;
+					case '<':
+						return (v1 < v2) ? true : false;
+					case '<=':
+						return (v1 <= v2) ? true : false;
+					case '>':
+						return (v1 > v2) ? true : false;
+					case '>=':
+						return (v1 >= v2) ? true : false;
+					case '&&':
+						return (v1 && v2) ? true : false;
+					case '||':
+						return (v1 || v2) ? true : false;
+					default:
+						return false;
+				}
 			}
 		}
 	}));

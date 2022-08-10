@@ -1,6 +1,6 @@
 import express from 'express';
 import OrderModel from '../models/order.model.js';
-import { STATE_CART_ENUM } from '../utils/database.js';
+import { STATE_CART_ENUM, NUM_TO_DESCRIPTION } from '../utils/database.js';
 import Checker from '../utils/validator.js';
 
 const router = express.Router();
@@ -37,13 +37,19 @@ router.get('/management', async function (req, res) {
     else {
         total = 0;
     }
-    // console.log(orders, '\n', total);
+
+    // Return state description
+    let descState = "Tất cả";
+    if(state!==-1){
+        descState =  NUM_TO_DESCRIPTION[state];
+    }
+    // console.log(orders, '\n', total, '\n', state);
 
     return res.render('vwOrder/order_view', {
         orders: orders,
-        total: total
+        total: total,
+        descState: descState
     });
-
 });
 
 router.post('/management', async function (req, res) {
