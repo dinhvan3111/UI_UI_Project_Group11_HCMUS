@@ -4,9 +4,9 @@ const productCheckOutBody = document.querySelector('.products-checkout-body');
 const paymentMethodItems = document.querySelectorAll('.payment-method ul .payment-method-item');
 const navigationTabs = document.querySelectorAll('.receive-address .navigation-tab');
 
-//Min max là số kí tự tối thiểu và tối đa của họ và tên
+//Min max là số kí tự tối thiểu và tối đa của họ và tên, địa chỉ
 let min = 6;
-let max = 15;
+let max = 100;
 
 // Datetimepicker
 
@@ -96,6 +96,22 @@ function handleErrorMessage(item, msg) {
     }
 }
 
+function handleErrorMessageWithMinMax(item, msg, min, max) {
+    if (checkLength(item, min, max)) {
+        item.style.border = '1px solid green';
+        msg.style.display = 'none';
+    }
+    else {
+        item.style.border = '1px solid red';
+        // if (item.name === "username")
+        //     msg.innerText = `Tài khoản phải từ ${min} đến ${max} kí tự.`;
+        // else if (item.name === "password") {
+        //     msg.innerText = `Mật khẩu phải từ ${min} đến ${max} kí tự.`;
+        // }
+        msg.style.display = 'block';
+    }
+}
+
 function handleErrorMessageForSelect(item, msg) {
     if (item.value != "") {
         item.style.border = '1px solid green';
@@ -160,10 +176,11 @@ payBtnCheckout.addEventListener('click', function (e) {
     if (activeTab.innerHTML == 'Nhận hàng tại nhà') {
         const isValidFullName = checkLength(fullName, min, max);
         const isValidPhoneNumber = checkLength(phoneNumber, 10, 10);
+        console.log(isValidPhoneNumber);
         const isValidAddress = checkLength(receiveAddress, min, max);
         if (!isValidFullName || !isValidPhoneNumber || !isValidAddress) {
             handleErrorMessage(fullName, errFullName);
-            handleErrorMessage(phoneNumber, errPhoneNum);
+            handleErrorMessageWithMinMax(phoneNumber, errPhoneNum,10,10);
             handleErrorMessage(receiveAddress, errAddress);
             e.preventDefault();
         }
@@ -231,7 +248,7 @@ payBtnCheckout.addEventListener('click', function (e) {
             xhr.onload = function () {
                 var result = JSON.parse(this.responseText);
                 if (result["code"] === 200) {
-                    window.location.href = "/order-confirm";
+                    window.location.href = "/order-confirm?id=" + result["data"];
                 }
                 else if (result["code"] === 400) {
                     window.location.href = "/order-failed";
