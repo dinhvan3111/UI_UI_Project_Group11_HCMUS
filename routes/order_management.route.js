@@ -40,8 +40,8 @@ router.get('/management', async function (req, res) {
 
     // Return state description
     let descState = "Tất cả";
-    if(state!==-1){
-        descState =  NUM_TO_DESCRIPTION[state];
+    if (state !== -1) {
+        descState = NUM_TO_DESCRIPTION[state];
     }
     // console.log(orders, '\n', total, '\n', state);
 

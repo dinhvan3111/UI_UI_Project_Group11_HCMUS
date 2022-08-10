@@ -90,19 +90,20 @@ router.get('/purchased-history', async function (req, res) {
         }
         state = parseInt(state);
         ordersRet = await OrderModel.getAllOrdersByStateOfUser(userId, state, page);
-        // console.log('ordersRet: ', ordersRet[0].data[0]);
+
     }
+    console.log('ordersRet: ', ordersRet[0]);
     if (ordersRet !== null && ordersRet[0].data.length > 0) {
         orders = await OrderModel.getMultiOrderInfo(ordersRet);
     }
     let descState = "Tất cả";
-    if(state!==-1){
-        descState =  NUM_TO_DESCRIPTION[state];
+    if (state !== -1) {
+        descState = NUM_TO_DESCRIPTION[state];
     }
-    orders.forEach(function(order){
+    orders.forEach(function (order) {
         order.state = NUM_TO_DESCRIPTION[order.state];
     });
-    console.log(orders);
+    // console.log(orders);
     res.render('vwCart/purchase_history', {
         orders: orders,
         state: descState
