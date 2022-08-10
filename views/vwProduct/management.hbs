@@ -65,7 +65,6 @@
         </tbody>
     </table>
     <div class="pagination-container">
-        <input type="hidden" class="total-page" value="{{totalPages}}">
     </div>
 
     <!-- Modal -->
@@ -92,7 +91,9 @@
 <script>
     $('.pagination-container').jqpaginator({
         data: createData({{totalProducts}}),
-        render: renderer
+        render: renderer,
+        itemsPerPage: {{limit}}
     });
+    
 </script>
 {{/section}}

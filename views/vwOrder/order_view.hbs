@@ -1,3 +1,7 @@
+{{#section 'title'}}
+    <title>Quản lý đơn hàng</title>
+{{/section}}
+
 <div class="container-fluid">
     <div class="card order-section">
         <div class="card-header table-title">
@@ -8,9 +12,9 @@
                 <div class="col-sm-4 d-flex justify-content-end">
                     <!-- Example single danger button -->
                     <div class="btn-group btn-sort-order">
-                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
+                        <button id="sort-dropdown" type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Tất cả
+                            {{descState}}
                         </button>
                         <ul class="dropdown-menu">
                             <a class="dropdown-item" href="/orders/management">Tất cả</a>
@@ -54,29 +58,33 @@
                         <td>_</td>
                     {{/if}}
                     <td>
-                        <a href="#" class="approve" title="Duyệt" data-toggle="tooltip">
-                            <i class="fa-solid fa-square-check fa-xl"></i>
-                        </a>
-                        <a href="#" class="delete" title="Xóa" data-toggle="tooltip">
-                            <i class="fa-solid fa-square-xmark fa-xl"></i>
-                        </a>
+                        {{#if (ifCond orders.state '<' 1)}}
+                            <a href="#" class="approve" title="Duyệt" data-toggle="tooltip">
+                                <i class="fa-solid fa-square-check fa-xl"></i>
+                            </a>
+                            <a href="#" class="delete" title="Xóa" data-toggle="tooltip">
+                                <i class="fa-solid fa-square-xmark fa-xl"></i>
+                            </a>
+                        {{else}}
+                            _
+                        {{/if}}
                     </td>
                 </tr>
                 {{/each}}
             </tbody>
         </table>
         <div class="pagination-container">
-            <input type="hidden" class="total-page" value="{{totalPages}}">
         </div>
     </div>
 </div>
 
 {{#section 'js'}}
-<script src="/js/search.js"></script>
+<script src="/js/order.js"></script>
 <script>
     $('.pagination-container').jqpaginator({
-        data: createData({{ total }}),
-        render: renderer
+        data: createData({{total}}),
+        render: renderer,
+        itemsPerPage: {{limit}} 
     });
 </script>
 {{/section}}

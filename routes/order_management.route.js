@@ -1,6 +1,7 @@
 import express from 'express';
 import OrderModel from '../models/order.model.js';
-import { STATE_CART_ENUM } from '../utils/database.js';
+import { STATE_CART_ENUM, NUM_TO_DESCRIPTION } from '../utils/database.js';
+import env from '../utils/env.js';
 import Checker from '../utils/validator.js';
 
 const router = express.Router();
@@ -16,14 +17,14 @@ router.get('/management', async function (req, res) {
     let total = 0;
     // All state
     if (state === -1) {
-        ordersRet = await OrderModel.getAllOrders(page, 10, selections);
+        ordersRet = await OrderModel.getAllOrders(page, env.TOTAL_SEARCH_RESULTS * 1, selections);
     }
     else {
         if (!Checker.isValidState(state)) {
             return res.redirect('/orders/management');
         }
         state = parseInt(state);
-        ordersRet = await OrderModel.getAllOrdersByState(state, page, 10, selections);
+        ordersRet = await OrderModel.getAllOrdersByState(state, page, env.TOTAL_SEARCH_RESULTS * 1, selections);
     }
     console.log(ordersRet[0].data);
     for (let i = 0; i < ordersRet[0].data.length; i++) {
@@ -37,13 +38,20 @@ router.get('/management', async function (req, res) {
     else {
         total = 0;
     }
-    // console.log(orders, '\n', total);
+
+    // Return state description
+    let descState = "Tất cả";
+    if (state !== -1) {
+        descState = NUM_TO_DESCRIPTION[state];
+    }
+    // console.log(orders, '\n', total, '\n', state);
 
     return res.render('vwOrder/order_view', {
         orders: orders,
-        total: total
+        total: total,
+        descState: descState,
+        limit: env.TOTAL_SEARCH_RESULTS
     });
-
 });
 
 router.post('/management', async function (req, res) {

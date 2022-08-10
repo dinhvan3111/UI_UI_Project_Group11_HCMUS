@@ -6,6 +6,7 @@ import { CartInfo } from '../schema/cartsSchema.js';
 import Validator from '../utils/validator.js';
 import ProductModel from './product.model.js';
 import Notification from '../schema/notificationsSchema.js';
+import env from '../utils/env.js';
 
 const RECEIVE_AT_HOME = 0;
 const RECEIVE_AT_SHOP = 1;
@@ -77,13 +78,13 @@ async function toOrdersPagingQuery(conditions, skip, limit, selections, sort) {
     return await Order.aggregate([
         { '$unwind': '$orders' },
         { '$match': conditions },
+        { '$sort': sort },
         {
             '$facet': {
                 'data': [
                     { '$skip': skip },
                     { '$limit': limit },
                     // { '$project': selections },
-                    { '$sort': sort },
                 ],
                 "total": [
                     { "$count": "count" }
@@ -93,25 +94,25 @@ async function toOrdersPagingQuery(conditions, skip, limit, selections, sort) {
     ]);
 };
 
-async function toUserOrdersPagingQuery(conditions, skip, limit, selections, sort) {
-    return await Order.aggregate([
-        { '$match': conditions },
-        {
-            '$facet': {
-                'data': [
-                    { '$skip': skip },
-                    { '$limit': limit },
-                    { '$project': selections },
-                    { '$sort': sort },
-                ],
-                "total": [
-                    { '$unwind': '$orders' },
-                    { "$count": "count" }
-                ]
-            }
-        }
-    ]);
-};
+// async function toUserOrdersPagingQuery(conditions, skip, limit, selections, sort) {
+//     return await Order.aggregate([
+//         { '$unwind': '$orders' },
+//         { '$match': conditions },
+//         { '$sort': sort },
+//         {
+//             '$facet': {
+//                 'data': [
+//                     { '$skip': skip },
+//                     { '$limit': limit },
+//                     { '$project': selections },
+//                 ],
+//                 "total": [
+//                     { "$count": "count" }
+//                 ]
+//             }
+//         }
+//     ]);
+// };
 
 export default {
     RECEIVE_AT_HOME,
@@ -283,30 +284,30 @@ export default {
     },
 
     // Retrieve all orders of a user
-    async getAllOrdersOfUser(userId, page = 0, limit = 10, selections = { '_id': 0, 'orders': 1 }, sort = { 'orders.state': 1 }) {
+    async getAllOrdersOfUser(userId, page = 0, limit = env.TOTAL_SEARCH_RESULTS * 1, selections = { '_id': 0, 'orders': 1 }, sort = { 'orders.state': 1, 'orders._id': -1 }) {
         const skip = page2SkipItems(page, limit);
         const conditions = { '_id': userId };
-        return await toUserOrdersPagingQuery(conditions, skip, limit, selections, sort);
+        return await toOrdersPagingQuery(conditions, skip, limit, selections, sort);
     },
 
     // Retrieve all orders of a user by order status
-    async getAllOrdersByStateOfUser(userId, cartState, page = 0, limit = 10,
+    async getAllOrdersByStateOfUser(userId, cartState, page = 0, limit = env.TOTAL_SEARCH_RESULTS,
         selections = { '_id': 0, 'orders': { '$filter': { 'input': '$orders', 'as': 'orders', 'cond': { '$eq': ['$$orders.state', cartState] } } } },
-        sort = { 'orders.state': 1 }) {
+        sort = { 'orders.state': 1, 'orders._id': -1 }) {
         const skip = page2SkipItems(page, limit);
         const conditions = { '_id': userId, 'orders.state': cartState };
-        return await toUserOrdersPagingQuery(conditions, skip, limit, selections, sort);
+        return await toOrdersPagingQuery(conditions, skip, limit, selections, sort);
     },
 
     // Retrieve all orders (for manager/ staff)
-    async getAllOrders(page = 0, limit = 10, selections = { '_id': 1, 'orders': 1 }, sort = { 'orders.state': 1, 'orders._id': 1 }) {
+    async getAllOrders(page = 0, limit = env.TOTAL_SEARCH_RESULTS, selections = { '_id': 1, 'orders': 1 }, sort = { 'orders.state': 1, 'orders._id': 1 }) {
         const skip = page2SkipItems(page, limit);
         const conditions = {};
         return await toOrdersPagingQuery(conditions, skip, limit, selections, sort);
     },
 
     // Retrive all orders by order status (for manager/ staff)
-    async getAllOrdersByState(cartState, page = 0, limit = 10, selections = { '_id': 1, 'orders': 1 }, sort = { 'orders.state': 1, 'orders._id': 1 }) {
+    async getAllOrdersByState(cartState, page = 0, limit = env.TOTAL_SEARCH_RESULTS, selections = { '_id': 1, 'orders': 1 }, sort = { 'orders.state': 1, 'orders._id': 1 }) {
         const skip = page2SkipItems(page, limit);
         const conditions = { 'orders.state': cartState };
         return await toOrdersPagingQuery(conditions, skip, limit, selections, sort);
@@ -383,19 +384,31 @@ export default {
         const productIds = [];
         const orders = [];
         // console.log(ordersRet[0].data[0].orders);
-        for (let i = 0; i < ordersRet[0].data[0].orders.length; i++) {
-            let order = null;
-            for (let j = 0; j < ordersRet[0].data[0].orders[i].cartInfos.length; j++) {
-                order = ordersRet[0].data[0].orders[i];
-                order._id = order._id.toString();
-                order.cartInfos[j]._id = order.cartInfos[j]._id.toString();
+        for (let i = 0; i < ordersRet[0].data.length; i++) {
+            let order = ordersRet[0].data[i].orders;
+            order._id = order._id.toString();
+            for (let j = 0; j < ordersRet[0].data[i].orders.cartInfos.length; j++) {
 
+                order.cartInfos[j]._id = order.cartInfos[j]._id.toString();
                 if (!productIds.includes(order.cartInfos[j]._id)) {
                     productIds.push(order.cartInfos[j]._id);
                 }
             }
             orders.push(order);
         }
+        // for (let i = 0; i < ordersRet[0].data[0].orders.length; i++) {
+        //     let order = null;
+        //     for (let j = 0; j < ordersRet[0].data[0].orders[i].cartInfos.length; j++) {
+        //         order = ordersRet[0].data[0].orders[i];
+        //         order._id = order._id.toString();
+        //         order.cartInfos[j]._id = order.cartInfos[j]._id.toString();
+
+        //         if (!productIds.includes(order.cartInfos[j]._id)) {
+        //             productIds.push(order.cartInfos[j]._id);
+        //         }
+        //     }
+        //     orders.push(order);
+        // }
 
         const products = await ProductModel.multiGet(productIds, { thumb: 1, title: 1 });
         // console.log('order.model.js:341 ', products);
