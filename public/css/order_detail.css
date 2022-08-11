@@ -22,8 +22,13 @@
 }
 
 .order-detail-form .progress .progress-bar {
-    width: 25%;
     background-color: var(--back-color);
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    justify-content: flex-end;
+    padding-right: 0.5rem;
+
 }
 
 .order-detail-form hr {
@@ -52,6 +57,7 @@
     text-align: end;
     display: flex;
     justify-content: flex-end;
+    margin-top: auto;
 }
 
 .order-detail-form .payment-detail .order-detail {

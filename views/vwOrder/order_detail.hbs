@@ -42,19 +42,20 @@
                 {{!-- Order state --}}
                 <div class="row gy-2 d-flex align-items-center order-state mt-2">
                     <div class="col-md-2">
+                        <input type="hidden" id="recv-state" value={{orderDetail.state}}>
                         <p class="text-muted mb-0 small">Tình trạng đơn hàng</p>
                     </div>
                     <div class="col-md-10">
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                                aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                aria-valuemax="100">
                             </div>
                         </div>
                         <div class="d-flex justify-content-between state-title">
                             <p class="text-muted">Đặt hàng</p>
                             <p class="text-muted">Chờ xác nhận</p>
                             <p class="text-muted">Đã xác nhận</p>
-                            <p class="text-muted">Đang giào hàng</p>
+                            <p class="text-muted">Đang giao hàng</p>
                             <p class="text-muted">Giao thành công</p>
                         </div>
                     </div>
@@ -90,13 +91,11 @@
                     <div class="col-md-6 price-info text-muted">
                         <div>
                             <p class="fw-bold me-4">Tổng tiền</p>
-                            <p class="fw-bold me-4">Giá giảm</p>
                             <p class="fw-bold me-4">Phí vận chuyển</p>
                         </div>
                         <div>
                             <p>{{format_number orderDetail.totalPrice}} đ</p>
-                            <p>1,000 đ</p>
-                            <p>30,000 đ</p>
+                            <p>{{format_number orderDetail.shipPrice}} đ</p>
                         </div>
                     </div>
                 </div>
@@ -105,9 +104,13 @@
             {{!-- Order final price --}}
             <div class="card-footer border-0 px-4 py-5">
                 <div class="d-flex align-items-center justify-content-end text-white mb-0">
-                    <h1 class="mb-0 ms-2">Thành tiền: {{format_number orderDetail.totalPrice}} đ</h1>
+                    <h1 class="mb-0 ms-2">Thành tiền: {{format_number orderDetail.actualTotal}} đ</h1>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+{{#section 'js'}}
+<script src="/js/order.js"></script>
+{{/section}}

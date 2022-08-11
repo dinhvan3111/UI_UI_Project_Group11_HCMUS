@@ -6,6 +6,7 @@ import OrderModel from '../models/order.model.js';
 import { NUM_TO_DESCRIPTION } from '../utils/database.js';
 import env from '../utils/env.js';
 const FREE_SHIP_AMMOUNT = 500000;
+const SHIP_PRICE = 30000;
 const router = express.Router();
 
 router.get('/order/detail/:id', async function (req, res) {
@@ -20,7 +21,16 @@ router.get('/order/detail/:id', async function (req, res) {
     }
     if (order !== null) {
         orderDetail = await OrderModel.getSingleOrderInfo(order);
-        console.log(orderDetail);
+        // Ship price + orginal price
+        if (orderDetail.totalPrice - SHIP_PRICE >= FREE_SHIP_AMMOUNT) {
+            // Freeship
+            orderDetail.shipPrice = 0;
+            orderDetail.actualTotal = orderDetail.totalPrice;
+        } else {
+            orderDetail.shipPrice = SHIP_PRICE;
+            orderDetail.actualTotal = orderDetail.totalPrice + SHIP_PRICE;
+        }
+        console.log('Order deatil: ',orderDetail);
     }
     res.render('vwOrder/order_detail', {
         orderDetail: orderDetail,
@@ -52,7 +62,7 @@ router.get('/cart', async function (req, res) {
     cartRet.totalPrice = totalPrice;
     let shipPrice = 0;
     if (cartRet.totalPrice < FREE_SHIP_AMMOUNT && totalPrice > 0) {
-        shipPrice = 30000;
+        shipPrice = SHIP_PRICE;
     }
     cartRet.finalPrice = cartRet.totalPrice + shipPrice;
     cartRet.shipPrice = shipPrice;
