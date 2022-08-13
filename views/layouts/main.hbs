@@ -82,67 +82,34 @@
                                 </div>
                             </button>
                             {{!-- Populated notification --}}
-                            <ul class="dropdown-menu" aria-labelledby="dropdown-notif">
+                            <ul class="dropdown-menu" aria-labelledby="dropdown-notif" data-bs-backdrop="static">
                                 <div class="item-container">
+                                    <span class="total-item" style="display: none;">{{lcTotalNotis.count}}</span>
+                                    {{#if lcDisplayNotis}}
+                                    {{#each lcDisplayNotis}}
                                     <li class="item">
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="/order/detail/{{_id}}">
                                             <img
                                                 src="https://cdn.shopify.com/s/files/1/0024/9803/5810/products/517518-Product-0-I-637756975358868585_a1f8076b-3e38-4c5b-8f52-3a088f73731e_540x540.jpg?v=1658208964">
                                             <div class="order-info">
-                                                <p>Đơn hàng 1001</p>
-                                                <small class="text-muted">22/12/2022</small>
+                                                <p>{{title}}</p>
+                                                <small class="text-muted">Thời gian đặt hàng: {{date}}</small>
                                             </div>
-                                            <span class="state-pending ms-4">Chờ xác nhận</span>
+                                            <span class="ms-4">{{description}}</span>
                                         </a>
                                     </li>
-                                    <li class="item">
-                                        <a class="dropdown-item" href="#">
-                                            <img
-                                                src="https://cdn.shopify.com/s/files/1/0024/9803/5810/products/517518-Product-0-I-637756975358868585_a1f8076b-3e38-4c5b-8f52-3a088f73731e_540x540.jpg?v=1658208964">
-                                            <div class="order-info">
-                                                <p>Đơn hàng 1001</p>
-                                                <small class="text-muted">22/12/2022</small>
-                                            </div>
-                                            <span class="state-approve ms-4">Đã xác nhận</span>
-                                        </a>
-                                    </li>
-                                    <li class="item">
-                                        <a class="dropdown-item" href="#">
-                                            <img
-                                                src="https://cdn.shopify.com/s/files/1/0024/9803/5810/products/517518-Product-0-I-637756975358868585_a1f8076b-3e38-4c5b-8f52-3a088f73731e_540x540.jpg?v=1658208964">
-                                            <div class="order-info">
-                                                <p>Đơn hàng 1001</p>
-                                                <small class="text-muted">22/12/2022</small>
-                                            </div>
-                                            <span class="state-approve ms-4">Đang giao</span>
-                                        </a>
-                                    </li>
-                                    <li class="item">
-                                        <a class="dropdown-item" href="#">
-                                            <img
-                                                src="https://cdn.shopify.com/s/files/1/0024/9803/5810/products/517518-Product-0-I-637756975358868585_a1f8076b-3e38-4c5b-8f52-3a088f73731e_540x540.jpg?v=1658208964">
-                                            <div class="order-info">
-                                                <p>Đơn hàng 1001</p>
-                                                <small class="text-muted">22/12/2022</small>
-                                            </div>
-                                            <span class="state-success ms-4">Giao thành công</span>
-                                        </a>
-                                    </li>
-                                    <li class="item">
-                                        <a class="dropdown-item" href="#">
-                                            <img
-                                                src="https://cdn.shopify.com/s/files/1/0024/9803/5810/products/517518-Product-0-I-637756975358868585_a1f8076b-3e38-4c5b-8f52-3a088f73731e_540x540.jpg?v=1658208964">
-                                            <div class="order-info">
-                                                <p>Đơn hàng 1001</p>
-                                                <small class="text-muted">22/12/2022</small>
-                                            </div>
-                                            <span class="state-failed ms-4">Bị hủy</span>
-                                        </a>
-                                    </li>
+                                    {{/each}}
+                                    {{else}}
+                                    <div class="empty-notification">
+                                        Không có thông báo nào
+                                    </div>
+                                    {{/if}}
                                 </div>
+                                {{#if lcDisplayNotis}}
                                 <div class="noti-control">
-                                    <button>Xóa tất cả thông báo</button>
+                                    <button><i class="fa-solid fa-angle-down"></i>Hiển thị thêm thông báo</button>
                                 </div>
+                                {{/if}}
                             </ul>
                             {{!-- Empty notification --}}
                             {{!-- <ul class="dropdown-menu" aria-labelledby="dropdown-notif">

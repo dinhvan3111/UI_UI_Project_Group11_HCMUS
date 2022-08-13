@@ -291,7 +291,7 @@ export default {
     },
 
     // Retrieve all orders of a user by order status
-    async getAllOrdersByStateOfUser(userId, cartState, page = 0, limit = env.TOTAL_SEARCH_RESULTS,
+    async getAllOrdersByStateOfUser(userId, cartState, page = 0, limit = env.TOTAL_SEARCH_RESULTS * 1,
         selections = { '_id': 0, 'orders': { '$filter': { 'input': '$orders', 'as': 'orders', 'cond': { '$eq': ['$$orders.state', cartState] } } } },
         sort = { 'orders.state': 1, 'orders._id': -1 }) {
         const skip = page2SkipItems(page, limit);

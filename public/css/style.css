@@ -323,6 +323,13 @@ select {
     overflow-y: auto;
 }
 
+.dropdown-noti .dropdown-menu .empty-notification{
+    padding: 2rem;
+    text-align: center;
+    font-size: 1.6rem;
+    opacity: 0.6;
+}
+
 .dropdown-noti .dropdown-menu li {
     border-bottom: solid 0.1rem #efefef;
 }

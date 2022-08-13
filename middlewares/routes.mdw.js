@@ -89,10 +89,28 @@ export default function (app) {
 			topSell: topSellTmp,
 		});
 	});
+
+	// app.post('/get-more-notis', function(req,res){
+	// 	var totalDisplayItem = req.body["totalDisplayItem"];
+	// 	var moreItem = res.locals.lcTotalNotis - totalDisplayItem >= 10 ? totalDisplayItem + 10 : res.locals.lcTotalNotis["count"];
+	// 	var additionalItems = [];
+	// 	console.log(moreItem["count"]);
+	// 	for(let i =0; i < moreItem; i++){
+	// 		console.log(res.locals.lcNotis[i]);
+	// 		additionalItems.push(res.locals.lcNotis[i]);
+	// 	}
+	// 	return res.json({additonalItems : additionalItems});
+	// });
 	app.get('/about-us', async function (req, res) {
 
 		res.render('about');
 	});
+
+	// app.post('/delete-notis', function (req,res){
+	// 	console.log(req.body);
+	// 	res.locals.lcNotis = [];
+	// 	return res.json({notis: []});
+	// });
 
 	// app.get('/err', function(req, res){
 	//     throw new Error('Error');

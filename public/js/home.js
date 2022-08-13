@@ -30,7 +30,7 @@ $(document).ready(function () {
 function handleBestSelling(width, products) {
     products.forEach(element => {
         const thumbnail = element.querySelector('.thumbnail');
-        if (width < 1200 ) {
+        if (width < 1200) {
             element.classList.add('product-item--col');
             const tag = document.createElement("div");
             tag.classList.add('icon-action');
@@ -44,7 +44,7 @@ function handleBestSelling(width, products) {
 
         }
         else {
-            if(element.classList.contains('product-item--col') ){
+            if (element.classList.contains('product-item--col')) {
 
                 element.classList.remove('product-item--col');
                 const icon = thumbnail.querySelector('.icon-action');
