@@ -26,7 +26,7 @@ router.get('/management', async function (req, res) {
         state = parseInt(state);
         ordersRet = await OrderModel.getAllOrdersByState(state, page, env.TOTAL_SEARCH_RESULTS * 1, selections);
     }
-    console.log(ordersRet[0].data);
+    //console.log(ordersRet[0].data);
     for (let i = 0; i < ordersRet[0].data.length; i++) {
         const order = ordersRet[0].data[i];
         order.orders._id = ordersRet[0].data[i].orders._id.toString();
@@ -58,11 +58,13 @@ router.post('/management', async function (req, res) {
     let page = req.body.page;
     let state = req.body.state;
     let url = '/orders/management';
+    console.log('body: ',req.body);
+    console.log(req.body.type == 0);
     if (Checker.isValidStr(req.body.userId) &&
         Checker.isValidStr(req.body.orderId) &&
         Checker.isValidNum(req.body.type) &&
-        (req.body.type === 0 ||
-            req.body.type === 1)) {
+        (req.body.type == 0 ||
+            req.body.type == 1)) {
         if (!Checker.isValidNum(page)) {
             page = 1;
         }
@@ -75,10 +77,11 @@ router.post('/management', async function (req, res) {
         else {
             url = url + '?state=' + state;
         }
-        if (req.body.type === 0) {
+        if (req.body.type == 0) {
             OrderModel.cancelOrder(req.body.userId, req.body.orderId);
         }
         else {
+            console.log('Next state');
             OrderModel.toNextState(req.body.userId, req.body.orderId);
         }
     }

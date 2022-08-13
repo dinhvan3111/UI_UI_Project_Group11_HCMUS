@@ -45,30 +45,46 @@
                     {{#each orders}}
                     <tr>
                         <td>
-                            <a class="order-id" href="/order/detail/{{orders._id}}">
+                            <a class="order-id" href="/order/detail/{{orders._id}}?user={{_id}}">
                                 {{orders._id}} <i class="fa-solid fa-up-right-from-square fa-2xs"></i>
                             </a>
                         </td>
-                        <td>{{_id}}</td>
+                        <td>
+                            {{_id}}
+                        </td>
                         <td>092121212</td>
                         <td>{{format_number orders.totalPrice}} đ</td>
-                        <td>{{convertToState orders.state}}</td>
+                        <td>
+                            {{convertToStateDesc orders.state}}
+                        </td>
                         {{#if orders.paidDay}}
-                        <td>{{toJSDate orders.paidDay}}</td>
+                            <td>{{toJSDate orders.paidDay}}</td>
                         {{else}}
-                        <td>_</td>
+                            <td>_</td>
                         {{/if}}
                         <td>
-                            {{#if (ifCond orders.state '<' 1)}} <a href="#" class="approve" title="Duyệt"
-                                data-toggle="tooltip">
-                                <i class="fa-solid fa-square-check fa-xl"></i>
-                                </a>
-                                <a href="#" class="delete" title="Xóa" data-toggle="tooltip">
-                                    <i class="fa-solid fa-square-xmark fa-xl"></i>
-                                </a>
-                                {{else}}
+                            {{#if (ifCond orders.state '<' 3)}}
+                                <form method="POST" id="{{orders._id}}-form" action="/orders/management">
+                                    <input type="hidden" name="orderId" value={{orders._id}}>
+                                    <input type="hidden" name="userId" value={{_id}}>
+                                    <input type="hidden" id="{{orders._id}}-type" name="type">
+                                    <input type="hidden" name="state" value={{convertToStateNum descState}}>
+                                    <input type="hidden" id="{{orders._id}}-page" name="page">
+                                    
+                                    <button type="submit" class="approve" title="Duyệt" 
+                                        data-toggle="tooltip" data-order-id={{orders._id}} 
+                                        value=1 onclick="updateBtnType(this)">
+                                        <i class="fa-solid fa-square-check fa-xl"></i>
+                                    </button>
+                                    <button type="submit" class="delete" title="Xóa" 
+                                        data-toggle="tooltip" data-order-id={{orders._id}} 
+                                        value=0 onclick="updateBtnType(this)">
+                                        <i class="fa-solid fa-square-xmark fa-xl"></i>
+                                    </button>
+                                </form>
+                            {{else}}
                                 _
-                                {{/if}}
+                            {{/if}}
                         </td>
                     </tr>
                     {{/each}}
@@ -87,7 +103,6 @@
 <script>
     $('.pagination-container').jqpaginator({
         data: createData({{ total }}),
-        data: createData({{total}}),
         render: renderer,
         itemsPerPage: {{limit}}
     });

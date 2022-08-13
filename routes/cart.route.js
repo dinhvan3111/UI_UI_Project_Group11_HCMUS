@@ -5,14 +5,23 @@ import Validator from '../utils/validator.js';
 import OrderModel from '../models/order.model.js';
 import { NUM_TO_DESCRIPTION } from '../utils/database.js';
 import env from '../utils/env.js';
+import Permission from '../middlewares/permission.mdw.js';
+import {PERMISSION_ENUM} from '../utils/database.js';
 const FREE_SHIP_AMMOUNT = 500000;
 const SHIP_PRICE = 30000;
 const router = express.Router();
 
 router.get('/order/detail/:id', async function (req, res) {
-    const userId = req.session.passport.user._id;
+    let isAdmin = undefined;
+    let userId = req.query.user;
+    if (userId && typeof(req.user) !== 'undefined' && 
+        req.session.passport.user.id_permission !== PERMISSION_ENUM.USER) {
+        isAdmin = true;
+    } else {
+        userId = req.session.passport.user._id;
+    }
     let order = null;
-    let orderDetail = null;
+    let orderDetail = undefined;
     try {
         order = await OrderModel.findOrderById(userId, req.params.id);
     }
@@ -34,6 +43,7 @@ router.get('/order/detail/:id', async function (req, res) {
     }
     res.render('vwOrder/order_detail', {
         orderDetail: orderDetail,
+        isUser: !isAdmin
     });
 });
 

@@ -315,6 +315,8 @@ export default {
 
     async changeState(userIdOrder, orderId, cartState) {
         const cartStateExist = NUM_TO_CART_STATE[`${cartState}`];
+        console.log('cart state:' ,cartState)
+        console.log('cartstateexist' ,cartStateExist);
         if (cartStateExist) {
             const res = await Order.updateOne(
                 {
@@ -327,6 +329,7 @@ export default {
                     }
                 }
             );
+            console.log('order.model.js:330');
             if (res.modifiedCount && res.modifiedCount > 0) {
                 NotiModel.newNotiAndNotify(userIdOrder,
                     `Đơn hàng ${orderId}`,
@@ -340,9 +343,11 @@ export default {
     async toNextState(userIdOrder, orderId) {
 
         const order = await this.findOrderById(userIdOrder, orderId);
-        if (order && order.orders.state < STATE_CART_ENUM.DONE) {
-            const res = await changeState(userIdOrder, orderId, order.orders.state + 1);
-            if (res && order.orders.state + 1 === STATE_CART_ENUM.DONE) {
+        console.log(order);
+        if (order && order.orders[0].state < STATE_CART_ENUM.DONE) {
+            const res = await this.changeState(userIdOrder, orderId, order.orders[0].state + 1);
+            console.log('res', res);
+            if (res && order.orders[0].state + 1 === STATE_CART_ENUM.DONE) {
                 const productIds = [];
                 for (let i = 0; i < order.orders[0].cartInfos.length; i++) {
                     productIds.push(order.orders[0].cartInfos[i]._id.toString());
@@ -357,8 +362,8 @@ export default {
     async cancelOrder(userIdOrder, orderId) {
 
         const order = await this.findOrderById(userIdOrder, orderId);
-        if (order && order.orders.state < STATE_CART_ENUM.DONE) {
-            const res = await changeState(userIdOrder, orderId, STATE_CART_ENUM.CANCEL);
+        if (order && order.orders[0].state < STATE_CART_ENUM.DONE) {
+            const res = await this.changeState(userIdOrder, orderId, STATE_CART_ENUM.CANCEL);
             return res;
         }
         return false;

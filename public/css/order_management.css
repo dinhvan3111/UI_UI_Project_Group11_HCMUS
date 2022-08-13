@@ -77,6 +77,10 @@
   padding: 0 2rem 0 2rem;
 }
 
+.order-table tbody tr td:last-child {
+  padding: 0;
+}
+
 .order-table tbody tr:hover>*,
 .order-table tbody tr:hover td:first-child,
 .order-table tbody tr:hover td:last-child {
@@ -87,12 +91,16 @@
   color: var(--sub-color);
 }
 
-.order-table td a.approve {
-  color: green;
+.order-table td button {
+  background: none;
 }
 
-.order-table td a.delete {
-  color: #e34724;
+.order-table td button.approve {
+  color: var(--approved-color);
+}
+
+.order-table td button.delete {
+  color: var(--failed-color);
 }
 
 .hint-text {

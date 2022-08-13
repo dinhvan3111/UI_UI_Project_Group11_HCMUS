@@ -2,6 +2,8 @@ const stateElem = document.getElementById('recv-state');
 
 $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
+    
+    // State for order detail
     if (stateElem != null) {
         initState();
     }
@@ -33,4 +35,15 @@ function initState() {
             progressBar.style.width = '0%';
             break;
     }
+}
+
+function updateBtnType(adjButton) {
+    // Get order Id being clicked upon
+    const reqOrderId = adjButton.dataset.orderId;
+
+    // Set value for hidden field to return to server
+    document.getElementById(reqOrderId + '-type').value = parseInt(adjButton.value);
+
+    const params = new URLSearchParams(window.location.search)  // url param(s)
+    document.getElementById(reqOrderId + '-page').value = parseInt(params.get('page'));
 }

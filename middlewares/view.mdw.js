@@ -34,8 +34,11 @@ export default function (app) {
 					return rounded;
 				}
 			},
-			convertToState(num){
+			convertToStateDesc(num){
 				return NUM_TO_DESCRIPTION[num];
+			},
+			convertToStateNum(desc){
+				return Object.keys(NUM_TO_DESCRIPTION).find(key => NUM_TO_DESCRIPTION[key] === desc);
 			},
 			toJSDate (dateTime) {
 				var dateTime = new Date(dateTime);

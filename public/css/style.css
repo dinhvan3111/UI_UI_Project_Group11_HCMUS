@@ -4,9 +4,9 @@
     --back-color: #203e8f;
     --hover-color: #0b1768;
     --border-radius:1rem;
-    --failed-color: #F15E60;
+    --failed-color: #f94749;
     --pending-color: #ff9801;
-    --approved-color: #2EA58D;
+    --approved-color: #079376;
     --success-color: #3B63AF;
 }
 

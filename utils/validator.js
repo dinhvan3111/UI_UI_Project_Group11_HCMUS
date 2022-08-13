@@ -14,11 +14,11 @@ export default {
     },
 
     isValidNum(str) {
-        return this.isValidStr(str.toString()) && /^[0-9]+$/.test(str);
+        return str !== undefined && this.isValidStr(str.toString()) && /^[0-9]+$/.test(str);
     },
 
     isValidOrderState(state) {
-        if (!this.isValidNum(state.toString())) {
+        if (state !== undefined && !this.isValidNum(state.toString())) {
             return false;
         }
         return NUM_TO_CART_STATE[`${state}`] !== undefined;
