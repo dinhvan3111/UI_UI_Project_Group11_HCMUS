@@ -15,14 +15,15 @@
     <h1>Đăng ký</h1>
     <div class="form" action="/register" method="POST">
 <form id="register-form" action="/register" method="post">
+
         <div class="form-group">
-            <input type="text" name="username" placeholder="Username" autocomplete="off" readonly 
-onfocus="this.removeAttribute('readonly');">
-            <span class="input-icon"><i class="fa fa-user"></i></span>
+            <input type="email" name="email" placeholder="Email">
+            <span class="input-icon"><i class="fa fa-envelope"></i></span>
         </div>
-        <div class="err-message err-message__urs">
-            Tài khoản phải ít nhất 6 kí tự
+        <div class="err-message err-message__email">
+            Email chỉ phải ít nhất 6 kí tự và không chứa kí tự đặc biệt
         </div>
+
         <div class="form-group">
             <input type="text" name="fullname" placeholder="Họ và tên">
             <span class="input-icon"><i class="fa fa-user"></i></span>
@@ -36,14 +37,6 @@ onfocus="this.removeAttribute('readonly');">
         </div>
         <div class="err-message err-message__address">
             Địa chỉ phải ít nhất 6 kí tự
-        </div>
-        
-        <div class="form-group">
-            <input type="email" name="email" placeholder="Email">
-            <span class="input-icon"><i class="fa fa-envelope"></i></span>
-        </div>
-        <div class="err-message err-message__email">
-            Email chỉ phải ít nhất 6 kí tự và không chứa kí tự đặc biệt
         </div>
         
         <div class="form-group">
@@ -103,105 +96,6 @@ onfocus="this.removeAttribute('readonly');">
             class="reset-psw let_register" href="/">Về trang chủ?</a></p>
     </div>
 </div>
-{{!-- <div class="login-form align-items-center register-form">
-    
-    <!--    <form>-->
-    <h1>Đăng ký</h1>
-    <div class="container">
-        <div class="form-register"></div>
-    </div>   
-    <form action="/register" method="post">
-        <div class="form-group">
-            <input type="text" name="username" placeholder="Username" autocomplete="off" readonly 
-onfocus="this.removeAttribute('readonly');">
-            <span class="input-icon"><i class="fa fa-user"></i></span>
-        </div>
-        <div class="err-message err-message__urs">
-            Tài khoản phải ít nhất 6 kí tự
-        </div>
-        <div class="form-group">
-            <input type="text" name="fullname" placeholder="Họ và tên">
-            <span class="input-icon"><i class="fa fa-user"></i></span>
-        </div>
-        <div class="err-message err-message__fullname">
-            Tên phải ít nhất 6 kí tự và không chứa kí tự đặc biệt
-        </div>
-        <div class="form-group">
-            <input type="address" name="address" placeholder="Địa chỉ">
-            <span class="input-icon"><i class="fa fa-home"></i></span>
-        </div>
-        <div class="err-message err-message__address">
-            Địa chỉ phải ít nhất 6 kí tự
-        </div>
-        
-        <div class="form-group">
-            <input type="email" name="email" placeholder="Email">
-            <span class="input-icon"><i class="fa fa-envelope"></i></span>
-        </div>
-        <div class="err-message err-message__email">
-            Email chỉ phải ít nhất 6 kí tự và không chứa kí tự đặc biệt
-        </div>
-        
-        <div class="form-group">
-            <input type="password" name="password" placeholder="Mật khẩu" autocomplete="off" readonly 
-onfocus="this.removeAttribute('readonly');" >
-            <span class="input-icon"><i class="fa fa-lock"></i></span>
-            <span class="icon-hide-show">
-                <span class="icon-hide"><i class="fa-solid fa-eye-slash"></i></span>
-                <span class="icon-show"><i class="fa-solid fa-eye"></i></span>
-            </span>
-        </div>
-        <div class="err-message err-message__pwd">
-            Mật khẩu phải ít nhất 6 kí tự
-        </div>
-        <div class="form-group">
-            <input type="password" name="re-enter-password" placeholder="Nhập lại mật khẩu" autocomplete="off" readonly 
-onfocus="this.removeAttribute('readonly');">
-            <span class="input-icon"><i class="fa fa-lock"></i></span> 
-            <span class="icon-hide-show re-enter">
-                <span class="icon-hide"><i class="fa-solid fa-eye-slash"></i></span>
-                <span class="icon-show"><i class="fa-solid fa-eye"></i></span>
-            </span>
-        </div>
-        <div class="err-message err-message__re-enter-pwd">
-            Mật khẩu không trùng khớp
-        </div>
-
-        {{#if err_message}}
-            <div class="err_login">
-                <p><i class="fa fa-user-times" aria-hidden="true"></i> {{err_message}}</p>
-            </div>
-        {{/if}}
-        {{#if success_message}}
-            <div class="success_login">
-                <p><i class="fa fa-check-circle" aria-hidden="true"></i> {{success_message}}</p>
-            </div>
-        {{/if}}
-        {{#if loginFailed}}
-
-            <div class="err_login">
-                <p><i class="fa fa-user-times" aria-hidden="true"></i> Email được liên kết với tài khoản {{provider}} của bạn đã dùng để đăng nhập với một tài khoản đã có trong hệ thống. Vui lòng sử dụng tài khoản khác</p>
-            </div>
-        {{/if}}
-
-        <button class="register-btn login-btn">Đăng ký</button>
-        <div class="seperator" ><b style="color: #666666;">hoặc</b></div>
-    </form>
-    <div class="social-icon d-flex justify-content-center">
-        <form action="/auth/google" method="post">
-            <button class="bg-email" type="submit"><i class="fa-brands fa-google-plus"></i></button>
-        </form>
-        <form action="/auth/facebook" method="post">
-            <button class="bg-fb" type="submit"><i class="fa-brands fa-facebook"></i></button>
-        </form>
-
-    </div>
-    <p class="d-flex"><a class="reset-psw let_register" href="/login">Trở lại đăng nhập ?</a><a
-            class="reset-psw let_register" href="/">Về trang chủ?</a></p>
-
-
-    <!--    </form>-->
-</div> --}}
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/js/register.js"></script>

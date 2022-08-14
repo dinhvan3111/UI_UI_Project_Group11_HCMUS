@@ -1,6 +1,6 @@
 const registerForm = document.querySelector('#register-form');
 const registerBtn = document.querySelector('.register-btn');
-const urs = document.querySelector('input[name="username"]');
+// const urs = document.querySelector('input[name="username"]');
 const fullName = document.querySelector('input[name="fullname"]');
 const address = document.querySelector('input[name="address"]');
 const email = document.querySelector('input[name="email"]');
@@ -8,7 +8,7 @@ const pwd = document.querySelector('input[name="password"]');
 const renEnterPwd = document.querySelector('input[name="re-enter-password"]');
 
 
-const errUrs = document.querySelector('.err-message__urs');
+// const errUrs = document.querySelector('.err-message__urs');
 const errFullName = document.querySelector('.err-message__fullname');
 const errAddress = document.querySelector('.err-message__address');
 const errEmail = document.querySelector('.err-message__email');
@@ -101,6 +101,7 @@ async function handleErrorMessage(item,msg){
             if(!isValidEmail(item.value)){
                 msg.innerText = 'Email không hợp lệ'; 
                 msg.style.display = 'block';
+                item.style.border = '1px solid red';
                 return;
             }
             if(await isEmailNotExist(item.value)){ // Nếu email chưa tồn tại
@@ -120,9 +121,9 @@ async function handleErrorMessage(item,msg){
     }
     else{
         item.style.border = '1px solid red';
-        if(item.name==="username")
-            msg.innerText = `Tài khoản phải từ ${min} đến ${max} kí tự.`;
-        else if(item.name==="password"){
+        // if(item.name==="username")
+        //     msg.innerText = `Tài khoản phải từ ${min} đến ${max} kí tự.`;
+        if(item.name==="password"){
             msg.innerText = `Mật khẩu phải từ ${min} đến ${max} kí tự.`;
         }
         msg.style.display = 'block';
@@ -148,11 +149,11 @@ function handleReEnterPassword(password, reEnterPassword, msg){
 }
 
 // Lỗi độ dài của input
-urs.addEventListener('focusout', (e) => {
-    handleErrorMessage(urs, errUrs);
+// urs.addEventListener('focusout', (e) => {
+//     handleErrorMessage(urs, errUrs);
     
     
-});
+// });
 
 fullName.addEventListener('focusout', (e) => {
     handleErrorMessage(fullName, errFullName);
@@ -180,15 +181,15 @@ renEnterPwd.addEventListener('focusout', (e) => {
 
 //Chặn đăng nhập khi lỗi
 registerBtn.addEventListener('click', async function (e) {
-    const isValidUrs = checkLength(urs,min,max);
+    // const isValidUrs = checkLength(urs,min,max);
     const isValidFullName = checkLength(fullName,min,max);
     const isValidAddress = checkLength(address,min,max);
     const isValidEmail = checkLength(email,min,max) && await isEmailNotExist(email); 
     const isValidPwd = checkLength(pwd,min,max);
     const isValidReEnterPwd = checkReEnterPassword(pwd,renEnterPwd);
     
-    if(!isValidUrs || !isValidFullName || !isValidAddress || !isValidEmail || !isValidPwd || !isValidReEnterPwd){
-        handleErrorMessage(urs,errUrs);
+    if(!isValidFullName || !isValidAddress || !isValidEmail || !isValidPwd || !isValidReEnterPwd){
+        // handleErrorMessage(urs,errUrs);
         handleErrorMessage(fullName,errFullName);
         handleErrorMessage(address,errAddress);
         await handleErrorMessage(email,errEmail);
@@ -199,10 +200,10 @@ registerBtn.addEventListener('click', async function (e) {
 });
 
 // chặn nút space
-$('input[name="username"]').keypress(function( e ) {
-    if(e.which === 32) 
-        return false;
-});
+// $('input[name="username"]').keypress(function( e ) {
+//     if(e.which === 32) 
+//         return false;
+// });
 $('input[name="password"]').keypress(function( e ) {
     if(e.which === 32) 
         return false;
