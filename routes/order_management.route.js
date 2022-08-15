@@ -58,8 +58,6 @@ router.post('/management', async function (req, res) {
     let page = req.body.page;
     let state = req.body.state;
     let url = '/orders/management';
-    console.log('body: ',req.body);
-    console.log(req.body.type == 0);
     if (Checker.isValidStr(req.body.userId) &&
         Checker.isValidStr(req.body.orderId) &&
         Checker.isValidNum(req.body.type) &&

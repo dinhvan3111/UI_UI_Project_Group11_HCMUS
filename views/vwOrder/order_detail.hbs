@@ -1,118 +1,226 @@
 {{#section 'title'}}
-<title>Đơn hàng - 788152</title>
+<title>Đơn hàng - {{orderDetail._id}}</title>
 {{/section}}
 
 {{#if orderDetail}}
-    <div class="container order-detail-background">
-        <div class="d-flex justify-content-center align-items-center mt-5 order-detail-container">
-            <div class="card order-detail-form">
-                {{!-- Header --}}
-                {{#if isUser}}
-                    <div class="card-header px-4 py-5">
-                        <h1 class="text-muted mb-0">Cảm ơn bạn đã đặt hàng, <span id="username">{{orderDetail.deliveryInfo.name}}</span>!
-                        </h1>
+<div class="container order-detail-background">
+    <div class="d-flex justify-content-center align-items-center mt-5 order-detail-container">
+        <div class="card order-detail-form">
+            {{!-- Header --}}
+            {{#if isUser}}
+            <div class="card-header px-4 py-5">
+                <h1 class="text-muted mb-0">Cảm ơn bạn đã đặt hàng, <span
+                        id="username">{{orderDetail.deliveryInfo.name}}</span>!
+                </h1>
+            </div>
+            {{/if}}
+            {{!-- Order items --}}
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="fw-normal mb-0 order-title">Thông tin hóa đơn</h2>
+                </div>
+                {{!-- Items --}}
+                <div class="order-detail-item">
+                    {{#each orderDetail.cartInfos}}
+                    <a href="/products/{{_id}}" class="card shadow-0 border mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img src="{{getImgLink thumb}}" class="img-fluid" alt="Phone">
+                                </div>
+                                <div class="col-md-4 text-center d-flex justify-content-center align-items-center">
+                                    <p class="text-muted mb-0">{{title}}</p>
+                                </div>
+                                <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
+                                    <p class="text-muted mb-0 small">Số lượng: {{quantity}}</p>
+                                </div>
+                                <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
+                                    <p class="text-muted mb-0 small">{{format_number price}} đ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    {{/each}}
+                </div>
+                {{!-- Order state --}}
+                <div class="row gy-2 d-flex align-items-center order-state mt-2">
+                    <div class="col-md-2">
+                        <input type="hidden" id="recv-state" value={{orderDetail.state}}>
+                        <p class="text-muted mb-0 small">Tình trạng đơn hàng</p>
                     </div>
-                {{/if}}
-                {{!-- Order items --}}
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h2 class="fw-normal mb-0 order-title">Thông tin hóa đơn</h2>
+                    <div class="col-md-10">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                aria-valuemax="100">
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between state-title">
+                            <p class="text-muted">Đặt hàng</p>
+                            <p class="text-muted">Chờ xác nhận</p>
+                            <p class="text-muted">Đã xác nhận</p>
+                            <p class="text-muted">Đang giao hàng</p>
+                            <p class="text-muted">Giao thành công</p>
+                        </div>
                     </div>
-                    {{!-- Items --}}
-                    <div class="order-detail-item">
-                        {{#each orderDetail.cartInfos}}
-                            <a href="/products/{{_id}}" class="card shadow-0 border mb-4">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <img src="{{getImgLink thumb}}"
-                                                class="img-fluid" alt="Phone">
-                                        </div>
-                                        <div class="col-md-4 text-center d-flex justify-content-center align-items-center">
-                                            <p class="text-muted mb-0">{{title}}</p>
-                                        </div>
-                                        <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
-                                            <p class="text-muted mb-0 small">Số lượng: {{quantity}}</p>
-                                        </div>
-                                        <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
-                                            <p class="text-muted mb-0 small">{{format_number price}} đ</p>
-                                        </div>
+                </div>
+                <hr class="mb-4">
+            </div>
+
+            {{!-- Payment info --}}
+            <div class="card-body">
+                <div class="row">
+                    {{!-- Order info --}}
+                    <div class="col-md-6">
+                        <div class="card payment-detail">
+                            <div class="card-header fw-bold">
+                                Thông tin chi tiết đơn hàng
+                            </div>
+                            <div class="card-body text-muted">
+                                {{!-- Order detail info --}}
+                                <div class="card-text fw-bold">
+                                    <span class="payment-label">Mã đơn hàng:</span>
+                                    <span class="card-desc">
+                                        {{orderDetail._id}}
+                                    </span>
+                                </div>
+                                <div class="card-text fw-bold">
+                                    <span class="payment-label">Mã voucher:</span>
+                                    <span class="card-desc">
+                                        {{#if orderDetail.voucherId}}
+                                        {{orderDetail.voucherId}}
+                                        {{else}}
+                                        _
+                                        {{/if}}
+                                    </span>
+                                </div>
+                                <div class="card-text fw-bold">
+                                    <span class="payment-label">Ngày đặt hàng:</span>
+                                    <span class="card-desc">
+                                        {{toJSDate orderDetail.startDay}}
+                                    </span>
+                                </div>
+                                <div class="card-text fw-bold">
+                                    <span class="payment-label">Ngày thanh toán:</span>
+                                    <span class="card-desc">
+                                        {{#if orderDetail.paidDay}}
+                                        {{orderDetail.paidDay}}
+                                        {{else}}
+                                        _
+                                        {{/if}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- Customer info --}}
+                    <div class="col-md-6">
+                        <div class="card user-detail">
+                            <div class="card-header fw-bold">
+                                Thông tin người nhận
+                            </div>
+                            <div class="card-body text-muted">
+                                {{!-- Order detail info --}}
+                                <div class="d-flex justify-content-between">
+                                    <div class="card-text fw-bold">
+                                        <span class="payment-label">
+                                            <i class="fa-solid fa-user" title="Họ và tên" data-toggle="tooltip">
+                                            </i>
+                                        </span>
+                                        <span class="card-desc">
+                                            {{orderDetail.deliveryInfo.name}}
+                                        </span>
+                                    </div>
+
+                                    <div class="card-text fw-bold">
+                                        <span class="payment-label">
+                                            <i class="fa-solid fa-phone" title="Số điện thoại" data-toggle="tooltip">
+                                            </i>
+                                        </span>
+                                        <span class="card-desc">
+                                            {{orderDetail.deliveryInfo.phone}}
+                                        </span>
                                     </div>
                                 </div>
-                            </a>
-                        {{/each}}
-                    </div>
-                    {{!-- Order state --}}
-                    <div class="row gy-2 d-flex align-items-center order-state mt-2">
-                        <div class="col-md-2">
-                            <input type="hidden" id="recv-state" value={{orderDetail.state}}>
-                            <p class="text-muted mb-0 small">Tình trạng đơn hàng</p>
-                        </div>
-                        <div class="col-md-10">
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                                    aria-valuemax="100">
+                                <div class="card-text fw-bold">
+                                    <span class="payment-label">
+                                        <i class="fa-solid fa-at" title="Email" data-toggle="tooltip">
+                                        </i>
+                                    </span>
+                                    <span class="card-desc">
+                                        {{orderDetail.deliveryInfo.email}}
+                                    </span>
+                                </div>
+                                <div class="card-text fw-bold">
+                                    <span class="payment-label">
+                                        <i class="fa-solid fa-location-dot" title="Địa chỉ" data-toggle="tooltip">
+                                        </i>
+                                    </span>
+                                    <span class="card-desc">
+                                        {{orderDetail.deliveryInfo.addr}}
+                                    </span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <div class="card-text fw-bold">
+                                        <span class="payment-label">
+                                            <i class="fa-solid fa-calendar-check" title="Ngày nhận hàng"
+                                                data-toggle="tooltip">
+                                            </i>
+                                        </span>
+                                        <span class="card-desc">
+                                            {{#if orderDetail.deliveryInfo.recvDay}}
+                                            {{orderDetail.deliveryInfo.recvDay}}
+                                            {{else}}
+                                            _
+                                            {{/if}}
+                                        </span>
+                                    </div>
+
+                                    <div class="card-text fw-bold">
+                                        <span class="payment-label">
+                                            <i class="fa-solid fa-hand-holding" title="Cách thức nhận hàng"
+                                                data-toggle="tooltip">
+                                            </i>
+                                        </span>
+                                        <span class="card-desc">
+                                            {{#if orderDetail.deliveryInfo.receiveAt includeZero=true}}
+                                            Nhận tại nhà
+                                            {{else}}
+                                            Nhận tại cửa hàng
+                                            {{/if}}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-between state-title">
-                                <p class="text-muted">Đặt hàng</p>
-                                <p class="text-muted">Chờ xác nhận</p>
-                                <p class="text-muted">Đã xác nhận</p>
-                                <p class="text-muted">Đang giao hàng</p>
-                                <p class="text-muted">Giao thành công</p>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="mb-4">
-                </div>
-
-                {{!-- Payment info --}}
-                <div class="payment-detail card-body">
-                    <p class="fw-bold">Thông tin chi tiết</p>
-                    <div class="row">
-                        <div class="col-md-6 order-detail text-muted">
-                            <div class="me-3 fw-bold">
-                                <p>Mã đơn hàng:</p>
-                                <p>Ngày nhận hàng:</p>
-                                <p>Mã voucher:</p>
-                            </div>
-                            <div>
-                                <p>{{orderDetail._id}}</p>
-                                {{#if orderDetail.paidDay}}
-                                    <p>{{orderDetail.paidDay}}</p>
-                                {{else}}
-                                    <p>_</p>
-                                {{/if}}
-                                {{#if orderDetail.voucherId}}
-                                    <p>{{orderDetail.voucherId}}</p>
-                                {{else}}
-                                    <p>_</p>
-                                {{/if}}
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 price-info text-muted">
-                            <div>
-                                <p class="fw-bold me-4">Tổng tiền</p>
-                                <p class="fw-bold me-4">Phí vận chuyển</p>
-                            </div>
-                            <div>
-                                <p>{{format_number orderDetail.totalPrice}} đ</p>
-                                <p>{{format_number orderDetail.shipPrice}} đ</p>
-                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                {{!-- Order final price --}}
-                <div class="card-footer border-0 px-4 py-5">
-                    <div class="d-flex align-items-center justify-content-end text-white mb-0">
-                        <h1 class="mb-0 ms-2">Thành tiền: {{format_number orderDetail.actualTotal}} đ</h1>
-                    </div>
+            {{!-- Order final price --}}
+            <div class="card-footer border-0 py-4">
+                <div class="d-flex align-items-center justify-content-between text-white">
+                    <h2 class="sub-price">
+                        {{!-- Price --}}
+                        <div class="card-text fw-bold">
+                            <span class="payment-label">Tổng tiền:</span>
+                            <span class="card-desc">
+                                {{format_number orderDetail.totalPrice}} đ
+                            </span>
+                        </div>
+                        <div class="card-text fw-bold">
+                            <span class="payment-label">Phí vận chuyển:</span>
+                            <span class="card-desc">
+                                {{format_number orderDetail.shipPrice}} đ
+                            </span>
+                        </div>
+                    </h2>
+
+                    <h1 class="mb-0 ms-2">Thành tiền: {{format_number orderDetail.actualTotal}} đ</h1>
                 </div>
             </div>
         </div>
     </div>
+</div>
 {{/if}}
 
 {{#section 'js'}}
