@@ -1,12 +1,23 @@
 import express from 'express';
 import OrderModel from '../models/order.model.js';
-import { STATE_CART_ENUM, NUM_TO_DESCRIPTION } from '../utils/database.js';
+import { PERMISSION_ENUM, NUM_TO_DESCRIPTION } from '../utils/database.js';
 import env from '../utils/env.js';
 import Checker from '../utils/validator.js';
 
 const router = express.Router();
 
 router.get('/management', async function (req, res) {
+    // Check permission
+    if (!req.session.passport.user) {
+        // If user have not logged in
+        return res.redirect('back');
+    }
+
+    if (req.session.passport.user.id_permission !== PERMISSION_ENUM.STAFF) {
+        // If current user have permission
+        return res.redirect('back');
+    }
+
     const page = req.query.page || 1;
     let state = req.query.state || -1;
 

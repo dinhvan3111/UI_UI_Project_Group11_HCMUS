@@ -135,24 +135,42 @@
                     <div class="login">
                         {{#if lcAuthUser}}
                         <div class="dropdown-info">
+                                <button class="btn btn-default dropdown-toggle" type="button" 
+                                    id="dropdown-information"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{#if lcAuthUser.avt}}
+                                        <img src="{{lcAuthUser.avt}}" alt="logo" crossorigin="anonymous" 
+                                            referrerpolicy="no-referrer">
+                                    {{else}}
+                                        <i class="fa-regular fa-circle-user"></i>
+                                    {{/if}}
 
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-information"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                {{#if lcAuthUser.avt}}
-                                    <img src="{{lcAuthUser.avt}}" alt="logo" crossorigin="anonymous" referrerpolicy="no-referrer">
-                                {{else}}
-                                    <i class="fa-regular fa-circle-user"></i>
-                                {{/if}}
-
-                                {{lcAuthUser.name}}
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown-infor">
-                                <li><a class="dropdown-item" href="/profile">Thông tin cá nhân</a></li>
-                                <li><a class="dropdown-item" href="/purchased-history">Lịch sử mua hàng</a></li>
-                                <li><a class="dropdown-item" href="/orders/management">Quản lý đơn hàng</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="logout(); return false;"><i
-                                            class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
-                            </ul>
+                                    {{lcAuthUser.name}}
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown-infor">
+                                    <li><a class="dropdown-item" href="/profile">Thông tin cá nhân</a></li>
+                                    <li>
+                                        <a class="dropdown-item" href="/purchased-history">
+                                            Lịch sử mua hàng
+                                        </a>
+                                    </li>
+                                    {{#if (ifCond lcAuthUser.id_permission '===' 2)}}
+                                    <li>
+                                        <a class="dropdown-item" href="/orders/management">
+                                            Quản lý đơn hàng
+                                        </a>
+                                    </li>
+                                    {{/if}}
+                                    {{#if (ifCond lcAuthUser.id_permission '===' 3)}}
+                                    <li>
+                                        <a class="dropdown-item" href="/products/management">
+                                            Quản lý sản phẩm
+                                        </a>
+                                    </li>
+                                    {{/if}}
+                                    <li><a class="dropdown-item" href="#" onclick="logout(); return false;"><i
+                                                class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+                                </ul>
                         </div>
                         {{else}}
                         <a href="/login">
@@ -236,6 +254,14 @@
                             <div class="logged-name">
                                 <p>Hi, <b>{{lcAuthUser.name}}</b></p>
                                 <a href="/purchased-history" class="logged-purchased">Lịch sử mua hàng</a>
+                                {{#if (ifCond lcAuthUser.id_permission '===' 2)}}
+                                    <br>
+                                    <a href="/orders/managment" class="logged-purchased">Quản lý đơn hàng</a>
+                                {{/if}}
+                                {{#if (ifCond lcAuthUser.id_permission '===' 3)}}
+                                    <br>
+                                    <a href="/products/management" class="logged-purchased">Quản lý sản phẩm</a>
+                                {{/if}}
                             </div>
 
                         </a>
