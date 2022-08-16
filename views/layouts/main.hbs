@@ -106,9 +106,11 @@
                                     {{/if}}
                                 </div>
                                 {{#if lcDisplayNotis}}
+                                {{#if lcIsMoreThanTen}}
                                 <div class="noti-control">
                                     <button><i class="fa-solid fa-angle-down"></i>Hiển thị thêm thông báo</button>
                                 </div>
+                                {{/if}}
                                 {{/if}}
                             </ul>
                             {{!-- Empty notification --}}
@@ -323,7 +325,7 @@
         <div id="liveToast" class="toast noti-toast" role="alert" aria-live="assertive" 
             aria-atomic="true" data-bs-autohide="false">
             <div class="toast-body">
-                <i class="fa-solid fa-bell fa-shake fa-xl"></i>
+                <i class=""></i>
                 <span id="notiContent">Đơn hàng của bạn đang chờ được xác nhận</span>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
@@ -447,8 +449,44 @@
     }
 
     ws.onmessage = function (event) {
-        console.log(event.data);
-        showToast();
+        const result = JSON.parse(event.data);
+        console.log(result);
+        console.log("Title " + result['title']);
+        var message = '';
+        const notiToast = document.querySelector('#liveToast');
+        const notiToastIcon = document.querySelector('#liveToast i');
+        if(parseInt(result['description']) === 0){
+            message = result["title"] + " của bạn đang chờ xác nhận";
+            notiToast.style.borderColor = 'var(--pending-color)';
+            notiToastIcon.style.color = 'var(--pending-color)';
+        }
+        else if(parseInt(result['description']) === 1){
+            message = result["title"] + " của bạn đã được xác nhận";
+            notiToast.style.borderColor = 'var(--approved-color)';
+            notiToastIcon.className = 'svg-inline--fa fa-solid fa-check';
+            notiToastIcon.style.color = 'var(--approved-color)';
+        }
+        else if(parseInt(result['description']) === 2){
+            message = result["title"] + " của bạn đang được giao";
+            notiToast.style.borderColor = 'var(--approved-color)';
+            notiToastIcon.className = 'svg-inline--fa fa-solid fa-truck';
+            notiToastIcon.style.color = 'var(--approved-color)';
+        }
+        else if(parseInt(result['description']) === 3){
+            message = result["title"] + " của bạn đã được giao thành công";
+            notiToast.style.borderColor = 'var(--back-color)';
+            notiToastIcon.className = 'svg-inline--fa fa-solid fa-clipboard-check';
+            notiToastIcon.style.color = 'var(--back-color)';
+        }
+        else if(parseInt(result['description']) === 4){
+            message = result["title"] + " của bạn đã bị huỷ";
+            notiToast.style.borderColor = 'var(--failed-color)';
+            notiToastIcon.className = 'svg-inline--fa fa-solid fa-circle-x';
+            notiToastIcon.style.color = 'var(--failed-color)';
+        }
+        console.log(notiToastIcon);
+        console.log(message);
+        showToast(message);
     }
 </script>
 {{/if}}

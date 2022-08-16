@@ -60,21 +60,26 @@ export default function (app) {
         if (res.locals.lcAuthUser) {
             const noti = await NotiModel.getAllNoti(res.locals.lcAuthUser._id, 0);
             res.locals.lcNotis = noti[0]["data"];
-            console.log(noti[0]["data"].length);
-            console.log(noti[0]["total"]);
             res.locals.lcTotalNotis = noti[0]["total"][0];
             const displayLength = res.locals.lcNotis.length > 10 ? 10 : res.locals.lcNotis.length;
             let notis = [];
-            for(let i =0;i < res.locals.lcNotis.length;i++){
-                notis.push(res.locals.lcNotis[0]["notifications"]);
+            // for(let i =0;i < res.locals.lcNotis.length;i++){
+            //     notis.push(res.locals.lcNotis[i]["notifications"]);
+            // }
+            for(let i =res.locals.lcNotis.length - 1;i >=0;i--){
+                notis.push(res.locals.lcNotis[i]["notifications"]);
             }
             res.locals.lcNotis = notis;
             res.locals.lcDisplayNotis = [];
             for(let i =0;i < displayLength ;i++){
                 res.locals.lcDisplayNotis.push(notis[i]);
             }
-            // console.log(res.locals.lcNotis);
-            // console.log(res.locals.lcNotis.length);
+            if(notis.length >= 10){
+                res.locals.lcIsMoreThanTen = true
+            }
+            else{
+                res.locals.lcIsMoreThanTen = false
+            }
         }
         next();
     });

@@ -1,18 +1,18 @@
-const toastLiveExample = document.getElementById('liveToast')
+const toastLiveExample = document.getElementById('liveToast');
+const notiContent = document.getElementById('notiContent');
 
 function removeShake() {
   let notiItems = document.querySelector('.dropdown-noti .icon .fa-shake');
   if (notiItems) {
-    notiItems.classList.remove("fa-shake")
+    notiItems.classList.remove("fa-shake");
   }
-
-  showToast();  // Test toast
 }
 
-function showToast() {
+function showToast(message) {
   if (toastLiveExample) {
-    const toast = new bootstrap.Toast(toastLiveExample)
-    toast.show()
+    const toast = new bootstrap.Toast(toastLiveExample);
+    notiContent.innerHTML = message;
+    toast.show();
   }
 }
 
