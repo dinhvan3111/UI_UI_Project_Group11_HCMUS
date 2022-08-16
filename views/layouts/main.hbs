@@ -455,30 +455,30 @@
         var message = '';
         const notiToast = document.querySelector('#liveToast');
         const notiToastIcon = document.querySelector('#liveToast i');
-        if(parseInt(result['description']) === 0){
+        if(result['description'] === 'Chờ xác nhận'){
             message = result["title"] + " của bạn đang chờ xác nhận";
             notiToast.style.borderColor = 'var(--pending-color)';
             notiToastIcon.style.color = 'var(--pending-color)';
         }
-        else if(parseInt(result['description']) === 1){
+        else if(result['description'] === 'Đã xác nhận'){
             message = result["title"] + " của bạn đã được xác nhận";
             notiToast.style.borderColor = 'var(--approved-color)';
             notiToastIcon.className = 'svg-inline--fa fa-solid fa-check';
             notiToastIcon.style.color = 'var(--approved-color)';
         }
-        else if(parseInt(result['description']) === 2){
+        else if(result['description'] === 'Đang giao'){
             message = result["title"] + " của bạn đang được giao";
             notiToast.style.borderColor = 'var(--approved-color)';
             notiToastIcon.className = 'svg-inline--fa fa-solid fa-truck';
             notiToastIcon.style.color = 'var(--approved-color)';
         }
-        else if(parseInt(result['description']) === 3){
+        else if(result['description']=== 'Giao thành công'){
             message = result["title"] + " của bạn đã được giao thành công";
             notiToast.style.borderColor = 'var(--back-color)';
             notiToastIcon.className = 'svg-inline--fa fa-solid fa-clipboard-check';
             notiToastIcon.style.color = 'var(--back-color)';
         }
-        else if(parseInt(result['description']) === 4){
+        else if(result['description'] === 'Bị hủy'){
             message = result["title"] + " của bạn đã bị huỷ";
             notiToast.style.borderColor = 'var(--failed-color)';
             notiToastIcon.className = 'svg-inline--fa fa-solid fa-circle-x';
