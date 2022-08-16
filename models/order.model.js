@@ -314,7 +314,7 @@ export default {
     },
 
     async changeState(userIdOrder, orderId, cartState) {
-        const cartStateExist = NUM_TO_CART_STATE[`${cartState}`];
+        const cartStateExist = NUM_TO_DESCRIPTION[`${cartState}`];
         console.log('cart state:' ,cartState)
         console.log('cartstateexist' ,cartStateExist);
         if (cartStateExist) {

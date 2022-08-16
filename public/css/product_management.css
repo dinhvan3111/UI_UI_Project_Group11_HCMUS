@@ -112,6 +112,14 @@
     font-size: 1.8rem;
 }
 
+.management-product .management-header a {
+    color: #fff;
+    background-color: #198754;
+    border-color: #198754;
+    font-size: 2rem;
+    border-radius: 0.5rem;
+}
+
 /* Modal */
 #manageProductModal .modal-dialog {
     position: absolute;

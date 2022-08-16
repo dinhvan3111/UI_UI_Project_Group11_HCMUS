@@ -6,6 +6,8 @@ import CategoryModel from '../models/category.model.js';
 import multer from 'multer';
 import Validator from '../utils/validator.js';
 import { request } from 'http';
+import { PERMISSION_ENUM } from '../utils/database.js';
+
 
 const upload = multer({
     storage: multer.memoryStorage(),
@@ -88,6 +90,17 @@ router.post('/', cpUpload, async function (req, res) {
 });
 
 router.get('/management', async function (req, res) {
+    // Check permission
+    if (!req.session.passport.user) {
+        // If user have not logged in
+        return res.redirect('back');
+    }
+
+    if (req.session.passport.user.id_permission !== PERMISSION_ENUM.ADMIN) {
+        // If current user have permission
+        return res.redirect('back');
+    }
+
     const page = req.query.page || 1;
     const pagingRet = await ProductModel.getAll(page);
     const products = [];
@@ -112,12 +125,34 @@ router.get('/management', async function (req, res) {
 });
 
 router.get('/management/add-product', async function (req, res) {
+    // Check permission
+    if (!req.session.passport.user) {
+        // If user have not logged in
+        return res.redirect('back');
+    }
+
+    if (req.session.passport.user.id_permission !== PERMISSION_ENUM.ADMIN) {
+        // If current user have permission
+        return res.redirect('back');
+    }
+
     res.render('vwProduct/add_product', {
         layout: 'main.hbs',
     });
 });
 
 router.get('/edit/:id', async function (req, res) {
+     // Check permission
+    if (!req.session.passport.user) {
+        // If user have not logged in
+        return res.redirect('back');
+    }
+
+    if (req.session.passport.user.id_permission !== PERMISSION_ENUM.ADMIN) {
+        // If current user have permission
+        return res.redirect('back');
+    }
+    
     const product = await ProductModel.findById(req.params.id);
     if (product === null) {
         res.sendStatus(404);

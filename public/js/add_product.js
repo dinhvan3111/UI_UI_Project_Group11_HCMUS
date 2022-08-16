@@ -1,7 +1,7 @@
-const dropdownMenu = document.querySelectorAll('.name-category-product .dropdown-menu .dropdown-item');
+const dropdownMenuAddProduct = document.querySelectorAll('.name-category-product .dropdown-menu .dropdown-item');
 const btnCategory = document.querySelector('.name-category-product .dropdown-category button');
 //gán giá trị category cho button
-dropdownMenu.forEach(element => {
+dropdownMenuAddProduct.forEach(element => {
 	element.addEventListener('click', (e) => {
 		btnCategory.innerHTML = element.innerHTML;
 	});
