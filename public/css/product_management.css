@@ -112,7 +112,7 @@
     font-size: 1.8rem;
 }
 
-.management-product .management-header a {
+.management-product .management-header a.add-product-btn {
     color: #fff;
     background-color: #198754;
     border-color: #198754;

@@ -62,7 +62,8 @@ function makeNotiState(){
 // Load thêm thông báo
 const dropdownMenu = document.querySelector(".dropdown-noti .dropdown-menu");
 const loadMoreNotisBtn = document.querySelector(".dropdown-noti .dropdown-menu .noti-control");
-loadMoreNotisBtn.addEventListener('click', function (e) {
+if (loadMoreNotisBtn) {
+    loadMoreNotisBtn.addEventListener('click', function (e) {
     e.stopPropagation();
     if(notifications.length < parseInt(totalItem.innerHTML)){
         var xhr = new XMLHttpRequest();
@@ -73,19 +74,19 @@ loadMoreNotisBtn.addEventListener('click', function (e) {
             const totalItem = result['data']['total'][0]['count'];
             for(let i =0; i < additonalItems.length;i++){
                 console.log(additonalItems[i]['notifications']);
-               notificationsContainer.innerHTML +=  `<li class="item">
-               <a class="dropdown-item" href="/order/detail/` + additonalItems[i]['notifications']['_id'] + `">
-                   <img
-                       src="https://cdn.shopify.com/s/files/1/0024/9803/5810/products/517518-Product-0-I-637756975358868585_a1f8076b-3e38-4c5b-8f52-3a088f73731e_540x540.jpg?v=1658208964">
-                   <div class="order-info">
-                       <p>`+ additonalItems[i]['notifications']['title'] + `</p>
-                       <small class="text-muted">Thời gian đặt hàng: `+ additonalItems[i]['notifications']['date'] + `</small>
-                   </div>
-                   <span class="ms-4">`+ additonalItems[i]['notifications']['description'] + `</span>
-               </a>
-           </li>`
-           notificationsState = document.querySelectorAll(".dropdown-noti .dropdown-menu .item-container .item .dropdown-item span");
-           makeNotiState();
+            notificationsContainer.innerHTML +=  `<li class="item">
+            <a class="dropdown-item" href="/order/detail/` + additonalItems[i]['notifications']['_id'] + `">
+                <img
+                    src="https://cdn.shopify.com/s/files/1/0024/9803/5810/products/517518-Product-0-I-637756975358868585_a1f8076b-3e38-4c5b-8f52-3a088f73731e_540x540.jpg?v=1658208964">
+                <div class="order-info">
+                    <p>`+ additonalItems[i]['notifications']['title'] + `</p>
+                    <small class="text-muted">Thời gian đặt hàng: `+ additonalItems[i]['notifications']['date'] + `</small>
+                </div>
+                <span class="ms-4">`+ additonalItems[i]['notifications']['description'] + `</span>
+            </a>
+        </li>`
+        notificationsState = document.querySelectorAll(".dropdown-noti .dropdown-menu .item-container .item .dropdown-item span");
+        makeNotiState();
             }
             notifications = document.querySelectorAll(".dropdown-noti .dropdown-menu .item-container .item");
             if(notifications.length >= totalItem){
@@ -107,6 +108,7 @@ loadMoreNotisBtn.addEventListener('click', function (e) {
     //     }
     // }
 });
+}
 
 // Chặn ẩn noti khi bấm vào
 

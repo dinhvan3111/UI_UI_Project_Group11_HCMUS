@@ -34,7 +34,7 @@
                     <tr>
                         <th>Mã đơn hàng</th>
                         <th>Username</th>
-                        <th>Số điện thoại</th>
+                        {{!-- <th>Số điện thoại</th> --}}
                         <th>Tổng tiền</th>
                         <th>Tình trang</th>
                         <th>Ngày thanh toán</th>
@@ -52,16 +52,18 @@
                         <td>
                             {{_id}}
                         </td>
-                        <td>092121212</td>
+                        {{!-- <td>092121212</td> --}}
                         <td>{{format_number orders.totalPrice}} đ</td>
                         <td>
-                            {{convertToStateDesc orders.state}}
+                            <i class="fa-solid fa-circle fa-2xs"></i> <span>{{convertToStateDesc orders.state}}</span>
                         </td>
-                        {{#if orders.paidDay}}
-                            <td>{{toJSDate orders.paidDay}}</td>
-                        {{else}}
-                            <td>_</td>
-                        {{/if}}
+                        <td>
+                            {{#if orders.paidDay}}
+                                {{toJSDate orders.paidDay}}
+                            {{else}}
+                                _
+                            {{/if}}
+                        </td>
                         <td>
                             {{#if (ifCond orders.state '<' 3)}}
                                 <form method="POST" id="{{orders._id}}-form" action="/orders/management">

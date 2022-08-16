@@ -71,11 +71,7 @@
                                 data-bs-toggle="dropdown" aria-expanded="false" onclick="removeShake()">
                                 <div class="icon">
                                     {{!-- Bell will shake when new notification arrive --}}
-                                    {{#if lcTotalInCart}}
-                                    <i class="fa-solid fa-bell fa-shake"></i>
-                                    {{else}}
                                     <i class="fa-solid fa-bell"></i>
-                                    {{/if}}
                                 </div>
                                 <div class="text">
                                     Thông báo
@@ -323,10 +319,10 @@
     {{!-- Toast --}}
     <div class="toast-container position-fixed bottom-0 end-0">
         <div id="liveToast" class="toast noti-toast" role="alert" aria-live="assertive" 
-            aria-atomic="true" data-bs-autohide="false">
+            aria-atomic="true" data-bs-autohide="true">
             <div class="toast-body">
                 <i class=""></i>
-                <span id="notiContent">Đơn hàng của bạn đang chờ được xác nhận</span>
+                <span id="notiContent"></span>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
         </div>
@@ -338,7 +334,7 @@
         <section class="footer-social-media container">
             <!-- Left -->
             <div>
-                <span>Get connected with us on social networks: </span>
+                <span>Liên hệ với chúng tôi thông qua các kênh: </span>
             </div>
             <!-- Left end-->
             <!-- Right -->

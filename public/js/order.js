@@ -1,4 +1,6 @@
 const stateElem = document.getElementById('recv-state');
+const stateList = document.querySelectorAll('.order-table tbody tr td:nth-child(4)');
+console.log(stateList);
 
 $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
@@ -6,6 +8,11 @@ $(document).ready(function () {
     // State for order detail
     if (stateElem != null) {
         initState();
+    }
+
+    if (stateList) {
+        console.log('set color');
+        setStateColor();
     }
 });
 
@@ -46,4 +53,34 @@ function updateBtnType(adjButton) {
 
     const params = new URLSearchParams(window.location.search)  // url param(s)
     document.getElementById(reqOrderId + '-page').value = parseInt(params.get('page'));
+}
+
+function getColor(stateDesc) {
+    let color = undefined;
+    switch (stateDesc) {
+        case 'Chờ xác nhận':
+            color = 'var(--pending-color)';
+            break;
+        case 'Đã xác nhận':
+        case 'Đang giao':
+            color = 'var(--approved-color)';
+            break;
+        case 'Giao thành công':
+            color = 'var(--success-color)';
+            break;
+        case 'Bị hủy':
+            color = 'var(--failed-color)';
+            break;
+
+        default:
+            color = 'black';
+            break;
+    }
+    return color;
+}
+
+function setStateColor() {
+    for (let i = 0; i < stateList.length; i++) {
+        stateList[i].children[0].style.color = getColor(stateList[i].children[1].innerHTML);
+    }
 }
