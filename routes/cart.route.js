@@ -47,7 +47,7 @@ router.get('/order/detail/:id', async function (req, res) {
     });
 });
 
-router.get('/cart', async function (req, res) {
+router.get('/cart', Permission.isUser, async function (req, res) {
     if (req.session.passport === undefined) {
         return res.redirect('/login');
     }
@@ -81,7 +81,7 @@ router.get('/cart', async function (req, res) {
     });
 });
 
-router.post('/cart', async function (req, res) {
+router.post('/cart', Permission.isUser, async function (req, res) {
     // Post về 2 lần (cái đầu tiên hợp lệ vì có field products) nên phải lấy cái có products
     // if(req.body.products !== undefined){
     console.log(req.body);
@@ -94,7 +94,7 @@ router.post('/cart', async function (req, res) {
     // }
 });
 
-router.get('/purchased-history', async function (req, res) {
+router.get('/purchased-history', Permission.isUser, async function (req, res) {
     const page = req.query.page || 1;
     const userId = req.session.passport.user._id;
     let state = req.query.state || -1;

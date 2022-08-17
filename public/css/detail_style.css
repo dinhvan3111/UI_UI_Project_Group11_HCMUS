@@ -403,7 +403,7 @@
     transition: transform .2s ease;
     padding: 1rem;
     border-radius: 0.5rem;
-    margin: 1rem 0 0 0;
+    margin: 1rem 0 1rem 0;
 }
 
 /* .review-card:hover {

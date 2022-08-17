@@ -4,12 +4,10 @@ import { PERMISSION_ENUM } from '../utils/database.js';
 const REDIRECTED = true;
 
 function isLogon(req, res) {
-	if (typeof (req.user) !== 'undefined') {
-		req.session.retUrl = req.originalUrl;
-		const url = '/login';
-		res.redirect(url);
-		return REDIRECTED;
-	}
+	if (!req.user) {
+        // If user have not logged in
+        return REDIRECTED;
+    }
 	return !REDIRECTED;
 }
 
@@ -42,7 +40,7 @@ export default {
 			req.session.passport.user.id_permission === PERMISSION_ENUM.ADMIN) {
 			return next();
 		}
-		return res.redirect('/login');
+		return res.redirect('back');
 	},
 
 	isStaff(req, res, next) {
@@ -50,7 +48,7 @@ export default {
 			req.session.passport.user.id_permission === PERMISSION_ENUM.STAFF) {
 			return next();
 		}
-		return res.redirect('/login');
+		return res.redirect('back');
 	},
 
 	isUser(req, res, next) {
@@ -58,6 +56,6 @@ export default {
 			req.session.passport.user.id_permission === PERMISSION_ENUM.USER) {
 			return next();
 		}
-		return res.redirect('/login');
+		return res.redirect('back');
 	},
 }

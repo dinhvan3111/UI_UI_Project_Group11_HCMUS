@@ -22,7 +22,7 @@ router.delete('/:id', async function (req, res) {
     });
 });
 
-router.post('/', Checker.notLogin, async function (req, res) {
+router.post('/', Checker.isUser, async function (req, res) {
     if (req.body.productId === undefined ||
         req.body.productId === null ||
         req.body.productId.length === 0 ||

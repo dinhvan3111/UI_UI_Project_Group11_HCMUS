@@ -147,11 +147,13 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown-infor">
                                     <li><a class="dropdown-item" href="/profile">Thông tin cá nhân</a></li>
+                                    {{#if (ifCond lcAuthUser.id_permission '===' 1)}}
                                     <li>
                                         <a class="dropdown-item" href="/purchased-history">
                                             Lịch sử mua hàng
                                         </a>
                                     </li>
+                                    {{/if}}
                                     {{#if (ifCond lcAuthUser.id_permission '===' 2)}}
                                     <li>
                                         <a class="dropdown-item" href="/orders/management">
@@ -251,7 +253,9 @@
                                 {{/if}}
                             <div class="logged-name">
                                 <p>Hi, <b>{{lcAuthUser.name}}</b></p>
-                                <a href="/purchased-history" class="logged-purchased">Lịch sử mua hàng</a>
+                                {{#if (ifCond lcAuthUser.id_permission '===' 1)}}
+                                    <a href="/purchased-history" class="logged-purchased">Lịch sử mua hàng</a>
+                                {{/if}}
                                 {{#if (ifCond lcAuthUser.id_permission '===' 2)}}
                                     <br>
                                     <a href="/orders/managment" class="logged-purchased">Quản lý đơn hàng</a>
